@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图3 · 验证税：一天里有 31% 的时间在干没人计量的活</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">Harness 2026 调查 700 名工程实践者：这些工作十八个月前根本不存在，且不在任何看板上</text>
+
+  <rect x="40" y="72" width="200" height="106" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="54" y="94" fill="#67e8f9" font-size="17" font-weight="700">53%</text>
+  <text x="54" y="112" fill="#e2e8f0" font-size="8.5" font-weight="600">审查 AI 代码的准确性</text>
+  <text x="54" y="130" fill="#94a3b8" font-size="7.5">逐行理解 AI 的意图，而它的</text>
+  <text x="54" y="143" fill="#94a3b8" font-size="7.5">逻辑路径不同于人类的思考方式</text>
+  <text x="54" y="161" fill="#64748b" font-size="7">最耗时的 AI 相关活动 · 第 1 位</text>
+
+  <rect x="252" y="72" width="200" height="106" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="266" y="94" fill="#67e8f9" font-size="17" font-weight="700">52%</text>
+  <text x="266" y="112" fill="#e2e8f0" font-size="8.5" font-weight="600">修复逃过测试套件的微妙 bug</text>
+  <text x="266" y="130" fill="#94a3b8" font-size="7.5">通过每一个自动化测试，却在</text>
+  <text x="266" y="143" fill="#94a3b8" font-size="7.5">生成器没预料到的边界条件下崩</text>
+  <text x="266" y="161" fill="#64748b" font-size="7">最耗时的 AI 相关活动 · 第 2 位</text>
+
+  <rect x="464" y="72" width="176" height="106" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="478" y="94" fill="#67e8f9" font-size="17" font-weight="700">48%</text>
+  <text x="478" y="112" fill="#e2e8f0" font-size="8.5" font-weight="600">向同事解释 AI 写的代码</text>
+  <text x="478" y="130" fill="#94a3b8" font-size="7.5">没写过它的人无法重建它的</text>
+  <text x="478" y="143" fill="#94a3b8" font-size="7.5">推理过程——因为它没有推理过程</text>
+  <text x="478" y="161" fill="#64748b" font-size="7">最耗时的 AI 相关活动 · 第 3 位</text>
+
+  <rect x="40" y="194" width="600" height="104" rx="9" fill="rgba(251,191,36,0.09)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="56" y="216" fill="#fbbf24" font-size="11" font-weight="700">没人算的这笔账</text>
+  <text x="56" y="240" fill="#cbd5e1" font-size="8.5">31% 工时 × 美国企业级高级工程师全负荷成本 ≈ $220,000/年</text>
+  <text x="56" y="262" fill="#fbbf24" font-size="15" font-weight="700">≈ $68,000 / 人 / 年</text>
+  <text x="196" y="262" fill="#cbd5e1" font-size="8.5">的隐形验证税，不进任何项目账本、不进季度规划</text>
+  <text x="56" y="284" fill="#cbd5e1" font-size="8.5">500 人工程组织按 100 名高级工程师承担审查负载计 → 每年约 $6.8M，而仪表盘上显示的是「周期时间改善」</text>
+
+  <line x1="40" y1="316" x2="640" y2="316" stroke="#334155" stroke-width="1"/>
+
+  <rect x="40" y="328" width="290" height="98" rx="8" fill="rgba(76,29,41,0.25)" stroke="#fb7185" stroke-width="1"/>
+  <text x="54" y="350" fill="#fda4af" font-size="10.5" font-weight="700">为什么看不见它</text>
+  <text x="54" y="372" fill="#cbd5e1" font-size="8">只有 38% 的组织追踪花在 AI 代码审查上的时间</text>
+  <text x="54" y="390" fill="#cbd5e1" font-size="8">另外 62% 只测总产出：代码行数、合并 PR 数、周期时间</text>
+  <text x="54" y="411" fill="#94a3b8" font-size="7.5">按这些指标看，工程组织「蒸蒸日上」</text>
+
+  <rect x="350" y="328" width="290" height="98" rx="8" fill="rgba(8,51,68,0.25)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="364" y="350" fill="#67e8f9" font-size="10.5" font-weight="700">真正稀缺的东西换了</text>
+  <text x="364" y="372" fill="#cbd5e1" font-size="8">67% 的周产出已是 AI 生成或显著重构</text>
+  <text x="364" y="390" fill="#cbd5e1" font-size="8">86% 的质量保证负担由高级工程师承担</text>
+  <text x="364" y="411" fill="#94a3b8" font-size="7.5">→ 稀缺资源不再是代码，是代码出现之后的人类判断</text>
+</svg>

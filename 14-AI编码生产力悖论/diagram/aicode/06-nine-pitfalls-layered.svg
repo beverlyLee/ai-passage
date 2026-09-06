@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图6 · 9 个坑按层归位：生成层 / 验证层 / 度量层</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">每个坑都标了它卡在流水线的哪一段——先定位层，再谈解法</text>
+
+  <rect x="30" y="66" width="196" height="356" rx="9" fill="rgba(76,29,41,0.2)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="46" y="88" fill="#fda4af" font-size="11" font-weight="700">生成层 · 写出来的那一刻</text>
+
+  <rect x="44" y="100" width="168" height="98" rx="6" fill="rgba(251,113,133,0.1)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="56" y="120" fill="#fda4af" font-size="8.5" font-weight="700">坑 1 · 规则文件越堆越大</text>
+  <text x="56" y="138" fill="#cbd5e1" font-size="7.5">症状：把三年架构文档全塞进</text>
+  <text x="56" y="151" fill="#cbd5e1" font-size="7.5">agent 指令，成功率反降、成本 +20%</text>
+  <text x="56" y="170" fill="#94a3b8" font-size="7.5">解法：指令当接口而非文档，</text>
+  <text x="56" y="183" fill="#94a3b8" font-size="7.5">只留可执行的约束与反例</text>
+
+  <rect x="44" y="206" width="168" height="98" rx="6" fill="rgba(251,113,133,0.1)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="56" y="226" fill="#fda4af" font-size="8.5" font-weight="700">坑 2 · MCP 工具集不裁剪</text>
+  <text x="56" y="244" fill="#cbd5e1" font-size="7.5">症状：还没发消息，12% 窗口</text>
+  <text x="56" y="257" fill="#cbd5e1" font-size="7.5">已被工具定义吃掉，推理质量掉</text>
+  <text x="56" y="276" fill="#94a3b8" font-size="7.5">解法：按会话剪枝工具集，</text>
+  <text x="56" y="289" fill="#94a3b8" font-size="7.5">P99 31,561 token 的要单独审</text>
+
+  <rect x="44" y="312" width="168" height="98" rx="6" fill="rgba(251,113,133,0.1)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="56" y="332" fill="#fda4af" font-size="8.5" font-weight="700">坑 3 · 隔夜循环不设上限</text>
+  <text x="56" y="350" fill="#cbd5e1" font-size="7.5">症状：一觉醒来 $6,000+ 账单，</text>
+  <text x="56" y="363" fill="#cbd5e1" font-size="7.5">主因是上下文卫生失败而非任务难</text>
+  <text x="56" y="382" fill="#94a3b8" font-size="7.5">解法：硬预算 + 迭代上限 +</text>
+  <text x="56" y="395" fill="#94a3b8" font-size="7.5">每轮压缩上下文后再继续</text>
+
+  <rect x="242" y="66" width="196" height="356" rx="9" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="258" y="88" fill="#fbbf24" font-size="11" font-weight="700">验证层 · 提交前后的判断</text>
+
+  <rect x="256" y="100" width="168" height="98" rx="6" fill="rgba(251,191,36,0.09)" stroke="#fbbf24" stroke-width="0.8"/>
+  <text x="268" y="120" fill="#fcd34d" font-size="8.5" font-weight="700">坑 4 · 拿 benchmark 预测自家库</text>
+  <text x="268" y="138" fill="#cbd5e1" font-size="7.5">症状：看榜单选模型，但安全</text>
+  <text x="268" y="151" fill="#cbd5e1" font-size="7.5">通过率 56% 与去年 55% 持平</text>
+  <text x="268" y="170" fill="#94a3b8" font-size="7.5">解法：按语言+漏洞类型抽样自测，</text>
+  <text x="268" y="183" fill="#94a3b8" font-size="7.5">Python 63% 不代表 Java 30%</text>
+
+  <rect x="256" y="206" width="168" height="98" rx="6" fill="rgba(251,191,36,0.09)" stroke="#fbbf24" stroke-width="0.8"/>
+  <text x="268" y="226" fill="#fcd34d" font-size="8.5" font-weight="700">坑 5 · 以为换强模型就更安全</text>
+  <text x="268" y="244" fill="#cbd5e1" font-size="7.5">症状：升级后能力涨、漏洞照旧，</text>
+  <text x="268" y="257" fill="#cbd5e1" font-size="7.5">代码专用 51% 还低于通用 52%</text>
+  <text x="268" y="276" fill="#94a3b8" font-size="7.5">解法：安全门禁独立于模型升级，</text>
+  <text x="268" y="289" fill="#94a3b8" font-size="7.5">不随版本迁移而放松</text>
+
+  <rect x="256" y="312" width="168" height="98" rx="6" fill="rgba(251,191,36,0.09)" stroke="#fbbf24" stroke-width="0.8"/>
+  <text x="268" y="332" fill="#fcd34d" font-size="8.5" font-weight="700">坑 6 · 把"测试通过"当"可上线"</text>
+  <text x="268" y="350" fill="#cbd5e1" font-size="7.5">症状：28.3% agent PR 秒合，</text>
+  <text x="268" y="363" fill="#cbd5e1" font-size="7.5">71.7% 进迭代循环；60% 企业发未测代码</text>
+  <text x="268" y="382" fill="#94a3b8" font-size="7.5">解法：给 AI diff 单独设门禁，</text>
+  <text x="268" y="395" fill="#94a3b8" font-size="7.5">覆盖率只升不降 + 人工签字</text>
+
+  <rect x="454" y="66" width="196" height="356" rx="9" fill="rgba(8,51,68,0.28)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="470" y="88" fill="#67e8f9" font-size="11" font-weight="700">度量层 · 你到底有没有变快</text>
+
+  <rect x="468" y="100" width="168" height="98" rx="6" fill="rgba(34,211,238,0.1)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="480" y="120" fill="#67e8f9" font-size="8.5" font-weight="700">坑 7 · 不测量就上工具</text>
+  <text x="480" y="138" fill="#cbd5e1" font-size="7.5">症状：88% 用户"感觉更高效"，</text>
+  <text x="480" y="151" fill="#cbd5e1" font-size="7.5">只有 26% 的 leader 看到真实增益</text>
+  <text x="480" y="170" fill="#94a3b8" font-size="7.5">解法：先定基线指标再铺开，</text>
+  <text x="480" y="183" fill="#94a3b8" font-size="7.5">至少测变更失败率与返工率</text>
+
+  <rect x="468" y="206" width="168" height="98" rx="6" fill="rgba(34,211,238,0.1)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="480" y="226" fill="#67e8f9" font-size="8.5" font-weight="700">坑 8 · 把生成速度当产能</text>
+  <text x="480" y="244" fill="#cbd5e1" font-size="7.5">症状：5 分钟生成 1000 行，</text>
+  <text x="480" y="257" fill="#cbd5e1" font-size="7.5">40 分钟才勉强审完——带宽不对称</text>
+  <text x="480" y="276" fill="#94a3b8" font-size="7.5">解法：给"审查带宽"排期，</text>
+  <text x="480" y="289" fill="#94a3b8" font-size="7.5">限制单次 diff 体积上限</text>
+
+  <rect x="468" y="312" width="168" height="98" rx="6" fill="rgba(34,211,238,0.1)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="480" y="332" fill="#67e8f9" font-size="8.5" font-weight="700">坑 9 · 只看产出不看验证税</text>
+  <text x="480" y="350" fill="#cbd5e1" font-size="7.5">症状：31% 工时的验证税不进看板，</text>
+  <text x="480" y="363" fill="#cbd5e1" font-size="7.5">62% 组织只测行数/PR 数/周期时间</text>
+  <text x="480" y="382" fill="#94a3b8" font-size="7.5">解法：把审查与返工时间显式计时，</text>
+  <text x="480" y="395" fill="#94a3b8" font-size="7.5">与生成节省的时间对冲后再谈 ROI</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图4 · benchmark 全涨了，安全性没动：56% vs 55%</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">Veracode 2026 GenAI Code Security Report：100+ 模型、跨语言跨任务，通过率与去年持平意味着零改进</text>
+
+  <line x1="60" y1="330" x2="420" y2="330" stroke="#334155" stroke-width="1"/>
+  <line x1="60" y1="330" x2="60" y2="86" stroke="#334155" stroke-width="1"/>
+  <text x="36" y="100" fill="#64748b" font-size="8">100%</text>
+  <text x="40" y="215" fill="#64748b" font-size="8">60%</text>
+  <text x="40" y="332" fill="#64748b" font-size="8">0%</text>
+
+  <line x1="52" y1="215" x2="420" y2="215" stroke="#475569" stroke-width="0.8" stroke-dasharray="4 4"/>
+
+  <rect x="110" y="227" width="88" height="103" rx="4" fill="#38bdf8" fill-opacity="0.55" stroke="#38bdf8" stroke-width="1"/>
+  <text x="129" y="222" fill="#7dd3fc" font-size="11" font-weight="700">55%</text>
+  <text x="112" y="345" fill="#94a3b8" font-size="8">2025</text>
+
+  <rect x="230" y="222" width="88" height="108" rx="4" fill="#22d3ee" fill-opacity="0.55" stroke="#22d3ee" stroke-width="1"/>
+  <text x="249" y="217" fill="#67e8f9" font-size="11" font-weight="700">56%</text>
+  <text x="232" y="345" fill="#94a3b8" font-size="8">2026</text>
+
+  <rect x="350" y="150" width="88" height="180" rx="4" fill="#334155" fill-opacity="0.35" stroke="#64748b" stroke-width="1"/>
+  <text x="366" y="145" fill="#cbd5e1" font-size="11" font-weight="700">96%</text>
+  <text x="356" y="345" fill="#94a3b8" font-size="8">能力 benchmark</text>
+  <text x="372" y="358" fill="#64748b" font-size="7">（SWE-bench 类）</text>
+
+  <text x="110" y="378" fill="#94a3b8" font-size="8">+1 个百分点 = 统计噪声</text>
+  <text x="110" y="392" fill="#94a3b8" font-size="8">约 44% 的 AI 代码带已知漏洞类型上线</text>
+
+  <line x1="448" y1="86" x2="448" y2="404" stroke="#334155" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="464" y="102" fill="#fb7185" font-size="11" font-weight="700">拆开看，全是反直觉</text>
+
+  <rect x="462" y="114" width="196" height="60" rx="7" fill="rgba(76,29,41,0.28)" stroke="#fb7185" stroke-width="1"/>
+  <text x="474" y="133" fill="#fda4af" font-size="8.5" font-weight="700">代码专用模型 51% &lt; 通用模型 52%</text>
+  <text x="474" y="150" fill="#cbd5e1" font-size="7.5">专门训过代码的，安全性并没有更强</text>
+  <text x="474" y="165" fill="#cbd5e1" font-size="7.5">→ 训练目标里安全不是被优化的项</text>
+
+  <rect x="462" y="184" width="196" height="60" rx="7" fill="rgba(76,29,41,0.28)" stroke="#fb7185" stroke-width="1"/>
+  <text x="474" y="203" fill="#fda4af" font-size="8.5" font-weight="700">大模型 53% ≈ 中小模型 51%</text>
+  <text x="474" y="220" fill="#cbd5e1" font-size="7.5">规模没带来安全收益，只带来能力收益</text>
+  <text x="474" y="235" fill="#cbd5e1" font-size="7.5">→ 换更强模型 ≠ 更安全</text>
+
+  <rect x="462" y="254" width="196" height="60" rx="7" fill="rgba(76,29,41,0.28)" stroke="#fb7185" stroke-width="1"/>
+  <text x="474" y="273" fill="#fda4af" font-size="8.5" font-weight="700">Python 63% vs Java 30%</text>
+  <text x="474" y="290" fill="#cbd5e1" font-size="7.5">语言间差一倍以上：语料里安全写法</text>
+  <text x="474" y="305" fill="#cbd5e1" font-size="7.5">的密度差异被模型原样继承</text>
+
+  <rect x="462" y="324" width="196" height="76" rx="7" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="474" y="343" fill="#fbbf24" font-size="8.5" font-weight="700">同一模型内差距更大</text>
+  <text x="474" y="360" fill="#cbd5e1" font-size="7.5">XSS 防护远差于 SQL 注入防护</text>
+  <text x="474" y="375" fill="#cbd5e1" font-size="7.5">→ 漏洞类型级别的强不均衡</text>
+  <text x="474" y="392" fill="#94a3b8" font-size="7">不能靠"整体通过率"推断自家风险</text>
+</svg>

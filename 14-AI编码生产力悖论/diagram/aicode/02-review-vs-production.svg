@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#22d3ee"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图2 · 同一份代码，两台仪器给出相反读数</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">审查读「意图」，生产读「行为」——人写代码时代这两件事高度相关，AI 把这个相关性打破了</text>
+
+  <rect x="40" y="78" width="270" height="150" rx="9" fill="rgba(8,51,68,0.32)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="56" y="100" fill="#67e8f9" font-size="11" font-weight="700">审查阶段（读意图）</text>
+  <text x="56" y="120" fill="#cbd5e1" font-size="8">问题：「这是不是实现它声称要做的事的合理方式？」</text>
+  <text x="56" y="142" fill="#e2e8f0" font-size="20" font-weight="700" fill="#22d3ee">94%</text>
+  <text x="112" y="142" fill="#cbd5e1" font-size="8">技术 leader 认为 AI 代码质量高于人类</text>
+  <text x="56" y="166" fill="#94a3b8" font-size="8">✓ 通过静态参数检查</text>
+  <text x="56" y="182" fill="#94a3b8" font-size="8">✓ 输出可预测的设计模式</text>
+  <text x="56" y="198" fill="#94a3b8" font-size="8">✓ 严格遵循风格指南、命名良好</text>
+  <text x="56" y="216" fill="#64748b" font-size="7.5">「表面令人信服：惯用、命名良好、风格一致」— Faros AI</text>
+
+  <rect x="370" y="78" width="270" height="150" rx="9" fill="rgba(76,29,41,0.3)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="386" y="100" fill="#fda4af" font-size="11" font-weight="700">生产阶段（读行为）</text>
+  <text x="386" y="120" fill="#cbd5e1" font-size="8">问题：「它在真实并发、真实依赖下到底发生了什么？」</text>
+  <text x="386" y="142" fill="#fb7185" font-size="20" font-weight="700">78%</text>
+  <text x="442" y="142" fill="#cbd5e1" font-size="8">报告生产事故增加</text>
+  <text x="386" y="166" fill="#94a3b8" font-size="8">✗ 瞬态网络状态</text>
+  <text x="386" y="182" fill="#94a3b8" font-size="8">✗ 并发竞争条件、多租户状态变更</text>
+  <text x="386" y="198" fill="#94a3b8" font-size="8">✗ 未处理的 API 废弃、复杂依赖图</text>
+  <text x="386" y="216" fill="#64748b" font-size="7.5">关键运行时问题约为人类代码的 1.7 倍</text>
+
+  <line x1="316" y1="153" x2="364" y2="153" stroke="#fbbf24" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="322" y="145" fill="#fbbf24" font-size="8">落地</text>
+
+  <rect x="40" y="248" width="600" height="86" rx="9" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="56" y="270" fill="#fbbf24" font-size="10" font-weight="700">为什么「审查」这台仪器失灵了</text>
+  <text x="56" y="290" fill="#cbd5e1" font-size="8.5">人写代码时，潦草的思考通常会表现为潦草的代码，所以审查能靠「代码长得丑」这个代理指标顺带抓到行为问题。</text>
+  <text x="56" y="307" fill="#cbd5e1" font-size="8.5">AI 生成的代码把这个代理指标切断了：结构失败藏在惯用且命名良好的代码下面，审查恰好是奖励这些表面特征的仪器。</text>
+  <text x="56" y="324" fill="#94a3b8" font-size="8">→ 于是 62% 的团队在没有逐行验证的情况下就把 AI 代码发了出去</text>
+
+  <line x1="40" y1="352" x2="640" y2="352" stroke="#334155" stroke-width="1"/>
+
+  <rect x="40" y="364" width="140" height="62" rx="7" fill="rgba(76,29,41,0.22)" stroke="#fb7185" stroke-width="0.9"/>
+  <text x="52" y="384" fill="#fda4af" font-size="15" font-weight="700">86%</text>
+  <text x="52" y="400" fill="#cbd5e1" font-size="7.5">高级工程师救火变多</text>
+  <text x="52" y="415" fill="#64748b" font-size="7">比 AI 之前更多</text>
+
+  <rect x="192" y="364" width="140" height="62" rx="7" fill="rgba(76,29,41,0.22)" stroke="#fb7185" stroke-width="0.9"/>
+  <text x="204" y="384" fill="#fda4af" font-size="15" font-weight="700">74%</text>
+  <text x="204" y="400" fill="#cbd5e1" font-size="7.5">≥1/4 的 AI 代码需重大返工</text>
+  <text x="204" y="415" fill="#64748b" font-size="7">12 个月内</text>
+
+  <rect x="344" y="364" width="140" height="62" rx="7" fill="rgba(76,29,41,0.22)" stroke="#fb7185" stroke-width="0.9"/>
+  <text x="356" y="384" fill="#fda4af" font-size="15" font-weight="700">82%</text>
+  <text x="356" y="400" fill="#cbd5e1" font-size="7.5">至少一次生产故障</text>
+  <text x="356" y="415" fill="#64748b" font-size="7">过去 6 个月内</text>
+
+  <rect x="496" y="364" width="144" height="62" rx="7" fill="rgba(8,51,68,0.25)" stroke="#22d3ee" stroke-width="0.9"/>
+  <text x="508" y="384" fill="#67e8f9" font-size="15" font-weight="700">96%</text>
+  <text x="508" y="400" fill="#cbd5e1" font-size="7.5">认为可观测性极重要</text>
+  <text x="508" y="415" fill="#64748b" font-size="7">但 82% 照样故障</text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图5 · 成本冰山：你看到的 token 账单，只是水面上那一角</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">水面上的是 API 计价，水面下的是返工、回滚、验证税与失控循环的账单</text>
+
+  <path d="M 40 150 L 640 150 L 610 210 L 70 210 Z" fill="#22d3ee" fill-opacity="0.22" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="300" y="140" fill="#67e8f9" font-size="10.5" font-weight="700">水面之上 · 看得见</text>
+  <text x="70" y="176" fill="#e2e8f0" font-size="8.5">API token 计价 · prompt caching 缓存读 10% 价 · Batch API 减半</text>
+  <text x="70" y="196" fill="#94a3b8" font-size="8">按官方优化手册做的团队，token 降 40%–85% —— 但 token 只是第一层</text>
+
+  <path d="M 70 210 L 610 210 L 560 400 L 120 400 Z" fill="#0c4a6e" fill-opacity="0.35" stroke="#38bdf8" stroke-width="1"/>
+  <text x="290" y="230" fill="#7dd3fc" font-size="10.5" font-weight="700">水面之下 · 没人记账</text>
+
+  <text x="120" y="256" fill="#cbd5e1" font-size="8.5">· 31% 工时的隐形验证税（审查 / 修微妙 bug / 向同事解释）</text>
+  <text x="120" y="276" fill="#cbd5e1" font-size="8.5">· 86% 的 QA 负担压在高级工程师身上</text>
+  <text x="120" y="296" fill="#cbd5e1" font-size="8.5">· 78% 组织报告生产事故激增，直接与 AI 代码相关</text>
+  <text x="120" y="316" fill="#cbd5e1" font-size="8.5">· 82% 过去半年至少一次 AI 代码导致的重大故障</text>
+  <text x="120" y="336" fill="#fbbf24" font-size="8.5">· 隔夜 agent 循环跑出 $6,000+ 账单 —— 主因是上下文卫生失败</text>
+  <text x="120" y="356" fill="#94a3b8" font-size="8">· 只有 31% 的组织在测量 AI 的真实增益，只有 26% 的 leader 看到了它</text>
+  <text x="120" y="380" fill="#94a3b8" font-size="8">→ 不测量 = 冰山下半截永远不进账本，于是"感觉更高效"永远无法证伪</text>
+
+  <rect x="40" y="70" width="600" height="62" rx="8" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="56" y="92" fill="#fbbf24" font-size="10.5" font-weight="700">发第一条消息之前，你的窗口已经被吃掉 12%</text>
+  <text x="56" y="112" fill="#cbd5e1" font-size="8">PolicyLayer 扫 7,982 个 MCP server：工具定义中位数 1,919 token/个，P99 31,561，最重的一个独占 200K 窗口的 163%</text>
+  <text x="56" y="127" fill="#94a3b8" font-size="7.5">GitHub + Linear + Supabase 三个加起来 24,116 token；Cursor / Windsurf / Gemini CLI 每次请求全量加载</text>
+</svg>

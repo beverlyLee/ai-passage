@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图1 · 悖论的起点：用得越多，信得越少</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">采用率已接近饱和，信任度却在同一时间掉头向下——这不符合常规技术采纳曲线</text>
+
+  <line x1="70" y1="330" x2="470" y2="330" stroke="#475569" stroke-width="1"/>
+  <line x1="70" y1="90" x2="70" y2="330" stroke="#475569" stroke-width="1"/>
+  <text x="42" y="100" fill="#64748b" font-size="8.5">比例</text>
+  <text x="440" y="348" fill="#64748b" font-size="8.5">2023 → 2026</text>
+
+  <path d="M 70 300 L 165 258 L 260 170 L 355 128 L 450 108" fill="none" stroke="#22d3ee" stroke-width="2.6"/>
+  <text x="300" y="118" fill="#67e8f9" font-size="9.5" font-weight="600">采用率 90%</text>
+  <text x="300" y="132" fill="#67e8f9" font-size="8">JetBrains 15,000+ 开发者：每周用 90%、每天用 68%</text>
+
+  <path d="M 70 165 L 165 186 L 260 230 L 355 268 L 450 292" fill="none" stroke="#fb7185" stroke-width="2.6"/>
+  <text x="86" y="152" fill="#fda4af" font-size="9.5" font-weight="600">信任准确率 29%</text>
+  <text x="86" y="166" fill="#fda4af" font-size="8">Stack Overflow：40% → 29%，一年掉 11 个百分点</text>
+
+  <line x1="70" y1="108" x2="70" y2="292" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="260" cy="170" r="4" fill="#22d3ee"/>
+  <circle cx="260" cy="230" r="4" fill="#fb7185"/>
+  <line x1="260" y1="170" x2="260" y2="230" stroke="#fbbf24" stroke-width="1.4" stroke-dasharray="4,3"/>
+  <text x="268" y="204" fill="#fbbf24" font-size="9">剪刀差</text>
+
+  <rect x="490" y="90" width="166" height="112" rx="8" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="502" y="110" fill="#67e8f9" font-size="9.5" font-weight="700">用</text>
+  <text x="502" y="128" fill="#cbd5e1" font-size="8">90% 每周使用</text>
+  <text x="502" y="143" fill="#cbd5e1" font-size="8">68% 每天使用</text>
+  <text x="502" y="158" fill="#cbd5e1" font-size="8">42% 提交代码由 AI 写</text>
+  <text x="502" y="173" fill="#cbd5e1" font-size="8">67% 组织周产出 51–75% 含 AI</text>
+  <text x="502" y="191" fill="#64748b" font-size="7.5">来源：JetBrains / Sonar / New Relic</text>
+
+  <rect x="490" y="214" width="166" height="112" rx="8" fill="rgba(76,29,41,0.3)" stroke="#fb7185" stroke-width="1"/>
+  <text x="502" y="234" fill="#fda4af" font-size="9.5" font-weight="700">信</text>
+  <text x="502" y="252" fill="#cbd5e1" font-size="8">96% 不完全信任它写的</text>
+  <text x="502" y="267" fill="#cbd5e1" font-size="8">&lt;50% 会先验证再提交</text>
+  <text x="502" y="282" fill="#cbd5e1" font-size="8">66% 头号困扰「几乎对但不完全对」</text>
+  <text x="502" y="297" fill="#cbd5e1" font-size="8">45% 说调试 AI 代码更慢</text>
+  <text x="502" y="315" fill="#64748b" font-size="7.5">来源：Sonar 2026 / Stack Overflow</text>
+
+  <rect x="70" y="366" width="586" height="60" rx="8" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="86" y="386" fill="#fbbf24" font-size="9.5" font-weight="700">这就是悖论</text>
+  <text x="86" y="403" fill="#cbd5e1" font-size="8.5">常规技术采纳曲线里，熟悉会带来自信。AI 编码工具相反：用得越多，暴露的局限越多，信任反而下降。</text>
+  <text x="86" y="418" fill="#cbd5e1" font-size="8.5">不是工具变差了，是「写出代码」这件事变便宜之后，真正难的部分露出来了。</text>
+</svg>
