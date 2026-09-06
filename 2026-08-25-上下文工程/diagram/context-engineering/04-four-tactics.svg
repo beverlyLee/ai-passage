@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图4 · 上下文工程：不是写更多，是清理内存</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">问题4 — 四手法 + 一个反直觉的减法锚点</text>
+
+  <!-- Dirty context -->
+  <rect x="240" y="70" width="200" height="64" rx="6" fill="#0f172a"/>
+  <rect x="240" y="70" width="200" height="64" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="340" y="98" fill="white" font-size="11" font-weight="600" text-anchor="middle">脏的累积上下文</text>
+  <text x="340" y="116" fill="#94a3b8" font-size="9" text-anchor="middle">六层叠加，已污染</text>
+
+  <!-- Arrows dirty -> 4 methods -->
+  <line x1="340" y1="134" x2="115" y2="188" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="134" x2="275" y2="188" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="134" x2="435" y2="188" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="134" x2="595" y2="188" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Method 1 Write-out -->
+  <rect x="40" y="190" width="150" height="72" rx="6" fill="#0f172a"/>
+  <rect x="40" y="190" width="150" height="72" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="115" y="214" fill="white" font-size="11" font-weight="600" text-anchor="middle">写出去</text>
+  <text x="115" y="230" fill="#94a3b8" font-size="9" text-anchor="middle">Write-out</text>
+  <text x="115" y="247" fill="#94a3b8" font-size="8" text-anchor="middle">长逻辑→文件/代码</text>
+
+  <!-- Method 2 Retrieve -->
+  <rect x="200" y="190" width="150" height="72" rx="6" fill="#0f172a"/>
+  <rect x="200" y="190" width="150" height="72" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="275" y="214" fill="white" font-size="11" font-weight="600" text-anchor="middle">按需检索</text>
+  <text x="275" y="230" fill="#94a3b8" font-size="9" text-anchor="middle">Retrieve</text>
+  <text x="275" y="247" fill="#94a3b8" font-size="8" text-anchor="middle">用时才拉，不预灌</text>
+
+  <!-- Method 3 Compress -->
+  <rect x="360" y="190" width="150" height="72" rx="6" fill="#0f172a"/>
+  <rect x="360" y="190" width="150" height="72" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="435" y="214" fill="white" font-size="11" font-weight="600" text-anchor="middle">压缩</text>
+  <text x="435" y="230" fill="#94a3b8" font-size="9" text-anchor="middle">Compress</text>
+  <text x="435" y="247" fill="#94a3b8" font-size="8" text-anchor="middle">摘要 / 滑动窗口</text>
+
+  <!-- Method 4 Isolate -->
+  <rect x="520" y="190" width="150" height="72" rx="6" fill="#0f172a"/>
+  <rect x="520" y="190" width="150" height="72" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="595" y="214" fill="white" font-size="11" font-weight="600" text-anchor="middle">隔离</text>
+  <text x="595" y="230" fill="#94a3b8" font-size="9" text-anchor="middle">Isolate</text>
+  <text x="595" y="247" fill="#94a3b8" font-size="8" text-anchor="middle">子Agent · token 高至 15x</text>
+
+  <!-- Arrows methods -> clean -->
+  <line x1="115" y1="262" x2="340" y2="338" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="275" y1="262" x2="340" y2="338" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="435" y1="262" x2="340" y2="338" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="595" y1="262" x2="340" y2="338" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Clean context -->
+  <rect x="240" y="340" width="200" height="66" rx="6" fill="#0f172a"/>
+  <rect x="240" y="340" width="200" height="66" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="366" fill="white" font-size="11" font-weight="600" text-anchor="middle">干净的上下文</text>
+  <text x="340" y="384" fill="#94a3b8" font-size="9" text-anchor="middle">→ 更稳的推理</text>
+  <text x="340" y="399" fill="#34d399" font-size="8" text-anchor="middle">Vercel：去工具 80%→100%</text>
+
+  <!-- Loop arc -->
+  <path d="M 240,373 C 70,360 70,134 240,103" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow-amber)"/>
+  <rect x="60" y="225" width="120" height="34" rx="6" fill="rgba(30,41,59,0.8)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="120" y="240" fill="#fbbf24" font-size="8" text-anchor="middle">下一步又累积</text>
+  <text x="120" y="252" fill="#fbbf24" font-size="8" text-anchor="middle">→ 再清理（循环）</text>
+</svg>

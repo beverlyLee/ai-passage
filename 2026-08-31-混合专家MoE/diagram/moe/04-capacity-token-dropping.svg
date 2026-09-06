@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图4 · 容量上限 &amp; token 丢弃：溢出怎么办</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">问题3 — Switch Transformer 的 capacity factor ≈ 1.25</text>
+
+  <!-- incoming tokens -->
+  <text x="30" y="84" fill="#94a3b8" font-size="10">路由到 Expert i 的 token 流</text>
+  <g>
+    <rect x="30" y="96" width="22" height="22" rx="4" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="56" y="96" width="22" height="22" rx="4" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="82" y="96" width="22" height="22" rx="4" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="108" y="96" width="22" height="22" rx="4" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="134" y="96" width="22" height="22" rx="4" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="160" y="96" width="22" height="22" rx="4" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.2"/>
+    <rect x="186" y="96" width="22" height="22" rx="4" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.2"/>
+  </g>
+
+  <!-- capacity buffer -->
+  <rect x="30" y="150" width="178" height="150" rx="6" fill="rgba(30,41,59,0.5)" stroke="#475569" stroke-width="1.2"/>
+  <text x="119" y="172" fill="#e2e8f0" font-size="11" font-weight="600" text-anchor="middle">Expert i · 容量缓冲</text>
+  <text x="119" y="188" fill="#fbbf24" font-size="9" text-anchor="middle">capacity = 1.25 × 理想配额</text>
+  <!-- slots filled -->
+  <rect x="44" y="200" width="34" height="22" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+  <rect x="84" y="200" width="34" height="22" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+  <rect x="124" y="200" width="34" height="22" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+  <rect x="164" y="200" width="34" height="22" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+  <rect x="44" y="228" width="34" height="22" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+  <rect x="84" y="228" width="34" height="22" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+  <!-- overflow zone red -->
+  <rect x="124" y="228" width="74" height="22" rx="3" fill="rgba(136,19,55,0.3)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="161" y="243" fill="#fb7185" font-size="9" text-anchor="middle">溢出</text>
+  <text x="119" y="290" fill="#94a3b8" font-size="8" text-anchor="middle">前 1.25× 进专家算；超出的被丢</text>
+
+  <!-- arrows from tokens to buffer -->
+  <line x1="119" y1="118" x2="119" y2="148" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="220" y="135" fill="#64748b" font-size="9">前 5 个入内</text>
+
+  <!-- dropped tokens -->
+  <text x="300" y="170" fill="#fb7185" font-size="10" font-weight="600">溢出的 token → 丢弃（dropped）</text>
+  <rect x="300" y="184" width="22" height="22" rx="4" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.2"/>
+  <rect x="326" y="184" width="22" height="22" rx="4" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.2"/>
+  <!-- residual -->
+  <rect x="370" y="184" width="150" height="56" rx="6" fill="rgba(30,41,59,0.5)" stroke="#475569" stroke-width="1.2"/>
+  <text x="445" y="206" fill="#e2e8f0" font-size="11" font-weight="600" text-anchor="middle">残差连接</text>
+  <text x="445" y="224" fill="#94a3b8" font-size="9" text-anchor="middle">Residual</text>
+  <line x1="348" y1="195" x2="368" y2="205" stroke="#fb7185" stroke-width="1.4" marker-end="url(#arrow-rose)"/>
+  <line x1="348" y1="207" x2="368" y2="215" stroke="#fb7185" stroke-width="1.4" marker-end="url(#arrow-rose)"/>
+
+  <!-- right note panel -->
+  <rect x="300" y="270" width="360" height="120" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="316" y="292" fill="#e2e8f0" font-size="11" font-weight="600">为什么敢“丢 token”：</text>
+  <text x="316" y="312" fill="#94a3b8" font-size="9">每个专家容量 = 1.25 × 理想配额；超出部分直接走</text>
+  <text x="316" y="326" fill="#94a3b8" font-size="9">残差，不参与本层计算。被丢比例极低，却换来巨大的</text>
+  <text x="316" y="340" fill="#94a3b8" font-size="9">并行效率与显存可预测性。</text>
+  <text x="316" y="360" fill="#fbbf24" font-size="9">Switch Transformer 因此相对 T5 预训练快约 7× / 4×，</text>
+  <text x="316" y="376" fill="#fbbf24" font-size="9">而下游质量几乎不掉 —— 用极少准确率换大幅提速。</text>
+
+  <rect x="20" y="384" width="640" height="46" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="404" fill="#e2e8f0" font-size="11" font-weight="600">容量上限（capacity factor）是 MoE 的“安全阀”：防止少数专家被一拥而上的 token 撑爆。</text>
+  <text x="36" y="422" fill="#94a3b8" font-size="9">它让每层的计算量可预测、可并行，是 MoE 能从论文走进工业级训练（万亿参数）的关键工程 trick。</text>
+</svg>

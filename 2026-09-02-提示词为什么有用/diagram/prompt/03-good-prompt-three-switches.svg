@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 · 好提示为什么有效：3 个“开关”</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">本质 — 把模糊的“接话空间”收窄到你要的那一块</text>
+
+  <!-- three switches -->
+  <rect x="24" y="70" width="200" height="96" rx="8" fill="rgba(59,130,246,0.14)" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="40" y="96" fill="#bfdbfe" font-size="11" font-weight="600">开关① · 给角色</text>
+  <text x="40" y="120" fill="#cbd5e1" font-size="9">“你是资深运营”</text>
+  <text x="40" y="142" fill="#94a3b8" font-size="9">→ 切到该领域的</text>
+  <text x="40" y="160" fill="#94a3b8" font-size="9">说话风格与知识</text>
+
+  <rect x="240" y="70" width="200" height="96" rx="8" fill="rgba(59,130,246,0.14)" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="256" y="96" fill="#bfdbfe" font-size="11" font-weight="600">开关② · 给示例</text>
+  <text x="256" y="120" fill="#cbd5e1" font-size="9">“像这样写：…”</text>
+  <text x="256" y="142" fill="#94a3b8" font-size="9">→ 它照着样例的</text>
+  <text x="256" y="160" fill="#94a3b8" font-size="9">路子继续接</text>
+
+  <rect x="456" y="70" width="200" height="96" rx="8" fill="rgba(59,130,246,0.14)" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="472" y="96" fill="#bfdbfe" font-size="11" font-weight="600">开关③ · 给格式</text>
+  <text x="472" y="120" fill="#cbd5e1" font-size="9">“用3条+表格”</text>
+  <text x="472" y="142" fill="#94a3b8" font-size="9">→ 把答案画好框，</text>
+  <text x="472" y="160" fill="#94a3b8" font-size="9">不容易跑偏</text>
+
+  <line x1="124" y1="166" x2="124" y2="196" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="340" y1="166" x2="340" y2="196" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="556" y1="166" x2="556" y2="196" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- narrowed space -->
+  <rect x="24" y="206" width="632" height="64" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="40" y="232" fill="#a7f3d0" font-size="11" font-weight="600">三个开关一起开 → “接话空间”被收窄</text>
+  <text x="40" y="256" fill="#cbd5e1" font-size="9">模型下一步最可能接的词，几乎都落在你想要的区域内 → 答得贴题、能直接用</text>
+
+  <!-- bottom -->
+  <rect x="20" y="290" width="640" height="138" rx="8" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="316" fill="#e2e8f0" font-size="12" font-weight="600">原理收口：提示词生效 = 改变“下一个词的概率分布”。</text>
+  <text x="36" y="342" fill="#94a3b8" font-size="10">· 角色 → 抬高“专业口吻”那类词的概率；</text>
+  <text x="36" y="364" fill="#94a3b8" font-size="10">· 示例 → 教它在你的格式里接，等于画好跑道；</text>
+  <text x="36" y="386" fill="#94a3b8" font-size="10">· 格式/约束 → 把乱跑的接法压下去，只留合规的。</text>
+  <text x="36" y="412" fill="#fbbf24" font-size="10" font-weight="600">→ 好提示不是“施了魔法”，是把概率往你想要的方向推。</text>
+</svg>

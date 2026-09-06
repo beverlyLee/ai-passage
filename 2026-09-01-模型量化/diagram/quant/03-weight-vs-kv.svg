@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 · 推理显存的两堵墙：权重 与 KV Cache</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">误区拆穿 — 量化只拆了第一堵墙</text>
+
+  <!-- inference memory stack -->
+  <text x="40" y="78" fill="#e2e8f0" font-size="12" font-weight="700">一次推理占的显存</text>
+  <!-- weights block -->
+  <rect x="40" y="92" width="280" height="60" rx="4" fill="rgba(59,130,246,0.30)" stroke="#60a5fa" stroke-width="1.4"/>
+  <text x="56" y="116" fill="#60a5fa" font-size="11" font-weight="700">① 权重 Weights</text>
+  <text x="56" y="138" fill="#94a3b8" font-size="9">模型本身 · 量化能砍 4×～8×</text>
+  <!-- KV block -->
+  <rect x="40" y="160" width="280" height="60" rx="4" fill="rgba(251,191,36,0.28)" stroke="#fbbf24" stroke-width="1.4"/>
+  <text x="56" y="184" fill="#fbbf24" font-size="11" font-weight="700">② KV Cache</text>
+  <text x="56" y="206" fill="#94a3b8" font-size="9">随上下文长度线性增长 · 量化默认不管</text>
+  <!-- activations block -->
+  <rect x="40" y="228" width="280" height="44" rx="4" fill="rgba(148,163,184,0.20)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="56" y="255" fill="#cbd5e1" font-size="10" font-weight="600">③ 激活 Activations（临时）</text>
+
+  <!-- effect arrows -->
+  <text x="350" y="122" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">量化 ✔</text>
+  <text x="350" y="190" fill="#fb7185" font-size="11" font-weight="700" text-anchor="middle">量化 ✘</text>
+  <line x1="320" y1="122" x2="345" y2="122" stroke="#34d399" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="320" y1="190" x2="345" y2="190" stroke="#fb7185" stroke-width="2" marker-end="url(#arrow-rose)"/>
+
+  <!-- KV cache growth curve -->
+  <rect x="370" y="92" width="290" height="180" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="386" y="114" fill="#e2e8f0" font-size="10" font-weight="700">KV Cache 随上下文长度暴涨</text>
+  <polyline points="386,250 440,236 500,208 560,168 640,120" fill="none" stroke="#fbbf24" stroke-width="2.4"/>
+  <text x="386" y="252" fill="#94a3b8" font-size="9">短上下文</text>
+  <text x="600" y="112" fill="#fbbf24" font-size="9" font-weight="700">长上下文</text>
+  <text x="386" y="200" fill="#94a3b8" font-size="9">32k 上下文下，KV 可能反超权重</text>
+  <text x="386" y="218" fill="#cbd5e1" font-size="9">→ 此时再压权重也救不了 OOM</text>
+  <text x="386" y="240" fill="#34d399" font-size="9" font-weight="700">解法：KV cache 量化（K4/K8）+ 分组查询</text>
+
+  <rect x="20" y="290" width="640" height="64" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="312" fill="#e2e8f0" font-size="11" font-weight="600">误区4：以为 4bit 就万事大吉。</text>
+  <text x="36" y="332" fill="#94a3b8" font-size="9">权重量化只减“模型本体”的显存；长上下文场景里，KV Cache 这堵墙会随长度线性攀升，量化默认不碰它。</text>
+  <text x="36" y="348" fill="#94a3b8" font-size="9">所以“长上下文 + 量化”要同时开 KV 量化，否则显存照样爆。</text>
+
+  <rect x="20" y="362" width="640" height="64" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="384" fill="#e2e8f0" font-size="11" font-weight="600">一句话：权重量化降“静态成本”，KV 量化降“动态成本”，两件事别混为一谈。</text>
+  <text x="36" y="404" fill="#94a3b8" font-size="9">TurboQuant（ICLR 2026）TQ3 把 KV 压 4.9×、TQ4 压 3.8×，同显存下上下文近乎翻倍——长上下文党重点看这个。</text>
+  <text x="36" y="420" fill="#94a3b8" font-size="9">但注意：&gt;4K 长上下文下 KV 对低比特敏感，建议 W8KV8 而非 KV4（arXiv:2402.18158）。</text>
+</svg>

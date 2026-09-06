@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图1 · 训练时计算 vs 测试时计算：能力写进权重 vs 算力兑换正确率</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">问题1 — 同一个模型，靠"想更久"也能变强</text>
+
+  <!-- center tag -->
+  <rect x="270" y="60" width="140" height="28" rx="14" fill="#0f172a"/>
+  <rect x="270" y="60" width="140" height="28" rx="14" fill="rgba(148,163,184,0.18)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="340" y="78" fill="#e2e8f0" font-size="11" font-weight="600" text-anchor="middle">同一个模型 · 同一道题</text>
+
+  <!-- LEFT: train-time -->
+  <rect x="40" y="100" width="260" height="32" rx="6" fill="#0f172a"/>
+  <rect x="40" y="100" width="260" height="32" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.4"/>
+  <text x="170" y="121" fill="white" font-size="12" font-weight="600" text-anchor="middle">训练时计算 Train-Time Compute</text>
+
+  <rect x="55" y="146" width="230" height="46" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="170" y="170" fill="#cbd5e1" font-size="11" text-anchor="middle">RL / 预训练把"会思考"</text>
+  <text x="170" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle">烧进模型权重</text>
+
+  <text x="170" y="214" fill="#94a3b8" font-size="9" text-anchor="middle">成本：万卡 · 数周 · 一次性投入</text>
+
+  <rect x="55" y="228" width="230" height="34" rx="6" fill="#0f172a"/>
+  <rect x="55" y="228" width="230" height="34" rx="6" fill="rgba(59,130,246,0.18)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="170" y="249" fill="#e2e8f0" font-size="10" text-anchor="middle">比喻：考前刷题，能力长进脑子</text>
+
+  <!-- RIGHT: test-time -->
+  <rect x="380" y="100" width="260" height="32" rx="6" fill="#0f172a"/>
+  <rect x="380" y="100" width="260" height="32" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.4"/>
+  <text x="510" y="121" fill="white" font-size="12" font-weight="600" text-anchor="middle">测试时计算 Test-Time Compute</text>
+
+  <rect x="395" y="146" width="230" height="46" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="510" y="170" fill="#cbd5e1" font-size="11" text-anchor="middle">多采样 + 搜索 + 验证</text>
+  <text x="510" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle">同一道题，想 N 遍取最优</text>
+
+  <text x="510" y="214" fill="#94a3b8" font-size="9" text-anchor="middle">成本：按请求付费 · 可当产品旋钮</text>
+
+  <rect x="395" y="228" width="230" height="34" rx="6" fill="#0f172a"/>
+  <rect x="395" y="228" width="230" height="34" rx="6" fill="rgba(120,53,15,0.22)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="510" y="249" fill="#e2e8f0" font-size="10" text-anchor="middle">比喻：考场多打几遍草稿</text>
+
+  <!-- arrows from center to both -->
+  <line x1="300" y1="74" x2="170" y2="100" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="74" x2="510" y2="100" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- bottom panel: curve -->
+  <rect x="40" y="284" width="600" height="146" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="56" y="306" fill="#e2e8f0" font-size="12" font-weight="600">结论：2026 年，前沿竞争从"训更大"转向"想更深"</text>
+
+  <line x1="110" y1="400" x2="600" y2="400" stroke="#475569" stroke-width="1"/>
+  <line x1="110" y1="322" x2="110" y2="400" stroke="#475569" stroke-width="1"/>
+  <text x="300" y="416" fill="#94a3b8" font-size="9" text-anchor="middle">推理时算力（思考量）↑</text>
+  <text x="64" y="360" fill="#94a3b8" font-size="9" text-anchor="middle">正确率↑</text>
+
+  <path d="M120,396 C 230,392 380,360 580,330" fill="none" stroke="#34d399" stroke-width="2.2"/>
+  <circle cx="250" cy="378" r="4" fill="#fbbf24"/>
+  <circle cx="470" cy="344" r="4" fill="#60a5fa"/>
+  <text x="262" y="374" fill="#fbbf24" font-size="8">简单题：收益小</text>
+  <text x="430" y="338" fill="#60a5fa" font-size="8">难题：收益明显</text>
+  <text x="500" y="324" fill="#94a3b8" font-size="8">边际递减</text>
+</svg>

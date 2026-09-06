@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图5 · 三个原因 → 两个马上能用的防坑法</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">收口 — 懂了原理，就能反过来“掐掉”幻觉</text>
+
+  <!-- three causes -->
+  <text x="24" y="80" fill="#fb7185" font-size="12" font-weight="700">它为什么会胡说（回顾）</text>
+  <rect x="24" y="92" width="200" height="64" rx="8" fill="rgba(251,113,133,0.12)" stroke="#fb7185" stroke-width="1"/>
+  <text x="40" y="116" fill="#fecdd3" font-size="10" font-weight="600">① 接龙非思考</text>
+  <text x="40" y="138" fill="#cbd5e1" font-size="9">要通顺，不要真相</text>
+  <rect x="240" y="92" width="200" height="64" rx="8" fill="rgba(251,113,133,0.12)" stroke="#fb7185" stroke-width="1"/>
+  <text x="256" y="116" fill="#fecdd3" font-size="10" font-weight="600">② 背非查</text>
+  <text x="256" y="138" fill="#cbd5e1" font-size="9">闭卷默写，死角就编</text>
+  <rect x="456" y="92" width="200" height="64" rx="8" fill="rgba(251,113,133,0.12)" stroke="#fb7185" stroke-width="1"/>
+  <text x="472" y="116" fill="#fecdd3" font-size="10" font-weight="600">③ 不会认怂</text>
+  <text x="472" y="138" fill="#cbd5e1" font-size="9">宁可编也不说不会</text>
+
+  <line x1="124" y1="156" x2="124" y2="186" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="340" y1="156" x2="340" y2="186" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="556" y1="156" x2="556" y2="186" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- two fixes -->
+  <text x="24" y="206" fill="#34d399" font-size="12" font-weight="700">你反过来能做的（防坑法）</text>
+  <rect x="24" y="218" width="312" height="120" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="40" y="244" fill="#a7f3d0" font-size="11" font-weight="600">法子A · 把问题钉死</text>
+  <text x="40" y="268" fill="#cbd5e1" font-size="9">给足背景 + 限定范围 + 要格式</text>
+  <text x="40" y="290" fill="#cbd5e1" font-size="9">再补一句：“拿不准的地方请标出来”</text>
+  <text x="40" y="318" fill="#94a3b8" font-size="9">→ 挤掉“通用套路”，它就没空编</text>
+
+  <rect x="356" y="218" width="300" height="120" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="372" y="244" fill="#a7f3d0" font-size="11" font-weight="600">法子B · 让证据先出场</text>
+  <text x="372" y="268" fill="#cbd5e1" font-size="9">要求“先列依据/来源，再给结论”</text>
+  <text x="372" y="290" fill="#cbd5e1" font-size="9">关键事实你自己搜一下核实</text>
+  <text x="372" y="318" fill="#94a3b8" font-size="9">→ 能查的查，不能查的别照单全收</text>
+
+  <!-- bottom -->
+  <rect x="20" y="356" width="640" height="72" rx="8" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="384" fill="#e2e8f0" font-size="11" font-weight="600">记住一句大白话：AI 是“接得顺的嘴”，不是“不会错的书”。</text>
+  <text x="36" y="410" fill="#94a3b8" font-size="10">你给方向、要证据、自己核，它就能从“张口就编”变成“靠谱的搭档”。幻觉少一半，靠的是你会问。</text>
+</svg>

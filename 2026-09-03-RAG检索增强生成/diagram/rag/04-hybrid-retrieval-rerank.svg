@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图4 · 混合检索：稠密 + 稀疏(BM25) + RRF → 重排</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">单用稠密抓不住精确词；单用 BM25 不懂语义；2026 默认混合</text>
+
+  <rect x="24" y="96" width="160" height="48" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="44" y="125" fill="#67e8f9" font-size="10" font-weight="600">稠密向量 top20</text>
+  <rect x="24" y="160" width="160" height="48" rx="6" fill="rgba(30,41,59,0.4)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="44" y="189" fill="#cbd5e1" font-size="10" font-weight="600">BM25 稀疏 top20</text>
+
+  <line x1="184" y1="120" x2="208" y2="148" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="184" y1="184" x2="208" y2="156" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="210" y="126" width="130" height="60" rx="6" fill="rgba(49,46,129,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="275" y="152" fill="#c4b5fd" font-size="11" font-weight="700" text-anchor="middle">RRF 融合</text>
+  <text x="275" y="172" fill="#a5b4fc" font-size="9" text-anchor="middle">1 / (k + rank)</text>
+
+  <line x1="340" y1="156" x2="358" y2="156" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="360" y="126" width="150" height="60" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="435" y="152" fill="#67e8f9" font-size="10" font-weight="700" text-anchor="middle">Cross-Encoder</text>
+  <text x="435" y="172" fill="#94a3b8" font-size="9" text-anchor="middle">重排(联合编码)</text>
+
+  <line x1="510" y1="156" x2="518" y2="156" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="520" y="126" width="136" height="60" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.3"/>
+  <text x="588" y="152" fill="#6ee7b7" font-size="11" font-weight="700" text-anchor="middle">top-3~5</text>
+  <text x="588" y="172" fill="#94a3b8" font-size="9" text-anchor="middle">喂 LLM</text>
+
+  <text x="20" y="280" fill="#fca5a5" font-size="10" font-weight="700">⚠ Lost in the Middle：证据放中段(第 5–7 位)准确率较首段(1–3 位)低约 22%</text>
+  <text x="20" y="304" fill="#94a3b8" font-size="9">→ 把 top-20 不分青红皂白全塞进 prompt，正中要害的反被“埋”在中间</text>
+  <text x="20" y="328" fill="#67e8f9" font-size="9.5">正解：over-fetch + rerank，既保召回率又压住上下文噪音，别无脑堆 k</text>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="0.5">
+    <path d="M0,40 H680 M0,80 H680 M0,120 H680 M0,160 H680 M0,200 H680 M0,240 H680 M0,280 H680 M0,320 H680 M0,360 H680 M0,400 H680"/>
+    <path d="M40,0 V450 M80,0 V450 M120,0 V450 M160,0 V450 M200,0 V450 M240,0 V450 M280,0 V450 M320,0 V450 M360,0 V450 M400,0 V450 M440,0 V450 M480,0 V450 M520,0 V450 M560,0 V450 M600,0 V450 M640,0 V450"/>
+  </g>
+
+  <!-- title -->
+  <text x="24" y="34" fill="#e2e8f0" font-size="17" font-weight="700">量化方法全景：选错格式比选错算法更致命</text>
+
+  <!-- left column: 训练侧/推理内核 -->
+  <!-- GPTQ -->
+  <rect x="24" y="56" width="150" height="78" rx="8" fill="rgba(59,130,246,.18)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="36" y="80" fill="#60a5fa" font-size="14" font-weight="700">GPTQ</text>
+  <text x="36" y="100" fill="#cbd5e1" font-size="10.5">2022 · ETH Zürich</text>
+  <text x="36" y="118" fill="#cbd5e1" font-size="10.5">逐层 OBS 最优脑手术</text>
+  <text x="36" y="134" fill="#94a3b8" font-size="9.5">CUDA 优先 · ExLlamaV2</text>
+
+  <!-- AWQ -->
+  <rect x="24" y="150" width="150" height="78" rx="8" fill="rgba(59,130,246,.18)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="36" y="174" fill="#60a5fa" font-size="14" font-weight="700">AWQ</text>
+  <text x="36" y="194" fill="#cbd5e1" font-size="10.5">2023 · MIT Han Lab</text>
+  <text x="36" y="212" fill="#cbd5e1" font-size="10.5">保护重要权重</text>
+  <text x="36" y="228" fill="#94a3b8" font-size="9.5">vLLM/SGLang 一等公民</text>
+
+  <!-- GGUF -->
+  <rect x="24" y="244" width="150" height="78" rx="8" fill="rgba(52,211,153,.18)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="36" y="268" fill="#34d399" font-size="14" font-weight="700">GGUF</text>
+  <text x="36" y="288" fill="#cbd5e1" font-size="10.5">llama.cpp 格式</text>
+  <text x="36" y="306" fill="#cbd5e1" font-size="10.5">1.5–8bit 跨平台</text>
+  <text x="36" y="322" fill="#94a3b8" font-size="9.5">Ollama/LM Studio 仅认</text>
+
+  <!-- NF4 / bitsandbytes -->
+  <rect x="24" y="338" width="150" height="64" rx="8" fill="rgba(251,191,36,.16)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="36" y="362" fill="#fbbf24" font-size="14" font-weight="700">NF4</text>
+  <text x="36" y="382" fill="#cbd5e1" font-size="10.5">bitsandbytes</text>
+  <text x="36" y="398" fill="#94a3b8" font-size="9.5">一行 load_in_4bit</text>
+
+  <!-- right column: 硬件原生 / 新标准 -->
+  <!-- FP8 -->
+  <rect x="506" y="56" width="150" height="78" rx="8" fill="rgba(251,113,133,.16)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="518" y="80" fill="#fb7185" font-size="14" font-weight="700">FP8</text>
+  <text x="518" y="100" fill="#cbd5e1" font-size="10.5">H100/Ada 原生</text>
+  <text x="518" y="118" fill="#cbd5e1" font-size="10.5">高吞吐推理</text>
+  <text x="518" y="134" fill="#94a3b8" font-size="9.5">Blackwell 带来 FP4</text>
+
+  <!-- NVFP4 / MXFP4 -->
+  <rect x="506" y="150" width="150" height="78" rx="8" fill="rgba(251,113,133,.16)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="518" y="174" fill="#fb7185" font-size="14" font-weight="700">NVFP4 / MXFP4</text>
+  <text x="518" y="194" fill="#cbd5e1" font-size="10.5">NVIDIA+OCP 标准</text>
+  <text x="518" y="212" fill="#cbd5e1" font-size="10.5">2024–25 标准化</text>
+  <text x="518" y="228" fill="#94a3b8" font-size="9.5">Blackwell 生产</text>
+
+  <!-- SmoothQuant / W8A8 -->
+  <rect x="506" y="244" width="150" height="78" rx="8" fill="rgba(251,191,36,.16)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="518" y="268" fill="#fbbf24" font-size="14" font-weight="700">SmoothQuant</text>
+  <text x="518" y="288" fill="#cbd5e1" font-size="10.5">W8A8 权+激 8bit</text>
+  <text x="518" y="306" fill="#cbd5e1" font-size="10.5">适合高吞吐</text>
+
+  <!-- HQQ -->
+  <rect x="506" y="338" width="150" height="64" rx="8" fill="rgba(251,191,36,.16)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="518" y="362" fill="#fbbf24" font-size="14" font-weight="700">HQQ</text>
+  <text x="518" y="382" fill="#cbd5e1" font-size="10.5">无需校准数据</text>
+  <text x="518" y="398" fill="#94a3b8" font-size="9.5">边缘/快速试跑</text>
+
+  <!-- center: 选择维度 -->
+  <text x="200" y="80" fill="#e2e8f0" font-size="12" font-weight="700">按「目标」选：</text>
+  <text x="200" y="104" fill="#cbd5e1" font-size="10.5">本地跑 / 跨硬件 → GGUF</text>
+  <text x="200" y="124" fill="#cbd5e1" font-size="10.5">GPU 服务高吞吐 → AWQ / FP8</text>
+  <text x="200" y="144" fill="#cbd5e1" font-size="10.5">老 CUDA 卡 → GPTQ</text>
+  <text x="200" y="164" fill="#cbd5e1" font-size="10.5">训练 / 微调 → NF4</text>
+
+  <rect x="200" y="190" width="288" height="150" rx="8" fill="rgba(136,19,55,.22)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="214" y="214" fill="#fb7185" font-size="12.5" font-weight="700">⚠ 格式-运行时错配</text>
+  <text x="214" y="238" fill="#cbd5e1" font-size="10.5">GPTQ/AWQ 塞进 llama.cpp</text>
+  <text x="214" y="256" fill="#cbd5e1" font-size="10.5">→ 直接报错（只认 GGUF）</text>
+  <text x="214" y="278" fill="#94a3b8" font-size="9.5">下载前看 config.json 的</text>
+  <text x="214" y="294" fill="#94a3b8" font-size="9.5">quantization_config 字段</text>
+  <text x="214" y="320" fill="#fbbf24" font-size="10" font-weight="700">内核远比算法名重要：</text>
+  <text x="214" y="336" fill="#cbd5e1" font-size="9.5">同模型 Marlin 内核 vs 普通</text>
+
+  <!-- arrow from center to GGUF note omitted; keep clean -->
+  <line x1="174" y1="283" x2="200" y2="283" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-rose)"/>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 · 长度外推鸿沟：训练长度之外，RoPE 也会"转过头"</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">现象 — 百万上下文不是"开窗"那么简单</text>
+
+  <!-- chart -->
+  <text x="30" y="80" fill="#e2e8f0" font-size="12" font-weight="700">性能 vs 序列长度</text>
+  <line x1="50" y1="300" x2="50" y2="110" stroke="#475569" stroke-width="1"/>
+  <line x1="50" y1="300" x2="340" y2="300" stroke="#475569" stroke-width="1"/>
+  <text x="22" y="116" fill="#94a3b8" font-size="8">性能</text>
+  <text x="300" y="318" fill="#94a3b8" font-size="8">长度 →</text>
+  <line x1="50" y1="140" x2="210" y2="140" stroke="#34d399" stroke-width="2.5"/>
+  <text x="60" y="132" fill="#34d399" font-size="9">训练区（表现稳定）</text>
+  <path d="M210,140 C240,150 272,212 330,278" fill="none" stroke="#fb7185" stroke-width="2.5"/>
+  <line x1="210" y1="300" x2="210" y2="110" stroke="#fbbf24" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="120" y="294" fill="#fbbf24" font-size="9">训练长度 L（如 128K）</text>
+  <text x="244" y="290" fill="#fb7185" font-size="9">外推区：性能塌</text>
+  <text x="324" y="296" fill="#64748b" font-size="8">1M</text>
+
+  <!-- right: frequency bands -->
+  <text x="380" y="80" fill="#e2e8f0" font-size="12" font-weight="700">RoPE 的频率两难</text>
+  <rect x="380" y="96" width="276" height="92" rx="5" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1"/>
+  <text x="396" y="118" fill="#fecdd3" font-size="10" font-weight="600">高频维度（短距离）</text>
+  <text x="396" y="136" fill="#fecdd3" font-size="9">外推被"压扁"：相邻位置夹角差太大</text>
+  <text x="396" y="152" fill="#fecdd3" font-size="9">→ 局部相对距离失真，细节乱掉</text>
+  <text x="396" y="170" fill="#fecdd3" font-size="9">PI 均匀缩放会误伤这里，最致命</text>
+
+  <rect x="380" y="196" width="276" height="92" rx="5" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="396" y="218" fill="#fde68a" font-size="10" font-weight="600">低频维度（长距离）</text>
+  <text x="396" y="236" fill="#fde68a" font-size="9">外推时"转得不够"：长距离信息挤一起</text>
+  <text x="396" y="252" fill="#fde68a" font-size="9">→ 需要把旋转角度"拉伸"才能覆盖</text>
+  <text x="396" y="270" fill="#fde68a" font-size="9">NTK / YaRN 主要针对这一带做文章</text>
+
+  <!-- bottom -->
+  <rect x="20" y="318" width="640" height="100" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="342" fill="#e2e8f0" font-size="11" font-weight="600">关键判断：把窗口从 128K "开" 到 1M，不等于模型"用得好" 1M。</text>
+  <text x="36" y="362" fill="#94a3b8" font-size="9">RoPE 给了"天然外推"的地基，但训练长度之外，高频维度被压扁、低频维度转不够，性能照样塌——这就是"长度外推鸿沟"。</text>
+  <text x="36" y="382" fill="#94a3b8" font-size="9">8 月那些百万上下文模型（Qwen3.8 / Kimi K3）并非"原生就会"，而是靠 NTK / YaRN 等扩展法把这道鸿沟补上——接下来看怎么补。</text>
+  <text x="36" y="402" fill="#94a3b8" font-size="9">Position Interpolation（PI，2023）最早提出，但均匀缩放会误伤高频维度；下文 NTK / YaRN 改成"分频带"处理。</text>
+</svg>

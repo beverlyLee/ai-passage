@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图5 · 2026 年 8 月：MoE 霸屏发布潮</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">现象 — 越大越稀疏，是当下唯一能跑通的路</text>
+
+  <!-- Qwen card -->
+  <rect x="24" y="72" width="300" height="150" rx="6" fill="rgba(30,41,59,0.5)" stroke="#60a5fa" stroke-width="1.4"/>
+  <text x="40" y="98" fill="#60a5fa" font-size="13" font-weight="700">Qwen3.8-2.4T-A95B</text>
+  <text x="40" y="118" fill="#94a3b8" font-size="9">阿里云 · 2026-08-12</text>
+  <text x="40" y="140" fill="#e2e8f0" font-size="10">总参数 2.4T（万亿）</text>
+  <text x="40" y="158" fill="#fbbf24" font-size="10" font-weight="600">每步激活 ≈ 95B（950 亿）</text>
+  <text x="40" y="176" fill="#e2e8f0" font-size="10">512 专家 · 100 万 token 上下文</text>
+  <text x="40" y="194" fill="#cbd5e1" font-size="9">稀疏 MoE，默认思考模式</text>
+
+  <!-- DeepSeek card -->
+  <rect x="356" y="72" width="300" height="150" rx="6" fill="rgba(30,41,59,0.5)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="372" y="98" fill="#34d399" font-size="13" font-weight="700">DeepSeek-V4-Pro</text>
+  <text x="372" y="118" fill="#94a3b8" font-size="9">2026-08-13</text>
+  <text x="372" y="140" fill="#e2e8f0" font-size="10">总参数 1.6T（万亿）</text>
+  <text x="372" y="158" fill="#fbbf24" font-size="10" font-weight="600">激活 49B（490 亿）</text>
+  <text x="372" y="176" fill="#e2e8f0" font-size="10">原生百万级上下文 · Agent 强</text>
+  <text x="372" y="194" fill="#cbd5e1" font-size="9">DeepSWE 62.7 / Terminal-Bench 87.9</text>
+
+  <!-- reference bar -->
+  <text x="24" y="252" fill="#94a3b8" font-size="10">对比基准（旧一代 MoE）：</text>
+  <rect x="24" y="262" width="632" height="34" rx="5" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="40" y="284" fill="#e2e8f0" font-size="10">DeepSeek-V3（2024-12）：671B 总 / 37B 激活 · Mixtral 8x7B（2023-12）：46.7B 总 / 12.9B 激活</text>
+
+  <!-- trend arrow -->
+  <text x="40" y="330" fill="#94a3b8" font-size="10">总参数趋势</text>
+  <line x1="40" y1="350" x2="640" y2="350" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="560" y="344" fill="#64748b" font-size="11" font-weight="700">↑↑ 万亿级</text>
+  <text x="40" y="378" fill="#94a3b8" font-size="10">激活参数</text>
+  <line x1="40" y1="398" x2="300" y2="398" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrow-amber)"/>
+  <text x="216" y="392" fill="#fbbf24" font-size="11" font-weight="700">稳定 几十~百亿</text>
+
+  <rect x="20" y="408" width="640" height="30" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="428" fill="#e2e8f0" font-size="10" font-weight="600">容量冲万亿、激活仍压在百亿级 —— MoE 是“既要知识、又要成本可控”的当下最优解。</text>
+</svg>

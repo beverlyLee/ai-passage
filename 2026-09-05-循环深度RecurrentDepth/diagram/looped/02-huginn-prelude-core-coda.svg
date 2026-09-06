@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-rose" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图2 · 循环到底循环了什么：Prelude / Core / Coda 三段结构</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">以公开 Huginn-0125 为例：8 个独立层，却可走出 132 层调用路径</text>
+
+  <rect x="24" y="68" width="240" height="76" rx="6" fill="rgba(8,51,68,0.42)" stroke="#22d3ee" stroke-width="1.1"/>
+  <text x="40" y="90" fill="#67e8f9" font-size="11.5" font-weight="700">Prelude · 只跑一次</text>
+  <text x="40" y="110" fill="#cbd5e1" font-size="9">e = P(x)　Embedding + 2 个前置层</text>
+  <text x="40" y="128" fill="#94a3b8" font-size="8.5">产出固定的输入表示 e（题面）</text>
+
+  <rect x="296" y="68" width="360" height="76" rx="6" fill="rgba(76,29,41,0.28)" stroke="#fb7185" stroke-width="1.1"/>
+  <text x="312" y="90" fill="#fb7185" font-size="11.5" font-weight="700">Recurrent Core · 跑 r 次（共享权重）</text>
+  <text x="312" y="110" fill="#cbd5e1" font-size="9">sᵢ₊₁ = Core(concat(e, sᵢ))　4 层 attention + MLP</text>
+  <text x="312" y="128" fill="#94a3b8" font-size="8.5">每轮都重新注入同一个 e，状态 s 持续更新（草稿）</text>
+
+  <rect x="24" y="164" width="240" height="66" rx="6" fill="rgba(8,51,68,0.42)" stroke="#22d3ee" stroke-width="1.1"/>
+  <text x="40" y="186" fill="#67e8f9" font-size="11.5" font-weight="700">Coda + LM Head · 只跑一次</text>
+  <text x="40" y="206" fill="#cbd5e1" font-size="9">2 个后置层 → 下一个 token 的概率</text>
+  <text x="40" y="222" fill="#94a3b8" font-size="8.5">只在最后一轮结束后执行</text>
+
+  <rect x="296" y="164" width="360" height="66" rx="6" fill="rgba(15,23,42,0.5)" stroke="#475569" stroke-width="1"/>
+  <text x="312" y="186" fill="#e2e8f0" font-size="10.5" font-weight="700">三个容易混淆的对象</text>
+  <text x="312" y="206" fill="#cbd5e1" font-size="8.5">e 不变但每轮重新注入　|　s 从 s₀ 起持续变化　|　Core 权重永远只有一套</text>
+  <text x="312" y="222" fill="#64748b" font-size="8.5">循环 ≠ 多出参数层，循环 = 同一套层被调用多次</text>
+
+  <line x1="144" y1="144" x2="144" y2="164" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+  <line x1="264" y1="106" x2="296" y2="106" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+  <path d="M 476 144 L 476 158 L 144 158 L 144 164" fill="none" stroke="#fb7185" stroke-width="1.2" marker-end="url(#arrow-rose)"/>
+  <text x="290" y="154" fill="#fca5a5" font-size="8">e 每轮回灌</text>
+
+  <line x1="296" y1="197" x2="264" y2="197" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="24" y="252" width="300" height="164" rx="8" fill="rgba(8,51,68,0.26)" stroke="#22d3ee" stroke-width="1.1"/>
+  <text x="40" y="276" fill="#22d3ee" font-size="11.5" font-weight="700">深度账本：8 个独立层 vs 132 层调用</text>
+  <text x="40" y="300" fill="#cbd5e1" font-size="9">Prelude　2 层</text>
+  <text x="150" y="300" fill="#64748b" font-size="8.5">独立</text>
+  <text x="40" y="320" fill="#cbd5e1" font-size="9">Core　　4 层 × 32 次 = 128 次调用</text>
+  <text x="230" y="320" fill="#fca5a5" font-size="8.5">共享同一组权重</text>
+  <text x="40" y="340" fill="#cbd5e1" font-size="9">Coda　　2 层</text>
+  <text x="150" y="340" fill="#64748b" font-size="8.5">独立</text>
+  <line x1="40" y1="352" x2="304" y2="352" stroke="#334155" stroke-width="0.8"/>
+  <text x="40" y="372" fill="#67e8f9" font-size="9.5" font-weight="600">顺序路径 = 2 + 4×32 + 2 = 132 层调用</text>
+  <text x="40" y="390" fill="#94a3b8" font-size="8.5">但 checkpoint 里仍只有 8 个独立 Transformer 层</text>
+  <text x="40" y="407" fill="#fb7185" font-size="8.5">132 是「走过多长的计算路径」，不是「132 套参数」</text>
+
+  <rect x="344" y="252" width="312" height="164" rx="8" fill="rgba(76,29,41,0.24)" stroke="#fb7185" stroke-width="1.1"/>
+  <text x="360" y="276" fill="#fb7185" font-size="11.5" font-weight="700">推理旋钮 num_steps 改的 vs 没改的</text>
+  <text x="360" y="300" fill="#fca5a5" font-size="9">会变的：</text>
+  <text x="424" y="300" fill="#cbd5e1" font-size="8.5">Core 调用次数、FLOPs、串行延迟、按步 K/V 状态</text>
+  <text x="360" y="320" fill="#67e8f9" font-size="9">不变的：</text>
+  <text x="424" y="320" fill="#cbd5e1" font-size="8.5">checkpoint 权重数、Prelude / Coda 次数</text>
+  <text x="360" y="338" fill="#fca5a5" font-size="9">最易误解：</text>
+  <text x="448" y="338" fill="#cbd5e1" font-size="8.5">不会因此多生成可见推理文字</text>
+  <line x1="360" y1="350" x2="636" y2="350" stroke="#334155" stroke-width="0.8"/>
+  <text x="360" y="370" fill="#94a3b8" font-size="8.5">自回归生成时每个 recurrent step 都会为历史 token 产生</text>
+  <text x="360" y="386" fill="#94a3b8" font-size="8.5">对应深度的 K/V 状态 → 需要专用 HuginnDynamicCache，</text>
+  <text x="360" y="402" fill="#fb7185" font-size="8.5">否则后续循环会覆盖前面的缓存条目。</text>
+</svg>

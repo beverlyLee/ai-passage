@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图1 · 大模型 = 超级自动补全</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">先搞懂原理 — 它一个字一个字“猜”出来，不是“想”出来</text>
+
+  <!-- input -->
+  <rect x="24" y="74" width="270" height="40" rx="8" fill="rgba(30,41,59,0.5)" stroke="#60a5fa" stroke-width="1.4"/>
+  <text x="40" y="99" fill="#e2e8f0" font-size="13">你：今天天气真</text>
+  <line x1="294" y1="94" x2="346" y2="94" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- model -->
+  <rect x="348" y="64" width="308" height="60" rx="8" fill="rgba(59,130,246,0.18)" stroke="#60a5fa" stroke-width="1.4"/>
+  <text x="364" y="90" fill="#e2e8f0" font-size="12" font-weight="700">大模型（超级自动补全）</text>
+  <text x="364" y="110" fill="#94a3b8" font-size="9">只看前面的字 → 猜“下一个最可能的字”是谁</text>
+
+  <!-- output row -->
+  <text x="24" y="160" fill="#94a3b8" font-size="10">它吐出的回答（一个词一个词接）：</text>
+  <rect x="40" y="172" width="70" height="42" rx="8" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="75" y="198" fill="#fecdd3" font-size="13" text-anchor="middle">的</text>
+  <line x1="110" y1="193" x2="146" y2="193" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="150" y="172" width="70" height="42" rx="8" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="185" y="198" fill="#fecdd3" font-size="13" text-anchor="middle">好</text>
+  <line x1="220" y1="193" x2="256" y2="193" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="260" y="172" width="70" height="42" rx="8" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="295" y="198" fill="#fecdd3" font-size="13" text-anchor="middle">热</text>
+  <line x1="330" y1="193" x2="366" y2="193" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="370" y="172" width="70" height="42" rx="8" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="405" y="198" fill="#fecdd3" font-size="13" text-anchor="middle">啊</text>
+  <line x1="440" y1="193" x2="476" y2="193" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="480" y="172" width="70" height="42" rx="8" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="515" y="198" fill="#fecdd3" font-size="13" text-anchor="middle">，</text>
+  <line x1="550" y1="193" x2="586" y2="193" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="590" y="172" width="64" height="42" rx="8" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="622" y="198" fill="#fecdd3" font-size="13" text-anchor="middle">该</text>
+
+  <!-- insight box -->
+  <rect x="20" y="244" width="640" height="168" rx="8" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="266" fill="#e2e8f0" font-size="12" font-weight="600">关键①：它算的是“下一个词的概率”，挑最高的那个；训练里压根没有“真假”这一维。</text>
+  <text x="36" y="290" fill="#94a3b8" font-size="10">· 你问“今天天气真”，它接“的好热啊”——这跟它知不知道真实天气无关，只是“概率最高的接法”。</text>
+  <text x="36" y="312" fill="#94a3b8" font-size="10">· 同理问一个事实，它也是“接出最像答案的那句话”，而不是去翻书确认。</text>
+  <text x="36" y="336" fill="#fbbf24" font-size="10" font-weight="600">关键②：概率里不含“真/假”→ 假话和真话对它一样能接，只要接得顺。</text>
+  <text x="36" y="362" fill="#fb7185" font-size="11" font-weight="600">→ 这就是“幻觉”的根：按概率接龙，且概率里不含真假。</text>
+  <text x="36" y="388" fill="#cbd5e1" font-size="9">类比：像手机输入法的“下一个词预测”，只是它读过几千亿字，接得又快又像真人。</text>
+  <text x="36" y="408" fill="#cbd5e1" font-size="9">所以别问“它怎么想的”，要问“它下一个词接了啥、概率高不高”。</text>
+</svg>

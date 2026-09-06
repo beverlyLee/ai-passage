@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-rose" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图2 · 2026-07-28 修订：从"有状态会话"到"无状态每请求"</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">升级 SDK 后断连，多半是代码还依赖旧握手 —— 这是最容易踩的第一个坑</text>
+
+  <!-- BEFORE -->
+  <rect x="20" y="68" width="316" height="338" rx="10" fill="rgba(136,19,55,0.14)" stroke="#fb7185" stroke-width="1.4" stroke-dasharray="7,4"/>
+  <text x="36" y="92" fill="#fb7185" font-size="12" font-weight="700">BEFORE · 旧 spec（已弃用）</text>
+
+  <rect x="44" y="106" width="120" height="34" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="104" y="128" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">Client</text>
+  <rect x="232" y="106" width="92" height="34" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="278" y="128" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">Server</text>
+
+  <line x1="164" y1="123" x2="232" y2="123" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="198" y="118" fill="#e2e8f0" font-size="9" text-anchor="middle">initialize()</text>
+  <line x1="232" y1="148" x2="164" y2="148" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="198" y="163" fill="#e2e8f0" font-size="9" text-anchor="middle">Mcp-Session-Id</text>
+
+  <rect x="44" y="190" width="280" height="200" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="58" y="212" fill="#fecdd3" font-size="10" font-weight="600">每后续请求必须带 Session-Id：</text>
+  <text x="58" y="234" fill="#94a3b8" font-size="9">· 会话状态驻留 Server 内存</text>
+  <text x="58" y="254" fill="#94a3b8" font-size="9">· 请求必须粘到同一实例</text>
+  <text x="58" y="274" fill="#94a3b8" font-size="9">· 水平扩展 / LB 困难</text>
+  <text x="58" y="294" fill="#94a3b8" font-size="9">· server 主动调用靠</text>
+  <text x="58" y="308" fill="#94a3b8" font-size="9">  roots/list、sampling、</text>
+  <text x="58" y="322" fill="#94a3b8" font-size="9">  elicitation（均已弃用）</text>
+  <text x="58" y="346" fill="#fbbf24" font-size="9" font-weight="600">→ 重启/扩缩容即丢会话</text>
+  <text x="58" y="368" fill="#fb7185" font-size="9" font-weight="600">⚠ ≤12 个月弃用窗口</text>
+
+  <!-- AFTER -->
+  <rect x="344" y="68" width="316" height="338" rx="10" fill="rgba(6,78,59,0.16)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="360" y="92" fill="#34d399" font-size="12" font-weight="700">AFTER · 2026-07-28 修订</text>
+
+  <rect x="368" y="106" width="120" height="34" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="428" y="128" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">Client</text>
+  <rect x="556" y="106" width="92" height="34" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="602" y="128" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">Server</text>
+
+  <line x1="488" y1="123" x2="556" y2="123" stroke="#22d3ee" stroke-width="1.4" marker-end="url(#arrow-cyan)"/>
+  <text x="522" y="118" fill="#e2e8f0" font-size="9" text-anchor="middle">request</text>
+
+  <rect x="368" y="158" width="280" height="232" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="382" y="180" fill="#a7f3d0" font-size="10" font-weight="600">每请求自带元数据，可独立处理：</text>
+  <text x="382" y="202" fill="#94a3b8" font-size="9">{ protocolVersion, clientInfo,</text>
+  <text x="382" y="216" fill="#94a3b8" font-size="9">  capabilities } 随请求走</text>
+  <text x="382" y="240" fill="#94a3b8" font-size="9">· 无握手 / 无 Session-Id</text>
+  <text x="382" y="260" fill="#94a3b8" font-size="9">· 任意实例可处理 → LB 友好</text>
+  <text x="382" y="280" fill="#94a3b8" font-size="9">· 新增 server/discover 探查</text>
+  <text x="382" y="294" fill="#94a3b8" font-size="9">· server 主动调用 → MRTR</text>
+  <text x="382" y="308" fill="#94a3b8" font-size="9">  (InputRequiredResult+重试)</text>
+  <text x="382" y="332" fill="#34d399" font-size="9" font-weight="600">→ 自动扩缩容 / 重启无感</text>
+  <text x="382" y="354" fill="#34d399" font-size="9" font-weight="600">→ 无状态 = 可水平扩展</text>
+  <text x="382" y="376" fill="#94a3b8" font-size="8.5">旧 server 主动调用 API 已移出核心</text>
+</svg>

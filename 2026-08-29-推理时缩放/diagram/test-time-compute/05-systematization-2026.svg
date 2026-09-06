@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图5 · 2026：推理时计算从"提示词技巧"变成"系统工程"</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">问题5 — 烧钱之前，先想清楚怎么省</text>
+
+  <!-- 入口 -->
+  <rect x="255" y="58" width="170" height="30" rx="6" fill="#0f172a" stroke="#94a3b8" stroke-width="1.3"/>
+  <text x="340" y="77" fill="#e2e8f0" font-size="11" font-weight="600" text-anchor="middle">推理请求进来</text>
+  <line x1="340" y1="88" x2="340" y2="104" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="340" y="101" fill="#fbbf24" font-size="9" font-weight="600" text-anchor="middle">TTC 调度层 · 当系统工程做</text>
+
+  <!-- 2x2 卡片 -->
+  <!-- ① 难度路由 -->
+  <rect x="20" y="112" width="310" height="112" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <rect x="20" y="112" width="5" height="112" rx="2" fill="#60a5fa"/>
+  <text x="38" y="134" fill="#60a5fa" font-size="12" font-weight="700">① 难度路由 Routing</text>
+  <text x="38" y="158" fill="#cbd5e1" font-size="9.5">先用小模型 / 分类器判断任务难度：</text>
+  <text x="38" y="176" fill="#cbd5e1" font-size="9.5">简单题直出，难题才上 TTC，</text>
+  <text x="38" y="194" fill="#94a3b8" font-size="9">别对所有请求一视同仁地烧算力。</text>
+
+  <!-- ② 思考预算 -->
+  <rect x="350" y="112" width="310" height="112" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <rect x="350" y="112" width="5" height="112" rx="2" fill="#fbbf24"/>
+  <text x="368" y="134" fill="#fbbf24" font-size="12" font-weight="700">② 思考预算 Budget（旋钮）</text>
+  <text x="368" y="158" fill="#cbd5e1" font-size="9.5">把推理算力做成可调旋钮：</text>
+  <text x="368" y="176" fill="#cbd5e1" font-size="9.5">token 上限 / 采样数 / 搜索深度，</text>
+  <text x="368" y="194" fill="#94a3b8" font-size="9">按任务价值动态分配。</text>
+
+  <!-- ③ 验证器质量 -->
+  <rect x="20" y="238" width="310" height="112" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <rect x="20" y="238" width="5" height="112" rx="2" fill="#fb7185"/>
+  <text x="38" y="260" fill="#fb7185" font-size="12" font-weight="700">③ 验证器质量 Verifier</text>
+  <text x="38" y="284" fill="#cbd5e1" font-size="9.5">TTC 的命门：弱验证器 + 强搜索</text>
+  <text x="38" y="302" fill="#cbd5e1" font-size="9.5">= 更自信的错误。</text>
+  <text x="38" y="320" fill="#94a3b8" font-size="9">须持续评估 / 校准验证器质量。</text>
+
+  <!-- ④ 停止/降级 -->
+  <rect x="350" y="238" width="310" height="112" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <rect x="350" y="238" width="5" height="112" rx="2" fill="#34d399"/>
+  <text x="368" y="260" fill="#34d399" font-size="12" font-weight="700">④ 停止 &amp; 降级 Fallback</text>
+  <text x="368" y="284" fill="#cbd5e1" font-size="9.5">早停 / 置信度阈值 / 成本护栏；</text>
+  <text x="368" y="302" fill="#cbd5e1" font-size="9.5">超预算自动降级到快模型 / 缓存</text>
+  <text x="368" y="320" fill="#94a3b8" font-size="9">/ 人工，别让用户干等。</text>
+
+  <rect x="20" y="364" width="640" height="56" rx="6" fill="rgba(120,53,15,0.18)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="36" y="386" fill="#fbbf24" font-size="11" font-weight="700">compute-optimal ≠ system-optimal</text>
+  <text x="36" y="406" fill="#cbd5e1" font-size="9.5">数学上"最优推理算力"≠ 系统最优：小模型 + 海量采样未必赢过大模型一次直出；要算总成本（延迟 · 钱 · 体验），而不是只看准确率。</text>
+</svg>

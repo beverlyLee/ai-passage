@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图2 · 旋转编码的几何：位置被"转"进夹角里</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">原理 — 为什么自注意力点积只认"相对距离"？</text>
+
+  <!-- LEFT: 2D rotation -->
+  <text x="30" y="80" fill="#e2e8f0" font-size="12" font-weight="700">把一个向量 (x, y) 旋转</text>
+  <text x="30" y="98" fill="#94a3b8" font-size="9">θᵢ = 10000^(−2i/d)，逐维分奇偶配对旋转</text>
+  <line x1="60" y1="200" x2="200" y2="200" stroke="#334155" stroke-width="1"/>
+  <line x1="130" y1="140" x2="130" y2="260" stroke="#334155" stroke-width="1"/>
+  <line x1="130" y1="200" x2="190" y2="170" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="194" y="166" fill="#94a3b8" font-size="9">位置 0</text>
+  <line x1="130" y1="200" x2="178" y2="248" stroke="#60a5fa" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="182" y="262" fill="#60a5fa" font-size="9">位置 m → 转 mθ</text>
+  <line x1="130" y1="200" x2="92" y2="160" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arrow-amber)"/>
+  <text x="50" y="156" fill="#fbbf24" font-size="9">位置 n → 转 nθ</text>
+  <text x="30" y="290" fill="#94a3b8" font-size="9">无论 m、n 多大，夹角恒为 |m−n|·θ</text>
+
+  <!-- arrow between -->
+  <text x="235" y="200" fill="#64748b" font-size="18" font-weight="700">→</text>
+
+  <!-- RIGHT: formula cascade -->
+  <text x="280" y="92" fill="#e2e8f0" font-size="12" font-weight="700">自注意力里的"旋转相减"</text>
+  <rect x="280" y="108" width="372" height="40" rx="5" fill="rgba(30,41,59,0.5)" stroke="#475569" stroke-width="1"/>
+  <text x="296" y="133" fill="#e2e8f0" font-size="11">q_m = R(mθ)·q₀    k_n = R(nθ)·k₀</text>
+
+  <text x="320" y="176" fill="#64748b" font-size="14" font-weight="700">↓ 利用 R 是正交矩阵（旋转可逆可交换）</text>
+
+  <rect x="280" y="190" width="372" height="44" rx="5" fill="rgba(59,130,246,0.18)" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="296" y="214" fill="#93c5fd" font-size="11" font-weight="600">q_m · k_n = q₀ · R((m−n)θ) · k₀</text>
+  <text x="296" y="230" fill="#93c5fd" font-size="9">结果里只剩 (m − n)，m、n 各自消失了</text>
+
+  <rect x="280" y="250" width="372" height="58" rx="5" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="296" y="272" fill="#a7f3d0" font-size="10" font-weight="600">关键推论</text>
+  <text x="296" y="290" fill="#a7f3d0" font-size="9">同一个相对距离 (m−n)，无论出现在 0 / 100 / 10000 位</text>
+  <text x="296" y="304" fill="#a7f3d0" font-size="9">算出来的注意力"长相"完全一样 → 天然会外推</text>
+
+  <!-- bottom -->
+  <rect x="20" y="330" width="640" height="96" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="354" fill="#e2e8f0" font-size="11" font-weight="600">一句话：旋转是"可交换的群操作"，差一个位置就只差一个固定夹角。</text>
+  <text x="36" y="374" fill="#94a3b8" font-size="9">传统绝对 PE 把 p_m、p_n 当成两个互不相关的向量，模型得"重新学"每个位置；RoPE 让位置变成连续可插值的旋转，</text>
+  <text x="36" y="394" fill="#94a3b8" font-size="9">所以"没见过的位置"也能靠旋转规律推断——这奠定了长度外推的地基，也让它成为 8 月百万上下文模型的首选。</text>
+  <text x="36" y="414" fill="#94a3b8" font-size="9">只旋转 Q、K（不旋转 V）：位置决定"去 attend 哪里"，而不决定"提取什么语义"。</text>
+</svg>

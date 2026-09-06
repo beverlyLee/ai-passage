@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 · 负载均衡：不干预，专家会“旱涝不均”</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">问题2 — 为什么要 auxiliary loss / 无辅助损失均衡</text>
+
+  <!-- LEFT imbalanced -->
+  <text x="30" y="78" fill="#fb7185" font-size="12" font-weight="700">无均衡（塌缩 collapse）</text>
+  <text x="30" y="96" fill="#94a3b8" font-size="9">少数专家被狂调，多数饿死</text>
+  <g>
+    <rect x="40" y="150" width="44" height="180" rx="3" fill="rgba(136,19,55,0.45)" stroke="#fb7185" stroke-width="1.4"/>
+    <text x="62" y="344" fill="#64748b" font-size="9" text-anchor="middle">E1</text>
+    <rect x="92" y="250" width="44" height="80" rx="3" fill="rgba(136,19,55,0.3)" stroke="#fb7185" stroke-width="1.1"/>
+    <text x="114" y="344" fill="#64748b" font-size="9" text-anchor="middle">E2</text>
+    <rect x="144" y="312" width="44" height="18" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="166" y="344" fill="#64748b" font-size="9" text-anchor="middle">E3</text>
+    <rect x="196" y="120" width="44" height="210" rx="3" fill="rgba(136,19,55,0.5)" stroke="#fb7185" stroke-width="1.5"/>
+    <text x="218" y="344" fill="#64748b" font-size="9" text-anchor="middle">E4</text>
+    <rect x="248" y="320" width="44" height="10" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="270" y="344" fill="#64748b" font-size="9" text-anchor="middle">E5</text>
+    <rect x="300" y="300" width="44" height="30" rx="3" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1"/>
+    <text x="322" y="344" fill="#64748b" font-size="9" text-anchor="middle">E6</text>
+    <rect x="352" y="328" width="44" height="2" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="374" y="344" fill="#64748b" font-size="9" text-anchor="middle">E7</text>
+    <rect x="404" y="316" width="44" height="14" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="426" y="344" fill="#64748b" font-size="9" text-anchor="middle">E8</text>
+  </g>
+  <text x="30" y="366" fill="#fb7185" font-size="9">E1/E4 过载 → 容量爆；E3/E5/E7 几乎不用</text>
+
+  <!-- RIGHT balanced -->
+  <text x="470" y="78" fill="#34d399" font-size="12" font-weight="700">有均衡（均匀 util）</text>
+  <text x="470" y="96" fill="#94a3b8" font-size="9">动态偏置让 256 专家利用率齐平</text>
+  <g>
+    <rect x="470" y="190" width="44" height="140" rx="3" fill="rgba(16,185,129,0.32)" stroke="#34d399" stroke-width="1.3"/>
+    <text x="492" y="344" fill="#64748b" font-size="9" text-anchor="middle">E1</text>
+    <rect x="522" y="182" width="44" height="148" rx="3" fill="rgba(16,185,129,0.32)" stroke="#34d399" stroke-width="1.3"/>
+    <text x="544" y="344" fill="#64748b" font-size="9" text-anchor="middle">E2</text>
+    <rect x="574" y="196" width="44" height="134" rx="3" fill="rgba(16,185,129,0.32)" stroke="#34d399" stroke-width="1.3"/>
+    <text x="596" y="344" fill="#64748b" font-size="9" text-anchor="middle">E3</text>
+    <rect x="626" y="186" width="44" height="144" rx="3" fill="rgba(16,185,129,0.32)" stroke="#34d399" stroke-width="1.3"/>
+    <text x="648" y="344" fill="#64748b" font-size="9" text-anchor="middle">E4</text>
+  </g>
+  <text x="470" y="366" fill="#34d399" font-size="9">利用率齐平 → 总参数被充分“踩满”，不浪费</text>
+
+  <!-- arrow middle -->
+  <text x="455" y="250" fill="#64748b" font-size="18" font-weight="700" text-anchor="middle">→</text>
+
+  <rect x="20" y="384" width="640" height="46" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="404" fill="#e2e8f0" font-size="11" font-weight="600">路由会“偷懒”偏爱少数专家 → 多数饿死（expert collapse），总参数利用率暴跌。</text>
+  <text x="36" y="422" fill="#94a3b8" font-size="9">DeepSeek-V3 用 auxiliary-loss-free 均衡（动态偏置）逼 router 轮流用专家，256 个专家齐干活，且不掉点、还更快。</text>
+</svg>

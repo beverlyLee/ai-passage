@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图5 · 百万上下文的"显存墙"：窗口能装，显存装不下</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">代价 — 上下文越长，KV Cache 线性膨胀</text>
+
+  <!-- formula -->
+  <text x="30" y="78" fill="#cbd5e1" font-size="11">每生成一个新 token，所有历史 token 的 K、V 都要留着</text>
+  <rect x="24" y="90" width="320" height="120" rx="6" fill="rgba(30,41,59,0.5)" stroke="#475569" stroke-width="1"/>
+  <text x="40" y="116" fill="#93c5fd" font-size="12" font-weight="700">KV 显存 ≈ 2 × L × H × d × S × b</text>
+  <text x="40" y="140" fill="#94a3b8" font-size="9">2 = K 与 V 两路；L = 层数；H = 注意力头数</text>
+  <text x="40" y="158" fill="#94a3b8" font-size="9">d = 头维度；S = 序列长度；b = 每元素字节（FP16=2）</text>
+  <text x="40" y="182" fill="#fbbf24" font-size="10" font-weight="600">关键：与序列长度 S 成正比 → 线性膨胀</text>
+  <text x="40" y="200" fill="#94a3b8" font-size="9">S 从 4K 涨到 1M，KV 占用涨 256 倍</text>
+
+  <!-- bars -->
+  <text x="376" y="78" fill="#cbd5e1" font-size="11">以 ~70B 级模型、batch=1、FP16 估算 KV 占用：</text>
+  <!-- baseline -->
+  <line x1="376" y1="300" x2="648" y2="300" stroke="#475569" stroke-width="1"/>
+  <!-- bar 4K -->
+  <rect x="392" y="266" width="64" height="34" rx="3" fill="rgba(52,211,153,0.35)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="424" y="258" fill="#34d399" font-size="9" text-anchor="middle">4K</text>
+  <text x="424" y="318" fill="#94a3b8" font-size="9" text-anchor="middle">~ 1×</text>
+  <!-- bar 128K -->
+  <rect x="488" y="170" width="64" height="130" rx="3" fill="rgba(251,191,36,0.35)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="520" y="162" fill="#fbbf24" font-size="9" text-anchor="middle">128K</text>
+  <text x="520" y="318" fill="#94a3b8" font-size="9" text-anchor="middle">~ 32×</text>
+  <!-- bar 1M -->
+  <rect x="584" y="50" width="64" height="250" rx="3" fill="rgba(251,113,133,0.35)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="616" y="42" fill="#fb7185" font-size="9" text-anchor="middle">1M</text>
+  <text x="616" y="318" fill="#94a3b8" font-size="9" text-anchor="middle">~ 256×</text>
+  <text x="616" y="338" fill="#fb7185" font-size="9" text-anchor="middle">数十 GB</text>
+
+  <!-- bottom -->
+  <rect x="20" y="350" width="640" height="68" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="374" fill="#e2e8f0" font-size="11" font-weight="600">窗口能做长 ≠ 推理能跑长：1M token 的 KV 可达数十 GB，单卡显存很快被吃满。</text>
+  <text x="36" y="394" fill="#94a3b8" font-size="9">工程钥匙：PagedAttention（vLLM）、KV 量化、CPU/磁盘卸载——让百万上下文"装得下也跑得动"。</text>
+  <text x="36" y="412" fill="#94a3b8" font-size="9">所以"百万上下文"是 RoPE 外推法 + KV Cache 工程 两件事的合力，而非单点突破。</text>
+</svg>

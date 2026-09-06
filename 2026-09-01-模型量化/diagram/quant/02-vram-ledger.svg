@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图2 · 显存账本：70B 模型两种存法</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">现象钩子 — 选精度，本质是选“用多少显存换多少能力”</text>
+
+  <!-- LEFT: 70B FP16 -->
+  <text x="40" y="80" fill="#e2e8f0" font-size="12" font-weight="700">70B · FP16</text>
+  <rect x="40" y="96" width="270" height="34" rx="4" fill="rgba(251,113,133,0.30)" stroke="#fb7185" stroke-width="1.4"/>
+  <text x="56" y="118" fill="#fb7185" font-size="11" font-weight="700">权重显存 ≈ 140 GB</text>
+  <text x="40" y="150" fill="#94a3b8" font-size="9">≈ 8 张 A100（80G）× 2 … 普通玩家根本跑不起</text>
+  <text x="40" y="176" fill="#fb7185" font-size="10" font-weight="600">门槛：数据中心级</text>
+
+  <!-- RIGHT: 70B INT4 -->
+  <text x="370" y="80" fill="#e2e8f0" font-size="12" font-weight="700">70B · INT4</text>
+  <rect x="370" y="96" width="270" height="34" rx="4" fill="rgba(52,211,153,0.30)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="386" y="118" fill="#34d399" font-size="11" font-weight="700">权重显存 ≈ 40 GB</text>
+  <text x="370" y="150" fill="#94a3b8" font-size="9">单张 48G / 双卡 24G 即可；再加 INT2≈20GB</text>
+  <text x="370" y="176" fill="#34d399" font-size="10" font-weight="600">门槛：工作站 / 消费级顶配</text>
+
+  <!-- arrow -->
+  <text x="340" y="118" fill="#64748b" font-size="20" font-weight="700" text-anchor="middle">→</text>
+
+  <!-- comparison bar: 70B-Q4 vs 7B-FP16 same volume, different ability -->
+  <rect x="20" y="200" width="640" height="150" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="222" fill="#e2e8f0" font-size="11" font-weight="700">同一份显存预算，你换来了什么？</text>
+
+  <!-- box A -->
+  <rect x="40" y="240" width="290" height="96" rx="5" fill="rgba(59,130,246,0.22)" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="56" y="264" fill="#60a5fa" font-size="11" font-weight="700">7B · FP16 ≈ 14 GB</text>
+  <text x="56" y="288" fill="#e2e8f0" font-size="10">体积小、跑得动</text>
+  <text x="56" y="308" fill="#94a3b8" font-size="9">但能力上限就摆在那</text>
+  <text x="56" y="328" fill="#94a3b8" font-size="9">复杂推理 / 长尾任务易翻车</text>
+
+  <!-- box B -->
+  <rect x="350" y="240" width="290" height="96" rx="5" fill="rgba(52,211,153,0.22)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="366" y="264" fill="#34d399" font-size="11" font-weight="700">70B · Q4 ≈ 40 GB</text>
+  <text x="366" y="288" fill="#e2e8f0" font-size="10">体积≈3×，但能力强一截</text>
+  <text x="366" y="308" fill="#94a3b8" font-size="9">实测大幅优于“小模型满精度”</text>
+  <text x="366" y="328" fill="#fbbf24" font-size="9" font-weight="700">同显存下 70B-Q4 ≫ 7B-FP16</text>
+
+  <rect x="20" y="362" width="640" height="64" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="384" fill="#e2e8f0" font-size="11" font-weight="600">关键洞察：更大的模型用更低精度，几乎总优于更小的模型用更高精度。</text>
+  <text x="36" y="404" fill="#94a3b8" font-size="9">所以别急着“压缩自己的小模型”——真要省钱，往往是“换更大的模型 + 量化”，而不是“把小模型压更狠”。</text>
+  <text x="36" y="420" fill="#94a3b8" font-size="9">70B：FP16≈140GB / INT4≈40GB / INT2≈20GB。</text>
+</svg>

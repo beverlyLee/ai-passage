@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图5 · 重排 ROI 最高 + 生成必须拒答</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">整条流水线里，加一个 Cross-Encoder 重排是单点投入产出比最高的一步</text>
+
+  <rect x="24" y="80" width="200" height="120" rx="8" fill="rgba(15,23,42,0.4)" stroke="#475569" stroke-width="1.2"/>
+  <text x="44" y="104" fill="#cbd5e1" font-size="11" font-weight="700">Bi-encoder（离线索引）</text>
+  <text x="44" y="128" fill="#94a3b8" font-size="9">query/doc 各自编码，不交互</text>
+  <text x="44" y="148" fill="#94a3b8" font-size="9">精度有天花板；但快、可建索引</text>
+  <rect x="44" y="158" width="160" height="30" rx="4" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="124" y="178" fill="#67e8f9" font-size="9" text-anchor="middle">宽召回 top-20</text>
+
+  <line x1="224" y1="140" x2="248" y2="140" stroke="#22d3ee" stroke-width="1.4" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="250" y="80" width="190" height="120" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="270" y="104" fill="#67e8f9" font-size="11" font-weight="700">Cross-Encoder（召回后）</text>
+  <text x="270" y="128" fill="#94a3b8" font-size="9">query+doc 联合编码，精度高</text>
+  <text x="270" y="148" fill="#94a3b8" font-size="9">慢；只用在少量候选上</text>
+  <rect x="270" y="158" width="150" height="30" rx="4" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="0.8"/>
+  <text x="345" y="178" fill="#6ee7b7" font-size="9" text-anchor="middle">重排取 top-3~5</text>
+
+  <rect x="24" y="276" width="616" height="96" rx="8" fill="rgba(15,23,42,0.4)" stroke="#334155" stroke-width="1"/>
+  <text x="44" y="302" fill="#e2e8f0" font-size="11" font-weight="700">生成端 grounded：引用 [1][2] 可追溯 + 拒答路径</text>
+  <text x="44" y="326" fill="#94a3b8" font-size="9">· 每个事实标注出处 → 可审计、可定位到源文档</text>
+  <text x="44" y="348" fill="#94a3b8" font-size="9">· 资料不足必须回复“无法回答” → 否则回到按概率编，幻觉回潮</text>
+  <text x="44" y="368" fill="#67e8f9" font-size="9">没有“我不知”路径，前面检索再好也前功尽弃</text>
+</svg>

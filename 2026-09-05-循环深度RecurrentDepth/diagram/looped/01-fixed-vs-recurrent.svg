@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-rose" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图1 · 固定深度「堆楼层」 vs 循环深度「绕圈跑」</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">左边用空间（参数量）换深度，右边用时间（迭代次数）换深度</text>
+
+  <rect x="24" y="68" width="290" height="290" rx="8" fill="rgba(76,29,41,0.28)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="42" y="92" fill="#fb7185" font-size="12" font-weight="700">标准 Transformer：每层一套独立参数</text>
+
+  <rect x="52" y="316" width="234" height="24" rx="4" fill="rgba(15,23,42,0.7)" stroke="#475569" stroke-width="0.8"/>
+  <text x="64" y="332" fill="#cbd5e1" font-size="9.5">Input tokens x</text>
+  <line x1="169" y1="316" x2="169" y2="300" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="52" y="256" width="234" height="36" rx="4" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="0.9"/>
+  <text x="64" y="272" fill="#67e8f9" font-size="9.5">Layer 3</text>
+  <text x="130" y="272" fill="#94a3b8" font-size="8.5">独立参数 W₃</text>
+  <text x="64" y="287" fill="#64748b" font-size="8">建立语义关联</text>
+
+  <rect x="52" y="196" width="234" height="36" rx="4" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="0.9"/>
+  <text x="64" y="212" fill="#67e8f9" font-size="9.5">Layer 2</text>
+  <text x="130" y="212" fill="#94a3b8" font-size="8.5">独立参数 W₂</text>
+  <text x="64" y="227" fill="#64748b" font-size="8">提取语法结构</text>
+
+  <rect x="52" y="136" width="234" height="36" rx="4" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="0.9"/>
+  <text x="64" y="152" fill="#67e8f9" font-size="9.5">Layer 1</text>
+  <text x="130" y="152" fill="#94a3b8" font-size="8.5">独立参数 W₁</text>
+  <text x="64" y="167" fill="#64748b" font-size="8">识别基本词义</text>
+
+  <line x1="169" y1="256" x2="169" y2="240" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+  <line x1="169" y1="196" x2="169" y2="180" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+  <line x1="169" y1="136" x2="169" y2="120" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+
+  <text x="52" y="116" fill="#fca5a5" font-size="9.5" font-weight="600">Output：单层单向，不可回头</text>
+  <text x="52" y="352" fill="#fca5a5" font-size="8.5">总参数 = 层数 × 每层参数，随深度线性增长</text>
+
+  <rect x="366" y="68" width="290" height="290" rx="8" fill="rgba(8,51,68,0.28)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="384" y="92" fill="#22d3ee" font-size="12" font-weight="700">循环深度：同一组权重反复迭代</text>
+
+  <rect x="394" y="316" width="234" height="24" rx="4" fill="rgba(15,23,42,0.7)" stroke="#475569" stroke-width="0.8"/>
+  <text x="406" y="332" fill="#cbd5e1" font-size="9.5">Input tokens x</text>
+
+  <rect x="394" y="150" width="234" height="126" rx="6" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="1.1"/>
+  <text x="406" y="170" fill="#67e8f9" font-size="10.5" font-weight="700">Recurrent Core（共享权重 W）</text>
+  <text x="406" y="190" fill="#cbd5e1" font-size="9">第 1 轮：W(x)      → h₁  初步特征</text>
+  <text x="406" y="210" fill="#cbd5e1" font-size="9">第 2 轮：W(h₁)    → h₂  深入推理</text>
+  <text x="406" y="230" fill="#cbd5e1" font-size="9">第 3 轮：W(h₂)    → h₃  验证精化</text>
+  <text x="406" y="250" fill="#67e8f9" font-size="8.5">…最多迭代 num_steps 轮</text>
+  <text x="406" y="268" fill="#64748b" font-size="8">同一函数作用于不同输入 → 实际做的事不同</text>
+
+  <path d="M 622 210 A 44 44 0 1 0 622 208" fill="none" stroke="#fb7185" stroke-width="1.4" marker-end="url(#arrow-rose)"/>
+  <text x="520" y="290" fill="#fca5a5" font-size="8.5">自循环箭头：回到同一组 W 再跑一遍</text>
+
+  <line x1="511" y1="316" x2="511" y2="284" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+  <line x1="511" y1="150" x2="511" y2="120" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+  <text x="394" y="116" fill="#67e8f9" font-size="9.5" font-weight="600">Output：深度可按任务难度动态调节</text>
+  <text x="394" y="352" fill="#67e8f9" font-size="8.5">参数量恒定不变，等效深度 = 层数 × 循环次数</text>
+
+  <text x="20" y="392" fill="#94a3b8" font-size="9">关键区别：左边靠「多存一套权重」变深，右边靠「多跑一轮」变深。</text>
+  <text x="20" y="408" fill="#94a3b8" font-size="9">所以循环深度省的是「权重存储」，不是「计算量」——这一点后面反复会用到。</text>
+</svg>

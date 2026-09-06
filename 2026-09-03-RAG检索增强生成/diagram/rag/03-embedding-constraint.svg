@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图3 · Embedding 两条铁律：同模型 + 干净文本</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">维度不一致 = 数学上不可比；这是数学前提，不是调参能救</text>
+
+  <rect x="24" y="80" width="200" height="110" rx="8" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="44" y="104" fill="#22d3ee" font-size="12" font-weight="700">入库端 用 bge-m3</text>
+  <text x="44" y="126" fill="#e2e8f0" font-size="11">1024 维</text>
+  <rect x="44" y="140" width="160" height="32" rx="4" fill="rgba(15,23,42,0.6)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="124" y="161" fill="#67e8f9" font-size="9" text-anchor="middle">[0.21, -0.53, …]</text>
+
+  <text x="244" y="142" fill="#fb7185" font-size="30" font-weight="700" text-anchor="middle">✗</text>
+
+  <rect x="456" y="80" width="200" height="110" rx="8" fill="rgba(76,29,41,0.35)" stroke="#fb7185" stroke-width="1.4"/>
+  <text x="476" y="104" fill="#fb7185" font-size="12" font-weight="700">检索端 用 text-embedding-3</text>
+  <text x="476" y="126" fill="#e2e8f0" font-size="11">3072 维</text>
+  <rect x="476" y="140" width="160" height="32" rx="4" fill="rgba(15,23,42,0.6)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="556" y="161" fill="#fca5a5" font-size="9" text-anchor="middle">[0.88, 0.12, …]</text>
+
+  <text x="24" y="216" fill="#fca5a5" font-size="11" font-weight="700">✗ 维度 / 模型不同 → 余弦相似度无意义，召回全随机</text>
+
+  <rect x="24" y="246" width="632" height="74" rx="8" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="44" y="280" fill="#6ee7b7" font-size="11" font-weight="700">✓ 入库端 bge-m3 == 检索端 bge-m3 → 同一向量空间</text>
+  <text x="44" y="302" fill="#94a3b8" font-size="9">写死模型 + 版本（别用 "latest"）；两端复用同一个 embed() 函数，绝不另起一个模型</text>
+
+  <text x="24" y="356" fill="#94a3b8" font-size="9">垃圾进垃圾出：PDF 整页（页眉/表格乱码）直接 embed，向量忠实编码了噪声 → 先清洗再向量化</text>
+</svg>

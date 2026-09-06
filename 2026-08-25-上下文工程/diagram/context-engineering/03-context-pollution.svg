@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 · 上下文污染：逐轮累积，关键约束被淹没</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">问题3 — 窗口越大，腐烂越晚、越隐蔽</text>
+
+  <!-- Window boundary -->
+  <rect x="60" y="80" width="320" height="390" rx="12" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="72" y="96" fill="#94a3b8" font-size="10" font-weight="600">Context Window (RAM) 逐轮被拉长</text>
+
+  <!-- Bar 1 clean instruction -->
+  <rect x="80" y="112" width="280" height="54" rx="6" fill="#0f172a"/>
+  <rect x="80" y="112" width="280" height="54" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="96" y="135" fill="white" font-size="11" font-weight="600">① 干净指令（top，最显眼）</text>
+  <text x="96" y="153" fill="#94a3b8" font-size="9">初始：固定约束在这里</text>
+
+  <!-- Bar 2 tool returns -->
+  <rect x="80" y="176" width="280" height="54" rx="6" fill="#0f172a"/>
+  <rect x="80" y="176" width="280" height="54" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="96" y="199" fill="white" font-size="11" font-weight="600">② + 工具返回</text>
+  <text x="96" y="217" fill="#94a3b8" font-size="9">轮次 1：外部系统灌入</text>
+
+  <!-- Bar 3 retrieval noise -->
+  <rect x="80" y="240" width="280" height="54" rx="6" fill="#0f172a"/>
+  <rect x="80" y="240" width="280" height="54" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="96" y="263" fill="white" font-size="11" font-weight="600">③ + 检索片段（含噪声）</text>
+  <text x="96" y="281" fill="#94a3b8" font-size="9">轮次 2：相关但不一定重要</text>
+
+  <!-- Bar 4 history -->
+  <rect x="80" y="304" width="280" height="54" rx="6" fill="#0f172a"/>
+  <rect x="80" y="304" width="280" height="54" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="96" y="327" fill="white" font-size="11" font-weight="600">④ + 历史对话堆积</text>
+  <text x="96" y="345" fill="#94a3b8" font-size="9">轮次 3：越长越多</text>
+
+  <!-- Bar 5 constraint sunk -->
+  <rect x="80" y="368" width="280" height="54" rx="6" fill="#0f172a"/>
+  <rect x="80" y="368" width="280" height="54" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="96" y="391" fill="white" font-size="11" font-weight="600">⑤ 关键约束沉到中部</text>
+  <text x="96" y="409" fill="#94a3b8" font-size="9">轮次 N：被淹没 → 读不进</text>
+
+  <!-- Annotation 1 -->
+  <rect x="410" y="130" width="240" height="62" rx="6" fill="rgba(30,41,59,0.5)" stroke="#475569" stroke-width="1"/>
+  <text x="424" y="152" fill="#e2e8f0" font-size="10" font-weight="600">每轮叠加，窗口被拉长</text>
+  <text x="424" y="170" fill="#94a3b8" font-size="9">真正重要的话反而被稀释</text>
+  <text x="424" y="184" fill="#94a3b8" font-size="9">“更多 token ≠ 更多信息”</text>
+  <line x1="380" y1="145" x2="408" y2="155" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Annotation 2 (punchline) -->
+  <rect x="410" y="300" width="240" height="96" rx="6" fill="#0f172a"/>
+  <rect x="410" y="300" width="240" height="96" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="424" y="324" fill="#fb7185" font-size="10" font-weight="700">Chroma：18 个前沿模型</text>
+  <text x="424" y="344" fill="white" font-size="9">关键信息放中部 vs 首尾</text>
+  <text x="424" y="364" fill="white" font-size="11" font-weight="700">准确率掉 30+ 个百分点</text>
+  <text x="424" y="384" fill="#94a3b8" font-size="8">远未到窗口上限就开始衰减</text>
+  <line x1="380" y1="395" x2="408" y2="348" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-rose)"/>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 · 说得越自信 ≠ 越对</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">原因2 — 它天生“爱接满、不爱认怂”，所以错也错得很笃定</text>
+
+  <!-- two bars -->
+  <text x="24" y="84" fill="#fb7185" font-size="11" font-weight="600">它接出的答案：</text>
+  <rect x="24" y="94" width="316" height="44" rx="6" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="40" y="122" fill="#fecdd3" font-size="12">“根据 2021 年《XX》论文，结论是……”</text>
+
+  <text x="356" y="84" fill="#94a3b8" font-size="11" font-weight="600">真实情况：</text>
+  <rect x="356" y="94" width="300" height="44" rx="6" fill="rgba(30,41,59,0.5)" stroke="#475569" stroke-width="1.2"/>
+  <text x="372" y="122" fill="#cbd5e1" font-size="11">那篇论文 / 期刊根本不存在 😶</text>
+
+  <line x1="182" y1="138" x2="182" y2="168" stroke="#fb7185" stroke-width="2" marker-end="url(#arrow-rose)"/>
+  <text x="196" y="162" fill="#fb7185" font-size="10" font-weight="600">语气越肯定，越像真的</text>
+
+  <!-- why -->
+  <text x="24" y="196" fill="#e2e8f0" font-size="12" font-weight="700">为什么“认怂”这么难？</text>
+  <rect x="24" y="208" width="632" height="58" rx="8" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="40" y="232" fill="#94a3b8" font-size="10">训练时，模型被奖励“接得流畅、有把握”；而“我不知道”在它读过的海量文字里占比很小。</text>
+  <text x="40" y="254" fill="#94a3b8" font-size="10">结果：宁可编一个，也不愿说“不会”。 → 你看到的“自信”，是训练出来的习惯，不是正确率。</text>
+
+  <!-- scatter-ish -->
+  <text x="24" y="298" fill="#e2e8f0" font-size="12" font-weight="700">信不信看这张“关系图”：</text>
+  <rect x="24" y="310" width="632" height="110" rx="8" fill="rgba(30,41,59,0.25)" stroke="#475569" stroke-width="1"/>
+  <text x="40" y="334" fill="#94a3b8" font-size="9">纵轴=它有多自信　横轴=答案对不对（散点示意）</text>
+  <circle cx="120" cy="392" r="5" fill="#fb7185"/>
+  <circle cx="180" cy="360" r="5" fill="#34d399"/>
+  <circle cx="240" cy="398" r="5" fill="#fb7185"/>
+  <circle cx="300" cy="356" r="5" fill="#34d399"/>
+  <circle cx="360" cy="396" r="5" fill="#fb7185"/>
+  <circle cx="420" cy="362" r="5" fill="#34d399"/>
+  <circle cx="480" cy="390" r="5" fill="#fb7185"/>
+  <circle cx="540" cy="358" r="5" fill="#34d399"/>
+  <circle cx="600" cy="394" r="5" fill="#fb7185"/>
+  <text x="40" y="412" fill="#cbd5e1" font-size="9">红=错得自信，绿=对得自信。自信高低和正负，基本是乱的 → “它说得斩钉截铁”不能当“它对”的证据。</text>
+</svg>

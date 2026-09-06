@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图4 · 三条「让模型多想一会儿」的路线，其实完全不同</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">区别不在「想多久」，而在「额外计算花在哪、产出什么」</text>
+
+  <rect x="24" y="66" width="632" height="26" rx="4" fill="rgba(51,65,85,0.55)"/>
+  <text x="40" y="84" fill="#94a3b8" font-size="9.5" font-weight="600">维度</text>
+  <text x="216" y="84" fill="#cbd5e1" font-size="9.5" font-weight="600">固定深度 Transformer</text>
+  <text x="416" y="84" fill="#67e8f9" font-size="9.5" font-weight="600">Latent 循环深度</text>
+  <text x="592" y="84" fill="#fca5a5" font-size="9.5" font-weight="600">外显 CoT</text>
+
+  <rect x="24" y="94" width="632" height="46" rx="4" fill="rgba(15,23,42,0.6)" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="40" y="112" fill="#e2e8f0" font-size="9">额外计算在哪</text>
+  <text x="40" y="128" fill="#64748b" font-size="8">计算发生位置</text>
+  <text x="216" y="112" fill="#cbd5e1" font-size="8.5">每个 token 固定穿过一组层</text>
+  <text x="216" y="128" fill="#64748b" font-size="8">深度写死，不可调</text>
+  <text x="416" y="112" fill="#67e8f9" font-size="8.5">输出前在 hidden state 上重复共享 Core</text>
+  <text x="416" y="128" fill="#64748b" font-size="8">深度可调，参数不变</text>
+  <text x="592" y="112" fill="#fca5a5" font-size="8.5">生成更多中间文字，步骤写进上下文</text>
+  <text x="592" y="128" fill="#64748b" font-size="8">靠 token 变多</text>
+
+  <rect x="24" y="142" width="632" height="40" rx="4" fill="rgba(15,23,42,0.6)" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="40" y="160" fill="#e2e8f0" font-size="9">是否产生</text>
+  <text x="40" y="176" fill="#64748b" font-size="8">额外可见 token</text>
+  <text x="216" y="164" fill="#94a3b8" font-size="9">否</text>
+  <text x="416" y="164" fill="#94a3b8" font-size="9">否</text>
+  <text x="592" y="164" fill="#fca5a5" font-size="9" font-weight="600">是</text>
+  <text x="592" y="176" fill="#64748b" font-size="8">上下文随之变长</text>
+
+  <rect x="24" y="184" width="632" height="40" rx="4" fill="rgba(15,23,42,0.6)" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="40" y="202" fill="#e2e8f0" font-size="9">权重怎样使用</text>
+  <text x="216" y="202" fill="#cbd5e1" font-size="8.5">不同层通常有不同权重</text>
+  <text x="416" y="202" fill="#67e8f9" font-size="8.5">同一 Core 权重反复复用</text>
+  <text x="592" y="202" fill="#cbd5e1" font-size="8.5">每个新 token 仍跑完整模型</text>
+
+  <rect x="24" y="226" width="632" height="46" rx="4" fill="rgba(15,23,42,0.6)" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="40" y="244" fill="#e2e8f0" font-size="9">主要成本</text>
+  <text x="40" y="260" fill="#64748b" font-size="8">落点</text>
+  <text x="216" y="244" fill="#cbd5e1" font-size="8.5">固定层数对应的 FLOPs、</text>
+  <text x="216" y="260" fill="#cbd5e1" font-size="8.5">KV cache 与延迟</text>
+  <text x="416" y="244" fill="#67e8f9" font-size="8.5">循环次数对应的 Core FLOPs、</text>
+  <text x="416" y="260" fill="#67e8f9" font-size="8.5">串行延迟 + 按步 K/V 状态</text>
+  <text x="592" y="244" fill="#fca5a5" font-size="8.5">更多 token、更长上下文、</text>
+  <text x="592" y="260" fill="#fca5a5" font-size="8.5">KV cache + 逐 token 解码</text>
+
+  <rect x="24" y="274" width="632" height="46" rx="4" fill="rgba(76,29,41,0.3)" stroke="#fb7185" stroke-width="1"/>
+  <text x="40" y="292" fill="#e2e8f0" font-size="9">中间过程</text>
+  <text x="40" y="308" fill="#64748b" font-size="8">是否天然可读</text>
+  <text x="216" y="298" fill="#fb7185" font-size="9">否</text>
+  <text x="416" y="292" fill="#fb7185" font-size="8.5" font-weight="600">否，且这是最大的代价</text>
+  <text x="416" y="308" fill="#64748b" font-size="8">state 不是自然语言步骤</text>
+  <text x="592" y="292" fill="#67e8f9" font-size="8.5">相对可见</text>
+  <text x="592" y="308" fill="#64748b" font-size="8">但不等于忠实日志</text>
+
+  <rect x="24" y="332" width="310" height="92" rx="8" fill="rgba(8,51,68,0.26)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="40" y="354" fill="#22d3ee" font-size="11" font-weight="700">两条路线不是二选一</text>
+  <text x="40" y="374" fill="#cbd5e1" font-size="8.5">公开材料里有可选的 continuous-CoT：</text>
+  <text x="40" y="390" fill="#cbd5e1" font-size="8.5">用前一个 token 的最终 latent state 去</text>
+  <text x="40" y="406" fill="#cbd5e1" font-size="8.5">warm-start 当前 token，实现跨 token 的推理扩展。</text>
+  <text x="40" y="422" fill="#64748b" font-size="8">但这不是主架构的默认路径。</text>
+
+  <rect x="346" y="332" width="310" height="92" rx="8" fill="rgba(76,29,41,0.24)" stroke="#fb7185" stroke-width="1"/>
+  <text x="362" y="354" fill="#fb7185" font-size="11" font-weight="700">安全审计的连锁反应</text>
+  <text x="362" y="374" fill="#cbd5e1" font-size="8.5">2026-07 某实验室内部代理越权事件，调查</text>
+  <text x="362" y="390" fill="#cbd5e1" font-size="8.5">人员正是靠读取模型留下的思维链才查明真相。</text>
+  <text x="362" y="406" fill="#fca5a5" font-size="8.5">循环深度让这部分过程搬进 latent → 不可读。</text>
+  <text x="362" y="422" fill="#94a3b8" font-size="8">这是它最被低估的隐性成本。</text>
+</svg>

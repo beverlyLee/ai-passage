@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图6 · 证据边界：Astra 用没用循环深度，还得看四层证据</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">截至 2026-09-05 · "Astra 采用 recurrent depth" 仍是媒体说法，官方 system card 未确认</text>
+
+  <!-- 四层证据金字塔 -->
+  <rect x="30" y="70" width="300" height="52" rx="6" fill="#134e4a" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="44" y="92" fill="#67e8f9" font-size="11" font-weight="700">① 官方已知</text>
+  <text x="44" y="110" fill="#a5f3fc" font-size="8.5">9月3日发布并命名 GPT-6 Astra，公开安全概览与 system card</text>
+
+  <rect x="30" y="134" width="300" height="52" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="44" y="156" fill="#e2e8f0" font-size="11" font-weight="700">② 媒体说法（The Information 等）</text>
+  <text x="44" y="174" fill="#94a3b8" font-size="8.5">"Astra 采用某种 limited recurrent depth" —— 只证明说法在流通</text>
+
+  <rect x="30" y="198" width="300" height="52" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="44" y="220" fill="#e2e8f0" font-size="11" font-weight="700">③ 公开研究（可检查）</text>
+  <text x="44" y="238" fill="#94a3b8" font-size="8.5">Huginn 论文 / 代码 / 模型卡：共享 Core + 随机训练深度可实现</text>
+
+  <rect x="30" y="262" width="300" height="52" rx="6" fill="#4c0519" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="44" y="284" fill="#fda4af" font-size="11" font-weight="700">④ 仍然未知</text>
+  <text x="44" y="302" fill="#fca5a5" font-size="8.5">Astra 是否用这条路？循环次数 / 参数 / FLOPs / 价格全未披露</text>
+
+  <path d="M 340 96 L 380 96" stroke="#22d3ee" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="352" y="86" fill="#67e8f9" font-size="8">唯一可核</text>
+  <path d="M 340 288 L 380 288" stroke="#fb7185" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="344" y="278" fill="#fda4af" font-size="8">别拿②③拼成①</text>
+
+  <!-- Pachocki 表态框 -->
+  <rect x="396" y="70" width="262" height="118" rx="6" fill="#1e293b" stroke="#facc15" stroke-width="1.2"/>
+  <text x="410" y="92" fill="#fde047" font-size="10.5" font-weight="700">关键反证 · Pachocki（9月2日）</text>
+  <text x="410" y="112" fill="#e2e8f0" font-size="8.5">OpenAI 首席科学家："我们现有前沿模型</text>
+  <text x="410" y="128" fill="#e2e8f0" font-size="8.5">（包括 Astra）的计算图深度，在 GPT-4</text>
+  <text x="410" y="144" fill="#e2e8f0" font-size="8.5">的两倍以内。" —— 要防止"被误报带进</text>
+  <text x="410" y="160" fill="#e2e8f0" font-size="8.5">不可监控的竞赛"。他本人是 41 人联署</text>
+  <text x="410" y="176" fill="#94a3b8" font-size="8.5">《CoT 可监控性》作者之一。</text>
+
+  <!-- 独立研究框 -->
+  <rect x="396" y="200" width="262" height="114" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="410" y="222" fill="#e2e8f0" font-size="10.5" font-weight="700">独立研究的收紧</text>
+  <text x="410" y="242" fill="#94a3b8" font-size="8.5">· probing Huginn-3.5B：latent CoT 证据有限</text>
+  <text x="410" y="258" fill="#94a3b8" font-size="8.5">· Think Shallow, Solve Deep：多循环可能</text>
+  <text x="410" y="274" fill="#94a3b8" font-size="8.5">  改善 / 保持 / 破坏答案（non-settling）</text>
+  <text x="410" y="290" fill="#94a3b8" font-size="8.5">· Jacobian Lens：state 可跨 16 圈保持，</text>
+  <text x="410" y="306" fill="#94a3b8" font-size="8.5">  但有效读写窗口仅约 2 圈</text>
+
+  <!-- 底部：下次看到的六个检查项 -->
+  <text x="30" y="344" fill="#67e8f9" font-size="10.5" font-weight="700">下次看到"循环深度 +N 倍"，先查这六项：</text>
+  <g font-size="8.6" fill="#cbd5e1">
+    <text x="30"  y="366">① 循环对象：token / hidden state / 整套模型？</text>
+    <text x="30"  y="384">② 权重关系：同一组权重复用，还是各层独立？</text>
+    <text x="30"  y="402">③ 训练适配：训练时见过可变深度吗？梯度覆盖哪些步？</text>
+    <text x="30"  y="420">④ 计算口径：+N 是参数 / FLOPs / 延迟 / 可见 token？</text>
+    <text x="360" y="366">⑤ 收益边界：哪个 checkpoint、任务、深度范围测的？饱和了吗？</text>
+    <text x="360" y="384">⑥ 证据层级：官方资料 / 作者研究 / 独立复现 / 匿名爆料？</text>
+    <text x="360" y="406" fill="#64748b">四个别混淆：产品归属 ≠ 参数 ≠ 计算路径 ≠ 可见 token</text>
+  </g>
+  <line x1="20" y1="430" x2="660" y2="430" stroke="#1e293b" stroke-width="1"/>
+  <text x="20" y="443" fill="#475569" font-size="7.5">sources: arXiv:2502.05171 (Geiping et al.) · The Information · Pachocki @X 2026-09-02 · arXiv:2609.01924 · tosea.ai guide</text>
+</svg>

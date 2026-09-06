@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图2 · 任务分解与角色分工：编排者把难题拆给 4 类专长 Agent</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">问题2 — 多智能体第一性原理：拆任务 + 单一职责</text>
+
+  <!-- Orchestrator -->
+  <rect x="240" y="58" width="200" height="40" rx="6" fill="#0f172a"/>
+  <rect x="240" y="58" width="200" height="40" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.4"/>
+  <text x="340" y="83" fill="white" font-size="12" font-weight="600" text-anchor="middle">编排者 Orchestrator</text>
+
+  <!-- decompose node -->
+  <rect x="280" y="116" width="120" height="34" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="340" y="138" fill="#cbd5e1" font-size="11" text-anchor="middle">分解 Decompose</text>
+
+  <line x1="340" y1="150" x2="100" y2="186" stroke="#64748b" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="340" y1="150" x2="260" y2="186" stroke="#64748b" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="340" y1="150" x2="420" y2="186" stroke="#64748b" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="340" y1="150" x2="580" y2="186" stroke="#64748b" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <!-- 4 role boxes -->
+  <rect x="30" y="186" width="140" height="80" rx="6" fill="#0f172a" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="100" y="214" fill="#e2e8f0" font-size="13" font-weight="700" text-anchor="middle">Planner</text>
+  <text x="100" y="238" fill="#94a3b8" font-size="9" text-anchor="middle">把难题拆成子任务</text>
+  <text x="100" y="253" fill="#94a3b8" font-size="9" text-anchor="middle">定顺序与依赖</text>
+
+  <rect x="190" y="186" width="140" height="80" rx="6" fill="#0f172a" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="260" y="214" fill="#e2e8f0" font-size="13" font-weight="700" text-anchor="middle">Worker</text>
+  <text x="260" y="238" fill="#94a3b8" font-size="9" text-anchor="middle">调用工具执行</text>
+  <text x="260" y="253" fill="#94a3b8" font-size="9" text-anchor="middle">产出中间结果</text>
+
+  <rect x="350" y="186" width="140" height="80" rx="6" fill="#0f172a" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="420" y="214" fill="#e2e8f0" font-size="13" font-weight="700" text-anchor="middle">Critic</text>
+  <text x="420" y="238" fill="#94a3b8" font-size="9" text-anchor="middle">挑逻辑漏洞</text>
+  <text x="420" y="253" fill="#94a3b8" font-size="9" text-anchor="middle">指出遗漏约束</text>
+
+  <rect x="510" y="186" width="140" height="80" rx="6" fill="#0f172a" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="580" y="214" fill="#e2e8f0" font-size="13" font-weight="700" text-anchor="middle">Verifier</text>
+  <text x="580" y="238" fill="#94a3b8" font-size="9" text-anchor="middle">按可验证性验收</text>
+  <text x="580" y="253" fill="#94a3b8" font-size="9" text-anchor="middle">给通过 / 打回</text>
+
+  <!-- shared goal / blackboard -->
+  <rect x="200" y="300" width="280" height="44" rx="6" fill="#0f172a"/>
+  <rect x="200" y="300" width="280" height="44" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.4"/>
+  <text x="340" y="322" fill="white" font-size="12" font-weight="600" text-anchor="middle">共享目标 / 黑板（全局共识）</text>
+  <text x="340" y="338" fill="#94a3b8" font-size="9" text-anchor="middle">所有角色读写同一份"真相"</text>
+
+  <line x1="100" y1="266" x2="280" y2="300" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="260" y1="266" x2="320" y2="300" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="420" y1="266" x2="360" y2="300" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="580" y1="266" x2="400" y2="300" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- return loop to orchestrator -->
+  <path d="M 200 322 C 150 322, 120 200, 240 110" fill="none" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="5 4" marker-end="url(#arrow-amber)"/>
+  <text x="120" y="210" fill="#fbbf24" font-size="9" transform="rotate(-32 120 210)">结果回传 / 汇总验收</text>
+
+  <!-- note -->
+  <text x="20" y="392" fill="#94a3b8" font-size="9">GPT-5.6 ultra 默认 4-Agent 并行；OpenAI Astra 主打多智能体长程协作——拓扑同此：一个编排者 + 多个专长角色。</text>
+  <text x="20" y="408" fill="#64748b" font-size="8">专，才稳：让"找茬"的 agent 不被"把活干完"的冲动带偏。</text>
+</svg>

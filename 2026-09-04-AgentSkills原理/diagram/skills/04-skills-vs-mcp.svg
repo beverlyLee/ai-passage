@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图4 · 四层不是四选一：Skills / MCP / Subagent / 传统常驻指令</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">最常见的误用：拿 Skill 当权限系统，拿 MCP 当知识库</text>
+
+  <rect x="24" y="66" width="152" height="200" rx="8" fill="rgba(8,51,68,0.34)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="40" y="90" fill="#22d3ee" font-size="11.5" font-weight="700">Agent Skills</text>
+  <text x="40" y="112" fill="#67e8f9" font-size="9" font-weight="600">解决「该怎么做」</text>
+  <text x="40" y="138" fill="#cbd5e1" font-size="8.5">形态：文件夹 + Markdown</text>
+  <text x="40" y="156" fill="#cbd5e1" font-size="8.5">需要服务：否</text>
+  <text x="40" y="174" fill="#cbd5e1" font-size="8.5">上下文：渐进式披露</text>
+  <text x="40" y="192" fill="#cbd5e1" font-size="8.5">强项：流程 / 规范 / 判断</text>
+  <text x="40" y="210" fill="#fca5a5" font-size="8.5">强制力：零</text>
+  <text x="40" y="234" fill="#64748b" font-size="8">类比：给新人的入职手册</text>
+  <text x="40" y="252" fill="#64748b" font-size="8">适合：代码评审规则、发版清单</text>
+
+  <rect x="190" y="66" width="152" height="200" rx="8" fill="rgba(15,23,42,0.5)" stroke="#475569" stroke-width="1.1"/>
+  <text x="206" y="90" fill="#e2e8f0" font-size="11.5" font-weight="700">MCP</text>
+  <text x="206" y="112" fill="#cbd5e1" font-size="9" font-weight="600">解决「能碰到什么」</text>
+  <text x="206" y="138" fill="#cbd5e1" font-size="8.5">形态：JSON-RPC server</text>
+  <text x="206" y="156" fill="#cbd5e1" font-size="8.5">需要服务：是（进程/传输）</text>
+  <text x="206" y="174" fill="#cbd5e1" font-size="8.5">上下文：工具定义常驻</text>
+  <text x="206" y="192" fill="#cbd5e1" font-size="8.5">强项：确定性 API 调用</text>
+  <text x="206" y="210" fill="#67e8f9" font-size="8.5">强制力：有（服务端鉴权）</text>
+  <text x="206" y="234" fill="#64748b" font-size="8">类比：万能转接头</text>
+  <text x="206" y="252" fill="#64748b" font-size="8">适合：CRM、工单、内部数据库</text>
+
+  <rect x="356" y="66" width="152" height="200" rx="8" fill="rgba(15,23,42,0.5)" stroke="#475569" stroke-width="1.1"/>
+  <text x="372" y="90" fill="#e2e8f0" font-size="11.5" font-weight="700">Subagent</text>
+  <text x="372" y="112" fill="#cbd5e1" font-size="9" font-weight="600">解决「谁来做这段」</text>
+  <text x="372" y="138" fill="#cbd5e1" font-size="8.5">形态：独立上下文窗口</text>
+  <text x="372" y="156" fill="#cbd5e1" font-size="8.5">需要服务：否（由主 agent 派生）</text>
+  <text x="372" y="174" fill="#cbd5e1" font-size="8.5">上下文：整份新上下文</text>
+  <text x="372" y="192" fill="#cbd5e1" font-size="8.5">强项：长任务隔离主上下文</text>
+  <text x="372" y="210" fill="#cbd5e1" font-size="8.5">强制力：取决于父级配置</text>
+  <text x="372" y="234" fill="#64748b" font-size="8">类比：外包给一个小组</text>
+  <text x="372" y="252" fill="#64748b" font-size="8">适合：长链路多步任务</text>
+
+  <rect x="522" y="66" width="134" height="200" rx="8" fill="rgba(76,29,41,0.3)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="538" y="90" fill="#fb7185" font-size="11.5" font-weight="700">.cursorrules</text>
+  <text x="538" y="112" fill="#fca5a5" font-size="9" font-weight="600">静态常驻偏好</text>
+  <text x="538" y="138" fill="#cbd5e1" font-size="8.5">形态：单个长文本文件</text>
+  <text x="538" y="156" fill="#cbd5e1" font-size="8.5">需要服务：否</text>
+  <text x="538" y="174" fill="#fca5a5" font-size="8.5">上下文：永远全额占用</text>
+  <text x="538" y="192" fill="#cbd5e1" font-size="8.5">强项：短而通用的偏好</text>
+  <text x="538" y="210" fill="#cbd5e1" font-size="8.5">强制力：零</text>
+  <text x="538" y="234" fill="#64748b" font-size="8">类比：贴在墙上的标语</text>
+  <text x="538" y="252" fill="#64748b" font-size="8">适合：≤ 几十行的通用约定</text>
+
+  <rect x="24" y="282" width="632" height="92" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="44" y="306" fill="#67e8f9" font-size="11" font-weight="700">组合方式：用 Skill 编排 MCP，而不是用 Skill 替代 MCP</text>
+  <text x="44" y="328" fill="#cbd5e1" font-size="9">Skill = 剧本（先查工单、再改代码、最后补 changelog）；MCP = 手（真的去查工单系统）</text>
+  <text x="44" y="348" fill="#fca5a5" font-size="9">安全边界画在工具层，不画在 Skill 里：Skill 无法吊销权限、无法限流、无法阻止外传</text>
+  <text x="44" y="366" fill="#94a3b8" font-size="8.5">allowed-tools 是实验字段，部分 runtime 强制执行、部分直接忽略 —— 不能当护栏依赖</text>
+
+  <text x="20" y="404" fill="#94a3b8" font-size="9">判断口诀：问题是「接入什么系统」→ MCP；问题是「我们这活儿怎么干」→ Skill；两者都要 → Skill 调 MCP。</text>
+</svg>

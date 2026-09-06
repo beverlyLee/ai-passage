@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" font-family="'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <pattern id="grid3" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="#0f172a"/>
+  <rect width="1080" height="1080" fill="url(#grid3)"/>
+
+  <rect x="80" y="300" width="10" height="470" rx="5" fill="#34d399"/>
+  <text x="120" y="200" font-size="28" font-weight="700" fill="#34d399">MCP 协议原理 · 金句</text>
+
+  <text x="120" y="350" font-size="46" font-weight="700" fill="#f8fafc">MCP 治「连得上」，</text>
+  <text x="120" y="420" font-size="46" font-weight="700" fill="#f8fafc">不治「用得好」。</text>
+  <text x="120" y="490" font-size="46" font-weight="700" fill="#f8fafc">没有上下文工程，</text>
+  <text x="120" y="560" font-size="46" font-weight="800" fill="#34d399">数据进来也是灾难。</text>
+
+  <text x="120" y="940" font-size="28" fill="#94a3b8">——《MCP 协议原理》</text>
+</svg>

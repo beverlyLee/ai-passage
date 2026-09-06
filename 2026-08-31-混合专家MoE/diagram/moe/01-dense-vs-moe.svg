@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图1 · 稠密 vs 混合专家：同样大模型，每 token 只算一小块</text>
+  <text x="20" y="46" fill="#64748b" font-size="9">现象钩子 — MoE 用稀疏激活“省”出大模型</text>
+
+  <!-- LEFT: Dense -->
+  <text x="30" y="78" fill="#e2e8f0" font-size="12" font-weight="700">稠密模型 Dense</text>
+  <text x="30" y="96" fill="#94a3b8" font-size="9">每个 token → 全部参数都参与计算</text>
+  <g>
+    <!-- 8x6 grid all lit blue -->
+    <rect x="30" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="62" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="94" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="126" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="158" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="190" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="222" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="254" y="108" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="30" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="62" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="94" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="126" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="158" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="190" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="222" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="254" y="138" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="30" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="62" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="94" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="126" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="158" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="190" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="222" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="254" y="168" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="30" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="62" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="94" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="126" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="158" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="190" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="222" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="254" y="198" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="30" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="62" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="94" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="126" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="158" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="190" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="222" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="254" y="228" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="30" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="62" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="94" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="126" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="158" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="190" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="222" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+    <rect x="254" y="258" width="28" height="24" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1"/>
+  </g>
+  <text x="30" y="306" fill="#60a5fa" font-size="10" font-weight="600">激活 = 100% 参数</text>
+  <text x="30" y="324" fill="#94a3b8" font-size="9">例：Llama 2 70B → 每 token 算满 70B</text>
+
+  <!-- RIGHT: MoE -->
+  <text x="380" y="78" fill="#e2e8f0" font-size="12" font-weight="700">混合专家 MoE</text>
+  <text x="380" y="96" fill="#94a3b8" font-size="9">每个 token → 只激活少数专家（Top-k）</text>
+  <g>
+    <!-- 8 expert columns, only 2 lit (Top-2) -->
+    <rect x="380" y="108" width="28" height="174" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="412" y="108" width="28" height="174" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1.4"/>
+    <rect x="444" y="108" width="28" height="174" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="476" y="108" width="28" height="174" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="508" y="108" width="28" height="174" rx="3" fill="rgba(59,130,246,0.35)" stroke="#60a5fa" stroke-width="1.4"/>
+    <rect x="540" y="108" width="28" height="174" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="572" y="108" width="28" height="174" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="604" y="108" width="28" height="174" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  </g>
+  <text x="380" y="306" fill="#fbbf24" font-size="10" font-weight="600">仅 2 / 8 专家激活 ≈ 25%</text>
+  <text x="380" y="324" fill="#94a3b8" font-size="9">DeepSeek-V3：671B 总 / 37B 激活</text>
+  <text x="380" y="340" fill="#94a3b8" font-size="9">Mixtral 8x7B：46.7B 总 / 12.9B 激活</text>
+
+  <!-- arrow between -->
+  <text x="320" y="200" fill="#64748b" font-size="20" font-weight="700" text-anchor="middle">→</text>
+
+  <rect x="20" y="362" width="640" height="64" rx="6" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="384" fill="#e2e8f0" font-size="11" font-weight="600">关键解耦：总参数 = “知识容量”，激活参数 = “每次推理成本”。</text>
+  <text x="36" y="404" fill="#94a3b8" font-size="9">MoE 把两者拆开——用巨大总参数撑住能力，却只让每 token 算极小一部分，于是“大模型”也能跑得既快又便宜。</text>
+  <text x="36" y="420" fill="#94a3b8" font-size="9">这就是为什么 2026 年 8 月 Qwen / DeepSeek 的旗舰全是 MoE：要容量，也要成本可控。</text>
+</svg>

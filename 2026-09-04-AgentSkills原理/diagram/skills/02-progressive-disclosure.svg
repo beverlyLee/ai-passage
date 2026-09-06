@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-rose" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图2 · 渐进式披露：装 50 个 Skill，会话常驻只花 ~5k token</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">三层按需加载 —— 这是「能装多少个」的决定性变量</text>
+
+  <rect x="24" y="66" width="392" height="86" rx="8" fill="rgba(8,51,68,0.34)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="44" y="90" fill="#22d3ee" font-size="11.5" font-weight="700">L1 发现期 · Discovery</text>
+  <text x="252" y="90" fill="#67e8f9" font-size="10" font-weight="600">~50–100 token / skill</text>
+  <text x="44" y="112" fill="#cbd5e1" font-size="9">只解析每个 SKILL.md 的 frontmatter，取 name + description</text>
+  <text x="44" y="130" fill="#94a3b8" font-size="8.5">注入系统提示，会话启动时一次性完成 —— 与任务是否相关无关</text>
+  <line x1="220" y1="152" x2="220" y2="164" stroke="#22d3ee" stroke-width="1.4" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="24" y="166" width="392" height="86" rx="8" fill="rgba(8,51,68,0.34)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="44" y="190" fill="#22d3ee" font-size="11.5" font-weight="700">L2 激活期 · Activation</text>
+  <text x="252" y="190" fill="#67e8f9" font-size="10" font-weight="600">&lt; 5,000 token（建议 &lt; 500 行）</text>
+  <text x="44" y="212" fill="#cbd5e1" font-size="9">任务命中 description → 整个 SKILL.md 正文读入上下文</text>
+  <text x="44" y="230" fill="#94a3b8" font-size="8.5">文件系统客户端这一步就是一次 cat，没有专用加载器</text>
+  <line x1="220" y1="252" x2="220" y2="264" stroke="#22d3ee" stroke-width="1.4" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="24" y="266" width="392" height="88" rx="8" fill="rgba(15,23,42,0.45)" stroke="#475569" stroke-width="1.1"/>
+  <text x="44" y="290" fill="#cbd5e1" font-size="11.5" font-weight="700">L3 执行期 · Execution</text>
+  <text x="252" y="290" fill="#94a3b8" font-size="10" font-weight="600">未读取前 = 0 token</text>
+  <text x="44" y="312" fill="#cbd5e1" font-size="9">scripts/ · references/ · assets/ 按需读取或执行</text>
+  <text x="44" y="330" fill="#94a3b8" font-size="8.5">正文必须显式指明「什么情况下去读哪个文件」才会被读</text>
+  <text x="44" y="346" fill="#64748b" font-size="8.5">没有 L2 的指引，L3 里的资料等于不存在</text>
+
+  <rect x="432" y="66" width="224" height="288" rx="8" fill="rgba(76,29,41,0.3)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="452" y="90" fill="#fb7185" font-size="11.5" font-weight="700">50 个 Skill 的常驻成本</text>
+  <text x="452" y="118" fill="#94a3b8" font-size="9">全量加载（.cursorrules 式）</text>
+  <rect x="452" y="128" width="184" height="20" rx="3" fill="#fb7185"/>
+  <text x="638" y="142" fill="#0f172a" font-size="9" font-weight="700" text-anchor="end">~250k token</text>
+  <text x="452" y="172" fill="#94a3b8" font-size="9">MCP 工具定义（每 server 全量）</text>
+  <rect x="452" y="182" width="120" height="20" rx="3" fill="#f43f5e"/>
+  <text x="638" y="196" fill="#fecdd3" font-size="9" font-weight="700" text-anchor="end">数万 token</text>
+  <text x="452" y="226" fill="#67e8f9" font-size="9" font-weight="600">渐进式披露（只加载 L1）</text>
+  <rect x="452" y="236" width="14" height="20" rx="3" fill="#22d3ee"/>
+  <text x="476" y="250" fill="#67e8f9" font-size="9" font-weight="700">~5,000 token</text>
+  <line x1="452" y1="276" x2="636" y2="276" stroke="#334155" stroke-width="0.8"/>
+  <text x="452" y="296" fill="#cbd5e1" font-size="9">触发 1 个 → 再付该 skill 的正文</text>
+  <text x="452" y="314" fill="#cbd5e1" font-size="9">触发 0 个 → 一分钱不花</text>
+  <text x="452" y="338" fill="#fca5a5" font-size="8.5">但 description 写太长会挤压预算，</text>
+  <text x="452" y="352" fill="#fca5a5" font-size="8.5">库超过 40+ 个时全库触发可靠性退化</text>
+
+  <text x="20" y="392" fill="#94a3b8" font-size="9">渐进式披露省下的是「不相关的那部分」——所以 description 的质量直接决定省得值不值。</text>
+  <text x="20" y="408" fill="#94a3b8" font-size="9">它管的是「什么时候加载」，管不了「加载的内容是否还正确」。</text>
+</svg>

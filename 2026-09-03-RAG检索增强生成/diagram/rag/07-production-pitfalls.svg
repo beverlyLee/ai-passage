@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图7 · 8 坑全景（按三层归类，上生产前逐条打勾）</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">RAG 的坑九成在检索与上下文工程，不在模型；调 prompt 救不了烂检索</text>
+
+  <rect x="24" y="68" width="200" height="252" rx="8" fill="rgba(76,29,41,0.3)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="44" y="94" fill="#fb7185" font-size="12" font-weight="700">数据 / 切块</text>
+  <text x="44" y="122" fill="#fca5a5" font-size="10">1 · 切块切坏句子</text>
+  <text x="44" y="146" fill="#fca5a5" font-size="10">2 · Embedding 脏(垃圾进)</text>
+
+  <rect x="240" y="68" width="200" height="252" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="260" y="94" fill="#22d3ee" font-size="12" font-weight="700">检索 / 重排</text>
+  <text x="260" y="122" fill="#67e8f9" font-size="10">3 · 漏精确词(需混合)</text>
+  <text x="260" y="146" fill="#67e8f9" font-size="10">4 · Top-K 灌爆</text>
+  <text x="260" y="170" fill="#67e8f9" font-size="10">5 · Lost in the Middle</text>
+
+  <rect x="456" y="68" width="200" height="252" rx="8" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="476" y="94" fill="#34d399" font-size="12" font-weight="700">安全 / 治理</text>
+  <text x="476" y="122" fill="#6ee7b7" font-size="10">6 · 多租户泄露(ACL)</text>
+  <text x="476" y="146" fill="#6ee7b7" font-size="10">7 · 无拒答 → 仍幻觉</text>
+  <text x="476" y="170" fill="#6ee7b7" font-size="10">8 · 索引stale/投毒</text>
+
+  <text x="24" y="356" fill="#94a3b8" font-size="9">分类提示：前两层决定“生成上限”（检索质量），第三层决定“能不能上线”（安全合规）</text>
+  <text x="24" y="384" fill="#e2e8f0" font-size="9.5" font-weight="600">照着这 8 条逐条打勾，比调十遍 prompt 更值钱。</text>
+</svg>

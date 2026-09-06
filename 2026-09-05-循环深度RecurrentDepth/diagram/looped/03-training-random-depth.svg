@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-rose" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图3 · 为什么普通模型「推理时多跑几层」不会变聪明</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">循环深度不是部署期补丁，而是训练目标本身就要适配可变深度</text>
+
+  <rect x="24" y="68" width="300" height="180" rx="8" fill="rgba(8,51,68,0.26)" stroke="#22d3ee" stroke-width="1.1"/>
+  <text x="40" y="92" fill="#22d3ee" font-size="11.5" font-weight="700">训练时：随机采样循环深度 r</text>
+  <text x="40" y="116" fill="#cbd5e1" font-size="9">采样分布：重尾 log-normal Poisson，目标均值 32</text>
+  <text x="40" y="134" fill="#94a3b8" font-size="8.5">同一个 micro-batch 内使用同一个深度（配合数据并行）</text>
+  <line x1="40" y1="148" x2="304" y2="148" stroke="#334155" stroke-width="0.8"/>
+  <text x="40" y="168" fill="#cbd5e1" font-size="9">样本 A：r = 8　　浅路径</text>
+  <text x="40" y="186" fill="#cbd5e1" font-size="9">样本 B：r = 32　 均值附近</text>
+  <text x="40" y="204" fill="#cbd5e1" font-size="9">样本 C：r = 64　 明显更深</text>
+  <text x="40" y="226" fill="#67e8f9" font-size="8.5">→ 模型在训练中就见过了「不同深度都得把题做对」</text>
+
+  <rect x="356" y="68" width="300" height="180" rx="8" fill="rgba(76,29,41,0.24)" stroke="#fb7185" stroke-width="1.1"/>
+  <text x="372" y="92" fill="#fb7185" font-size="11.5" font-weight="700">梯度：截断反向传播 k = 8</text>
+  <text x="372" y="116" fill="#cbd5e1" font-size="9">较早的循环照常前向，形成后续要用的 state</text>
+  <text x="372" y="132" fill="#94a3b8" font-size="8.5">但最多只保留最后 8 次循环的反向图</text>
+  <line x1="372" y1="146" x2="636" y2="146" stroke="#334155" stroke-width="0.8"/>
+  <text x="372" y="166" fill="#fca5a5" font-size="8.5">常见误读：「只训练最后 8 层」</text>
+  <text x="372" y="186" fill="#cbd5e1" font-size="8.5">实际：前面循环确实参与状态形成、也消耗计算，</text>
+  <text x="372" y="202" fill="#cbd5e1" font-size="8.5">只是梯度在边界处被截断。</text>
+  <text x="372" y="224" fill="#94a3b8" font-size="8.5">Prelude 的 e 会在带梯度的尾段再次注入 → Prelude 仍收梯度</text>
+
+  <rect x="24" y="268" width="632" height="76" rx="8" fill="rgba(15,23,42,0.55)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="40" y="292" fill="#fb7185" font-size="11.5" font-weight="700">所以：拿一个训练好的固定深度 Transformer，部署时把中间层多跑十遍</text>
+  <text x="40" y="312" fill="#cbd5e1" font-size="9">没有任何理由期待它会变聪明。它没在训练中见过可变深度，多跑只是把同一套固定层重复作用。</text>
+  <text x="40" y="330" fill="#67e8f9" font-size="9">推理时能调的 num_steps，调的是「模型训练过的可变深度能力」，不是给普通模型打的临时补丁。</text>
+
+  <text x="20" y="378" fill="#94a3b8" font-size="9">推论：看到某个产品宣传「我们让模型多循环几次」，先问一句——它训练时见过不同深度吗？</text>
+  <text x="20" y="396" fill="#94a3b8" font-size="9">没见过，那个旋钮就是个装饰；见过了，才谈得上「用计算换能力」。</text>
+  <text x="20" y="414" fill="#fb7185" font-size="8.5">注：以上为公开 Huginn 路线的可核验实现细节，不等于任何商业产品的已确认规格。</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-rose" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图2 · 切块策略：检索最小单位是 chunk，不是文档</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">句被砍断 → 语义碎 → 句向量再准也召回不到正确块</text>
+
+  <rect x="24" y="68" width="312" height="262" rx="8" fill="rgba(15,23,42,0.4)" stroke="#334155" stroke-width="1"/>
+  <text x="44" y="92" fill="#e2e8f0" font-size="12" font-weight="700">5 种切块策略</text>
+  <text x="44" y="116" fill="#cbd5e1" font-size="9.5">固定大小 — 200–500 tok, overlap 10–20%</text>
+  <text x="44" y="140" fill="#cbd5e1" font-size="9.5">语义切分 — 按句号/段落在语义边界断</text>
+  <text x="44" y="164" fill="#cbd5e1" font-size="9.5">递归结构 — 按 #/## 段落递归下钻</text>
+  <text x="44" y="188" fill="#cbd5e1" font-size="9.5">文档感知 — 保留标题/表格/列表结构</text>
+  <text x="44" y="212" fill="#67e8f9" font-size="9.5" font-weight="600">父子 Chunk — 小 ~128 检索 + 父 512–1024 生成</text>
+  <line x1="44" y1="226" x2="316" y2="226" stroke="#334155" stroke-width="0.8"/>
+  <text x="44" y="250" fill="#94a3b8" font-size="9">检索粒度 = 小“针”命中；生成粒度 = 大“线团”保上下文</text>
+  <text x="44" y="270" fill="#94a3b8" font-size="9">关键文档优先父子 Chunk</text>
+  <text x="44" y="290" fill="#94a3b8" font-size="9">overlap 防边界信息被切掉</text>
+  <text x="44" y="318" fill="#64748b" font-size="8.5">LangChain ParentDocumentRetriever 标准模式</text>
+
+  <rect x="356" y="68" width="300" height="118" rx="8" fill="rgba(76,29,41,0.35)" stroke="#fb7185" stroke-width="1.4"/>
+  <text x="376" y="92" fill="#fb7185" font-size="11" font-weight="700">反例：固定大小一刀切</text>
+  <rect x="376" y="104" width="120" height="34" rx="4" fill="rgba(15,23,42,0.6)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="436" y="126" fill="#fca5a5" font-size="9" text-anchor="middle">报销上限 800 元…</text>
+  <rect x="512" y="104" width="128" height="34" rx="4" fill="rgba(15,23,42,0.6)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="576" y="126" fill="#fca5a5" font-size="9" text-anchor="middle">…发票 30 日内提交</text>
+  <text x="376" y="162" fill="#fca5a5" font-size="9">断裂处：一句话被劈成两半</text>
+  <text x="376" y="178" fill="#94a3b8" font-size="9">→ 召回只命中半句，模型答偏</text>
+
+  <rect x="356" y="200" width="300" height="130" rx="8" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="376" y="224" fill="#22d3ee" font-size="11" font-weight="700">正例：父子 Chunk</text>
+  <text x="376" y="248" fill="#67e8f9" font-size="9.5">小块(针) → 向量检索命中正确块</text>
+  <text x="376" y="270" fill="#67e8f9" font-size="9.5">父块(线团) → 返回完整上下文喂 LLM</text>
+  <text x="376" y="298" fill="#94a3b8" font-size="9">兼顾召回准度与上下文完整</text>
+  <text x="376" y="318" fill="#94a3b8" font-size="9">检索命中“针”，生成喂“线团”</text>
+
+  <text x="20" y="388" fill="#94a3b8" font-size="9">检索的最小单位是 chunk；切坏句子 = 给后面所有环节埋雷。</text>
+</svg>

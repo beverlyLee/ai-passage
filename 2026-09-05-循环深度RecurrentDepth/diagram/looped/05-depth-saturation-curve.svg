@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图5 · 循环不是越多越好：收益会饱和，甚至可能退化</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">同一条曲线在不同 checkpoint / 任务 / 上下文下形状不同，别把它当通用旋钮</text>
+
+  <line x1="60" y1="330" x2="470" y2="330" stroke="#475569" stroke-width="1"/>
+  <line x1="60" y1="90" x2="60" y2="330" stroke="#475569" stroke-width="1"/>
+  <text x="30" y="100" fill="#64748b" font-size="8.5">收益</text>
+  <text x="440" y="348" fill="#64748b" font-size="8.5">循环次数 r</text>
+
+  <path d="M 60 330 L 120 300 L 175 200 L 230 155 L 285 132 L 340 120 L 395 116 L 450 115" fill="none" stroke="#22d3ee" stroke-width="2.4"/>
+  <text x="180" y="192" fill="#67e8f9" font-size="9">快速上升段</text>
+
+  <path d="M 450 115 L 470 114" fill="none" stroke="#94a3b8" stroke-width="2.4" stroke-dasharray="5,4"/>
+  <text x="418" y="108" fill="#94a3b8" font-size="8.5">饱和平台</text>
+
+  <line x1="100" y1="330" x2="100" y2="90" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="72" y="368" fill="#fca5a5" font-size="8.5">r &lt; 4</text>
+  <text x="60" y="382" fill="#94a3b8" font-size="8">输出往往</text>
+  <text x="60" y="394" fill="#94a3b8" font-size="8">较粗糙</text>
+
+  <line x1="190" y1="330" x2="190" y2="90" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="164" y="368" fill="#fca5a5" font-size="8.5">8–12</text>
+  <text x="150" y="382" fill="#94a3b8" font-size="8">ARC-C 无 few-shot</text>
+  <text x="150" y="394" fill="#94a3b8" font-size="8">已趋于饱和</text>
+
+  <line x1="330" y1="330" x2="330" y2="90" stroke="#22d3ee" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="312" y="368" fill="#67e8f9" font-size="8.5">20 / 32</text>
+  <text x="288" y="382" fill="#94a3b8" font-size="8">加入更多上下文后</text>
+  <text x="288" y="394" fill="#94a3b8" font-size="8">饱和点才移动到这里</text>
+
+  <line x1="450" y1="330" x2="450" y2="90" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="428" y="368" fill="#94a3b8" font-size="8.5">~64</text>
+  <text x="410" y="382" fill="#94a3b8" font-size="8">上下文充分的任务</text>
+  <text x="410" y="394" fill="#94a3b8" font-size="8">此后通常不再改善</text>
+
+  <rect x="490" y="90" width="166" height="120" rx="8" fill="rgba(76,29,41,0.28)" stroke="#fb7185" stroke-width="1"/>
+  <text x="506" y="112" fill="#fb7185" font-size="10.5" font-weight="700">收益之上还有风险</text>
+  <text x="506" y="134" fill="#cbd5e1" font-size="8.5">独立动力学研究把某个</text>
+  <text x="506" y="148" fill="#cbd5e1" font-size="8.5">3.5B 循环模型归为</text>
+  <text x="506" y="162" fill="#fca5a5" font-size="8.5" font-weight="600">non-settling family</text>
+  <text x="506" y="180" fill="#cbd5e1" font-size="8.5">额外循环可能改善、</text>
+  <text x="506" y="194" fill="#cbd5e1" font-size="8.5">保持，也可能破坏答案。</text>
+  <text x="506" y="208" fill="#64748b" font-size="8">不是单调上升。</text>
+
+  <rect x="490" y="222" width="166" height="118" rx="8" fill="rgba(8,51,68,0.28)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="506" y="244" fill="#22d3ee" font-size="10.5" font-weight="700">潜空间里有推理吗？</text>
+  <text x="506" y="266" fill="#cbd5e1" font-size="8.5">对 hidden state 的 probing</text>
+  <text x="506" y="280" fill="#cbd5e1" font-size="8.5">只找到有限、且依赖层与</text>
+  <text x="506" y="294" fill="#cbd5e1" font-size="8.5">解码方法的可解释证据。</text>
+  <text x="506" y="312" fill="#64748b" font-size="8">另有研究：内容可跨 16 次</text>
+  <text x="506" y="326" fill="#fca5a5" font-size="8">循环保持，但有效读写窗口</text>
+  <text x="506" y="338" fill="#fca5a5" font-size="8">仅约 2 次循环。</text>
+
+  <rect x="60" y="360" width="410" height="66" rx="6" fill="rgba(15,23,42,0.5)" stroke="#475569" stroke-width="0.8"/>
+  <text x="76" y="380" fill="#e2e8f0" font-size="9">结论：循环深度给的是「内部计算预算旋钮」，不是「能力无限增长按钮」。</text>
+  <text x="76" y="398" fill="#94a3b8" font-size="8.5">收益方向、饱和点、乃至是否退化，取决于 checkpoint、任务、上下文与训练形成的循环动力学。</text>
+  <text x="76" y="416" fill="#64748b" font-size="8">图中数字均为公开论文 / 模型卡在各自设定下测得，不能当作通用推荐值互搬。</text>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-amber" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图5 · 上生产前，先过这 8 个坑（便于收藏的清单）</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">按"架构部署 / 安全信任 / 工程实践"三层归类；每条都有工程解法，正文逐一拆解</text>
+
+  <!-- column headers -->
+  <text x="36" y="80" fill="#22d3ee" font-size="10.5" font-weight="700">架构 / 部署</text>
+  <text x="248" y="80" fill="#fb7185" font-size="10.5" font-weight="700">安全 / 信任</text>
+  <text x="470" y="80" fill="#34d399" font-size="10.5" font-weight="700">工程实践</text>
+
+  <!-- cards: 3 columns x up to 3 rows -->
+  <!-- col1 -->
+  <g font-size="9">
+    <rect x="20" y="92" width="210" height="100" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.2"/>
+    <text x="32" y="112" fill="#fff" font-size="10" font-weight="700">1 安全悬崖</text>
+    <text x="32" y="130" fill="#94a3b8" font-size="8.5">stdio 本地零安全面，</text>
+    <text x="32" y="142" fill="#94a3b8" font-size="8.5">上生产要 OAuth/TLS/</text>
+    <text x="32" y="154" fill="#94a3b8" font-size="8.5">CORS/限流全上。</text>
+    <text x="32" y="174" fill="#7dd3fc" font-size="8">→ 压测：20 并发 22 请求</text>
+    <text x="32" y="186" fill="#7dd3fc" font-size="8">  挂 20 个（stdio 崩）</text>
+
+    <rect x="20" y="200" width="210" height="86" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.2"/>
+    <text x="32" y="220" fill="#fff" font-size="10" font-weight="700">2 上下文膨胀</text>
+    <text x="32" y="238" fill="#94a3b8" font-size="8.5">~40 tools 上限，</text>
+    <text x="32" y="250" fill="#94a3b8" font-size="8.5">第 6 个 server 变慢。</text>
+    <text x="32" y="270" fill="#7dd3fc" font-size="8">→ workflow-based tool</text>
+    <text x="32" y="282" fill="#7dd3fc" font-size="8">  替 API mirror</text>
+
+    <rect x="20" y="294" width="210" height="74" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.2"/>
+    <text x="32" y="314" fill="#fff" font-size="10" font-weight="700">3 升级即断连</text>
+    <text x="32" y="332" fill="#94a3b8" font-size="8.5">旧 initialize +</text>
+    <text x="32" y="344" fill="#94a3b8" font-size="8.5">Session-Id 已弃用。</text>
+    <text x="32" y="362" fill="#7dd3fc" font-size="8">→ 改无状态每请求</text>
+  </g>
+
+  <!-- col2 -->
+  <g font-size="9">
+    <rect x="242" y="92" width="210" height="100" rx="8" fill="rgba(136,19,55,0.16)" stroke="#fb7185" stroke-width="1.2"/>
+    <text x="254" y="112" fill="#fff" font-size="10" font-weight="700">4 工具投毒</text>
+    <text x="254" y="130" fill="#94a3b8" font-size="8.5">恶意 tool 描述藏指令，</text>
+    <text x="254" y="142" fill="#94a3b8" font-size="8.5">劫持 agent。5.5% 开源</text>
+    <text x="254" y="154" fill="#94a3b8" font-size="8.5">server 有漏洞；暴露</text>
+    <text x="254" y="166" fill="#fecdd3" font-size="8">server 100% 无认证。</text>
+    <text x="254" y="184" fill="#fda4af" font-size="8">→ 输入全不可信</text>
+
+    <rect x="242" y="200" width="210" height="86" rx="8" fill="rgba(136,19,55,0.16)" stroke="#fb7185" stroke-width="1.2"/>
+    <text x="254" y="220" fill="#fff" font-size="10" font-weight="700">5 权限过度授予</text>
+    <text x="254" y="238" fill="#94a3b8" font-size="8.5">单体 server 既读库</text>
+    <text x="254" y="250" fill="#94a3b8" font-size="8.5">又发邮件 = 注入灾难。</text>
+    <text x="254" y="270" fill="#fda4af" font-size="8">→ 最小权限 + 分离</text>
+    <text x="254" y="282" fill="#fda4af" font-size="8">  关注点 + 只读注解</text>
+
+    <rect x="242" y="294" width="210" height="74" rx="8" fill="rgba(136,19,55,0.16)" stroke="#fb7185" stroke-width="1.2"/>
+    <text x="254" y="314" fill="#fff" font-size="10" font-weight="700">6 Shadow MCP</text>
+    <text x="254" y="332" fill="#94a3b8" font-size="8.5">团队私装社区 server</text>
+    <text x="254" y="344" fill="#94a3b8" font-size="8.5">绕过审查。</text>
+    <text x="254" y="362" fill="#fda4af" font-size="8">→ 网关集中鉴权+审计</text>
+  </g>
+
+  <!-- col3 -->
+  <g font-size="9">
+    <rect x="464" y="92" width="196" height="100" rx="8" fill="rgba(6,78,59,0.18)" stroke="#34d399" stroke-width="1.2"/>
+    <text x="476" y="112" fill="#fff" font-size="10" font-weight="700">7 供应链</text>
+    <text x="476" y="130" fill="#94a3b8" font-size="8.5">10000+ 公开 server，</text>
+    <text x="476" y="142" fill="#94a3b8" font-size="8.5">rug-pull / 仿冒普遍。</text>
+    <text x="476" y="162" fill="#a7f3d0" font-size="8">→ 依赖扫描 + 版本钉死</text>
+    <text x="476" y="174" fill="#a7f3d0" font-size="8">  + 签名 tool defs</text>
+    <text x="476" y="186" fill="#a7f3d0" font-size="8">→ Server 别太"聪明"</text>
+
+    <rect x="464" y="200" width="196" height="86" rx="8" fill="rgba(6,78,59,0.18)" stroke="#34d399" stroke-width="1.2"/>
+    <text x="476" y="220" fill="#fff" font-size="10" font-weight="700">8 Retry 泄露</text>
+    <text x="476" y="238" fill="#94a3b8" font-size="8.5">重试带全量对话历史，</text>
+    <text x="476" y="250" fill="#94a3b8" font-size="8.5">敏感数据二次广播。</text>
+    <text x="476" y="270" fill="#a7f3d0" font-size="8">→ 截断历史 / 脱敏</text>
+    <text x="476" y="282" fill="#a7f3d0" font-size="8">  后再重试</text>
+
+    <rect x="464" y="294" width="196" height="74" rx="8" fill="rgba(30,41,59,0.4)" stroke="#475569" stroke-width="1"/>
+    <text x="476" y="314" fill="#e2e8f0" font-size="10" font-weight="700">治理闭环</text>
+    <text x="476" y="332" fill="#94a3b8" font-size="8.5">gateway（Bifrost /</text>
+    <text x="476" y="344" fill="#94a3b8" font-size="8.5">Docker MCP GW /</text>
+    <text x="476" y="362" fill="#94a3b8" font-size="8.5">Tyk / Cloudflare）</text>
+  </g>
+</svg>
