@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图4 · 假记忆 vs 真记忆</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">把历史全量塞回上下文不是记忆，那是把垃圾和金子一起往窗口里倒</text>
+
+  <rect x="40" y="68" width="290" height="200" rx="9" fill="rgba(251,113,133,0.08)" stroke="#fb7185" stroke-width="1.1"/>
+  <text x="56" y="90" fill="#fda4af" font-size="10.5" font-weight="700">假记忆：历史全量回灌</text>
+  <text x="56" y="108" fill="#94a3b8" font-size="8">上下文窗口（越跑越满）</text>
+
+  <rect x="56" y="116" width="258" height="20" rx="3" fill="rgba(148,163,184,0.18)"/>
+  <text x="64" y="130" fill="#cbd5e1" font-size="7.5">第 1 轮的推理过程（早已被推翻）</text>
+  <rect x="56" y="138" width="258" height="20" rx="3" fill="rgba(251,113,133,0.20)"/>
+  <text x="64" y="152" fill="#fda4af" font-size="7.5">走不通的死胡同 ×3（没人标记）</text>
+  <rect x="56" y="160" width="258" height="20" rx="3" fill="rgba(148,163,184,0.18)"/>
+  <text x="64" y="174" fill="#cbd5e1" font-size="7.5">已经被改掉的文件内容（过期）</text>
+  <rect x="56" y="182" width="258" height="20" rx="3" fill="rgba(34,211,238,0.16)"/>
+  <text x="64" y="196" fill="#67e8f9" font-size="7.5">真正有用的状态（混在里面）</text>
+  <rect x="56" y="204" width="258" height="20" rx="3" fill="rgba(148,163,184,0.18)"/>
+  <text x="64" y="218" fill="#cbd5e1" font-size="7.5">重复的报错堆栈 ×7</text>
+
+  <text x="56" y="242" fill="#fb7185" font-size="8.5">✗ 注意力被稀释，token 成本线性上涨</text>
+  <text x="56" y="257" fill="#64748b" font-size="7.5">而且它依然不知道「哪条路试过了」</text>
+
+  <rect x="350" y="68" width="290" height="200" rx="9" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="1.1"/>
+  <text x="366" y="90" fill="#67e8f9" font-size="10.5" font-weight="700">真记忆：结构化状态 + 上下文重置</text>
+  <text x="366" y="108" fill="#94a3b8" font-size="8">每轮只灌最小必要上下文</text>
+
+  <rect x="366" y="116" width="258" height="20" rx="3" fill="rgba(34,211,238,0.16)"/>
+  <text x="374" y="130" fill="#67e8f9" font-size="7.5">磁盘上的状态文件（模型改不到）</text>
+  <rect x="366" y="138" width="258" height="20" rx="3" fill="rgba(34,211,238,0.16)"/>
+  <text x="374" y="152" fill="#67e8f9" font-size="7.5">谱系：候选方案 + 分数（数值化）</text>
+  <rect x="366" y="160" width="258" height="20" rx="3" fill="rgba(34,211,238,0.16)"/>
+  <text x="374" y="174" fill="#67e8f9" font-size="7.5">失败轨迹单独落盘，不进候选集</text>
+  <rect x="366" y="182" width="258" height="20" rx="3" fill="rgba(34,211,238,0.16)"/>
+  <text x="374" y="196" fill="#67e8f9" font-size="7.5">固定知识库 K（手册 / 规格 / 已有实现）</text>
+  <rect x="366" y="204" width="258" height="20" rx="3" fill="rgba(251,191,36,0.14)"/>
+  <text x="374" y="218" fill="#fbbf24" font-size="7.5">⟲ 上下文每轮清空，重新只读必要部分</text>
+
+  <text x="366" y="242" fill="#22d3ee" font-size="8.5">✓ 长会话不再随窗口填满而退化</text>
+  <text x="366" y="257" fill="#64748b" font-size="7.5">Ralph 循环：全新 agent + 磁盘状态，$297 造一门语言</text>
+
+  <rect x="40" y="286" width="600" height="52" rx="8" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="56" y="306" fill="#fbbf24" font-size="10" font-weight="700">判定问题（一个就够）</text>
+  <text x="56" y="325" fill="#cbd5e1" font-size="8.5">上下文清零之后，你的 agent 能不能接着上次的状态继续，而不是从头再来一遍？不能，那你有的只是日志。</text>
+
+  <line x1="40" y1="352" x2="640" y2="352" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="372" fill="#67e8f9" font-size="9" font-weight="700">容易被忽略的一条</text>
+  <text x="40" y="390" fill="#cbd5e1" font-size="8">AVO 的 40 个 committed 版本是过滤后的结果，不是它生成过的全部程序：500+ 方向里只留 40 个。</text>
+  <text x="40" y="406" fill="#cbd5e1" font-size="8">失败的和倒退的尝试留在私有轨迹里，不进谱系 —— 「试过什么没用」被记录了，只是不污染候选集。</text>
+  <text x="40" y="424" fill="#64748b" font-size="7.5">只存成功不存死胡同，agent 会反复撞同一堵墙。</text>
+</svg>

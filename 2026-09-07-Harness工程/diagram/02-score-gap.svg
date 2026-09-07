@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图2 · 同一个模型，两份成绩单</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">ARC-AGI-3 公开集：25 个环境 / 183 关，模型都是 Claude Opus 5</text>
+
+  <text x="46" y="82" fill="#94a3b8" font-size="9.5">裸模型（Claude Opus 5 单独跑）</text>
+  <rect x="46" y="92" width="180" height="34" rx="5" fill="rgba(251,113,133,0.16)" stroke="#fb7185" stroke-width="1"/>
+  <text x="60" y="115" fill="#fb7185" font-size="19" font-weight="700">30.16%</text>
+  <text x="152" y="115" fill="#cbd5e1" font-size="8.5">RHAE</text>
+
+  <text x="46" y="152" fill="#94a3b8" font-size="9.5">AVO harness + 同一个 Opus 5</text>
+  <rect x="46" y="162" width="580" height="34" rx="5" fill="rgba(34,211,238,0.16)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="60" y="185" fill="#22d3ee" font-size="19" font-weight="700">100.00</text>
+  <text x="152" y="185" fill="#cbd5e1" font-size="8.5">RHAE · 183 关全通</text>
+
+  <line x1="226" y1="92" x2="226" y2="210" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="234" y="106" fill="#fbbf24" font-size="8">30% 水位线</text>
+  <path d="M 210 196 L 560 196 L 560 210" fill="none" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="470" y="150" fill="#fbbf24" font-size="9" font-weight="700">+ 69.84 分</text>
+  <text x="470" y="164" fill="#64748b" font-size="7.5">模型一个权重都没改</text>
+
+  <line x1="40" y1="230" x2="640" y2="230" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="252" fill="#e2e8f0" font-size="10.5" font-weight="700">那这 70 分能算到 harness 头上吗？直接比较不能，横向对比可以</text>
+
+  <rect x="46" y="266" width="270" height="76" rx="8" fill="rgba(251,113,133,0.08)" stroke="#fb7185" stroke-width="0.9"/>
+  <text x="60" y="286" fill="#fda4af" font-size="9.5" font-weight="700">30% vs 100%：不是受控实验</text>
+  <text x="60" y="303" fill="#cbd5e1" font-size="8">两次跑的推理设置、观察格式、</text>
+  <text x="60" y="317" fill="#cbd5e1" font-size="8">评测方法都不一样 —— NVIDIA 自己声明</text>
+  <text x="60" y="333" fill="#64748b" font-size="7.5">严格对照应只换 harness，其他全固定</text>
+
+  <rect x="366" y="266" width="268" height="76" rx="8" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="0.9"/>
+  <text x="380" y="286" fill="#67e8f9" font-size="9.5" font-weight="700">6,624 vs 7,542：这 12% 是干净的</text>
+  <text x="380" y="303" fill="#cbd5e1" font-size="8">AVO 与 VISTA 用同一个 Opus 5，</text>
+  <text x="380" y="317" fill="#cbd5e1" font-size="8">分歧只在架构，动作数少 12%</text>
+  <text x="380" y="333" fill="#64748b" font-size="7.5">同模型横向对比 = 可归因的架构收益</text>
+
+  <rect x="46" y="356" width="588" height="70" rx="8" fill="rgba(251,191,36,0.07)" stroke="#fbbf24" stroke-width="0.9"/>
+  <text x="60" y="376" fill="#fbbf24" font-size="9.5" font-weight="700">另外一个数字：7 天 / 500+ 方向 / 40 个 committed 版本</text>
+  <text x="60" y="393" fill="#cbd5e1" font-size="8">DGX B200 上连续跑 7 天优化 attention kernel，最终比 cuDNN 快最多 3.5%、比 FlashAttention-4 快最多 10.5%</text>
+  <text x="60" y="410" fill="#cbd5e1" font-size="8">500 多个方向只留下 40 个（8% 过滤率）＝ 评估器的威力；随后 30 分钟自主适配到 GQA</text>
+</svg>

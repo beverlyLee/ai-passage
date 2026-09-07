@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrowA" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图6 · 停滞检测与五个必须测的量</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">没有裸模型基线，你所有的改进都是自我感觉</text>
+
+  <rect x="40" y="64" width="600" height="160" rx="9" fill="rgba(15,23,42,0.5)" stroke="#334155" stroke-width="1"/>
+  <text x="56" y="84" fill="#94a3b8" font-size="8.5">评估分数轨迹（横轴：迭代轮次）</text>
+  <line x1="66" y1="200" x2="620" y2="200" stroke="#334155" stroke-width="1"/>
+  <line x1="66" y1="100" x2="66" y2="200" stroke="#334155" stroke-width="1"/>
+
+  <polyline points="66,190 110,168 154,150 198,140 242,136 286,134 330,133 374,133 418,133 462,133"
+            fill="none" stroke="#fb7185" stroke-width="2"/>
+  <polyline points="462,133 506,112 550,102 594,98 620,96"
+            fill="none" stroke="#22d3ee" stroke-width="2"/>
+
+  <rect x="242" y="118" width="220" height="30" rx="4" fill="rgba(251,113,133,0.13)" stroke="#fb7185" stroke-width="0.8" stroke-dasharray="3 2"/>
+  <text x="352" y="130" fill="#fda4af" font-size="8" text-anchor="middle">停滞平台：连续 8 轮无提升</text>
+  <text x="352" y="142" fill="#64748b" font-size="7" text-anchor="middle">token 一直在烧，没有声音</text>
+
+  <line x1="462" y1="133" x2="462" y2="96" stroke="#fbbf24" stroke-width="1.4" marker-end="url(#arrowA)"/>
+  <circle cx="462" cy="133" r="4" fill="#fbbf24"/>
+  <text x="470" y="92" fill="#fbbf24" font-size="8">supervisor 干预：重定向</text>
+
+  <text x="66" y="216" fill="#64748b" font-size="7">停滞信号：连续 N 轮评估分无提升 · 同一文件被反复修改 · 候选项相似度上升 · 失败原因在重复</text>
+
+  <rect x="40" y="232" width="600" height="70" rx="8" fill="rgba(34,211,238,0.06)" stroke="#22d3ee" stroke-width="0.9"/>
+  <text x="56" y="252" fill="#67e8f9" font-size="9.5" font-weight="700">Supervisor 的分工：管重定向，不管执行</text>
+  <text x="56" y="270" fill="#cbd5e1" font-size="8">它说往别的方向试试；看什么、改什么、测什么、提交什么，仍然由主 agent 决定。</text>
+  <text x="56" y="288" fill="#64748b" font-size="7.5">让一个组件同时负责执行和判断自己执行得好不好，等于没有判断。</text>
+
+  <text x="40" y="326" fill="#e2e8f0" font-size="10.5" font-weight="700">五个必须测的量</text>
+
+  <rect x="40" y="336" width="112" height="74" rx="6" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="96" y="354" fill="#67e8f9" font-size="8.5" font-weight="700" text-anchor="middle">动作数</text>
+  <text x="50" y="370" fill="#cbd5e1" font-size="7">同样活干了多少</text>
+  <text x="50" y="382" fill="#cbd5e1" font-size="7">步</text>
+  <text x="50" y="400" fill="#64748b" font-size="6.5">AVO 靠这个赢</text>
+  <text x="50" y="410" fill="#64748b" font-size="6.5">了 12%</text>
+
+  <rect x="164" y="336" width="112" height="74" rx="6" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="220" y="354" fill="#67e8f9" font-size="8.5" font-weight="700" text-anchor="middle">恢复频率</text>
+  <text x="174" y="370" fill="#cbd5e1" font-size="7">失败后爬回来的</text>
+  <text x="174" y="382" fill="#cbd5e1" font-size="7">次数 / 总轮次</text>
+  <text x="174" y="400" fill="#64748b" font-size="6.5">这是 harness</text>
+  <text x="174" y="410" fill="#64748b" font-size="6.5">的核心产出</text>
+
+  <rect x="288" y="336" width="112" height="74" rx="6" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="344" y="354" fill="#67e8f9" font-size="8.5" font-weight="700" text-anchor="middle">成本</text>
+  <text x="298" y="370" fill="#cbd5e1" font-size="7">每轮 token</text>
+  <text x="298" y="382" fill="#cbd5e1" font-size="7">+ 总花费</text>
+  <text x="298" y="400" fill="#64748b" font-size="6.5">长时程任务的</text>
+  <text x="298" y="410" fill="#64748b" font-size="6.5">真实约束</text>
+
+  <rect x="412" y="336" width="112" height="74" rx="6" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="468" y="354" fill="#67e8f9" font-size="8.5" font-weight="700" text-anchor="middle">wall-clock</text>
+  <text x="422" y="370" fill="#cbd5e1" font-size="7">动作少不一定</text>
+  <text x="422" y="382" fill="#cbd5e1" font-size="7">快</text>
+  <text x="422" y="400" fill="#64748b" font-size="6.5">supervisor 重的话</text>
+  <text x="422" y="410" fill="#64748b" font-size="6.5">又慢又贵</text>
+
+  <rect x="528" y="336" width="112" height="74" rx="6" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.1"/>
+  <text x="584" y="354" fill="#fbbf24" font-size="8.5" font-weight="700" text-anchor="middle">对照基线</text>
+  <text x="538" y="370" fill="#cbd5e1" font-size="7">同模型裸跑一遍</text>
+  <text x="538" y="390" fill="#fbbf24" font-size="7" font-weight="700">分水岭</text>
+  <text x="538" y="404" fill="#64748b" font-size="6.5">没有基线就没有</text>
+  <text x="538" y="414" fill="#64748b" font-size="6.5">收益</text>
+
+  <text x="40" y="430" fill="#64748b" font-size="7">严谨边界：AVO 的 100 分跑的是公开集 25 个环境，ARC Prize 以私有集为主评测；截至 8 月 22 日无官方开源实现与独立复现。</text>
+</svg>

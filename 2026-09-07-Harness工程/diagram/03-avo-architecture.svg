@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#22d3ee"/></marker>
+    <marker id="arrowA" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#fbbf24"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图3 · AVO 的四件套</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">主 agent 在外面套了四样东西：一个循环、一份持久记忆、一个 supervisor、一套可换工具</text>
+
+  <rect x="150" y="70" width="380" height="46" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="340" y="88" fill="#67e8f9" font-size="10.5" font-weight="700" text-anchor="middle">主 agent 循环</text>
+  <text x="340" y="106" fill="#cbd5e1" font-size="8.5" text-anchor="middle">inspect（看状态） → plan（定假设） → implement（改） → evaluate（跑评估） ⟲</text>
+
+  <rect x="40" y="150" width="230" height="112" rx="8" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="155" y="170" fill="#67e8f9" font-size="10" font-weight="700" text-anchor="middle">① 持久记忆 persistent memory</text>
+  <text x="54" y="190" fill="#cbd5e1" font-size="8">· 既往实现版本（源码 + 内联 PTX）</text>
+  <text x="54" y="204" fill="#cbd5e1" font-size="8">· 每次评测的分数（数值，非描述）</text>
+  <text x="54" y="218" fill="#cbd5e1" font-size="8">· 编译器 / profiler 输出、累积推理</text>
+  <text x="54" y="238" fill="#64748b" font-size="7.5">跨过上下文窗口边界：重置后接着干，</text>
+  <text x="54" y="252" fill="#64748b" font-size="7.5">不是从零重建搜索</text>
+
+  <rect x="410" y="150" width="230" height="112" rx="8" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="525" y="170" fill="#fbbf24" font-size="10" font-weight="700" text-anchor="middle">② Supervisor（只有建议权）</text>
+  <text x="424" y="190" fill="#cbd5e1" font-size="8">· 盯整条搜索轨迹，不是单步</text>
+  <text x="424" y="204" fill="#cbd5e1" font-size="8">· 停滞 / 重复无产出 → 重定向</text>
+  <text x="424" y="218" fill="#cbd5e1" font-size="8">· 主 agent 仍决定看什么、改什么、提交什么</text>
+  <text x="424" y="238" fill="#64748b" font-size="7.5">判断不了自己是不是卡住了，</text>
+  <text x="424" y="252" fill="#64748b" font-size="7.5">所以这个角色必须独立</text>
+
+  <line x1="270" y1="120" x2="180" y2="148" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="410" y1="120" x2="500" y2="148" stroke="#fbbf24" stroke-width="1.2" marker-end="url(#arrowA)"/>
+
+  <rect x="150" y="286" width="380" height="56" rx="8" fill="rgba(148,163,184,0.08)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="340" y="304" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">③ 可换的工具（通用性的来源）</text>
+  <text x="180" y="322" fill="#cbd5e1" font-size="8">kernel 场景：编译器 + profiler</text>
+  <text x="400" y="322" fill="#cbd5e1" font-size="8">游戏场景：环境动作接口</text>
+  <text x="340" y="336" fill="#64748b" font-size="7.5" text-anchor="middle">中间那个循环一个字都没改</text>
+
+  <line x1="340" y1="116" x2="340" y2="140" stroke="#475569" stroke-width="1"/>
+  <line x1="150" y1="140" x2="530" y2="140" stroke="#475569" stroke-width="1"/>
+  <line x1="530" y1="140" x2="530" y2="282" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#arrow)"/>
+  <line x1="150" y1="140" x2="150" y2="282" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="360" width="600" height="66" rx="8" fill="rgba(251,191,36,0.06)" stroke="#334155" stroke-width="0.9"/>
+  <text x="56" y="380" fill="#fbbf24" font-size="9.5" font-weight="700">④ 变异步骤的改写：从生成器到 agent</text>
+  <text x="56" y="398" fill="#cbd5e1" font-size="8.5">经典：Vary(P_t) = Generate(Sample(P_t))　　　AVO：Vary(P_t) = Agent(P_t, K, f)</text>
+  <text x="56" y="415" fill="#64748b" font-size="7.5">agent 可查完整谱系 P_t、查领域知识库 K、调用打分函数 f，再决定下一步试什么</text>
+</svg>

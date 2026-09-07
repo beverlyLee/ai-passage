@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#22d3ee"/></marker>
+    <marker id="arrowR" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图5 · 循环的四个零件</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">循环与「多轮对话」的区别只有一个：有没有一个独立于模型的评估器</text>
+
+  <rect x="40" y="70" width="130" height="58" rx="8" fill="rgba(148,163,184,0.10)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="105" y="90" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">Trigger</text>
+  <text x="105" y="106" fill="#cbd5e1" font-size="7.5" text-anchor="middle">什么启动它</text>
+  <text x="105" y="120" fill="#64748b" font-size="7" text-anchor="middle">cron / PR / 测试挂了</text>
+
+  <rect x="190" y="70" width="130" height="58" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="255" y="90" fill="#67e8f9" font-size="10" font-weight="700" text-anchor="middle">Goal</text>
+  <text x="255" y="106" fill="#cbd5e1" font-size="7.5" text-anchor="middle">可验证的终点</text>
+  <text x="255" y="120" fill="#64748b" font-size="7" text-anchor="middle">事实，不是愿望</text>
+
+  <rect x="340" y="70" width="130" height="58" rx="8" fill="rgba(148,163,184,0.10)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="405" y="90" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">Agent 跑一轮</text>
+  <text x="405" y="106" fill="#cbd5e1" font-size="7.5" text-anchor="middle">改 + 执行</text>
+  <text x="405" y="120" fill="#64748b" font-size="7" text-anchor="middle">证据要落在 transcript</text>
+
+  <rect x="490" y="70" width="150" height="58" rx="8" fill="rgba(34,211,238,0.14)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="565" y="90" fill="#67e8f9" font-size="10" font-weight="700" text-anchor="middle">Verifier</text>
+  <text x="565" y="106" fill="#cbd5e1" font-size="7.5" text-anchor="middle">谁来判断做没做完</text>
+  <text x="565" y="120" fill="#64748b" font-size="7" text-anchor="middle">确定性检查优先</text>
+
+  <line x1="170" y1="99" x2="186" y2="99" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="320" y1="99" x2="336" y2="99" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="470" y1="99" x2="486" y2="99" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <path d="M 565 128 L 565 148 L 255 148 L 255 132" fill="none" stroke="#fb7185" stroke-width="1.3" marker-end="url(#arrowR)"/>
+  <text x="410" y="143" fill="#fb7185" font-size="8">未通过：把失败结果当新上下文回灌，重来</text>
+
+  <rect x="40" y="166" width="600" height="86" rx="9" fill="rgba(251,113,133,0.07)" stroke="#fb7185" stroke-width="1"/>
+  <text x="56" y="186" fill="#fda4af" font-size="10" font-weight="700">Stop rules：三个独立出口，少一个都不行</text>
+  <rect x="56" y="196" width="180" height="40" rx="5" fill="rgba(34,211,238,0.10)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="146" y="212" fill="#67e8f9" font-size="8.5" font-weight="700" text-anchor="middle">成功出口</text>
+  <text x="146" y="227" fill="#cbd5e1" font-size="7" text-anchor="middle">验证器确认，不是 agent 声明</text>
+  <rect x="250" y="196" width="180" height="40" rx="5" fill="rgba(251,191,36,0.10)" stroke="#fbbf24" stroke-width="0.8"/>
+  <text x="340" y="212" fill="#fbbf24" font-size="8.5" font-weight="700" text-anchor="middle">迭代上限</text>
+  <text x="340" y="227" fill="#cbd5e1" font-size="7" text-anchor="middle">到了就停，不管它觉得多近</text>
+  <rect x="444" y="196" width="180" height="40" rx="5" fill="rgba(251,113,133,0.10)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="534" y="212" fill="#fda4af" font-size="8.5" font-weight="700" text-anchor="middle">预算上限</text>
+  <text x="534" y="227" fill="#cbd5e1" font-size="7" text-anchor="middle">防隔夜循环的唯一硬约束</text>
+
+  <line x1="40" y1="266" x2="640" y2="266" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="286" fill="#e2e8f0" font-size="10.5" font-weight="700">Goal 怎么写：愿望 vs 事实</text>
+
+  <rect x="40" y="296" width="290" height="86" rx="8" fill="rgba(251,113,133,0.07)" stroke="#fb7185" stroke-width="0.9"/>
+  <text x="56" y="316" fill="#fda4af" font-size="9.5" font-weight="700">✗ 愿望（评估器验不了）</text>
+  <text x="56" y="334" fill="#cbd5e1" font-size="8">「重构得更好」</text>
+  <text x="56" y="349" fill="#cbd5e1" font-size="8">「提升性能」「让它更好维护」</text>
+  <text x="56" y="368" fill="#64748b" font-size="7.5">评估器只能验事实，不能验愿望</text>
+
+  <rect x="350" y="296" width="290" height="86" rx="8" fill="rgba(34,211,238,0.07)" stroke="#22d3ee" stroke-width="0.9"/>
+  <text x="366" y="316" fill="#67e8f9" font-size="9.5" font-weight="700">✓ 事实（可执行的判断）</text>
+  <text x="366" y="334" fill="#cbd5e1" font-size="8">「npm test 退出码 0，无 skipped 用例」</text>
+  <text x="366" y="349" fill="#cbd5e1" font-size="8">「首页 Lighthouse 四项 ≥ 90」</text>
+  <text x="366" y="368" fill="#64748b" font-size="7.5">顺手写上「怎么证明」，否则仍然不可验证</text>
+
+  <rect x="40" y="394" width="600" height="40" rx="7" fill="rgba(251,191,36,0.07)" stroke="#fbbf24" stroke-width="0.9"/>
+  <text x="56" y="411" fill="#fbbf24" font-size="8.5" font-weight="700">隐蔽的坑：评估器不会自己去跑命令、读文件</text>
+  <text x="56" y="426" fill="#cbd5e1" font-size="7.5">它只能判断 agent 已呈现在对话里的东西 —— 依赖一条永远不会出现在 transcript 里的证据，条件写得再漂亮也是不可验证目标</text>
+</svg>

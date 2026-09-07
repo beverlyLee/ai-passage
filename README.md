@@ -18,4 +18,5 @@
 | 2026-09-04 | [`AgentSkills原理`](./2026-09-04-AgentSkills原理/) | SKILL.md 规范 + 渐进式披露 + 9 个深坑 |
 | 2026-09-05 | [`循环深度RecurrentDepth`](./2026-09-05-循环深度RecurrentDepth/) | 潜空间循环推理：Huginn / MoR / LOTUS，8 个误读 |
 | 2026-09-06 | [`AI编码生产力悖论`](./2026-09-06-AI编码生产力悖论/) | 用 AI 写得更快却上线更炸？5 个机制 + 9 坑自检清单 + 3 个 CI 脚本 |
+| 2026-09-07 | [`Harness工程`](./2026-09-07-Harness%E5%B7%A5%E7%A8%8B/) | 同一个模型 30%→100%：Harness 循环的 5 个机制 + 8 个坑 + 3 个可运行脚本 |
 | 2026-08 月 | [`DeepSeek-Harness`](./DeepSeek-Harness/) | DeepSeek Harness 系列：可视化版 / 旗舰稿 / 爆款稿 / 差异化策略 |
