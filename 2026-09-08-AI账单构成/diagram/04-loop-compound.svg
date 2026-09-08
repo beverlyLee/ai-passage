@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">图4 · agent 每一轮都在重新读一遍历史</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9.5">成本随轮次近似复合增长；UI 上表现为「它还在想」，账单上表现为又一次完整 prefill</text>
+
+  <line x1="70" y1="300" x2="420" y2="300" stroke="#334155" stroke-width="1"/>
+  <line x1="70" y1="82" x2="70" y2="300" stroke="#334155" stroke-width="1"/>
+  <text x="70" y="318" fill="#64748b" font-size="7.5" text-anchor="middle">第 1 轮</text>
+  <text x="420" y="318" fill="#64748b" font-size="7.5" text-anchor="middle">第 n 轮</text>
+  <text x="38" y="200" fill="#64748b" font-size="8" transform="rotate(-90 38 200)">单次请求成本</text>
+
+  <path d="M 70 296 C 170 292, 260 268, 420 100" fill="none" stroke="#fb7185" stroke-width="2.2"/>
+  <path d="M 70 298 L 420 278" fill="none" stroke="#22d3ee" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <text x="238" y="266" fill="#67e8f9" font-size="8">你以为：线性</text>
+  <text x="300" y="96" fill="#fda4af" font-size="9" font-weight="700">实际：随上下文累加</text>
+
+  <rect x="450" y="82" width="200" height="216" rx="8" fill="rgba(251,113,133,0.08)" stroke="#fb7185" stroke-width="1"/>
+  <text x="550" y="104" fill="#fda4af" font-size="10.5" font-weight="700" text-anchor="middle">一个公开的极端样本</text>
+  <text x="466" y="128" fill="#cbd5e1" font-size="8">GPT-6 Astra 接 MCP 打通《传送门》</text>
+  <text x="466" y="154" fill="#e2e8f0" font-size="13" font-weight="700" text-anchor="middle">3336 次工具调用</text>
+  <text x="466" y="178" fill="#94a3b8" font-size="8">耗时 24 小时</text>
+  <text x="466" y="200" fill="#fb7185" font-size="13" font-weight="700">$571.18</text>
+  <text x="466" y="224" fill="#64748b" font-size="7.5">平均每次调用约 $0.17</text>
+  <text x="466" y="244" fill="#64748b" font-size="7.5">单次不贵，乘上 3336 就是 571</text>
+  <text x="466" y="272" fill="#cbd5e1" font-size="7.5">这是长链条任务的量级参考，</text>
+  <text x="466" y="286" fill="#cbd5e1" font-size="7.5">不是日常编码的消费水平</text>
+
+  <rect x="30" y="336" width="310" height="90" rx="8" fill="rgba(34,211,238,0.07)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="185" y="358" fill="#67e8f9" font-size="9.5" font-weight="700" text-anchor="middle">第 n 轮的输入 =</text>
+  <text x="46" y="380" fill="#cbd5e1" font-size="8">系统提示 + 工具定义 + 前 n-1 轮全部内容</text>
+  <text x="46" y="400" fill="#64748b" font-size="7.5">所以 prefill 长度逐轮累加，成本跟着涨</text>
+  <text x="46" y="416" fill="#64748b" font-size="7.5">失败重试、自我纠错、重新规划都在里面</text>
+
+  <rect x="356" y="336" width="294" height="90" rx="8" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="503" y="358" fill="#fbbf24" font-size="9.5" font-weight="700" text-anchor="middle">反直觉：上下文压缩也要钱</text>
+  <text x="372" y="380" fill="#cbd5e1" font-size="8">压缩的输入是全部历史，输出是摘要，两头计费</text>
+  <text x="372" y="400" fill="#64748b" font-size="7.5">你为了省钱做的压缩，本身是一次大额调用</text>
+  <text x="372" y="416" fill="#64748b" font-size="7.5">止损要放在轮次上，不能指望压缩兜底</text>
+
+  <text x="20" y="440" fill="#64748b" font-size="7.5">图4 · 唯一可靠的防线是硬上限：轮次上限、金额上限、连续 N 轮无进展即退出</text>
+</svg>
