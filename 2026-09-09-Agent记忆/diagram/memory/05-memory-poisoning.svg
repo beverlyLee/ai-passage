@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+<marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 z" fill="#fb7185"/>
+</marker>
+</defs>
+
+<rect width="680" height="450" fill="#0f172a"/>
+
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">记忆投毒的 kill chain</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">可怕的不在「写入」，在于写入被隐藏、且后续会话无条件加载</text>
+
+<!-- step 1 -->
+<rect x="24" y="76" width="202" height="100" rx="6" fill="#1e293b" stroke="#fb7185"/>
+<text x="40" y="100" font-size="12" font-weight="700" fill="#fb7185">① 攻击者注入载体</text>
+<line x1="40" y1="110" x2="210" y2="110" stroke="#334155"/>
+<text x="40" y="130" font-size="10" fill="#cbd5e1">一封邮件 / 一个网页</text>
+<text x="40" y="148" font-size="10" fill="#cbd5e1">竞品页上的「Ask AI」按钮</text>
+<text x="40" y="166" font-size="9" fill="#64748b">不需要账号、不需要漏洞</text>
+
+<line x1="228" y1="126" x2="244" y2="126" stroke="#fb7185" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- step 2 -->
+<rect x="248" y="76" width="202" height="100" rx="6" fill="#1e293b" stroke="#fb7185"/>
+<text x="264" y="100" font-size="12" font-weight="700" fill="#fb7185">② agent 自己写入</text>
+<line x1="264" y1="110" x2="434" y2="110" stroke="#334155"/>
+<text x="264" y="130" font-size="10" fill="#cbd5e1">用它自己的写文件工具</text>
+<text x="264" y="148" font-size="10" fill="#cbd5e1">把假事实存进持久记忆</text>
+<text x="264" y="166" font-size="9" fill="#64748b">攻击者从没碰过你的数据库</text>
+
+<line x1="452" y1="126" x2="468" y2="126" stroke="#fb7185" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- step 3 -->
+<rect x="472" y="76" width="184" height="100" rx="6" fill="#1e293b" stroke="#fb7185"/>
+<text x="488" y="100" font-size="12" font-weight="700" fill="#fb7185">③ 回复里隐藏</text>
+<line x1="488" y1="110" x2="640" y2="110" stroke="#334155"/>
+<text x="488" y="130" font-size="10" fill="#cbd5e1">给用户看的回复</text>
+<text x="488" y="148" font-size="10" fill="#cbd5e1">完全不提这次写入</text>
+<text x="488" y="166" font-size="9" fill="#64748b">用户无从察觉</text>
+
+<!-- step 4 -->
+<rect x="24" y="192" width="632" height="52" rx="6" fill="#3f1d29" stroke="#fb7185"/>
+<text x="40" y="216" font-size="12" font-weight="700" fill="#fda4af">④ 后续会话自动加载 → 行为被长期带偏，且你查不出是从哪一天开始的</text>
+<text x="40" y="234" font-size="10" fill="#fda4af">跨会话持久，一次中毒影响所有后续任务和用户（共享记忆库时更严重）</text>
+
+<!-- 数据卡 -->
+<rect x="24" y="260" width="202" height="76" rx="6" fill="#1e293b" stroke="#334155"/>
+<text x="125" y="288" font-size="24" font-weight="700" fill="#fb7185" text-anchor="middle">87.5%</text>
+<text x="125" y="308" font-size="10" fill="#cbd5e1" text-anchor="middle">OpenClaw (GPT-5.4)</text>
+<text x="125" y="324" font-size="9" fill="#64748b" text-anchor="middle">后台模式 · 56 个用例</text>
+
+<rect x="248" y="260" width="202" height="76" rx="6" fill="#1e293b" stroke="#334155"/>
+<text x="349" y="288" font-size="24" font-weight="700" fill="#fb7185" text-anchor="middle">71.4%</text>
+<text x="349" y="308" font-size="10" fill="#cbd5e1" text-anchor="middle">Claude Code SDK</text>
+<text x="349" y="324" font-size="9" fill="#64748b" text-anchor="middle">Sonnet 4.6 · 同一组测试</text>
+
+<rect x="472" y="260" width="184" height="76" rx="6" fill="#1e293b" stroke="#334155"/>
+<text x="564" y="288" font-size="24" font-weight="700" fill="#fbbf24" text-anchor="middle">&gt;90%</text>
+<text x="564" y="308" font-size="10" fill="#cbd5e1" text-anchor="middle">输入过滤器漏检率</text>
+<text x="564" y="324" font-size="9" fill="#64748b" text-anchor="middle">专门针对邮件内容</text>
+
+<!-- 过滤器边界 -->
+<rect x="24" y="352" width="632" height="46" rx="4" fill="#422006" stroke="#fbbf24"/>
+<text x="40" y="373" font-size="11" font-weight="700" fill="#fde68a">过滤器基本解决不了：加 LLM-as-a-Judge / ProtectAI / PromptGuard 后，条件攻击成功率仍留在 75%–77%</text>
+<text x="40" y="391" font-size="10" fill="#fde68a">困惑度过滤能完全阻断检索，代价是同时误杀 71.8% 的正常内容 —— 这就是安全与效用的真实边界</text>
+
+<!-- 底部 -->
+<rect x="24" y="410" width="632" height="30" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="430" font-size="10" fill="#e2e8f0">已是有编号的威胁：OWASP Agentic Top 10 (2026) ASI06 记忆与上下文投毒 · MITRE ATLAS AML.T0080</text>
+</svg>

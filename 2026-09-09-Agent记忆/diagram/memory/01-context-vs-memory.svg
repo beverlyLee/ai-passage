@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+<marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 z" fill="#22d3ee"/>
+</marker>
+<marker id="ag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 z" fill="#34d399"/>
+</marker>
+</defs>
+
+<rect width="680" height="450" fill="#0f172a"/>
+
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">上下文窗口 vs 记忆</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">一个每次请求重建，一个跨会话存活 —— 不是短期与长期的关系</text>
+
+<!-- 左：上下文窗口 -->
+<rect x="24" y="68" width="300" height="310" rx="8" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="92" font-size="13" font-weight="700" fill="#fb7185">上下文窗口（易失）</text>
+
+<rect x="40" y="106" width="268" height="44" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="54" y="126" font-size="11" font-weight="700" fill="#22d3ee" class="mono">请求 #1</text>
+<text x="54" y="142" font-size="10" fill="#94a3b8">prefill → 生成 KV cache</text>
+<text x="296" y="134" font-size="9" fill="#64748b" text-anchor="end">cache 只活这一次</text>
+
+<rect x="40" y="162" width="268" height="44" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="54" y="182" font-size="11" font-weight="700" fill="#22d3ee" class="mono">请求 #2</text>
+<text x="54" y="198" font-size="10" fill="#94a3b8">prefill → 生成 KV cache</text>
+<text x="296" y="190" font-size="9" fill="#64748b" text-anchor="end">全部重算一遍</text>
+
+<rect x="40" y="218" width="268" height="44" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="54" y="238" font-size="11" font-weight="700" fill="#22d3ee" class="mono">请求 #3</text>
+<text x="54" y="254" font-size="10" fill="#94a3b8">prefill → 生成 KV cache</text>
+<text x="296" y="246" font-size="9" fill="#64748b" text-anchor="end">换副本也能算</text>
+
+<rect x="40" y="280" width="268" height="52" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="54" y="302" font-size="11" font-weight="700" fill="#fda4af">会话结束 → KV cache 不存在</text>
+<text x="54" y="320" font-size="10" fill="#fda4af">下次请求从零 prefill，上一轮只是文本</text>
+
+<text x="40" y="358" font-size="10" fill="#64748b">API 无状态设计决定的：换机器、换副本都要能算</text>
+
+<!-- 右：记忆 -->
+<rect x="344" y="68" width="312" height="310" rx="8" fill="#1e293b" stroke="#334155"/>
+<text x="360" y="92" font-size="13" font-weight="700" fill="#34d399">记忆（跨会话存活）</text>
+
+<rect x="360" y="106" width="280" height="122" rx="4" fill="#0f172a" stroke="#475569"/>
+<rect x="372" y="116" width="256" height="22" rx="3" fill="#164e63"/>
+<text x="382" y="131" font-size="10" fill="#a5f3fc">工作记忆 · 上下文窗口 · 每会话清空</text>
+<rect x="372" y="144" width="256" height="22" rx="3" fill="#155e75"/>
+<text x="382" y="159" font-size="10" fill="#a5f3fc">情景记忆 · 向量库 · 追加后压缩</text>
+<rect x="372" y="172" width="256" height="22" rx="3" fill="#0e7490"/>
+<text x="382" y="187" font-size="10" fill="#cffafe">语义记忆 · 向量 / 图 · 原地更新</text>
+<rect x="372" y="200" width="256" height="22" rx="3" fill="#0891b2"/>
+<text x="382" y="215" font-size="10" fill="#cffafe">程序记忆 · 可编辑指令 · 随经验自编辑</text>
+
+<rect x="360" y="248" width="130" height="34" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="425" y="269" font-size="11" fill="#e2e8f0" text-anchor="middle">会话 A</text>
+<rect x="510" y="248" width="130" height="34" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="575" y="269" font-size="11" fill="#e2e8f0" text-anchor="middle">会话 B</text>
+
+<line x1="425" y1="248" x2="425" y2="230" stroke="#34d399" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="432" y="242" font-size="9" fill="#34d399">写入</text>
+<line x1="575" y1="230" x2="575" y2="248" stroke="#34d399" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="582" y="242" font-size="9" fill="#34d399">读回</text>
+
+<rect x="360" y="296" width="280" height="52" rx="4" fill="#14342a" stroke="#34d399"/>
+<text x="374" y="318" font-size="11" font-weight="700" fill="#6ee7b7">生命周期 = 写入 → 更新 → 作废 → 读回</text>
+<text x="374" y="336" font-size="10" fill="#6ee7b7">没设计这条链 = 往没有回收机制的仓库堆东西</text>
+
+<text x="360" y="372" font-size="10" fill="#64748b">四层各有自己的介质与失效模式，混一层就会被一锅端</text>
+
+<!-- 底部结论 -->
+<rect x="24" y="398" width="632" height="34" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="420" font-size="11" fill="#e2e8f0">它从来没「记」过 —— 上一轮对话对它来说，只是一段被重新读了一遍的输入文本</text>
+</svg>

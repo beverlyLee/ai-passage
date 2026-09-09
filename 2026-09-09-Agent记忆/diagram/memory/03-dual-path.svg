@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+<marker id="ac" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 z" fill="#22d3ee"/>
+</marker>
+<marker id="aa" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 z" fill="#fbbf24"/>
+</marker>
+</defs>
+
+<rect width="680" height="450" fill="#0f172a"/>
+
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">双路径架构：写入必须走异步冷路径</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">把抽取塞进同步链路，等于让用户在每一次对话里为你的笔记系统买单</text>
+
+<!-- 热路径 -->
+<text x="24" y="80" font-size="12" font-weight="700" fill="#22d3ee">热路径（同步 · 主链路）</text>
+<rect x="24" y="92" width="632" height="90" rx="8" fill="#1e293b" stroke="#22d3ee"/>
+
+<rect x="44" y="112" width="112" height="50" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="100" y="134" font-size="11" fill="#e2e8f0" text-anchor="middle">用户请求</text>
+<text x="100" y="150" font-size="9" fill="#64748b" text-anchor="middle">每轮都发生</text>
+
+<line x1="160" y1="137" x2="192" y2="137" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#ac)"/>
+
+<rect x="196" y="106" width="196" height="62" rx="4" fill="#164e63" stroke="#22d3ee"/>
+<text x="294" y="128" font-size="11" font-weight="700" fill="#a5f3fc" text-anchor="middle">上下文窗口</text>
+<text x="294" y="146" font-size="10" fill="#a5f3fc" text-anchor="middle">近期消息 + 压缩摘要</text>
+<text x="294" y="161" font-size="9" fill="#67e8f9" text-anchor="middle">回答「刚才发生了什么」</text>
+
+<line x1="396" y1="137" x2="428" y2="137" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#ac)"/>
+
+<rect x="432" y="112" width="104" height="50" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="484" y="142" font-size="11" fill="#e2e8f0" text-anchor="middle">模型推理</text>
+
+<line x1="540" y1="137" x2="572" y2="137" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#ac)"/>
+
+<rect x="576" y="112" width="60" height="50" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="606" y="142" font-size="11" fill="#e2e8f0" text-anchor="middle">回复</text>
+
+<!-- 触发 -->
+<path d="M340,186 L340,214" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#aa)"/>
+<text x="352" y="204" font-size="10" fill="#fbbf24">会话结束 / 压缩前触发（不阻塞）</text>
+
+<!-- 冷路径 -->
+<text x="24" y="242" font-size="12" font-weight="700" fill="#fbbf24">冷路径（异步 · 后台记忆节点）</text>
+<rect x="24" y="254" width="632" height="96" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+
+<rect x="44" y="274" width="112" height="56" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="100" y="298" font-size="11" fill="#e2e8f0" text-anchor="middle">会话结束</text>
+<text x="100" y="314" font-size="9" fill="#64748b" text-anchor="middle">后台触发</text>
+
+<line x1="160" y1="302" x2="192" y2="302" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#aa)"/>
+
+<rect x="196" y="268" width="196" height="68" rx="4" fill="#422006" stroke="#fbbf24"/>
+<text x="294" y="288" font-size="11" font-weight="700" fill="#fde68a" text-anchor="middle">记忆节点</text>
+<text x="294" y="305" font-size="10" fill="#fde68a" text-anchor="middle">抽取事实 · 更新画像</text>
+<text x="294" y="321" font-size="10" fill="#fde68a" text-anchor="middle">沉淀技能文档</text>
+
+<line x1="396" y1="302" x2="428" y2="302" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#aa)"/>
+
+<rect x="432" y="274" width="204" height="56" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="534" y="296" font-size="11" fill="#e2e8f0" text-anchor="middle">记忆库（向量 / 图 / 文件）</text>
+<text x="534" y="314" font-size="9" fill="#64748b" text-anchor="middle">下次会话从这里读回</text>
+
+<!-- 写入税警示 -->
+<rect x="24" y="366" width="632" height="46" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="40" y="387" font-size="11" font-weight="700" fill="#fda4af">写入税：Mem0 抽取 400–1200ms，Zep 实体解析 + 边校验 500–1800ms</text>
+<text x="40" y="404" font-size="10" fill="#fda4af">这些数字单看不吓人，问题在于它们发生在哪 —— 同步链路里就是用户每句话多等半秒到两秒</text>
+
+<!-- 底部结论 -->
+<rect x="24" y="420" width="632" height="22" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="435" font-size="10" fill="#e2e8f0">LangGraph Store 直接写 KV 可做到 50ms 以内，一旦生成 embedding 就要 30–100ms —— 写入方式决定写入税</text>
+</svg>

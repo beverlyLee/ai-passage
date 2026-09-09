@@ -1,0 +1,10 @@
+{"id":"c-01","category":"single_session","question":"刚才我们说到的那个补偿任务，具体是怎么定的","must_hit":["mem-009"]}
+{"id":"c-02","category":"single_session","question":"这个项目的 CI 什么时候跑","must_hit":["mem-006"]}
+{"id":"c-03","category":"preference","question":"用户喜欢深色还是浅色主题","must_hit":["mem-005"]}
+{"id":"c-04","category":"preference","question":"生成前端代码时该用什么配色","must_hit":["mem-005"]}
+{"id":"c-05","category":"multi_session","question":"订单服务为什么不用分布式事务了","must_hit":["mem-009"]}
+{"id":"c-06","category":"multi_session","question":"分页为什么不能用 offset","must_hit":["mem-010"]}
+{"id":"c-07","category":"knowledge_update","question":"用户现在住在哪个城市","must_hit":["mem-002"]}
+{"id":"c-08","category":"knowledge_update","question":"当前部署环境是预发还是生产","must_hit":["mem-004"]}
+{"id":"c-09","category":"temporal","question":"去年三月用户住在哪","must_hit":["mem-001"]}
+{"id":"c-10","category":"temporal","question":"用户搬到慕尼黑之前住在哪里","must_hit":["mem-001"]}

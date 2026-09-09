@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+</defs>
+
+<rect width="680" height="450" fill="#0f172a"/>
+
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">记忆的四层：不是四种存储，是四种生命周期</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">说「它记不住」之前，先定位是哪一层 —— 各层的失效模式完全不同</text>
+
+<!-- 卡1 工作记忆 -->
+<rect x="24" y="68" width="306" height="155" rx="8" fill="#1e293b" stroke="#22d3ee"/>
+<text x="40" y="94" font-size="14" font-weight="700" fill="#22d3ee">工作记忆</text>
+<text x="300" y="94" font-size="10" fill="#64748b" text-anchor="end">每会话清空</text>
+<line x1="40" y1="104" x2="314" y2="104" stroke="#334155"/>
+<text x="40" y="124" font-size="11" fill="#e2e8f0">存什么：当前任务、近期消息</text>
+<text x="40" y="144" font-size="10" fill="#94a3b8" class="mono">介质：上下文窗口</text>
+<text x="40" y="162" font-size="10" fill="#94a3b8">检索触发：始终在上下文里</text>
+<rect x="40" y="174" width="274" height="32" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="52" y="194" font-size="10" fill="#fda4af">主要风险：上下文腐烂与成本（26,000 token / p95 17.12s）</text>
+
+<!-- 卡2 情景记忆 -->
+<rect x="346" y="68" width="310" height="155" rx="8" fill="#1e293b" stroke="#38bdf8"/>
+<text x="362" y="94" font-size="14" font-weight="700" fill="#38bdf8">情景记忆</text>
+<text x="640" y="94" font-size="10" fill="#64748b" text-anchor="end">长期</text>
+<line x1="362" y1="104" x2="640" y2="104" stroke="#334155"/>
+<text x="362" y="124" font-size="11" fill="#e2e8f0">存什么：过去发生的具体事件</text>
+<text x="362" y="144" font-size="10" fill="#94a3b8" class="mono">介质：向量库</text>
+<text x="362" y="162" font-size="10" fill="#94a3b8">检索触发：与当前查询相似</text>
+<rect x="362" y="174" width="278" height="32" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="374" y="194" font-size="10" fill="#fda4af">主要风险：漏记、错过（写入时机错了就永远没进来）</text>
+
+<!-- 卡3 语义记忆 -->
+<rect x="24" y="237" width="306" height="155" rx="8" fill="#1e293b" stroke="#a78bfa"/>
+<text x="40" y="263" font-size="14" font-weight="700" fill="#a78bfa">语义记忆</text>
+<text x="300" y="263" font-size="10" fill="#64748b" text-anchor="end">长期</text>
+<line x1="40" y1="273" x2="314" y2="273" stroke="#334155"/>
+<text x="40" y="293" font-size="11" fill="#e2e8f0">存什么：稳定的事实与偏好</text>
+<text x="40" y="313" font-size="10" fill="#94a3b8" class="mono">介质：向量库 或 图</text>
+<text x="40" y="331" font-size="10" fill="#94a3b8">检索触发：按相关性查</text>
+<rect x="40" y="343" width="274" height="32" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="52" y="363" font-size="10" fill="#fda4af">主要风险：错误或重复事实（三个版本互相打架）</text>
+
+<!-- 卡4 程序记忆 -->
+<rect x="346" y="237" width="310" height="155" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+<text x="362" y="263" font-size="14" font-weight="700" fill="#fbbf24">程序记忆</text>
+<text x="640" y="263" font-size="10" fill="#64748b" text-anchor="end">长期</text>
+<line x1="362" y1="273" x2="640" y2="273" stroke="#334155"/>
+<text x="362" y="293" font-size="11" fill="#e2e8f0">存什么：怎么做的方法与工具套路</text>
+<text x="362" y="313" font-size="10" fill="#94a3b8" class="mono">介质：可编辑指令</text>
+<text x="362" y="331" font-size="10" fill="#94a3b8">检索触发：任务形态匹配</text>
+<rect x="362" y="343" width="278" height="32" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="374" y="363" font-size="10" fill="#fda4af">主要风险：把一次偶然的坏流程固化成标准做法</text>
+
+<!-- 底部结论 -->
+<rect x="24" y="408" width="632" height="30" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="428" font-size="11" fill="#e2e8f0">更新方式也各不相同：工作记忆每轮重写、情景记忆追加后压缩、语义记忆原地更新、程序记忆随经验自编辑</text>
+</svg>
