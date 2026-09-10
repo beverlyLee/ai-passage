@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+<marker id="a1" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#22d3ee"/></marker>
+<marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#fbbf24"/></marker>
+<marker id="a3" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#34d399"/></marker>
+</defs>
+<rect width="680" height="450" fill="#0f172a"/>
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">工业化三层流水线</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">长叙事失控的解法 = 把可变状态外置成资产（类比 Agent 记忆），三层解耦后跨集连续性变查库</text>
+
+<!-- 层1 -->
+<rect x="24" y="80" width="608" height="96" rx="8" fill="#1e293b" stroke="#22d3ee"/>
+<text x="40" y="104" font-size="13" font-weight="700" fill="#22d3ee">① 剧本 / 分镜资产层</text>
+<rect x="40" y="116" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="130" y="138" font-size="10" fill="#a5f3fc" text-anchor="middle">世界观 / 角色卡</text>
+<text x="130" y="154" font-size="9" fill="#64748b" text-anchor="middle">可检索资产，带版本号</text>
+<rect x="236" y="116" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="326" y="138" font-size="10" fill="#a5f3fc" text-anchor="middle">分镜脚本</text>
+<text x="326" y="154" font-size="9" fill="#64748b" text-anchor="middle">伏笔 / 节奏入库</text>
+<rect x="432" y="116" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="522" y="138" font-size="10" fill="#a5f3fc" text-anchor="middle">参考图版本库</text>
+<text x="522" y="154" font-size="9" fill="#64748b" text-anchor="middle">禁止本地临时图</text>
+
+<!-- 箭头 -->
+<line x1="340" y1="176" x2="340" y2="194" stroke="#22d3ee" stroke-width="2" marker-end="url(#a1)"/>
+
+<!-- 层2 -->
+<rect x="24" y="194" width="608" height="96" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+<text x="40" y="218" font-size="13" font-weight="700" fill="#fbbf24">② 一致性渲染层</text>
+<rect x="40" y="230" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="130" y="252" font-size="10" fill="#fde68a" text-anchor="middle">身份嵌入 + 参考图</text>
+<text x="130" y="268" font-size="9" fill="#64748b" text-anchor="middle">IP-Adapter / ConsisID</text>
+<rect x="236" y="230" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="326" y="252" font-size="10" fill="#fde68a" text-anchor="middle">Seedance 2.0 流水线</text>
+<text x="326" y="268" font-size="9" fill="#64748b" text-anchor="middle">DB-DiT/MMDiT · STCM</text>
+<rect x="432" y="230" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="522" y="252" font-size="10" fill="#fde68a" text-anchor="middle">合格帧率门禁</text>
+<text x="522" y="268" font-size="9" fill="#64748b" text-anchor="middle">物理异常后处理</text>
+
+<line x1="340" y1="290" x2="340" y2="308" stroke="#fbbf24" stroke-width="2" marker-end="url(#a2)"/>
+
+<!-- 层3 -->
+<rect x="24" y="308" width="608" height="96" rx="8" fill="#1e293b" stroke="#34d399"/>
+<text x="40" y="332" font-size="13" font-weight="700" fill="#34d399">③ 成本门禁层</text>
+<rect x="40" y="344" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="130" y="366" font-size="10" fill="#6ee7b7" text-anchor="middle">每镜头抽卡上限</text>
+<text x="130" y="382" font-size="9" fill="#64748b" text-anchor="middle">超限自动降级</text>
+<rect x="236" y="344" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="326" y="366" font-size="10" fill="#6ee7b7" text-anchor="middle">多供应商兜底</text>
+<text x="326" y="382" font-size="9" fill="#64748b" text-anchor="middle">不绑死单一模型</text>
+<rect x="432" y="344" width="180" height="48" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="522" y="366" font-size="10" fill="#6ee7b7" text-anchor="middle">合规红线</text>
+<text x="522" y="382" font-size="9" fill="#64748b" text-anchor="middle">2026-07-01 分层标准</text>
+
+<rect x="24" y="412" width="632" height="26" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="430" font-size="10" fill="#e2e8f0">三层 = 问题 2 / 3 / 4 的工程化封装，也是「精品剧工业化」与「5 万部月增却 65.1% 一般」的分水岭</text>
+</svg>

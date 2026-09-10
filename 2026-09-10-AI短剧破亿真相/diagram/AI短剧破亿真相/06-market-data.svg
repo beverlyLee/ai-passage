@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+</defs>
+<rect width="680" height="450" fill="#0f172a"/>
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">2026 AI 短剧市场数据</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">机会窗口（左）与翻车面（右）并存：破亿在机会面，坑在翻车面</text>
+
+<!-- 左：机会面 -->
+<rect x="24" y="72" width="312" height="318" rx="8" fill="#1e293b" stroke="#34d399"/>
+<text x="40" y="98" font-size="14" font-weight="700" fill="#34d399">机会面</text>
+
+<rect x="40" y="112" width="280" height="64" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="56" y="142" font-size="22" font-weight="700" fill="#6ee7b7" class="mono">110 亿</text>
+<text x="320" y="142" font-size="10" fill="#94a3b8" text-anchor="end">元 · 2026 上半年</text>
+<text x="56" y="162" font-size="9" fill="#64748b">国内 AI 短剧市场规模</text>
+
+<rect x="40" y="184" width="280" height="64" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="56" y="214" font-size="22" font-weight="700" fill="#6ee7b7" class="mono">5 万+</text>
+<text x="320" y="214" font-size="10" fill="#94a3b8" text-anchor="end">部 / 月</text>
+<text x="56" y="234" font-size="9" fill="#64748b">单月新增 AI 短剧</text>
+
+<rect x="40" y="256" width="280" height="64" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="56" y="286" font-size="22" font-weight="700" fill="#6ee7b7" class="mono">-75%</text>
+<text x="320" y="286" font-size="10" fill="#94a3b8" text-anchor="end">同比</text>
+<text x="56" y="306" font-size="9" fill="#64748b">真人短剧开机量</text>
+
+<rect x="40" y="328" width="280" height="48" rx="4" fill="#14342a" stroke="#34d399"/>
+<text x="56" y="356" font-size="11" fill="#6ee7b7">市场进入「精品剧工业化」</text>
+
+<!-- 右：翻车面 -->
+<rect x="344" y="72" width="312" height="318" rx="8" fill="#1e293b" stroke="#fb7185"/>
+<text x="360" y="98" font-size="14" font-weight="700" fill="#fb7185">翻车面</text>
+
+<rect x="360" y="112" width="280" height="64" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="376" y="142" font-size="22" font-weight="700" fill="#fda4af" class="mono">腰斩</text>
+<text x="640" y="142" font-size="10" fill="#94a3b8" text-anchor="end">6 月</text>
+<text x="376" y="162" font-size="9" fill="#64748b">审核过稿率</text>
+
+<rect x="360" y="184" width="280" height="64" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="376" y="214" font-size="22" font-weight="700" fill="#fda4af" class="mono">65.1%</text>
+<text x="640" y="214" font-size="10" fill="#94a3b8" text-anchor="end">观感一般</text>
+<text x="376" y="234" font-size="9" fill="#64748b">观众评价占比</text>
+
+<rect x="360" y="256" width="280" height="64" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="376" y="286" font-size="22" font-weight="700" fill="#fda4af" class="mono">4–6 次</text>
+<text x="640" y="286" font-size="10" fill="#94a3b8" text-anchor="end">/ 集</text>
+<text x="376" y="306" font-size="9" fill="#64748b">普通剧手部异常帧</text>
+
+<rect x="360" y="328" width="280" height="48" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="376" y="356" font-size="11" fill="#fda4af">破亿是特例，翻车是常态</text>
+
+<rect x="24" y="400" width="632" height="34" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="422" font-size="11" fill="#e2e8f0">坑 8：别把破亿当常态 ROI —— 先按「开工四问」自测，再谈投入</text>
+</svg>

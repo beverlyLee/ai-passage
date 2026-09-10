@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+</defs>
+<rect width="680" height="450" fill="#0f172a"/>
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">AI 短剧开工四问</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">逐条对应故障树三失败模式 + 合规红线，任一答「否」都先别上车</text>
+
+<!-- 四问 2x2 -->
+<rect x="24" y="76" width="312" height="150" rx="8" fill="#1e293b" stroke="#fb7185"/>
+<text x="40" y="102" font-size="13" font-weight="700" fill="#fb7185">问 1 · 身份锚定定了吗？</text>
+<text x="40" y="128" font-size="11" fill="#e2e8f0">还在靠 seed 复现角色？</text>
+<text x="40" y="148" font-size="10" fill="#94a3b8">→ 直接判死刑，长剧必塌</text>
+<text x="40" y="176" font-size="10" font-weight="700" fill="#fda4af">治：帧间一致性崩（问题 2）</text>
+<text x="40" y="200" font-size="9" fill="#64748b">解法：identity embedding + 版本管理</text>
+
+<rect x="344" y="76" width="312" height="150" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+<text x="360" y="102" font-size="13" font-weight="700" fill="#fbbf24">问 2 · 抽卡门禁写了吗？</text>
+<text x="360" y="128" font-size="11" fill="#e2e8f0">没每镜头上限？</text>
+<text x="360" y="148" font-size="10" fill="#94a3b8">→ 成本必爆（亏数万案例）</text>
+<text x="360" y="176" font-size="10" font-weight="700" fill="#fde68a">治：算力成本爆炸（问题 3）</text>
+<text x="360" y="200" font-size="9" fill="#64748b">解法：抽卡预算 + 多供应商兜底</text>
+
+<rect x="24" y="238" width="312" height="150" rx="8" fill="#1e293b" stroke="#34d399"/>
+<text x="40" y="264" font-size="13" font-weight="700" fill="#34d399">问 3 · 剧本资产库建了吗？</text>
+<text x="40" y="290" font-size="11" fill="#e2e8f0">分镜还在群里传文档？</text>
+<text x="40" y="310" font-size="10" fill="#94a3b8">→ 第 40 集对不上前 39 集</text>
+<text x="40" y="338" font-size="10" font-weight="700" fill="#6ee7b7">治：长叙事失控（问题 4）</text>
+<text x="40" y="362" font-size="9" fill="#64748b">解法：世界观 / 角色卡外置成资产</text>
+
+<rect x="344" y="238" width="312" height="150" rx="8" fill="#1e293b" stroke="#22d3ee"/>
+<text x="360" y="264" font-size="13" font-weight="700" fill="#22d3ee">问 4 · 供应商绑死了吗？</text>
+<text x="360" y="290" font-size="11" fill="#e2e8f0">全链路押单一模型？</text>
+<text x="360" y="310" font-size="10" fill="#94a3b8">→ Sora API 09-24 停服归零</text>
+<text x="360" y="338" font-size="10" font-weight="700" fill="#a5f3fc">守：合规 + 单点依赖红线</text>
+<text x="360" y="362" font-size="9" fill="#64748b">解法：多供应商 + 自托管兜底</text>
+
+<rect x="24" y="400" width="632" height="34" rx="4" fill="#0e3a3a" stroke="#22d3ee"/>
+<text x="40" y="422" font-size="11" fill="#a5f3fc">2026-07-01《AI 微短剧分类分层标准》生效 + 真实人脸屏蔽 + 隐形水印：合规不是可选项，过稿率已腰斩</text>
+</svg>
