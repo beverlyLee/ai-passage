@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+</defs>
+<rect width="680" height="450" fill="#0f172a"/>
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">成本对比：为什么能做到 90 万/集</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">官方披露单集约 90 万、每分钟 2–3 万，约传统 1/10（条形按 0.5px / 万元）</text>
+
+<!-- 单集成本条形 -->
+<line x1="168" y1="88" x2="168" y2="214" stroke="#334155" stroke-width="1.5"/>
+<line x1="168" y1="214" x2="620" y2="214" stroke="#334155" stroke-width="1.5"/>
+<line x1="318" y1="210" x2="318" y2="218" stroke="#475569"/>
+<line x1="468" y1="210" x2="468" y2="218" stroke="#475569"/>
+<text x="168" y="228" font-size="9" fill="#64748b">0</text>
+<text x="318" y="228" font-size="9" fill="#64748b" text-anchor="middle">300 万</text>
+<text x="468" y="228" font-size="9" fill="#64748b" text-anchor="middle">600 万</text>
+<text x="618" y="228" font-size="9" fill="#64748b" text-anchor="middle">900 万</text>
+
+<text x="160" y="122" font-size="10" fill="#e2e8f0" text-anchor="end">传统 S 级 / 动画剧</text>
+<rect x="168" y="100" width="450" height="40" rx="3" fill="#fb7185"/>
+<text x="614" y="92" font-size="10" font-weight="700" fill="#fda4af" text-anchor="end">≈ 900 万/集（按 90 万 × 10 推算）</text>
+
+<text x="160" y="176" font-size="10" fill="#e2e8f0" text-anchor="end">《后西游记》</text>
+<rect x="168" y="154" width="45" height="40" rx="3" fill="#34d399"/>
+<text x="221" y="146" font-size="10" font-weight="700" fill="#6ee7b7">≈ 90 万/集</text>
+
+<!-- 明细 -->
+<rect x="24" y="244" width="632" height="112" rx="6" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="268" font-size="11" font-weight="700" fill="#fbbf24">成本明细（官方口径）</text>
+<text x="40" y="292" font-size="10" fill="#e2e8f0">· 每分钟成本 ≈ 2–3 万元，约为传统动画剧的 1/10</text>
+<text x="40" y="312" font-size="10" fill="#e2e8f0">· 一段 3 分钟打戏：传统需四五百万，AI 实际仅 2–3 万（≈ 1/150）</text>
+<text x="40" y="332" font-size="10" fill="#fda4af">· 抽卡无门禁 = 成本滚雪球（坑 3）：单集 = 抽卡 × 单次成本 × (1 + 重抽率)</text>
+<text x="40" y="350" font-size="10" fill="#94a3b8" class="mono">  Sora API 2026-09-24 停服无替代 —— 单模型绑定 = 产线 18 天后归零</text>
+
+<rect x="24" y="368" width="632" height="64" rx="6" fill="#14342a" stroke="#34d399"/>
+<text x="40" y="390" font-size="11" font-weight="700" fill="#6ee7b7">资产生息：复用率越高，单集成本越低</text>
+<text x="40" y="410" font-size="10" fill="#6ee7b7">109 角色 / 143 场景资产跨集复用 → 边际成本递减（脚本 02：85% 复用率拟合出 89.5 万）</text>
+<text x="40" y="426" font-size="10" fill="#94a3b8">但 90 万/集对普通团队仍是高门槛 —— 上星是特例，不是常态 ROI</text>
+</svg>

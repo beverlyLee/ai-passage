@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+</defs>
+<rect width="680" height="450" fill="#0f172a"/>
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">文戏 vs 武戏：为什么文戏更难</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">身份锚定解决「跨帧不塌」，解决不了「文戏不僵」——后者才是返工重灾区</text>
+
+<!-- 左：武戏 -->
+<rect x="24" y="68" width="300" height="272" rx="8" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="92" font-size="13" font-weight="700" fill="#6ee7b7">武戏（打斗 / 奇观）</text>
+<text x="40" y="110" font-size="10" fill="#94a3b8">模型强项，靠奇观堆叠过关</text>
+
+<rect x="40" y="124" width="268" height="46" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="54" y="143" font-size="10" fill="#e2e8f0">结构：「一步一景」公路片堆叠</text>
+<text x="54" y="159" font-size="9" fill="#64748b">打斗、特效、大场面</text>
+<rect x="40" y="178" width="268" height="46" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="54" y="197" font-size="10" fill="#e2e8f0">容错：动作幅度大、情绪可夸张</text>
+<text x="54" y="213" font-size="9" fill="#64748b">瑕疵容易被高速运动掩盖</text>
+<rect x="40" y="232" width="268" height="46" rx="4" fill="#0f172a" stroke="#475569"/>
+<text x="54" y="251" font-size="10" fill="#e2e8f0">观众敏感度：看爽即可</text>
+<text x="54" y="267" font-size="9" fill="#64748b">情绪不连贯不易被察觉</text>
+
+<rect x="40" y="288" width="268" height="40" rx="4" fill="#14342a" stroke="#34d399"/>
+<text x="54" y="313" font-size="11" font-weight="700" fill="#6ee7b7">返工风险：低</text>
+
+<!-- 右：文戏 -->
+<rect x="356" y="68" width="300" height="272" rx="8" fill="#1e293b" stroke="#334155"/>
+<text x="372" y="92" font-size="13" font-weight="700" fill="#fda4af">文戏（情绪 / 台词 / 微表情）</text>
+<text x="372" y="110" font-size="10" fill="#94a3b8">模型弱项，「被一根尾巴卡住十天」</text>
+
+<rect x="372" y="124" width="268" height="46" rx="4" fill="#0f172a" stroke="#fb7185"/>
+<text x="386" y="143" font-size="10" fill="#fda4af">结构：15 秒定帧间保持情绪连贯</text>
+<text x="386" y="159" font-size="9" fill="#94a3b8">定帧之间的衔接交给模型</text>
+<rect x="372" y="178" width="268" height="46" rx="4" fill="#0f172a" stroke="#fb7185"/>
+<text x="386" y="197" font-size="10" fill="#fda4af">容错：微表情 / 嘴型要自然</text>
+<text x="386" y="213" font-size="9" fill="#94a3b8">一僵立刻出戏（恐怖谷）</text>
+<rect x="372" y="232" width="268" height="46" rx="4" fill="#0f172a" stroke="#fb7185"/>
+<text x="386" y="251" font-size="10" fill="#fda4af">观众敏感度：极高</text>
+<text x="386" y="267" font-size="9" fill="#94a3b8">表情僵硬 / 节奏偏慢即被吐槽</text>
+
+<rect x="372" y="288" width="268" height="40" rx="4" fill="#3f1d29" stroke="#fb7185"/>
+<text x="386" y="313" font-size="11" font-weight="700" fill="#fda4af">返工风险：高</text>
+
+<!-- 难度条 -->
+<text x="24" y="372" font-size="10" fill="#e2e8f0">武戏</text>
+<rect x="64" y="362" width="200" height="12" rx="6" fill="#1e293b" stroke="#334155"/>
+<rect x="64" y="362" width="60" height="12" rx="6" fill="#34d399"/>
+<text x="272" y="372" font-size="9" fill="#6ee7b7">≈ 30%</text>
+<text x="344" y="372" font-size="10" fill="#e2e8f0">文戏</text>
+<rect x="384" y="362" width="200" height="12" rx="6" fill="#1e293b" stroke="#334155"/>
+<rect x="384" y="362" width="170" height="12" rx="6" fill="#fb7185"/>
+<text x="592" y="372" font-size="9" fill="#fda4af">≈ 85%</text>
+
+<rect x="24" y="386" width="632" height="46" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="406" font-size="11" fill="#e2e8f0">一致性层要加「表演级情绪连续性门禁」：相邻定帧情绪跳变超阈即判微表情僵硬</text>
+<text x="40" y="423" font-size="10" fill="#94a3b8">合格帧率不达标不许进剪辑（脚本 01 演示：一处僵硬帧就让整段文戏 40% 断裂）</text>
+</svg>

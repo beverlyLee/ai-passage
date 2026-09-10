@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+text{font-family:'Noto Sans SC','JetBrains Mono',sans-serif;}
+.mono{font-family:'JetBrains Mono','Noto Sans SC',monospace;}
+</style>
+</defs>
+<rect width="680" height="450" fill="#0f172a"/>
+<text x="24" y="32" font-size="18" font-weight="700" fill="#e2e8f0">AIGC 长剧开工四问 + 选 IP 决策树</text>
+<text x="24" y="52" font-size="11" fill="#94a3b8">逐条对应故障树三失败模式 + 合规红线，任一答「否」都先别上车</text>
+
+<!-- 问 1 -->
+<rect x="24" y="70" width="312" height="104" rx="8" fill="#1e293b" stroke="#fb7185"/>
+<text x="40" y="94" font-size="12" font-weight="700" fill="#fb7185">问 1 · 身份锚定方案定了吗？</text>
+<text x="40" y="118" font-size="10" fill="#e2e8f0">还在靠 seed 复现角色 → 直接判死刑</text>
+<text x="40" y="140" font-size="10" font-weight="700" fill="#fda4af">治：长时序一致性崩（问题 2）</text>
+<text x="40" y="160" font-size="9" fill="#64748b">解法：identity embedding + 参考图版本管理</text>
+
+<!-- 问 2 -->
+<rect x="344" y="70" width="312" height="104" rx="8" fill="#1e293b" stroke="#fbbf24"/>
+<text x="360" y="94" font-size="12" font-weight="700" fill="#fbbf24">问 2 · 抽卡预算门禁写了吗？</text>
+<text x="360" y="118" font-size="10" fill="#e2e8f0">没有每镜头上限 → 成本必爆</text>
+<text x="360" y="140" font-size="10" font-weight="700" fill="#fde68a">治：算力成本爆炸（问题 3）</text>
+<text x="360" y="160" font-size="9" fill="#64748b">解法：抽卡上限 + 合格帧率门禁</text>
+
+<!-- 问 3 -->
+<rect x="24" y="182" width="312" height="104" rx="8" fill="#1e293b" stroke="#34d399"/>
+<text x="40" y="206" font-size="12" font-weight="700" fill="#34d399">问 3 · 剧本 / 资产库建了吗？</text>
+<text x="40" y="230" font-size="10" fill="#e2e8f0">分镜还在群里传文档 → 第 20 集对不上</text>
+<text x="40" y="252" font-size="10" font-weight="700" fill="#6ee7b7">治：长叙事失控（问题 4）</text>
+<text x="40" y="272" font-size="9" fill="#64748b">解法：世界观 / 角色卡外置成可检索资产</text>
+
+<!-- 问 4 -->
+<rect x="344" y="182" width="312" height="104" rx="8" fill="#1e293b" stroke="#22d3ee"/>
+<text x="360" y="206" font-size="12" font-weight="700" fill="#22d3ee">问 4 · 供应商绑死了吗？</text>
+<text x="360" y="230" font-size="10" fill="#e2e8f0">全链路押单一模型 → 18 天后归零</text>
+<text x="360" y="252" font-size="10" font-weight="700" fill="#a5f3fc">守：合规 + 单点依赖红线</text>
+<text x="360" y="272" font-size="9" fill="#64748b">解法：多模型池 + 自托管兜底</text>
+
+<!-- 选 IP 决策树 -->
+<text x="24" y="312" font-size="12" font-weight="700" fill="#e2e8f0">选 IP 决策树：用题材结构对冲技术短板</text>
+
+<rect x="24" y="322" width="312" height="74" rx="6" fill="#14342a" stroke="#34d399"/>
+<text x="40" y="344" font-size="10" font-weight="700" fill="#6ee7b7">神话题材 → 角色自带「面具」</text>
+<text x="40" y="364" font-size="9" fill="#94a3b8">规避 AI 生成人物的表情僵硬与恐怖谷</text>
+<text x="40" y="384" font-size="9" fill="#6ee7b7">✓ 对冲「文戏僵硬」短板</text>
+
+<rect x="344" y="322" width="312" height="74" rx="6" fill="#0e3a3a" stroke="#22d3ee"/>
+<text x="360" y="344" font-size="10" font-weight="700" fill="#a5f3fc">「一步一景」公路片结构</text>
+<text x="360" y="364" font-size="9" fill="#94a3b8">逐景推进，弱化长叙事连贯的硬要求</text>
+<text x="360" y="384" font-size="9" fill="#a5f3fc">✓ 对冲「长叙事失控」短板</text>
+
+<rect x="24" y="404" width="632" height="38" rx="4" fill="#1e293b" stroke="#334155"/>
+<text x="40" y="428" font-size="10" fill="#e2e8f0">选 IP 不是情怀、不是碰运气，是工程决策 —— 题材结构决定技术短板能不能被对冲</text>
+</svg>

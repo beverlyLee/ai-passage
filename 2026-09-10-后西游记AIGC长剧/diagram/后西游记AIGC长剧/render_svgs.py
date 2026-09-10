@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Render diagram/AI短剧破亿真相/*.svg -> *@2x.png (1360x900) via Chrome headless.
+# Render diagram/后西游记AIGC长剧/*.svg -> *@2x.png (1360x900) via Chrome headless.
 import subprocess, os, glob, struct
 
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-SVG_DIR = "/Users/liboyang/WorkBuddy/2026-08-14-17-18-24/ai-passage/2026-09-10-AI短剧破亿真相/diagram/AI短剧破亿真相"
+SVG_DIR = "/Users/liboyang/WorkBuddy/2026-08-14-17-18-24/ai-passage/2026-09-10-后西游记AIGC长剧/diagram/后西游记AIGC长剧"
 
 HTML_TPL = """<!doctype html>
 <html><head><meta charset="utf-8">
