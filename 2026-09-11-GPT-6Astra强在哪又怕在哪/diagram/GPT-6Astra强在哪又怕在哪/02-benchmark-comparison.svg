@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC','JetBrains Mono',monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="28" y="34" font-size="15" font-weight="700" fill="#f8fafc">03 · 基准对比：Astra vs Sol vs Fable（%）</text>
+  <text x="28" y="52" font-size="9.5" fill="#94a3b8">强在特定档位，不是处处第一（Artificial Analysis Index：Astra 61.2 &lt; Fable 5.1 65.7）</text>
+
+  <!-- legend -->
+  <rect x="28" y="68" width="13" height="13" rx="2" fill="#22d3ee"/>
+  <text x="47" y="79" font-size="9.5" fill="#cbd5e1">Astra</text>
+  <rect x="118" y="68" width="13" height="13" rx="2" fill="#64748b"/>
+  <text x="137" y="79" font-size="9.5" fill="#cbd5e1">Sol (GPT-5.6)</text>
+  <rect x="240" y="68" width="13" height="13" rx="2" fill="#fbbf24"/>
+  <text x="259" y="79" font-size="9.5" fill="#cbd5e1">Fable 5.1</text>
+
+  <!-- bars; scale: 1% = 5px, start x=210, max 100% => 500px => end 710 too wide; use 4.2px/% end 630 -->
+  <!-- OSWorld 2.0 -->
+  <text x="28" y="120" font-size="10" fill="#e2e8f0">OSWorld 2.0 (offline)</text>
+  <rect x="210" y="108" width="305" height="18" rx="3" fill="#22d3ee"/>
+  <text x="521" y="122" font-size="9.5" fill="#a5f3fc">72.6</text>
+  <rect x="210" y="130" width="276" height="18" rx="3" fill="#64748b"/>
+  <text x="492" y="144" font-size="9.5" fill="#e2e8f0">65.7</text>
+  <rect x="210" y="152" width="328" height="18" rx="3" fill="#fbbf24"/>
+  <text x="544" y="166" font-size="9.5" fill="#fde68a">77.9</text>
+
+  <!-- ScreenSpot-Pro -->
+  <text x="28" y="208" font-size="10" fill="#e2e8f0">ScreenSpot-Pro</text>
+  <rect x="210" y="196" width="389" height="18" rx="3" fill="#22d3ee"/>
+  <text x="605" y="210" font-size="9.5" fill="#a5f3fc">92.7</text>
+  <rect x="210" y="218" width="323" height="18" rx="3" fill="#64748b"/>
+  <text x="539" y="232" font-size="9.5" fill="#e2e8f0">76.9</text>
+
+  <!-- ExploitBench -->
+  <text x="28" y="274" font-size="10" fill="#e2e8f0">ExploitBench</text>
+  <rect x="210" y="262" width="420" height="18" rx="3" fill="#22d3ee"/>
+  <text x="636" y="276" font-size="9.5" fill="#a5f3fc">100</text>
+  <rect x="210" y="284" width="330" height="18" rx="3" fill="#64748b"/>
+  <text x="546" y="298" font-size="9.5" fill="#e2e8f0">78.5</text>
+
+  <!-- GPQA / ARC -->
+  <text x="28" y="344" font-size="10" fill="#e2e8f0">GPQA Diamond</text>
+  <rect x="210" y="332" width="403" height="18" rx="3" fill="#22d3ee"/>
+  <text x="619" y="346" font-size="9.5" fill="#a5f3fc">96.0</text>
+  <text x="28" y="388" font-size="10" fill="#e2e8f0">ARC-AGI-3</text>
+  <rect x="210" y="376" width="420" height="18" rx="3" fill="#22d3ee"/>
+  <text x="636" y="390" font-size="9.5" fill="#a5f3fc">99.9</text>
+
+  <text x="28" y="424" font-size="8.5" fill="#64748b">注：ExploitBench(近3月新漏洞) Astra 39.0% vs Sol 11.5%；基准均为 OpenAI 自评，无第三方独立验证</text>
+</svg>

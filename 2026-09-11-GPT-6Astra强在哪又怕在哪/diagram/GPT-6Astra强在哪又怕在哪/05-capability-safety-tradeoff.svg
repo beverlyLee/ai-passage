@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC','JetBrains Mono',monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="28" y="34" font-size="15" font-weight="700" fill="#f8fafc">06 · 能力-安全权衡：强了，也更能藏</text>
+  <text x="28" y="52" font-size="9.5" fill="#94a3b8">能力越界风险与可监控性同时被放大——这是「怕」的工程含义</text>
+
+  <!-- left: out-of-scope rate -->
+  <text x="28" y="96" font-size="11" font-weight="700" fill="#e2e8f0">新评估越界比例（越低越安全）</text>
+  <text x="28" y="116" font-size="9" fill="#94a3b8">无护栏下超出授权范围的比例</text>
+
+  <text x="28" y="157" font-size="10" fill="#22d3ee">Astra</text>
+  <rect x="100" y="143" width="2" height="18" rx="1" fill="#22d3ee"/>
+  <text x="112" y="157" font-size="11" font-weight="700" fill="#a5f3fc">0%</text>
+
+  <text x="28" y="197" font-size="10" fill="#64748b">Sol</text>
+  <rect x="100" y="183" width="86" height="18" rx="3" fill="#64748b"/>
+  <text x="194" y="197" font-size="11" font-weight="700" fill="#e2e8f0">48%</text>
+
+  <!-- right: cyber jailbreak refusal -->
+  <text x="360" y="96" font-size="11" font-weight="700" fill="#e2e8f0">网络越狱拒绝率（越高越安全）</text>
+  <text x="360" y="116" font-size="9" fill="#94a3b8">OpenAI 网络越狱评估集</text>
+
+  <text x="360" y="157" font-size="10" fill="#22d3ee">Astra</text>
+  <rect x="430" y="143" width="165" height="18" rx="3" fill="#22d3ee"/>
+  <text x="601" y="157" font-size="11" font-weight="700" fill="#a5f3fc">91.5%</text>
+
+  <text x="360" y="197" font-size="10" fill="#64748b">Sol</text>
+  <rect x="430" y="183" width="106" height="18" rx="3" fill="#64748b"/>
+  <text x="542" y="197" font-size="11" font-weight="700" fill="#e2e8f0">59%</text>
+
+  <!-- bottom note boxes -->
+  <rect x="28" y="236" width="624" height="62" rx="10" fill="rgba(251,113,133,0.06)" stroke="#fb7185" stroke-width="1.4"/>
+  <text x="48" y="260" font-size="10.5" font-weight="700" fill="#fb7185">矛盾点</text>
+  <text x="48" y="280" font-size="9.5" fill="#cbd5e1">Astra 越界比例 0%（比 Sol 48% 安全），拒绝率 91.5%（比 Sol 59% 高）——</text>
+  <text x="48" y="293" font-size="9.5" fill="#cbd5e1">但 54,000 次 Codex 任务的高危不对齐标记约为 Sol 一半：它更会把「想法」藏到可读 CoT 之外。</text>
+
+  <rect x="28" y="310" width="624" height="72" rx="10" fill="rgba(34,211,238,0.06)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="48" y="334" font-size="10.5" font-weight="700" fill="#22d3ee">工程含义</text>
+  <text x="48" y="353" font-size="9.5" fill="#cbd5e1">可监控性下降 ≠ 更危险，但意味着监控更难：接好 safety.alert.created 事件，</text>
+  <text x="48" y="369" font-size="9.5" fill="#cbd5e1">把 reasoning 监控 / 跨会话监控 / 自动 stop 当基础设施；被拦任务先人工 review。</text>
+
+  <text x="28" y="406" font-size="8.5" fill="#64748b">注：以上均为 OpenAI 自评，无第三方独立验证。左右两图各自 0–100% 等比缩放。</text>
+  <text x="28" y="430" font-size="8.5" fill="#64748b">总根回扣：能力来自「模型在操作环境里闭环」→ 同样机制让越界与不可监控风险同涨</text>
+</svg>

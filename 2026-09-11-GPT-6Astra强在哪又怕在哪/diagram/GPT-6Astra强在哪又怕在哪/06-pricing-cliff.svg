@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC','JetBrains Mono',monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="a-rose" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#fb7185"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="28" y="34" font-size="15" font-weight="700" fill="#f8fafc">05 · 272K 计费悬崖：整请求翻倍</text>
+  <text x="28" y="52" font-size="9.5" fill="#94a3b8">阈值作用于整个请求，非仅超出部分；linkmodel：271K=$3.71 → 273K=$6.96</text>
+
+  <!-- cliff illustration -->
+  <line x1="60" y1="120" x2="400" y2="120" stroke="#22d3ee" stroke-width="3"/>
+  <line x1="400" y1="120" x2="400" y2="250" stroke="#fb7185" stroke-width="3"/>
+  <line x1="400" y1="250" x2="640" y2="250" stroke="#fb7185" stroke-width="3"/>
+  <line x1="400" y1="270" x2="400" y2="290" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="396" y="108" font-size="9" fill="#22d3ee" text-anchor="middle">≤272K 正常费率</text>
+  <text x="404" y="190" font-size="9.5" fill="#fb7185" text-anchor="start">超 272K → 整请求 2x 输入 / 1.5x 输出</text>
+  <text x="520" y="270" font-size="9" fill="#fb7185" text-anchor="middle">长上下文费率</text>
+
+  <!-- two cost callouts -->
+  <rect x="60" y="300" width="270" height="48" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="195" y="322" font-size="13" font-weight="700" fill="#22d3ee" text-anchor="middle">271K 输入 ≈ $3.71</text>
+  <text x="195" y="340" font-size="9" fill="#a5f3fc" text-anchor="middle">Standard 短上下文</text>
+
+  <rect x="350" y="300" width="270" height="48" rx="8" fill="rgba(251,113,133,0.10)" stroke="#fb7185" stroke-width="1.4"/>
+  <text x="485" y="322" font-size="13" font-weight="700" fill="#fb7185" text-anchor="middle">273K 输入 ≈ $6.96</text>
+  <text x="485" y="340" font-size="9" fill="#fecdd3" text-anchor="middle">+0.7% 输入量 → 成本翻倍</text>
+
+  <!-- tier mini table -->
+  <text x="28" y="386" font-size="10" font-weight="700" fill="#e2e8f0">四档费率（每百万 token，输入/输出）</text>
+  <text x="28" y="406" font-size="9" fill="#cbd5e1">Standard ≤272K $10/$50 · &gt;272K $20/$75</text>
+  <text x="28" y="422" font-size="9" fill="#cbd5e1">Batch/Flex 半价 · Fast 2x · 最坏 Fast+长上下文 $40/$150（短上下文 Batch 输入的 8x）</text>
+  <text x="28" y="438" font-size="8.5" fill="#fbbf24">优化重点：缓存输入 $1/M 才是 agent 循环跑起来后的主费率</text>
+</svg>

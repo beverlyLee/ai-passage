@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+SC:wght@400;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC','JetBrains Mono',monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="a-rose" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#fb7185"/>
+    </marker>
+    <marker id="a-cyan" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="28" y="34" font-size="15" font-weight="700" fill="#f8fafc">02 · 上下文记忆：compaction → searchable notes</text>
+  <text x="28" y="52" font-size="9.5" fill="#94a3b8">确定性压缩会丢易失环境状态；可搜索笔记跨窗口保留并召回</text>
+
+  <!-- left: compaction -->
+  <rect x="28" y="78" width="300" height="320" rx="12" fill="rgba(251,113,133,0.06)" stroke="#fb7185" stroke-width="1.6"/>
+  <text x="48" y="104" font-size="12.5" font-weight="700" fill="#fb7185">确定性 context compaction（旧）</text>
+  <text x="48" y="126" font-size="9" fill="#cbd5e1">启发式裁剪 / 摘要压缩整段历史</text>
+
+  <rect x="48" y="146" width="260" height="50" rx="8" fill="rgba(251,113,133,0.10)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="64" y="168" font-size="10" fill="#fecdd3">✗ 丢失 volatile socket 连接状态</text>
+  <text x="64" y="186" font-size="10" fill="#fecdd3">✗ 丢失 subshell 环境变量</text>
+
+  <rect x="48" y="210" width="260" height="50" rx="8" fill="rgba(251,113,133,0.10)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="64" y="232" font-size="10" fill="#fecdd3">✗ 丢失临时目录指针</text>
+  <text x="64" y="250" font-size="10" fill="#fecdd3">✗ 摘要不保证保真</text>
+
+  <text x="48" y="300" font-size="11" font-weight="700" fill="#fb7185">结果</text>
+  <text x="48" y="320" font-size="9.5" fill="#cbd5e1">长程 agent「忘了自己开着的</text>
+  <text x="48" y="336" font-size="9.5" fill="#cbd5e1">连接」→ 行为错乱</text>
+
+  <!-- arrow -->
+  <line x1="328" y1="238" x2="360" y2="238" stroke="#94a3b8" stroke-width="2" marker-end="url(#a-cyan)"/>
+
+  <!-- right: searchable notes -->
+  <rect x="364" y="78" width="288" height="320" rx="12" fill="rgba(34,211,238,0.07)" stroke="#22d3ee" stroke-width="1.8"/>
+  <text x="384" y="104" font-size="12.5" font-weight="700" fill="#22d3ee">Structured Searchable Notes（新）</text>
+  <text x="384" y="126" font-size="9" fill="#cbd5e1">自反注意力层治理的可搜索笔记子系统</text>
+
+  <rect x="384" y="146" width="248" height="46" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="400" y="167" font-size="10" fill="#a5f3fc">✓ 跨上下文窗口保留细节</text>
+  <text x="400" y="184" font-size="10" fill="#a5f3fc">✓ 检索回早期消息与工具输出</text>
+
+  <rect x="384" y="206" width="248" height="46" rx="8" fill="rgba(34,211,238,0.10)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="400" y="227" font-size="10" fill="#a5f3fc">✓ 易失环境状态不再丢</text>
+  <text x="400" y="244" font-size="10" fill="#a5f3fc">✓ 像「带索引的笔记本」</text>
+
+  <text x="384" y="300" font-size="11" font-weight="700" fill="#22d3ee">状态</text>
+  <text x="384" y="320" font-size="9.5" fill="#cbd5e1">Codex 内 experimental</text>
+  <text x="384" y="336" font-size="9.5" fill="#cbd5e1">v0.153.0 → 将成默认</text>
+
+  <text x="364" y="412" font-size="8.5" fill="#64748b">工程含义：重做 prompt-caching / compaction 旧假设，别假定压缩摘要保真</text>
+</svg>

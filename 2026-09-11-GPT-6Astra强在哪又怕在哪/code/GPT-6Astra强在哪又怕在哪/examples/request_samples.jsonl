@@ -1,0 +1,7 @@
+{"name": "agent-loop-round (缓存命中)", "tier": "standard", "input": 10000, "cached": 190000, "cached_write": 0, "output": 60000}
+{"name": "刚跨过阈值 (273K 输入)", "tier": "standard", "input": 273000, "cached": 0, "cached_write": 0, "output": 0}
+{"name": "阈值下 (271K 输入)", "tier": "standard", "input": 271000, "cached": 0, "cached_write": 0, "output": 0}
+{"name": "大缓存但不触发翻倍", "tier": "standard", "input": 100000, "cached": 500000, "cached_write": 0, "output": 20000}
+{"name": "首次冷启动 (写缓存)", "tier": "standard", "input": 80000, "cached": 0, "cached_write": 120000, "output": 30000}
+{"name": "批处理省一半", "tier": "batch", "input": 300000, "cached": 0, "cached_write": 0, "output": 150000}
+{"name": "快档最贵", "tier": "fast", "input": 300000, "cached": 0, "cached_write": 0, "output": 150000}
