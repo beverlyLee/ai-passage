@@ -1,0 +1,56 @@
+<svg viewBox="0 0 680 450" width="680" height="450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC', 'JetBrains Mono', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="24" y="34" fill="#e2e8f0" font-size="15" font-weight="700">图6 · 9 个坑按层归位（个人 / 团队 / 组织）</text>
+  <text x="24" y="52" fill="#64748b" font-size="9.5" class="mono">症状 + 解法见正文「9 个坑」一节 · 三层对应 进阶「个人/团队/组织」应对</text>
+  <line x1="24" y1="64" x2="656" y2="64" stroke="#1e293b" stroke-width="1"/>
+
+  <rect x="24" y="84" width="200" height="276" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="40" y="110" fill="#22d3ee" font-size="13" font-weight="700">个人层</text>
+  <text x="40" y="140" fill="#e2e8f0" font-size="10.5">1 把"省11h"当"多11h"</text>
+  <text x="40" y="160" fill="#64748b" font-size="9.5">→ 算净增益，别拿毛数</text>
+  <text x="40" y="190" fill="#e2e8f0" font-size="10.5">2 不验就直接用</text>
+  <text x="40" y="210" fill="#64748b" font-size="9.5">→ 只验"会出事那类"</text>
+  <text x="40" y="240" fill="#e2e8f0" font-size="10.5">3 无限核验</text>
+  <text x="40" y="260" fill="#64748b" font-size="9.5">→ 设"验到X就弃"阈值</text>
+  <text x="40" y="298" fill="#94a3b8" font-size="9.5">认知负载预算</text>
+  <text x="40" y="314" fill="#94a3b8" font-size="9.5">botsitting 计时</text>
+  <text x="40" y="330" fill="#94a3b8" font-size="9.5">值得验 / 直接弃</text>
+
+  <rect x="240" y="84" width="200" height="276" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="256" y="110" fill="#fbbf24" font-size="13" font-weight="700">团队层</text>
+  <text x="256" y="140" fill="#e2e8f0" font-size="10.5">4 用产出量考核 AI</text>
+  <text x="256" y="160" fill="#64748b" font-size="9.5">→ 核验工时显式计时</text>
+  <text x="256" y="190" fill="#e2e8f0" font-size="10.5">5 默认 AI 全自动</text>
+  <text x="256" y="210" fill="#64748b" font-size="9.5">→ 当协作者排班</text>
+  <text x="256" y="240" fill="#e2e8f0" font-size="10.5">6 忽视认知债</text>
+  <text x="256" y="260" fill="#64748b" font-size="9.5">→ 交付前自己重写一遍</text>
+  <text x="256" y="298" fill="#94a3b8" font-size="9.5">给核验排期</text>
+  <text x="256" y="314" fill="#94a3b8" font-size="9.5">AI 产出单独门禁</text>
+  <text x="256" y="330" fill="#94a3b8" font-size="9.5">为判断留时间</text>
+
+  <rect x="456" y="84" width="200" height="276" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="472" y="110" fill="#fb7185" font-size="13" font-weight="700">组织层</text>
+  <text x="472" y="140" fill="#e2e8f0" font-size="10.5">7 抬高预期无上限</text>
+  <text x="472" y="160" fill="#64748b" font-size="9.5">→ 预期与判断预算同步</text>
+  <text x="472" y="190" fill="#e2e8f0" font-size="10.5">8 不测"累不累"</text>
+  <text x="472" y="210" fill="#64748b" font-size="9.5">→ 疲劳当季度指标</text>
+  <text x="472" y="240" fill="#e2e8f0" font-size="10.5">9 宏观当微观</text>
+  <text x="472" y="260" fill="#64748b" font-size="9.5">→ 验收看快+看累</text>
+  <text x="472" y="298" fill="#94a3b8" font-size="9.5">判断工时进 KPI</text>
+  <text x="472" y="314" fill="#94a3b8" font-size="9.5">不无上限抬预期</text>
+  <text x="472" y="330" fill="#94a3b8" font-size="9.5">累不累=验收项</text>
+
+  <text x="24" y="392" fill="#64748b" font-size="9" class="mono">来源：Glean / Foxit / BCG / MIT / Getsolved / Workday / Upwork / Berkeley 等 2026 一手数据（见正文参考来源）</text>
+</svg>

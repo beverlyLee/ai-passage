@@ -1,0 +1,38 @@
+<svg viewBox="0 0 680 450" width="680" height="450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC', 'JetBrains Mono', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="24" y="34" fill="#e2e8f0" font-size="15" font-weight="700">图4 · 认知负载激增：cognitive debt 与脑雾</text>
+  <text x="24" y="52" fill="#64748b" font-size="9.5" class="mono">MIT Media Lab「Your Brain on ChatGPT」· Getsolved 2026-06 · 机制③</text>
+  <line x1="24" y1="64" x2="656" y2="64" stroke="#1e293b" stroke-width="1"/>
+
+  <rect x="24" y="84" width="300" height="156" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="40" y="110" fill="#22d3ee" font-size="12" font-weight="700">MIT Media Lab（EEG 54 人）</text>
+  <text x="40" y="138" fill="#e2e8f0" font-size="11.5">被动用 AI → 脑连接减弱</text>
+  <text x="40" y="162" fill="#e2e8f0" font-size="11.5">ownership 感降低</text>
+  <text x="40" y="192" fill="#fbbf24" font-size="13" font-weight="700">cognitive debt（认知债）</text>
+  <text x="40" y="216" fill="#64748b" font-size="10">没在思考，借了未来认知力</text>
+
+  <rect x="336" y="84" width="320" height="156" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="352" y="110" fill="#fb7185" font-size="12" font-weight="700">Getsolved（3000 名 18–29 岁白领）</text>
+  <text x="352" y="138" fill="#e2e8f0" font-size="11.5">75% 说提效</text>
+  <text x="352" y="162" fill="#e2e8f0" font-size="11.5">52% 因「带娃式监督」回避使用</text>
+  <text x="352" y="186" fill="#e2e8f0" font-size="11.5">36% 近乎每日脑雾</text>
+  <text x="352" y="210" fill="#e2e8f0" font-size="11.5">41% 需整晚休息恢复</text>
+
+  <rect x="24" y="264" width="632" height="44" rx="8" fill="#0b3b46" stroke="#22d3ee" stroke-width="1"/>
+  <text x="40" y="291" fill="#a5f3fc" font-size="12" font-weight="700">Sweller 认知负载：监控 / 整合 AI 输出本身 = extraneous load，挤占真正用于思考的带宽</text>
+
+  <text x="24" y="344" fill="#64748b" font-size="9" class="mono">来源：Kosmyna et al. 2025（MIT Media Lab）；Getsolved 2026-06（n=3000）；Human Clarity Institute / Sun &amp; Liu 2026b / Zhang 2026 一致</text>
+  <text x="24" y="360" fill="#64748b" font-size="9" class="mono">注意：87% 自述中性 / energized —— 多数人并不自知自己在损耗（同上篇 9 坑「不自知」）。</text>
+</svg>
