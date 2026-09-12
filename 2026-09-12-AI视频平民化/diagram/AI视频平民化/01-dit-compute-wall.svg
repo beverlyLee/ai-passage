@@ -1,0 +1,61 @@
+<svg viewBox="0 0 680 450" width="680" height="450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC', 'JetBrains Mono', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="a-cyan" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#22d3ee"/>
+    </marker>
+    <marker id="a-rose" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#fb7185"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="24" y="34" fill="#e2e8f0" font-size="15" font-weight="700">图1 · DiT 算力墙被击穿：O(N²) → 线性 / 稀疏</text>
+  <text x="24" y="52" fill="#64748b" font-size="9.5" class="mono">5s/720p ≈ 115K tokens — dense softmax 16min → SANA-Video 2.0 单卡 13.06s</text>
+  <line x1="24" y1="64" x2="656" y2="64" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- left: dense -->
+  <rect x="24" y="92" width="250" height="150" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="40" y="116" fill="#fb7185" font-size="12" font-weight="700">Dense Softmax 注意力</text>
+  <text x="40" y="136" fill="#e2e8f0" font-size="11" class="mono">复杂度 O(N²)</text>
+  <!-- N x N grid hint -->
+  <g stroke="#475569" stroke-width="1">
+    <rect x="44" y="150" width="120" height="80" fill="none"/>
+    <line x1="84" y1="150" x2="84" y2="230"/>
+    <line x1="124" y1="150" x2="124" y2="230"/>
+    <line x1="44" y1="183" x2="164" y2="183"/>
+    <line x1="44" y1="207" x2="164" y2="207"/>
+  </g>
+  <text x="184" y="196" fill="#94a3b8" font-size="22" font-weight="700" class="mono">N×N</text>
+  <text x="40" y="232" fill="#fbbf24" font-size="11" font-weight="600">≈ 16 分钟 / 5s（H100）</text>
+
+  <!-- arrow -->
+  <line x1="284" y1="167" x2="340" y2="167" stroke="#22d3ee" stroke-width="2" marker-end="url(#a-cyan)"/>
+  <text x="296" y="158" fill="#22d3ee" font-size="10" class="mono">结构替换</text>
+
+  <!-- right: two routes -->
+  <rect x="352" y="84" width="300" height="68" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="368" y="106" fill="#22d3ee" font-size="12" font-weight="700">线性注意力 O(N)</text>
+  <text x="368" y="126" fill="#e2e8f0" font-size="10.5">门控线性 + 周期 softmax 锚 (3:1)</text>
+  <text x="368" y="144" fill="#fbbf24" font-size="10.5" class="mono">DiT 前向 3.2× · +Sol-Engine 3.58×</text>
+
+  <rect x="352" y="166" width="300" height="68" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="368" y="188" fill="#22d3ee" font-size="12" font-weight="700">稀疏滑窗 STA</text>
+  <text x="368" y="208" fill="#e2e8f0" font-size="10.5">局部窗口占 15.52% → 捕获 70%</text>
+  <text x="368" y="226" fill="#fbbf24" font-size="10.5" class="mono">注意力 &gt;10× · 端到端 3.53×</text>
+
+  <!-- bottom result -->
+  <rect x="24" y="276" width="628" height="44" rx="8" fill="#0b3b46" stroke="#22d3ee" stroke-width="1"/>
+  <text x="40" y="303" fill="#a5f3fc" font-size="12" font-weight="700">结果：单 H100 720p/5s = 13.06s，VBench 84.30 —— 算力墙被结构性打穿，单卡实时出片可行</text>
+
+  <text x="24" y="356" fill="#64748b" font-size="9" class="mono">来源：HunyuanVideo 实测 115K tokens；STA 论文；NVIDIA SANA-Video 2.0 (2026-07-23, Junsong Chen et al.)</text>
+  <text x="24" y="372" fill="#64748b" font-size="9" class="mono">注意：线性注意力 O(N) 缩放，STA 无训练、无质量损失；120× vs Wan2.2 为 NVIDIA 自测。</text>
+</svg>

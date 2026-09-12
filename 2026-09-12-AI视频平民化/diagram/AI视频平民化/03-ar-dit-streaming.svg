@@ -1,0 +1,57 @@
+<svg viewBox="0 0 680 450" width="680" height="450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC', 'JetBrains Mono', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="a-cyan" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="24" y="34" fill="#e2e8f0" font-size="15" font-weight="700">图3 · AR-DiT 流式生成：chunk + KV cache + sink/local</text>
+  <text x="24" y="52" fill="#64748b" font-size="9.5" class="mono">把离线一次性生成改造成「即产即播」，让 AI 直播 / 实时 VFX 成为可能</text>
+  <line x1="24" y1="64" x2="656" y2="64" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- chunks row -->
+  <text x="24" y="92" fill="#e2e8f0" font-size="11" font-weight="700">时间轴（流式切分）</text>
+  <rect x="24" y="102" width="120" height="56" rx="6" fill="#0b3b46" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="34" y="124" fill="#a5f3fc" font-size="10.5">Chunk C1</text>
+  <text x="34" y="142" fill="#fbbf24" font-size="9" class="mono">全局 sink</text>
+  <line x1="144" y1="130" x2="172" y2="130" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#a-cyan)"/>
+  <rect x="176" y="102" width="120" height="56" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1"/>
+  <text x="186" y="124" fill="#e2e8f0" font-size="10.5">Chunk C2</text>
+  <text x="186" y="142" fill="#94a3b8" font-size="9" class="mono">playout</text>
+  <line x1="296" y1="130" x2="324" y2="130" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#a-cyan)"/>
+  <rect x="328" y="102" width="120" height="56" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1"/>
+  <text x="338" y="124" fill="#e2e8f0" font-size="10.5">Chunk C3</text>
+  <text x="338" y="142" fill="#94a3b8" font-size="9" class="mono">playout</text>
+  <line x1="448" y1="130" x2="476" y2="130" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#a-cyan)"/>
+  <rect x="480" y="102" width="120" height="56" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="490" y="124" fill="#a5f3fc" font-size="10.5">… 无限延长</text>
+  <text x="490" y="142" fill="#94a3b8" font-size="9" class="mono">sink+local</text>
+
+  <!-- KV cache reuse -->
+  <rect x="24" y="184" width="300" height="46" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1"/>
+  <text x="34" y="206" fill="#22d3ee" font-size="10.5" font-weight="700">KV cache 复用</text>
+  <text x="34" y="223" fill="#94a3b8" font-size="9" class="mono">后续 chunk attend 历史，避免重算</text>
+
+  <rect x="352" y="184" width="304" height="46" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1"/>
+  <text x="362" y="206" fill="#22d3ee" font-size="10.5" font-weight="700">sink + local 策略</text>
+  <text x="362" y="223" fill="#94a3b8" font-size="9" class="mono">C1 存身份 + 近 W 块滑窗保连贯</text>
+
+  <!-- training paradigm + systems -->
+  <rect x="24" y="246" width="628" height="40" rx="6" fill="#0b3b46" stroke="#22d3ee" stroke-width="1"/>
+  <text x="34" y="270" fill="#a5f3fc" font-size="10.5">训练范式：CausVid / Self-Forcing / Rolling Forcing / Causal-Forcing（自回归强制，适应自我条件）</text>
+
+  <rect x="24" y="294" width="628" height="40" rx="6" fill="#0b3b46" stroke="#22d3ee" stroke-width="1"/>
+  <text x="34" y="318" fill="#a5f3fc" font-size="10.5">系统调度：SlackServe（playout-slack）· JoyStreamer-Flash（URCR 无限长）· VideoSSM（抗漂移）</text>
+
+  <text x="24" y="372" fill="#64748b" font-size="9" class="mono">结论：视频生成从「批量作业」→「流式服务」，平民化边界从出片扩到实时在场。</text>
+</svg>

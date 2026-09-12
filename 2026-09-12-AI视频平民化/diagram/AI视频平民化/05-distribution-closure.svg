@@ -1,0 +1,57 @@
+<svg viewBox="0 0 680 450" width="680" height="450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'Noto Sans SC', 'JetBrains Mono', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="a-cyan" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="24" y="34" fill="#e2e8f0" font-size="15" font-weight="700">图5 · 分发平民化闭环：国产三线价格 / 平台 / 开源</text>
+  <text x="24" y="52" fill="#64748b" font-size="9.5" class="mono">Sora 退场（消费端 4/26、API 9/24），国产三线用全链平民化接住需求</text>
+  <line x1="24" y1="64" x2="656" y2="64" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- three columns -->
+  <rect x="24" y="84" width="200" height="150" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="40" y="108" fill="#22d3ee" font-size="12.5" font-weight="700">可灵 Kling（快手）</text>
+  <text x="40" y="130" fill="#e2e8f0" font-size="10">2.0 Master 5–15s</text>
+  <text x="40" y="148" fill="#e2e8f0" font-size="10">可选音轨 · 最长 3 分钟</text>
+  <text x="40" y="166" fill="#e2e8f0" font-size="10">角色一致性极强</text>
+  <text x="40" y="186" fill="#fbbf24" font-size="9.5" class="mono">~$2.10–4.20 / 条</text>
+  <text x="40" y="204" fill="#94a3b8" font-size="9" class="mono">图生视频 + Motion Brush</text>
+
+  <rect x="240" y="84" width="200" height="150" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="256" y="108" fill="#22d3ee" font-size="12.5" font-weight="700">通义万相 Wan3.0</text>
+  <text x="256" y="130" fill="#e2e8f0" font-size="10">阿里 · 2026-08-24 上线</text>
+  <text x="256" y="148" fill="#e2e8f0" font-size="10">原生 30s · 4 模态参考</text>
+  <text x="256" y="166" fill="#e2e8f0" font-size="10">像素级一致 · 部分开源</text>
+  <text x="256" y="186" fill="#fbbf24" font-size="9.5" class="mono">API 0.3/0.6/1.2 元·秒</text>
+  <text x="256" y="204" fill="#94a3b8" font-size="9" class="mono">480/720/1080P</text>
+
+  <rect x="456" y="84" width="200" height="150" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="472" y="108" fill="#22d3ee" font-size="12.5" font-weight="700">Seedance 2.5（字节）</text>
+  <text x="472" y="130" fill="#e2e8f0" font-size="10">2026-07-31 发布</text>
+  <text x="472" y="148" fill="#e2e8f0" font-size="10">单次 30s · 50 参考</text>
+  <text x="472" y="166" fill="#e2e8f0" font-size="10">局部编辑 · 统一音视频</text>
+  <text x="472" y="186" fill="#fbbf24" font-size="9.5" class="mono">豆包/即梦/火山 API</text>
+  <text x="472" y="204" fill="#94a3b8" font-size="9" class="mono">支持数分钟连贯</text>
+
+  <!-- converge -->
+  <line x1="124" y1="234" x2="300" y2="268" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#a-cyan)"/>
+  <line x1="340" y1="234" x2="340" y2="268" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#a-cyan)"/>
+  <line x1="556" y1="234" x2="380" y2="268" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#a-cyan)"/>
+
+  <rect x="180" y="276" width="320" height="44" rx="8" fill="#0b3b46" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="196" y="303" fill="#a5f3fc" font-size="12" font-weight="700">价格 + 平台 + 开源 → 想做就做</text>
+
+  <text x="24" y="356" fill="#64748b" font-size="9" class="mono">闭源高价单点（Sora）只解「模型强」；国产三线补上「编辑-分发-变现」全链，平民化才立得住。</text>
+  <text x="24" y="372" fill="#64748b" font-size="9" class="mono">成本对比见代码 02（基于公开 API 刊例的量级估算，不承诺精确降幅）。</text>
+</svg>
