@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text { font-family: "JetBrains Mono","Menlo","Noto Sans SC","PingFang SC","Microsoft YaHei",monospace; fill:#e2e8f0; }
+      .t { font-size:18px; fill:#22d3ee; font-weight:bold; }
+      .s { font-size:12px; fill:#94a3b8; }
+      .b { font-size:13px; fill:#e2e8f0; }
+      .c { font-size:12px; fill:#22d3ee; }
+      .r { font-size:12px; fill:#fb7185; }
+      .a { font-size:12px; fill:#fbbf24; }
+    </style>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="34" class="t">CSA2：跨层复用稀疏注意力（Full / Reindex / Reuse）</text>
+
+  <!-- Full column -->
+  <rect x="24" y="70" width="190" height="120" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="119" y="98" text-anchor="middle" class="c">Full 层（首个）</text>
+  <text x="119" y="122" text-anchor="middle" class="b">对所有可见位置打分</text>
+  <text x="119" y="142" text-anchor="middle" class="b">按最大索引分选 block</text>
+  <text x="119" y="166" text-anchor="middle" class="a">共享候选池</text>
+  <text x="119" y="184" text-anchor="middle" class="a">2048 块 × 8 = 16384</text>
+
+  <!-- Reindex column -->
+  <rect x="245" y="70" width="190" height="120" rx="6" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="340" y="98" text-anchor="middle" class="r">Reindex 层</text>
+  <text x="340" y="122" text-anchor="middle" class="b">只搜共享候选池</text>
+  <text x="340" y="142" text-anchor="middle" class="b">（不再扫全量位置）</text>
+  <text x="340" y="166" text-anchor="middle" class="c">取 Top-512 位置</text>
+  <text x="340" y="184" text-anchor="middle" class="s">算力 ∝ 候选池规模</text>
+
+  <!-- Reuse column -->
+  <rect x="466" y="70" width="190" height="120" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="561" y="98" text-anchor="middle" class="a">Reuse 跨层共享</text>
+  <text x="561" y="122" text-anchor="middle" class="b">主 KV 共享</text>
+  <text x="561" y="142" text-anchor="middle" class="b">索引器 K 共享</text>
+  <text x="561" y="166" text-anchor="middle" class="b">不每层独立存</text>
+  <text x="561" y="184" text-anchor="middle" class="s">结构性压缩来源</text>
+
+  <!-- arrows between columns -->
+  <line x1="214" y1="130" x2="243" y2="130" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="243,130 235,126 235,134" fill="#64748b"/>
+  <line x1="435" y1="130" x2="464" y2="130" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="464,130 456,126 456,134" fill="#64748b"/>
+
+  <!-- bottom note -->
+  <rect x="24" y="220" width="632" height="120" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="250" class="b">层级稀疏索引器：只有 Full 层付出全量打分代价，其余层在已建候选池里取 Top-k。</text>
+  <text x="40" y="274" class="b">候选池固定 16384 位置 → 每层 attention 的 KV 读写被压到池规模而非全上下文。</text>
+  <text x="40" y="298" class="c">CSA2 跨层复用 + SWA 有界重放 = 脚本测得的结构性贡献 1.125x。</text>
+  <text x="40" y="322" class="s">风险：cache-resumption（持久化恢复）边界，报告称仍需更多压力测试。</text>
+
+  <!-- indexer K shared across layers示意 -->
+  <text x="24" y="372" class="s">跨层共享示意（索引器 K 只建一次）：</text>
+  <g fill="#0e7490" stroke="#22d3ee" stroke-width="1">
+    <rect x="24" y="386" width="120" height="26" rx="3"/>
+    <rect x="152" y="386" width="120" height="26" rx="3"/>
+    <rect x="280" y="386" width="120" height="26" rx="3"/>
+    <rect x="408" y="386" width="120" height="26" rx="3"/>
+  </g>
+  <text x="84" y="403" text-anchor="middle" class="c">层1 共享</text>
+  <text x="212" y="403" text-anchor="middle" class="c">层2 共享</text>
+  <text x="340" y="403" text-anchor="middle" class="c">层3 共享</text>
+  <text x="468" y="403" text-anchor="middle" class="c">层4 共享</text>
+</svg>

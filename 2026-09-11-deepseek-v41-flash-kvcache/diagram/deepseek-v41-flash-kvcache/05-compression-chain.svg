@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text { font-family: "JetBrains Mono","Menlo","Noto Sans SC","PingFang SC","Microsoft YaHei",monospace; fill:#e2e8f0; }
+      .t { font-size:18px; fill:#22d3ee; font-weight:bold; }
+      .s { font-size:12px; fill:#94a3b8; }
+      .b { font-size:14px; fill:#e2e8f0; }
+      .c { font-size:13px; fill:#22d3ee; }
+      .r { font-size:13px; fill:#fb7185; }
+      .a { font-size:13px; fill:#fbbf24; }
+    </style>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="34" class="t">KV 压缩比链条：从 V1 到 V4.1 Flash</text>
+
+  <!-- V1 box -->
+  <rect x="90" y="70" width="500" height="64" rx="6" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="340" y="98" text-anchor="middle" class="r" font-size="16">V1　388,930 B / token</text>
+  <text x="340" y="120" text-anchor="middle" class="s">基线（约 437x 压缩起点）</text>
+
+  <!-- arrow ÷437 -->
+  <line x1="340" y1="134" x2="340" y2="160" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="340,160 336,152 344,152" fill="#64748b"/>
+  <text x="356" y="152" class="a">÷ 437x</text>
+
+  <!-- V4-Flash box -->
+  <rect x="170" y="160" width="340" height="64" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="188" text-anchor="middle" class="a" font-size="16">V4-Flash　3,560 B / token</text>
+  <text x="340" y="210" text-anchor="middle" class="s">上一代 Flash</text>
+
+  <!-- arrow ÷4.0 -->
+  <line x1="340" y1="224" x2="340" y2="250" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="340,250 336,242 344,242" fill="#64748b"/>
+  <text x="356" y="242" class="c">÷ 4.0x</text>
+
+  <!-- V4.1 Flash box -->
+  <rect x="230" y="250" width="220" height="64" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="340" y="278" text-anchor="middle" class="c" font-size="16">V4.1 Flash　890 B / token</text>
+  <text x="340" y="300" text-anchor="middle" class="s">≈ 0.89 GB / 1M token</text>
+
+  <!-- bottom note -->
+  <rect x="24" y="340" width="632" height="86" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="370" class="b">890 B/token 由四项叠加：CED 结构 + FP4 量化(×3.56) + CSA2 跨层复用 + SWA 有界重放。</text>
+  <text x="40" y="394" class="s">精度贡献 3.56x，结构性贡献 1.125x，合计 ≈ 4.0x（脚本实测，非厂商宣传口径外推）。</text>
+  <text x="40" y="416" class="s">HBM 需求 ≈ 1/4，SSD 需求 ≈ 1/8；1M 上下文从"装不下"变"消费级可跑"。</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text { font-family: "JetBrains Mono","Menlo","Noto Sans SC","PingFang SC","Microsoft YaHei",monospace; fill:#e2e8f0; }
+      .t { font-size:18px; fill:#22d3ee; font-weight:bold; }
+      .s { font-size:12px; fill:#94a3b8; }
+      .b { font-size:13px; fill:#e2e8f0; }
+      .c { font-size:12px; fill:#22d3ee; }
+      .r { font-size:12px; fill:#fb7185; }
+      .a { font-size:12px; fill:#fbbf24; }
+    </style>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="34" class="t">Causal Encoder-Decoder (CED) = 20 编码 + 20 解码</text>
+
+  <!-- Encoder -->
+  <rect x="20" y="120" width="150" height="90" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="95" y="158" text-anchor="middle" class="b">20 层</text>
+  <text x="95" y="178" text-anchor="middle" class="b">因果编码器</text>
+  <text x="95" y="104" text-anchor="middle" class="c">N 输入 token（大，如 1M）</text>
+
+  <!-- arrow encoder -> hidden -->
+  <line x1="170" y1="165" x2="218" y2="165" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="218,165 210,161 210,169" fill="#64748b"/>
+
+  <!-- hidden state ellipse -->
+  <ellipse cx="252" cy="165" rx="34" ry="22" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="252" y="169" text-anchor="middle" class="s">隐状态</text>
+
+  <!-- arrow hidden -> projection -->
+  <line x1="286" y1="165" x2="320" y2="165" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="320,165 312,161 312,169" fill="#64748b"/>
+
+  <!-- projection -->
+  <rect x="320" y="135" width="180" height="60" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="410" y="160" text-anchor="middle" class="a">各解码层线性投影</text>
+  <text x="410" y="180" text-anchor="middle" class="a">→ 一次性映射全局 KV</text>
+
+  <!-- arrow projection down -> global KV -->
+  <line x1="410" y1="195" x2="410" y2="232" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="410,232 406,224 414,224" fill="#64748b"/>
+
+  <!-- global KV node -->
+  <rect x="345" y="232" width="130" height="50" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="410" y="255" text-anchor="middle" class="c">全局 KV</text>
+  <text x="410" y="272" text-anchor="middle" class="s">不逐层重算</text>
+
+  <!-- arrow global KV -> decoder -->
+  <line x1="475" y1="257" x2="505" y2="257" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="505,257 497,253 497,261" fill="#64748b"/>
+
+  <!-- Decoder -->
+  <rect x="505" y="120" width="155" height="90" rx="6" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="582" y="158" text-anchor="middle" class="b">20 层</text>
+  <text x="582" y="178" text-anchor="middle" class="b">解码器</text>
+  <text x="582" y="104" text-anchor="middle" class="r">n 新 token（小，如 1）</text>
+
+  <!-- bottom note -->
+  <rect x="24" y="320" width="632" height="92" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="350" class="b">Prefill 算力：编码器对 N × 20 层 + 解码器对 n × 20 层</text>
+  <text x="40" y="374" class="c">≈ O(N·L/2 + n·L/2)，长上下文(N≫n)时相对传统 O(N·L) 近乎减半（实测 2.000x）</text>
+  <text x="40" y="398" class="s">解码器只读全局 KV、不写每层 KV：KV 生成的重活前移到编码器的线性投影一次性完成</text>
+</svg>

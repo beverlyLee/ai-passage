@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text { font-family: "JetBrains Mono","Menlo","Noto Sans SC","PingFang SC","Microsoft YaHei",monospace; fill:#e2e8f0; }
+      .t { font-size:18px; fill:#22d3ee; font-weight:bold; }
+      .s { font-size:12px; fill:#94a3b8; }
+      .b { font-size:13px; fill:#e2e8f0; }
+      .c { font-size:12px; fill:#22d3ee; }
+      .r { font-size:12px; fill:#fb7185; }
+      .a { font-size:12px; fill:#fbbf24; }
+    </style>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="34" class="t">SWA 有界重放：持久化前缀剔除局部 KV</text>
+
+  <!-- persisted prefix cache -->
+  <rect x="24" y="80" width="300" height="70" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="174" y="108" text-anchor="middle" class="c">持久化前缀缓存（全局 KV + 远程 KV）</text>
+  <text x="174" y="130" text-anchor="middle" class="s">已剔除 SWA 局部 KV → 跨请求复用</text>
+
+  <!-- arrow down to replay -->
+  <line x1="174" y1="150" x2="174" y2="186" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="174,186 170,178 178,178" fill="#64748b"/>
+
+  <!-- tail replay -->
+  <rect x="24" y="186" width="300" height="70" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="174" y="214" text-anchor="middle" class="a">回放尾部 128 token 近似重建</text>
+  <text x="174" y="236" text-anchor="middle" class="s">理论精确重放长度 2560，截断为 128</text>
+
+  <!-- right: numbers -->
+  <rect x="360" y="80" width="296" height="176" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="376" y="110" class="b">持久化 KV 占 V4-Flash 约</text>
+  <text x="376" y="146" class="c" font-size="26">1/8</text>
+  <text x="376" y="178" class="s">全局 KV 890 B/token 已含此收益</text>
+  <line x1="376" y1="196" x2="640" y2="196" stroke="#334155"/>
+  <text x="376" y="222" class="r">风险点</text>
+  <text x="376" y="244" class="s">cache-resumption 边界</text>
+
+  <!-- bottom note -->
+  <rect x="24" y="290" width="632" height="130" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="320" class="b">思路：滑动窗口注意力（SWA）的局部 KV 不进持久化缓存，恢复时只回放尾部一小段近似重建。</text>
+  <text x="40" y="344" class="b">代价：回放段越长越精确；V4.1 用 128 token 截断，换取持久化体积的进一步下降。</text>
+  <text x="40" y="368" class="c">实测数字：全局 KV 890 B/token 已综合 CED + FP4 + CSA2 + SWA 四项收益。</text>
+  <text x="40" y="392" class="s">边界：报告明确「cache-resumption boundaries 仍需更多压力测试」——工程落地别盲目信 1/8。</text>
+</svg>
