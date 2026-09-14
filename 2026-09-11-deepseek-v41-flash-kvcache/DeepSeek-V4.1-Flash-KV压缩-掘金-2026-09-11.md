@@ -168,9 +168,19 @@ python3 02-ced-prefill-complexity.py --self-test # SELF-TEST PASS
 
 ## 参考来源
 
-- DeepSeek-V4.1-Flash 技术报告（2026-09-10，官方公众号发布）
-- 多源交叉核实：腾讯新闻 / 新浪科技 / Sohu / Zhihu 技术解读（2026-09-10 至 09-12），CED、890 B/token、CSA2、FP4、SWA Bounded Replay、定价、基准数字一致
-- 本文配套代码：`code/deepseek-v41-flash-kvcache/`（01-kv-cache-arithmetic.py、02-ced-prefill-complexity.py）
+### 一手数据源（官方 / 权重仓库）
+- 模型权重与技术报告（MIT，Hugging Face）：https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash
+- 技术报告 PDF：https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/DeepSeek_V41_Tech_Report.pdf
+- 官方发布公告（中文 API 文档，2026-09-10）：https://api-docs.deepseek.com/zh-cn/news/news260910/
+- 官方英文公告：https://www.deepseek.com/en/news/deepseek-v4-1-flash/
+
+### 交叉核实（CED / 890 B·token⁻¹ / CSA2 / FP4 / SWA / 定价 / 基准）
+- 腾讯新闻（机器之心）：https://news.qq.com/rain/a/20260910A081G100
+- Baseten 技术解读：https://www.baseten.co/blog/deepseek-v41-flash-more-efficient-prefill-for-coding-agents
+- 多家媒体 2026-09-10 至 09-12 发布，关键数字一致（CED、890 B/token、CSA2、FP4、SWA Bounded Replay、定价、基准）
+
+### 本文配套代码
+- `code/deepseek-v41-flash-kvcache/`（01-kv-cache-arithmetic.py、02-ced-prefill-complexity.py）
 
 ## 配图（发布前替换为掘金 CDN）
 
