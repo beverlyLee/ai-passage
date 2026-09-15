@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="Noto Sans SC, sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="40" x2="680" y2="40"/>
+    <line x1="0" y1="90" x2="680" y2="90"/>
+    <line x1="0" y1="140" x2="680" y2="140"/>
+    <line x1="0" y1="190" x2="680" y2="190"/>
+    <line x1="0" y1="240" x2="680" y2="240"/>
+    <line x1="0" y1="290" x2="680" y2="290"/>
+    <line x1="0" y1="340" x2="680" y2="340"/>
+    <line x1="0" y1="390" x2="680" y2="390"/>
+  </g>
+  <text x="24" y="30" fill="#e2e8f0" font-size="18" font-weight="700">客服 Agent 链路全景：一句话进、一句话出，中间藏着四个翻车点</text>
+
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- 5 boxes -->
+  <g font-size="14" text-anchor="middle">
+    <rect x="20"  y="170" width="105" height="60" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="72"  y="196" fill="#e2e8f0">用户</text>
+    <text x="72"  y="216" fill="#94a3b8" font-size="11">一句话</text>
+
+    <rect x="145" y="170" width="105" height="60" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="197" y="196" fill="#e2e8f0">意图识别</text>
+    <text x="197" y="216" fill="#94a3b8" font-size="11">分类路由</text>
+
+    <rect x="270" y="170" width="105" height="60" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="322" y="196" fill="#e2e8f0">RAG 检索</text>
+    <text x="322" y="216" fill="#94a3b8" font-size="11">找知识</text>
+
+    <rect x="395" y="170" width="105" height="60" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="447" y="196" fill="#e2e8f0">工具调用</text>
+    <text x="447" y="216" fill="#94a3b8" font-size="11">查单/退款</text>
+
+    <rect x="520" y="170" width="105" height="60" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="572" y="196" fill="#e2e8f0">生成回复</text>
+    <text x="572" y="216" fill="#94a3b8" font-size="11">LLM 出字</text>
+
+    <line x1="125" y1="200" x2="142" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+    <line x1="250" y1="200" x2="267" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+    <line x1="375" y1="200" x2="392" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+    <line x1="500" y1="200" x2="517" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+  </g>
+
+  <!-- 4 failure callouts -->
+  <g font-size="12">
+    <rect x="20"  y="255" width="315" height="36" rx="6" fill="#3b1d24" stroke="#fb7185" stroke-width="1"/>
+    <text x="32" y="272" fill="#fb7185" font-weight="700">① 延迟</text>
+    <text x="78" y="272" fill="#e2e8f0">链路长 → TTFT 3–5s → 90% 转人工</text>
+    <text x="32" y="286" fill="#94a3b8" font-size="10">延迟来自 意图+检索+工具+生成 逐项累加</text>
+
+    <rect x="345" y="255" width="315" height="36" rx="6" fill="#3b1d24" stroke="#fb7185" stroke-width="1"/>
+    <text x="357" y="272" fill="#fb7185" font-weight="700">② 幻觉</text>
+    <text x="403" y="272" fill="#e2e8f0">RAG 不准 → 编造退款 ID / 误发券</text>
+    <text x="357" y="286" fill="#94a3b8" font-size="10">LLM 概率生成 + 缺事实约束</text>
+
+    <rect x="20"  y="300" width="315" height="36" rx="6" fill="#3b1d24" stroke="#fb7185" stroke-width="1"/>
+    <text x="32" y="317" fill="#fb7185" font-weight="700">③ 上下文污染</text>
+    <text x="118" y="317" fill="#e2e8f0">窗口有限 → turn 6+ 错乱</text>
+    <text x="32" y="331" fill="#94a3b8" font-size="10">长对话摘要丢失 / recency bias</text>
+
+    <rect x="345" y="300" width="315" height="36" rx="6" fill="#3b1d24" stroke="#fb7185" stroke-width="1"/>
+    <text x="357" y="317" fill="#fb7185" font-weight="700">④ 静默失败</text>
+    <text x="419" y="317" fill="#e2e8f0">工具报错被圆成正常 → 23% 未被发现</text>
+    <text x="357" y="331" fill="#94a3b8" font-size="10">缺校验 / 缺人工确认</text>
+  </g>
+
+  <text x="24" y="365" fill="#94a3b8" font-size="12">四个点不是孤立的：延迟高会逼用户转人工，幻觉和静默失败在转人工前已经发生，上下文污染让前三个随时间恶化。</text>
+</svg>

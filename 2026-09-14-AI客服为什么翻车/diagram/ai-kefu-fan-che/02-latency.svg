@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="Noto Sans SC, sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="60" x2="680" y2="60"/>
+    <line x1="0" y1="130" x2="680" y2="130"/>
+    <line x1="0" y1="200" x2="680" y2="200"/>
+    <line x1="0" y1="300" x2="680" y2="300"/>
+  </g>
+  <text x="24" y="38" fill="#e2e8f0" font-size="18" font-weight="700">延迟瀑布：TTFT 3–5s 是怎么堆出来的</text>
+  <text x="24" y="58" fill="#94a3b8" font-size="12">每一次对话都要把下面三段串行跑完，任何一段变慢都直接加到用户等待上</text>
+
+  <!-- waterfall bar -->
+  <g font-size="12">
+    <rect x="120" y="100" width="182" height="44" rx="4" fill="#22d3ee"/>
+    <rect x="302" y="100" width="121" height="44" rx="4" fill="#22d3ee"/>
+    <rect x="423" y="100" width="145" height="44" rx="4" fill="#22d3ee"/>
+
+    <text x="211" y="92" fill="#22d3ee" text-anchor="middle">1.5s</text>
+    <text x="363" y="92" fill="#22d3ee" text-anchor="middle">1.0s</text>
+    <text x="496" y="92" fill="#22d3ee" text-anchor="middle">1.2s</text>
+
+    <text x="211" y="127" fill="#0f172a" text-anchor="middle" font-weight="700">RAG 检索</text>
+    <text x="363" y="127" fill="#0f172a" text-anchor="middle" font-weight="700">工具调用</text>
+    <text x="496" y="127" fill="#0f172a" text-anchor="middle" font-weight="700">生成首字</text>
+
+    <text x="110" y="170" fill="#94a3b8" font-size="11" text-anchor="end">合计</text>
+    <text x="120" y="170" fill="#e2e8f0" font-size="13" font-weight="700">TTFT ≈ 3.7s（单轮带工具；批量平均 3497.9ms≈3.5s）</text>
+  </g>
+
+  <!-- 90% handoff callout -->
+  <rect x="120" y="210" width="500" height="60" rx="8" fill="#3b1d24" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="140" y="238" fill="#fb7185" font-size="15" font-weight="700">TTFT 3–5s → 90% 用户等不及，直接转人工</text>
+  <text x="140" y="260" fill="#e2e8f0" font-size="12">BestHub 案例：客服 agent 上线一周，因响应慢 90% 会话回流人工，agent 形同虚设</text>
+
+  <g font-size="12" fill="#94a3b8">
+    <text x="120" y="320">为什么慢：</text>
+    <text x="120" y="344">· RAG 检索要跨知识库向量搜索，常占延迟大头（1–1.5s）</text>
+    <text x="120" y="366">· 工具调用走网络 API，第三方限流时单点可飙到数秒</text>
+    <text x="120" y="388">· 多轮对话里每段都要重跑检索，延迟随轮次累加，不会因"聊过"而变快</text>
+  </g>
+</svg>

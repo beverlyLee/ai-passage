@@ -1,0 +1,6 @@
+# 配图渲染中间产物（Chrome 截图包裹 HTML），可经 render_svgs.py 复现，不入仓
+*_render.html
+
+# Python
+__pycache__/
+*.pyc

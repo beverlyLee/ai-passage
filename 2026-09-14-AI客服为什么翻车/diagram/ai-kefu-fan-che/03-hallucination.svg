@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="Noto Sans SC, sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="34" fill="#e2e8f0" font-size="18" font-weight="700">幻觉：Agent 越自信，编造越难被发现</text>
+  <text x="24" y="54" fill="#94a3b8" font-size="12">LLM 是概率补全引擎 + RAG 检索不准 + 缺事实约束 → 它不会说"我不知道"，而是自信地编</text>
+
+  <g font-size="13">
+    <!-- card 1 -->
+    <rect x="24" y="72" width="632" height="92" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1"/>
+    <text x="40" y="98" fill="#fbbf24" font-weight="700">① 编造退款 ID</text>
+    <text x="40" y="120" fill="#94a3b8" font-size="12">用户：我要退款</text>
+    <text x="40" y="144" fill="#fb7185" font-size="12">Agent：您的退款单号是 RF123，请留意查收。   ← 非法格式，查无此单</text>
+
+    <!-- card 2 -->
+    <rect x="24" y="176" width="632" height="92" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1"/>
+    <text x="40" y="202" fill="#fbbf24" font-weight="700">② 误发大额券（LangChain 电商事故）</text>
+    <text x="40" y="224" fill="#94a3b8" font-size="12">用户：我的券怎么用</text>
+    <text x="40" y="248" fill="#fb7185" font-size="12">Agent：已为您发放 1000 元无门槛券。（误发大额券，典型幻觉后果）</text>
+
+    <!-- card 3 -->
+    <rect x="24" y="280" width="632" height="92" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1"/>
+    <text x="40" y="306" fill="#fbbf24" font-weight="700">③ 泄露内部折扣规则</text>
+    <text x="40" y="328" fill="#94a3b8" font-size="12">用户：有什么优惠</text>
+    <text x="40" y="352" fill="#fb7185" font-size="12">Agent：618 规则是满 300 减 50，不与会员券叠加。   ← 本该保密，被念出来了</text>
+  </g>
+
+  <text x="24" y="412" fill="#94a3b8" font-size="12">修复方向：退款 ID 格式校验 + 工具返回即落库不靠模型复述 + 敏感规则进「拒绝回答」白名单 + 关键动作人工确认。</text>
+</svg>

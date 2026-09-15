@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="Noto Sans SC, sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="34" fill="#e2e8f0" font-size="18" font-weight="700">数字对照：机制模拟器复现的翻车率，离真实事故有多近</text>
+  <text x="24" y="54" fill="#94a3b8" font-size="12">模拟：本地跑 2000 会话、零 API 调用；公开真实：BestHub / LangChain / Traversaal / Klarna 公开复盘（见文章参考来源）</text>
+
+  <!-- legend -->
+  <g font-size="12">
+    <rect x="24"  y="70" width="14" height="14" rx="3" fill="#22d3ee"/>
+    <text x="44"  y="82" fill="#e2e8f0">本篇模拟复现</text>
+    <rect x="170" y="70" width="14" height="14" rx="3" fill="#fb7185"/>
+    <text x="190" y="82" fill="#e2e8f0">公开真实数字</text>
+  </g>
+
+  <!-- bars: x=230, scale pct*4.2, cap width 420 -->
+  <g font-size="13">
+    <!-- Row 1 转人工率 -->
+    <text x="24" y="120" fill="#e2e8f0" font-weight="700">转人工率</text>
+    <rect x="230" y="106" width="335" height="22" rx="4" fill="#22d3ee"/>
+    <text x="573" y="122" fill="#22d3ee" font-size="12">79.8%</text>
+    <rect x="230" y="132" width="378" height="22" rx="4" fill="#fb7185"/>
+    <text x="616" y="148" fill="#fb7185" font-size="12">≈90%</text>
+
+    <!-- Row 2 静默失败率 -->
+    <text x="24" y="192" fill="#e2e8f0" font-weight="700">静默失败率</text>
+    <rect x="230" y="178" width="74" height="22" rx="4" fill="#22d3ee"/>
+    <text x="310" y="194" fill="#22d3ee" font-size="12">17.5%</text>
+    <rect x="230" y="204" width="97" height="22" rx="4" fill="#fb7185"/>
+    <text x="333" y="220" fill="#fb7185" font-size="12">23%</text>
+
+    <!-- Row 3 幻觉率 -->
+    <text x="24" y="264" fill="#e2e8f0" font-weight="700">幻觉率</text>
+    <rect x="230" y="250" width="111" height="22" rx="4" fill="#22d3ee"/>
+    <text x="347" y="266" fill="#22d3ee" font-size="12">26.5%</text>
+    <text x="230" y="290" fill="#fb7185" font-size="11">真实：多家事故定性存在，无统一口径（BestHub 退款 ID 虚构、Klarna deflection 掩盖 resolution 等）</text>
+
+    <!-- Row 4 TTFT -->
+    <text x="24" y="328" fill="#e2e8f0" font-weight="700">平均 TTFT</text>
+    <rect x="230" y="314" width="147" height="22" rx="4" fill="#22d3ee"/>
+    <text x="383" y="330" fill="#22d3ee" font-size="12">3.50s</text>
+    <rect x="230" y="340" width="210" height="22" rx="4" fill="#fb7185"/>
+    <text x="446" y="356" fill="#fb7185" font-size="12">3–5s</text>
+  </g>
+
+  <text x="24" y="392" fill="#94a3b8" font-size="12">结论：四类机制用最简参数即可复现同量级翻车——说明翻车不是「模型不够聪明」，而是链路结构本身的天花板。</text>
+  <text x="24" y="414" fill="#475569" font-size="11">注：模拟为结构复现，非对任一企业的精确拟合；公开数字来自不同样本，仅作量级对照。</text>
+</svg>
