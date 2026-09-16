@@ -1,0 +1,58 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="80" x2="680" y2="80"/>
+    <line x1="0" y1="330" x2="680" y2="330"/>
+  </g>
+  <text x="340" y="46" fill="#e2e8f0" font-size="20" text-anchor="middle" font-weight="bold">文件事件从哪来：内核 syscall 流水账</text>
+
+  <!-- 应用层意图 -->
+  <rect x="30" y="110" width="120" height="80" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="90" y="142" fill="#22d3ee" font-size="14" text-anchor="middle" font-weight="bold">应用意图</text>
+  <text x="90" y="166" fill="#94a3b8" font-size="12" text-anchor="middle">「保存一次」</text>
+  <text x="90" y="184" fill="#22d3ee" font-size="11" text-anchor="middle">= 1 个意图</text>
+
+  <!-- 内核 VFS + syscall 流 -->
+  <rect x="180" y="100" width="250" height="100" rx="10" fill="#0b1f33" stroke="#334155" stroke-width="2"/>
+  <text x="305" y="120" fill="#cbd5e1" font-size="12" text-anchor="middle">内核 VFS 层：syscall 逐个命中路径</text>
+  <g fill="#0b2433" stroke="#fbbf24" stroke-width="1.5">
+    <rect x="196" y="132" width="52" height="26" rx="4"/><text x="222" y="149" fill="#fbbf24" font-size="10" text-anchor="middle">create</text>
+    <rect x="256" y="132" width="52" height="26" rx="4"/><text x="282" y="149" fill="#fbbf24" font-size="10" text-anchor="middle">modify</text>
+    <rect x="316" y="132" width="52" height="26" rx="4"/><text x="342" y="149" fill="#fbbf24" font-size="10" text-anchor="middle">rename</text>
+    <rect x="376" y="132" width="44" height="26" rx="4"/><text x="398" y="149" fill="#fbbf24" font-size="10" text-anchor="middle">mod</text>
+  </g>
+  <text x="305" y="184" fill="#94a3b8" font-size="11" text-anchor="middle">= 4 个 syscall 副作用</text>
+
+  <!-- watch 机制入队 -->
+  <rect x="460" y="110" width="120" height="80" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="520" y="138" fill="#22d3ee" font-size="13" text-anchor="middle" font-weight="bold">watch 机制</text>
+  <text x="520" y="158" fill="#94a3b8" font-size="10" text-anchor="middle">inotify</text>
+  <text x="520" y="172" fill="#94a3b8" font-size="10" text-anchor="middle">kqueue/FSEvents</text>
+  <text x="520" y="186" fill="#94a3b8" font-size="10" text-anchor="middle">ReadDirChangesW</text>
+
+  <!-- 箭头 -->
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <path d="M150 150 H178"/>
+    <path d="M430 150 H458"/>
+  </g>
+  <g fill="#64748b">
+    <path d="M178 150 l-8 -4 v8 z"/>
+    <path d="M458 150 l-8 -4 v8 z"/>
+  </g>
+
+  <!-- 底部 Watcher 拿到 4 事件 -->
+  <rect x="200" y="350" width="280" height="60" rx="10" fill="#2a1f0b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="340" y="376" fill="#fbbf24" font-size="13" text-anchor="middle" font-weight="bold">Watcher 实际拿到 4 个事件</text>
+  <text x="340" y="398" fill="#94a3b8" font-size="11" text-anchor="middle">意图 1 个 ≠ 事件 4 个：拿到的是内核流水账</text>
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <path d="M520 190 V320 H340 V348"/>
+  </g>
+  <g fill="#64748b">
+    <path d="M340 348 l-4 -8 h8 z"/>
+  </g>
+
+  <text x="340" y="312" fill="#64748b" font-size="10" text-anchor="middle">入队后投递</text>
+</svg>
