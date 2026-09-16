@@ -1,0 +1,41 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="46" fill="#e2e8f0" font-size="20" text-anchor="middle" font-weight="bold">踩坑⑤ 静默失败：连接断了 Agent 还以为成了（呼应#23）</text>
+
+  <rect x="40" y="90" width="200" height="60" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="140" y="118" fill="#22d3ee" font-size="13" text-anchor="middle" font-weight="bold">Agent 定时轮询</text>
+  <text x="140" y="138" fill="#94a3b8" font-size="11" text-anchor="middle">IMAP</text>
+
+  <rect x="290" y="90" width="140" height="60" rx="10" fill="#2a1f0b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="360" y="118" fill="#fbbf24" font-size="13" text-anchor="middle" font-weight="bold">IMAP 连接</text>
+  <text x="360" y="138" fill="#94a3b8" font-size="11" text-anchor="middle">健康?</text>
+
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <path d="M240 120 H288"/>
+    <path d="M430 120 L500 120 L500 150"/>
+    <path d="M360 150 V200"/>
+  </g>
+
+  <!-- 健康 -->
+  <rect x="290" y="210" width="140" height="60" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="360" y="238" fill="#22d3ee" font-size="12" text-anchor="middle" font-weight="bold">✅ 健康</text>
+  <text x="360" y="258" fill="#94a3b8" font-size="11" text-anchor="middle">正常执行</text>
+
+  <!-- 断连-吞异常 -->
+  <rect x="500" y="160" width="150" height="76" rx="10" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="575" y="186" fill="#fb7185" font-size="12" text-anchor="middle" font-weight="bold">❌ 吞掉异常</text>
+  <text x="575" y="208" fill="#94a3b8" font-size="10" text-anchor="middle">假成功: 以为处理了</text>
+  <text x="575" y="224" fill="#94a3b8" font-size="10" text-anchor="middle">邮件实则滞留</text>
+
+  <!-- 断连-抛告警 -->
+  <rect x="500" y="270" width="150" height="76" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="575" y="296" fill="#22d3ee" font-size="12" text-anchor="middle" font-weight="bold">✅ 抛 ActionAlert</text>
+  <text x="575" y="318" fill="#94a3b8" font-size="10" text-anchor="middle">运维收到告警</text>
+  <text x="575" y="334" fill="#94a3b8" font-size="10" text-anchor="middle">重试 / 人工介入</text>
+
+  <rect x="40" y="392" width="600" height="36" rx="6" fill="#2a1f0b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="415" fill="#fbbf24" font-size="12" text-anchor="middle">静默吞异常 = 最隐蔽的 bug：系统看起来在跑，实则已停摆（#23 AI 客服翻车同源）</text>
+</svg>

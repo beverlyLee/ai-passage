@@ -1,0 +1,37 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="46" fill="#e2e8f0" font-size="20" text-anchor="middle" font-weight="bold">踩坑② 隐私泄露：敏感信息明文落库</text>
+
+  <rect x="40" y="80" width="600" height="56" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="60" y="104" fill="#e2e8f0" font-size="12">邮件正文: 身份证 11010119900307651X ｜ 银行卡 6222021234567890123 ｜ api_key=sk-abc123def</text>
+  <text x="60" y="126" fill="#94a3b8" font-size="11">落库前若不脱敏，这些字段会以明文进数据库</text>
+
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <path d="M200 136 V198"/>
+    <path d="M480 136 V198"/>
+  </g>
+
+  <!-- 左：危险 -->
+  <rect x="40" y="200" width="290" height="200" rx="10" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="60" y="230" fill="#fb7185" font-size="14" font-weight="bold">❌ 直接落库</text>
+  <text x="60" y="262" fill="#94a3b8" font-size="12">数据库明文存储:</text>
+  <text x="60" y="292" fill="#fb7185" font-size="12">11010119900307651X</text>
+  <text x="60" y="316" fill="#fb7185" font-size="12">6222021234567890123</text>
+  <text x="60" y="358" fill="#94a3b8" font-size="11">一旦库被拖库 = 身份信息裸奔</text>
+  <text x="60" y="380" fill="#94a3b8" font-size="11">且落库不可撤销</text>
+
+  <!-- 右：安全 -->
+  <rect x="350" y="200" width="290" height="200" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="370" y="230" fill="#22d3ee" font-size="14" font-weight="bold">✅ 落库前脱敏</text>
+  <text x="370" y="262" fill="#94a3b8" font-size="12">数据库遮盖存储:</text>
+  <text x="370" y="292" fill="#22d3ee" font-size="12">1101***********51X</text>
+  <text x="370" y="316" fill="#22d3ee" font-size="12">6222********0123</text>
+  <text x="370" y="358" fill="#94a3b8" font-size="11">落库即不可逆 —— 先遮再存</text>
+  <text x="370" y="380" fill="#94a3b8" font-size="11">密钥整体打码 api_key=***</text>
+
+  <rect x="40" y="416" width="600" height="28" rx="6" fill="#2a1f0b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="435" fill="#fbbf24" font-size="12" text-anchor="middle">脱敏在数据进入存储前完成，regex 遮盖身份证/银行卡/密钥（见 01 的 mask_text）</text>
+</svg>

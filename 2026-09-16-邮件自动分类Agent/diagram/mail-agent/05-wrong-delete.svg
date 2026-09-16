@@ -1,0 +1,30 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="46" fill="#e2e8f0" font-size="20" text-anchor="middle" font-weight="bold">踩坑④ 误删邮件：expunge 不可逆</text>
+
+  <rect x="40" y="80" width="290" height="300" rx="10" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="60" y="112" fill="#fb7185" font-size="14" font-weight="bold">❌ 危险删除路径</text>
+  <text x="60" y="150" fill="#94a3b8" font-size="12">delete()</text>
+  <text x="60" y="190" fill="#fb7185" font-size="13" font-weight="bold">  ↓</text>
+  <text x="60" y="222" fill="#fb7185" font-size="14" font-weight="bold">expunge()</text>
+  <text x="60" y="262" fill="#94a3b8" font-size="12">  ↓</text>
+  <text x="60" y="296" fill="#e2e8f0" font-size="12">邮件从服务器永久消失</text>
+  <text x="60" y="324" fill="#94a3b8" font-size="11">无回收站 / 无后悔药</text>
+  <text x="60" y="352" fill="#fb7185" font-size="11">→ 重要合同邮件一去不回</text>
+
+  <rect x="350" y="80" width="290" height="300" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="370" y="112" fill="#22d3ee" font-size="14" font-weight="bold">✅ 安全删除路径</text>
+  <text x="370" y="150" fill="#94a3b8" font-size="12">delete()</text>
+  <text x="370" y="190" fill="#22d3ee" font-size="13" font-weight="bold">  ↓</text>
+  <text x="370" y="222" fill="#22d3ee" font-size="14" font-weight="bold">COPY → Trash</text>
+  <text x="370" y="262" fill="#94a3b8" font-size="11">原件标记 \Deleted（不 expunge）</text>
+  <text x="370" y="296" fill="#e2e8f0" font-size="12">进回收站，可找回</text>
+  <text x="370" y="324" fill="#94a3b8" font-size="11">真要清空再手动 expunge</text>
+  <text x="370" y="352" fill="#22d3ee" font-size="11">→ 留了一手后悔药</text>
+
+  <rect x="40" y="396" width="600" height="34" rx="6" fill="#2a1f0b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="418" fill="#fbbf24" font-size="12" text-anchor="middle">删除 = 移动，不是销毁。expunge 才是真删，默认绝不调用（见 02_action_safety.py）</text>
+</svg>
