@@ -1,0 +1,40 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="46" fill="#e2e8f0" font-size="21" text-anchor="middle" font-weight="bold">安全删除三道闸</text>
+
+  <!-- 三道闸 -->
+  <g font-size="13">
+    <rect x="40" y="110" width="180" height="90" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="130" y="142" fill="#22d3ee" text-anchor="middle" font-weight="bold">① 白名单</text>
+    <text x="130" y="166" fill="#94a3b8" text-anchor="middle">命中 *.pdf / *.docx</text>
+    <text x="130" y="184" fill="#22d3ee" text-anchor="middle">→ 直接跳过</text>
+
+    <rect x="250" y="110" width="180" height="90" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="340" y="142" fill="#22d3ee" text-anchor="middle" font-weight="bold">② dry-run</text>
+    <text x="340" y="166" fill="#94a3b8" text-anchor="middle">默认只报告</text>
+    <text x="340" y="184" fill="#22d3ee" text-anchor="middle">→ 需 --apply</text>
+
+    <rect x="460" y="110" width="180" height="90" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="550" y="142" fill="#22d3ee" text-anchor="middle" font-weight="bold">③ 回收站</text>
+    <text x="550" y="166" fill="#94a3b8" text-anchor="middle">move 而非 remove</text>
+    <text x="550" y="184" fill="#22d3ee" text-anchor="middle">→ 可找回</text>
+  </g>
+
+  <!-- 危险对照 -->
+  <rect x="40" y="240" width="290" height="150" rx="10" fill="#1a0f17" stroke="#fb7185" stroke-width="2"/>
+  <text x="185" y="270" fill="#fb7185" text-anchor="middle" font-weight="bold">直接 os.remove</text>
+  <text x="185" y="300" fill="#94a3b8" text-anchor="middle" font-size="13">glob 写错 old_* → 清空整个</text>
+  <text x="185" y="320" fill="#94a3b8" text-anchor="middle" font-size="13">Downloads，0.1 秒不可逆</text>
+  <text x="185" y="356" fill="#fb7185" text-anchor="middle" font-size="13" font-weight="bold">后果：数据永久丢失</text>
+
+  <rect x="350" y="240" width="290" height="150" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="495" y="270" fill="#22d3ee" text-anchor="middle" font-weight="bold">三道闸后</text>
+  <text x="495" y="300" fill="#94a3b8" text-anchor="middle" font-size="13">白名单保命、dry-run 预演、</text>
+  <text x="495" y="320" fill="#94a3b8" text-anchor="middle" font-size="13">删除进 .trash 随时还原</text>
+  <text x="495" y="356" fill="#22d3ee" text-anchor="middle" font-size="13" font-weight="bold">后果：误删可恢复</text>
+
+  <text x="340" y="424" fill="#cbd5e1" font-size="12" text-anchor="middle">误删是监控 Agent 最高频的事故；三道闸把「一键清空」变成「可撤销的操作」</text>
+</svg>

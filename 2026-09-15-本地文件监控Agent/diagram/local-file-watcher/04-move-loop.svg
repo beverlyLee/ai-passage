@@ -1,0 +1,38 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="46" fill="#e2e8f0" font-size="21" text-anchor="middle" font-weight="bold">移动死循环：监控目录互相搬</text>
+
+  <!-- 目录 A -->
+  <rect x="40" y="150" width="200" height="120" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="140" y="188" fill="#22d3ee" font-size="15" text-anchor="middle" font-weight="bold">监控目录 A</text>
+  <text x="140" y="214" fill="#94a3b8" font-size="12" text-anchor="middle">规则：*.jpg → 移到 B</text>
+  <text x="140" y="236" fill="#475569" font-size="11" text-anchor="middle">photo.jpg</text>
+
+  <!-- 目录 B -->
+  <rect x="440" y="150" width="200" height="120" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="540" y="188" fill="#22d3ee" font-size="15" text-anchor="middle" font-weight="bold">监控目录 B</text>
+  <text x="540" y="214" fill="#94a3b8" font-size="12" text-anchor="middle">规则：*.jpg → 移到 A</text>
+  <text x="540" y="236" fill="#475569" font-size="11" text-anchor="middle">photo.jpg</text>
+
+  <!-- 双向箭头 -->
+  <g stroke="#fb7185" stroke-width="3" fill="none">
+    <path d="M250 185 C 350 150, 330 150, 435 185"/>
+    <path d="M435 215 C 330 250, 350 250, 250 215"/>
+  </g>
+  <g fill="#fb7185">
+    <path d="M435 185 l-10 -5 v10 z"/>
+    <path d="M250 215 l10 -5 v10 z"/>
+  </g>
+
+  <!-- CPU 标注 -->
+  <rect x="285" y="290" width="110" height="40" rx="8" fill="#2a0f1a" stroke="#fb7185" stroke-width="1"/>
+  <text x="340" y="315" fill="#fb7185" font-size="14" text-anchor="middle" font-weight="bold">CPU 100%</text>
+
+  <!-- 解法 -->
+  <rect x="40" y="350" width="600" height="60" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="1"/>
+  <text x="340" y="378" fill="#22d3ee" font-size="13" text-anchor="middle" font-weight="bold">解法：目标目录必须排除在监控之外（或单目录 + 子目录黑名单）</text>
+  <text x="340" y="400" fill="#94a3b8" font-size="12" text-anchor="middle">否则文件在 A↔B 之间无限跳动，事件层也拦不住（每次移动都是「新事件」）</text>
+</svg>
