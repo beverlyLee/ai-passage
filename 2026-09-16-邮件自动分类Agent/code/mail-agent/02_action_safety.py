@@ -53,12 +53,14 @@ class FakeIMAP:
             raise ConnectionError("IMAP 连接已断开（超时/网络抖动）")
 
     def copy(self, uid: str, src: str, dst: str) -> None:
-        # IMAP COPY 语义：保留原件，仅在目标文件夹新增一份。
-        # 这样原件仍在 src，可继续打 \\Deleted（expunge 前可恢复）。
+        # IMAP COPY 语义：保留原件，仅在目标文件夹新增一份副本。
+        # 副本独立，原件仍在 src 并可继续打 \\Deleted（expunge 前可恢复）。
+        import copy as _copy
         self.cmds.append(f"COPY {uid} {src}->{dst}")
         m = self.store[src][uid]
-        m.folder = dst
-        self.store.setdefault(dst, {})[uid] = m
+        m2 = _copy.copy(m)
+        m2.folder = dst
+        self.store.setdefault(dst, {})[uid] = m2
 
     def store_del(self, uid: str, folder: str) -> None:
         self.cmds.append(f"STORE {uid} +FLAGS \\Deleted")
@@ -102,8 +104,9 @@ class Actioner:
             return "dry-run:no-op"
         try:
             self.imap.health_check()
-            self.imap.copy(mail.uid, mail.folder, dest)   # move = copy
-            self.imap.store_del(mail.uid, mail.folder)    # 标记原件 \\Deleted（可撤销）
+            src = mail.folder                              # 先记下原件所在文件夹
+            self.imap.copy(mail.uid, src, dest)           # move = copy
+            self.imap.store_del(mail.uid, src)            # 标记原件 \\Deleted（可撤销）
             # 注意：这里不调用 expunge，原件仍在服务器、可恢复
         except Exception as e:
             raise ActionAlert(f"move({mail.uid}->{dest}) 失败: {e}")
