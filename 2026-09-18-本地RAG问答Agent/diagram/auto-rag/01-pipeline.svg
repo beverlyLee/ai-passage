@@ -1,0 +1,66 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="84" x2="680" y2="84"/>
+    <line x1="0" y1="200" x2="680" y2="200"/>
+  </g>
+  <text x="340" y="46" fill="#e2e8f0" font-size="21" text-anchor="middle" font-weight="bold">本地 RAG 问答 Agent：准备 / 检索 / 生成 三层</text>
+  <text x="340" y="68" fill="#94a3b8" font-size="13" text-anchor="middle">检索增强不是「塞更多文本给大模型」——三层各有独立闸门，任一失守就答非所问或胡编</text>
+
+  <!-- 流水线 6 阶段 -->
+  <g font-size="12" text-anchor="middle">
+    <rect x="18" y="108" width="92" height="62" rx="9" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="64" y="135" fill="#22d3ee" font-weight="bold">文档</text>
+    <text x="64" y="154" fill="#94a3b8">原始知识</text>
+
+    <rect x="124" y="108" width="92" height="62" rx="9" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="170" y="135" fill="#22d3ee" font-weight="bold">切分</text>
+    <text x="170" y="154" fill="#94a3b8">chunk</text>
+
+    <rect x="230" y="108" width="92" height="62" rx="9" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="276" y="135" fill="#22d3ee" font-weight="bold">embedding</text>
+    <text x="276" y="154" fill="#94a3b8">向量化</text>
+
+    <rect x="336" y="108" width="92" height="62" rx="9" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="382" y="135" fill="#22d3ee" font-weight="bold">向量库</text>
+    <text x="382" y="154" fill="#94a3b8">持久化</text>
+
+    <rect x="442" y="108" width="92" height="62" rx="9" fill="#2a1f0b" stroke="#fbbf24" stroke-width="2"/>
+    <text x="488" y="135" fill="#fbbf24" font-weight="bold">检索</text>
+    <text x="488" y="154" fill="#94a3b8">top-k</text>
+
+    <rect x="548" y="108" width="92" height="62" rx="9" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+    <text x="594" y="135" fill="#fb7185" font-weight="bold">生成</text>
+    <text x="594" y="154" fill="#cbd5e1">答案+引文</text>
+  </g>
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <path d="M110 139 H122"/><path d="M216 139 H228"/><path d="M322 139 H334"/>
+    <path d="M428 139 H440"/><path d="M534 139 H546"/>
+  </g>
+
+  <!-- 三层翻车带 -->
+  <text x="340" y="228" fill="#94a3b8" font-size="13" text-anchor="middle">三层翻车点（六坑）</text>
+  <g font-size="12">
+    <rect x="18" y="244" width="200" height="118" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="34" y="270" fill="#22d3ee" font-weight="bold">准备层 · 对「知识」建模错</text>
+    <text x="34" y="294" fill="#94a3b8">① 切分错位：硬切切断语义</text>
+    <text x="34" y="316" fill="#94a3b8">② 版本漂移：向量对不上</text>
+    <text x="34" y="338" fill="#94a3b8">③ 持久化损坏：重启检索崩</text>
+
+    <rect x="240" y="244" width="200" height="118" rx="10" fill="#2a1f0b" stroke="#fbbf24" stroke-width="2"/>
+    <text x="256" y="270" fill="#fbbf24" font-weight="bold">检索层 · 对「对齐」建模错</text>
+    <text x="256" y="294" fill="#cbd5e1">④ 查询词不匹配：检索空窗</text>
+    <text x="256" y="316" fill="#cbd5e1">⑤ 上下文溢出：关键 chunk 被挤掉</text>
+
+    <rect x="462" y="244" width="200" height="118" rx="10" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+    <text x="478" y="270" fill="#fb7185" font-weight="bold">生成层 · 对「责任」建模错</text>
+    <text x="478" y="294" fill="#cbd5e1">⑥ 幻觉编造引用</text>
+    <text x="478" y="316" fill="#94a3b8">没证据也硬编 [@9]</text>
+  </g>
+
+  <text x="340" y="402" fill="#e2e8f0" font-size="13" text-anchor="middle" font-weight="bold">共享根因：低估「切片连续性 · 向量对齐 · 引用可信」三道独立闸门</text>
+  <text x="340" y="424" fill="#94a3b8" font-size="12" text-anchor="middle">单点加模型救不了 RAG——翻车几乎都发生在 模型之外的工程层</text>
+</svg>

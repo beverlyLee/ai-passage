@@ -1,0 +1,36 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="84" x2="680" y2="84"/></g>
+  <text x="340" y="46" fill="#e2e8f0" font-size="21" text-anchor="middle" font-weight="bold">坑⑥ 幻觉编造引用：没证据也硬编 [@9]</text>
+  <text x="340" y="68" fill="#94a3b8" font-size="13" text-anchor="middle">大模型会顺着话术补出编号正确的「假引用」；生成层必须设两道独立闸门</text>
+
+  <!-- 编造答案示例 -->
+  <rect x="24" y="100" width="632" height="62" rx="8" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="40" y="124" fill="#fb7185" font-size="13" font-weight="bold">生成层原始输出（未防护）</text>
+  <text x="40" y="148" fill="#e2e8f0" font-size="12">「退款免运费且即时到账[@9]，发票由商家承担[@2]」</text>
+
+  <!-- 两道防线 -->
+  <text x="340" y="196" fill="#94a3b8" font-size="13" text-anchor="middle">两道防护闸门</text>
+  <g font-size="12">
+    <rect x="24" y="210" width="312" height="120" rx="10" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+    <text x="40" y="236" fill="#22d3ee" font-weight="bold">防线① 引文合法性</text>
+    <text x="40" y="260" fill="#94a3b8">[@k] 的 k 必须落在本次</text>
+    <text x="40" y="280" fill="#94a3b8">检索结果索引内</text>
+    <text x="40" y="306" fill="#fb7185">[@9] 未在检索结果 → 拦截</text>
+    <text x="40" y="324" fill="#94a3b8">（知识库根本没有第 9 段）</text>
+
+    <rect x="344" y="210" width="312" height="120" rx="10" fill="#2a1f0b" stroke="#fbbf24" stroke-width="2"/>
+    <text x="360" y="236" fill="#fbbf24" font-weight="bold">防线② 引文-答案重叠</text>
+    <text x="360" y="260" fill="#cbd5e1">引用段落与答案关键词</text>
+    <text x="360" y="280" fill="#cbd5e1">必须有实质重叠</text>
+    <text x="360" y="306" fill="#fb7185">「运费商家承担[@2]」</text>
+    <text x="360" y="324" fill="#fb7185">与退款条款零重叠 → 拦截</text>
+  </g>
+
+  <rect x="24" y="346" width="632" height="44" rx="8" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="40" y="364" fill="#22d3ee" font-size="12" font-weight="bold">两道全过 → 放行；任一不过 → 降级为「无依据」或回检索补证据</text>
+  <text x="40" y="382" fill="#94a3b8" font-size="11">guard 把编造引用挡在对外回答之前，而不是事后人工发现</text>
+</svg>

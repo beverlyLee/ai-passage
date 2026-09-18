@@ -1,0 +1,39 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="84" x2="680" y2="84"/></g>
+  <text x="340" y="46" fill="#e2e8f0" font-size="21" text-anchor="middle" font-weight="bold">坑④ 查询词不匹配：知识库没覆盖 → 检索空窗</text>
+  <text x="340" y="68" fill="#94a3b8" font-size="13" text-anchor="middle">问题里的词和知识库里的词对不上，top-k 召回的是噪音；不设空窗闸门就一路编到生成层</text>
+
+  <!-- 左：域内正常 -->
+  <text x="174" y="112" fill="#22d3ee" font-size="14" text-anchor="middle" font-weight="bold">域内问题（正常）</text>
+  <rect x="24" y="122" width="300" height="50" rx="8" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="174" y="140" fill="#e2e8f0" font-size="12" text-anchor="middle">问：退款怎么操作？</text>
+  <text x="174" y="160" fill="#94a3b8" font-size="11" text-anchor="middle">知识库含「退款政策」chunk</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M174 172 V188"/></g>
+  <rect x="24" y="194" width="300" height="50" rx="8" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="174" y="212" fill="#22d3ee" font-size="12" text-anchor="middle">检索命中 top1 = 退款条款</text>
+  <text x="174" y="232" fill="#94a3b8" font-size="11" text-anchor="middle">cosine=0.39 &gt; floor(0.05) → 放行</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M174 244 V260"/></g>
+  <rect x="24" y="266" width="300" height="46" rx="8" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="174" y="294" fill="#22d3ee" font-size="12" text-anchor="middle">生成层拿到真证据 → 可靠回答</text>
+
+  <!-- 右：域外空窗 -->
+  <text x="506" y="112" fill="#fb7185" font-size="14" text-anchor="middle" font-weight="bold">域外问题（空窗）</text>
+  <rect x="356" y="122" width="300" height="50" rx="8" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="506" y="140" fill="#e2e8f0" font-size="12" text-anchor="middle">问：发票怎么补开？</text>
+  <text x="506" y="160" fill="#94a3b8" font-size="11" text-anchor="middle">知识库只覆盖「退款/物流」</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M506 172 V188"/></g>
+  <rect x="356" y="194" width="300" height="50" rx="8" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="506" y="212" fill="#fb7185" font-size="12" text-anchor="middle">召回的 top 全是噪音 chunk</text>
+  <text x="506" y="232" fill="#94a3b8" font-size="11" text-anchor="middle">best cosine=0.00 &lt; floor → 空窗</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M506 244 V260"/></g>
+  <rect x="356" y="266" width="300" height="46" rx="8" fill="#2a1f0b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="506" y="294" fill="#fbbf24" font-size="12" text-anchor="middle">safe_retrieve 返回 [] → 拒答/转人工</text>
+
+  <text x="340" y="346" fill="#e2e8f0" font-size="13" text-anchor="middle" font-weight="bold">空窗要由检索层闸门拦下，而不是丢给大模型硬编</text>
+  <text x="340" y="384" fill="#94a3b8" font-size="12" text-anchor="middle">解法：设相似度下限 floor（best&lt;floor 即空窗）；命中不到就显式「无依据」、转人工或补录入知识库</text>
+  <text x="340" y="406" fill="#94a3b8" font-size="12" text-anchor="middle">真实 RAG 里还要上 query 改写 / 同义词 / 混合检索（BM25+向量）补召回</text>
+</svg>

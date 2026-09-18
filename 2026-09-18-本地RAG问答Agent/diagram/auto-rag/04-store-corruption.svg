@@ -1,0 +1,35 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: "JetBrains Mono","Noto Sans SC",ui-monospace,monospace; }
+  </style>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1"><line x1="0" y1="84" x2="680" y2="84"/></g>
+  <text x="340" y="46" fill="#e2e8f0" font-size="21" text-anchor="middle" font-weight="bold">坑③ 向量库持久化损坏：重启后检索全崩</text>
+  <text x="340" y="68" fill="#94a3b8" font-size="13" text-anchor="middle">落盘文件被截断/写坏，load 抛错；load_or_rebuild 从源文档自动重建</text>
+
+  <!-- 左：正常流程 -->
+  <text x="174" y="112" fill="#22d3ee" font-size="14" text-anchor="middle" font-weight="bold">正常</text>
+  <rect x="24" y="122" width="300" height="48" rx="8" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="174" y="151" fill="#94a3b8" font-size="12" text-anchor="middle">源文档 → 切分 + embedding</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M174 170 V186"/></g>
+  <rect x="24" y="188" width="300" height="48" rx="8" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="174" y="217" fill="#94a3b8" font-size="12" text-anchor="middle">VectorStore.save() 原子写盘</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M174 236 V252"/></g>
+  <rect x="24" y="260" width="300" height="48" rx="8" fill="#0b2433" stroke="#22d3ee" stroke-width="2"/>
+  <text x="174" y="289" fill="#22d3ee" font-size="12" text-anchor="middle">index.json 完好，可正常检索</text>
+
+  <!-- 右：损坏→恢复 -->
+  <text x="506" y="112" fill="#fb7185" font-size="14" text-anchor="middle" font-weight="bold">损坏 → 恢复</text>
+  <rect x="356" y="122" width="300" height="48" rx="8" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="506" y="151" fill="#fb7185" font-size="12" text-anchor="middle">index.json 被截断 / 写坏</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M506 170 V186"/></g>
+  <rect x="356" y="188" width="300" height="48" rx="8" fill="#2a0f1a" stroke="#fb7185" stroke-width="2"/>
+  <text x="506" y="217" fill="#fb7185" font-size="12" text-anchor="middle">load() 抛错（JSONDecodeError）</text>
+  <g stroke="#64748b" stroke-width="2" fill="none"><path d="M506 236 V252"/></g>
+  <rect x="356" y="260" width="300" height="48" rx="8" fill="#2a1f0b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="506" y="289" fill="#fbbf24" font-size="12" text-anchor="middle">load_or_rebuild 从源文档重建</text>
+
+  <text x="340" y="346" fill="#e2e8f0" font-size="13" text-anchor="middle" font-weight="bold">重建后 chunk 数一致、文本一致，检索恢复</text>
+  <text x="340" y="384" fill="#94a3b8" font-size="12" text-anchor="middle">解法：落盘走原子写（写临时文件再 rename）+ 损坏自动重建 + 校验和</text>
+  <text x="340" y="406" fill="#94a3b8" font-size="12" text-anchor="middle">真向量库（FAISS/Milvus）同样要处理段损坏、快照与恢复</text>
+</svg>
