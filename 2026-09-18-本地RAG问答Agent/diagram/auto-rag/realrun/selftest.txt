@@ -1,0 +1,24 @@
+本地 RAG 问答 Agent · 三段脚本自检 (真实 stdout)
+时间 2026-09-18 13:20:16    python 3.13.12
+
+$ python3 01_rag_prep.py --self-test
+  [1] 切分错位：fixed 切断核心句, sentence 保留 -> OK
+  [2] embedding 漂移：同版=1.000 跨版=0.000 -> OK
+  [3] 向量库损坏：截断后自动重建 1 个 chunk -> OK
+  [4] 索引/查询一致性：同版命中(score=0.51), 跨版漂移(score=0.00) -> OK
+ALL_SELFTESTS_PASSED
+
+$ python3 02_rag_retrieve.py --self-test
+  [1] 查询词不匹配：域外问「发票」命中空窗, 域内问「退款」正常 -> OK
+  [2] 上下文溢出：关键 chunk 排第3位, 预算=2 被截断, 预算充足保留 -> OK
+  [3] 正常召回：退款问题 top1=doc0 (score=0.39) -> OK
+ALL_SELFTESTS_PASSED
+
+$ python3 03_rag_generate.py --self-test
+  [1] 忠实答案：引用合法且有关键词重叠 -> 通过 -> OK
+  [2] 幻觉编造引用：[@9] 未检索到, 第一道防线拦截 -> OK
+  [3] 无关引用：片段在检索中但关键词零重叠, 第二道防线拦截 -> OK
+  [4] 无防护对照：编造引用原样漏出 -> OK（说明防护必要）
+ALL_SELFTESTS_PASSED
+
+三段脚本全部 ALL_SELFTESTS_PASSED

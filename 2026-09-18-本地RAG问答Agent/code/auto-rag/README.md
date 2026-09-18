@@ -35,6 +35,15 @@ python3 03_rag_generate.py --self-test
 
 输出末尾出现 `ALL_SELFTESTS_PASSED` 即全部通过。
 
+## 运行截图（真实输出，非示意图）
+
+`../../diagram/auto-rag/realrun/` 放了两张在当前环境真实跑出来的截图，可直接对照上面的自检输出：
+
+- `run@2x.png`：运行时诊断，一次跑完六个坑（漂移 `同版 1.000 → 跨版 0.000`、空窗 `0 段`、预算=2 `截断丢失`、编造 `[@9]` 被 `拦截 ✔`）。
+- `selftest@2x.png`：三段脚本 `--self-test` 的真实 stdout，全部 `ALL_SELFTESTS_PASSED`。
+- `run.txt` / `selftest.txt`：上述截图的原始文本证据；`gen_shot.py` 可重新生成（需本机 Chrome）。
+
+
 ## 各阶段输出含义
 
 - 01：打印切分计数、`同版/跨版` 余弦、损坏重建的 chunk 数、索引查询一致性得分。
