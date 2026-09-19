@@ -11,7 +11,7 @@
     <line x1="90" y1="410" x2="450" y2="410"/>
   </g>
 
-  <text x="24" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 同一道题：effort 越高，隐藏思考越多，账单越贵</text>
+  <text x="24" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图3 同一道题：effort 越高，隐藏思考越多，账单越贵（示意推演）</text>
 
   <!-- Y 轴 -->
   <line x1="90" y1="150" x2="90" y2="410" stroke="#475569" stroke-width="1.5"/>
@@ -30,7 +30,7 @@
   <text x="365" y="430" fill="#cbd5e1" font-size="12" text-anchor="middle">high effort</text>
 
   <!-- 倍数标注 -->
-  <text x="290" y="300" fill="#fb7185" font-size="22" font-weight="700" text-anchor="middle">≈ 11.6×</text>
+  <text x="290" y="300" fill="#fb7185" font-size="22" font-weight="700" text-anchor="middle">≈ 11.6× (示意)</text>
   <line x1="270" y1="306" x2="328" y2="306" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4 3"/>
 
   <!-- 右侧说明 -->
