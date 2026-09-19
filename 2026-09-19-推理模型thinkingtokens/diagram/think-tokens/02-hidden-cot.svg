@@ -1,0 +1,46 @@
+<svg viewBox="0 0 680 450" font-family="Noto Sans SC, sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="44" x2="680" y2="44"/>
+    <line x1="0" y1="216" x2="680" y2="216"/>
+  </g>
+
+  <text x="24" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图2 为什么思考要藏起来：RL 训练 + 只给你摘要</text>
+
+  <!-- RL 训练 -->
+  <rect x="24" y="56" width="300" height="142" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="40" y="80" fill="#22d3ee" font-size="14" font-weight="700">RL 训练：把「想对」固化成习惯</text>
+  <text x="40" y="104" fill="#cbd5e1" font-size="12">① 给难题，模型产出多种思路</text>
+  <text x="40" y="128" fill="#cbd5e1" font-size="12">② 用客观对错打分（答案/测试通过）</text>
+  <text x="40" y="152" fill="#cbd5e1" font-size="12">③ 强化有效的推理路径</text>
+  <text x="40" y="176" fill="#cbd5e1" font-size="12">④ 上线后自动走这条隐藏路径</text>
+
+  <line x1="324" y1="127" x2="354" y2="127" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- 用户视角 -->
+  <rect x="358" y="56" width="298" height="142" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="374" y="80" fill="#22d3ee" font-size="14" font-weight="700">用户视角：只看到结果</text>
+  <text x="374" y="104" fill="#cbd5e1" font-size="12">你：提问</text>
+  <text x="374" y="128" fill="#cbd5e1" font-size="12">模型：内部想很久（不展示）</text>
+  <text x="374" y="152" fill="#cbd5e1" font-size="12">你：拿到答案 + 一两句摘要</text>
+  <text x="374" y="176" fill="#94a3b8" font-size="12">内部草稿 = 黑盒，不可见</text>
+
+  <!-- 三个代价 -->
+  <rect x="24" y="226" width="632" height="194" rx="8" fill="#0b1220" stroke="#334155" stroke-width="1.5"/>
+  <text x="40" y="252" fill="#e2e8f0" font-size="15" font-weight="700">这种设计的三个代价</text>
+
+  <rect x="40" y="268" width="596" height="50" rx="6" fill="#3b1d24" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="56" y="290" fill="#fecdd3" font-size="13" font-weight="700">① 账单：思考长度你不可见，却按输出 token 照收（接图1/图3）</text>
+  <text x="56" y="310" fill="#fecdd3" font-size="12">开了 high effort，账单可翻 10 倍以上，你却不知道多算了什么</text>
+
+  <rect x="40" y="326" width="596" height="38" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="56" y="350" fill="#cbd5e1" font-size="13">② 审计：无法看到/复查它是怎么想的，答错了很难定位是哪一步跑偏</text>
+
+  <rect x="40" y="370" width="596" height="38" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="56" y="394" fill="#cbd5e1" font-size="13">③ 控制：只能靠 effort / budget 旋钮粗略调，不能逐句干预思考过程</text>
+</svg>

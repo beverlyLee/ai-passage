@@ -1,0 +1,55 @@
+<svg viewBox="0 0 680 450" font-family="Noto Sans SC, sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="110" x2="680" y2="110"/>
+    <line x1="0" y1="200" x2="680" y2="200"/>
+  </g>
+
+  <text x="24" y="30" fill="#e2e8f0" font-size="16" font-weight="700">图1 一次请求全链路：思考在暗处，账单在明处</text>
+
+  <!-- 用户输入 -->
+  <rect x="24" y="64" width="110" height="46" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="79" y="92" fill="#e2e8f0" font-size="14" text-anchor="middle">用户输入</text>
+
+  <line x1="134" y1="87" x2="156" y2="87" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- 推理模型 -->
+  <rect x="160" y="50" width="210" height="130" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="265" y="72" fill="#e2e8f0" font-size="13" text-anchor="middle" font-weight="700">推理模型 o1/o3/R1…</text>
+  <rect x="178" y="84" width="174" height="80" rx="6" fill="#3b1d24" stroke="#fb7185" stroke-width="2"/>
+  <text x="265" y="110" fill="#fecdd3" font-size="13" text-anchor="middle" font-weight="700">隐藏思考链 CoT</text>
+  <text x="265" y="130" fill="#fecdd3" font-size="11" text-anchor="middle">你看不见 · RL 训练产生</text>
+  <text x="265" y="148" fill="#fecdd3" font-size="11" text-anchor="middle">只返回摘要/最终答案</text>
+
+  <line x1="370" y1="115" x2="398" y2="115" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- 可见回答 -->
+  <rect x="402" y="92" width="120" height="46" rx="6" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="462" y="120" fill="#e2e8f0" font-size="13" text-anchor="middle">可见回答</text>
+
+  <!-- 账单拆解 -->
+  <rect x="24" y="208" width="632" height="212" rx="8" fill="#0b1220" stroke="#334155" stroke-width="1.5"/>
+  <text x="40" y="234" fill="#e2e8f0" font-size="15" font-weight="700">账单：可见与隐藏，都按【输出 token】计费</text>
+
+  <text x="40" y="266" fill="#cbd5e1" font-size="13">① 输入 token（可见）</text>
+  <text x="600" y="266" fill="#22d3ee" font-size="13" text-anchor="end">计费 ✓</text>
+  <text x="40" y="294" fill="#cbd5e1" font-size="13">② 可见输出 token（你看到的回答）</text>
+  <text x="600" y="294" fill="#22d3ee" font-size="13" text-anchor="end">计费 ✓</text>
+  <text x="40" y="322" fill="#fecdd3" font-size="13">③ 隐藏思考 token（你看不到）</text>
+  <text x="600" y="322" fill="#fb7185" font-size="13" text-anchor="end">计费 ✓ 按输出价</text>
+
+  <!-- 堆叠比例条 -->
+  <text x="40" y="356" fill="#94a3b8" font-size="11">单题计费输出构成（o3, high effort 示意）：</text>
+  <rect x="200" y="346" width="14" height="16" fill="#22d3ee"/>
+  <rect x="214" y="346" width="406" height="16" fill="#fb7185"/>
+  <text x="200" y="380" fill="#cbd5e1" font-size="11">可见≈339</text>
+  <text x="620" y="380" fill="#fecdd3" font-size="11" text-anchor="end">隐藏≈9050</text>
+  <text x="430" y="402" fill="#fecdd3" font-size="12" text-anchor="middle">隐藏思考占计费输出的 ~96%</text>
+
+  <text x="40" y="416" fill="#fb7185" font-size="12">坑：接口只返回②，账单却同时含①②③ —— 同一道题 high 比 low 贵约 11.6×</text>
+</svg>
