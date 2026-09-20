@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="18">论文数字证据（arXiv 2606.09863）</text>
+  <text x="24" y="58" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">虚假成功占失败的比例（左）  监控区分能力 AUROC（右，越高越好）</text>
+  <g font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#cbd5e1">
+    <text x="40" y="92">单控制 tau2-bench</text>
+    <text x="40" y="150">双控制 电信域</text>
+    <text x="40" y="208">AppWorld 编码 Agent</text>
+  </g>
+  <!-- bars left: max scale 80% -> 200px per 80 => 2.5px per percent -->
+  <g>
+    <rect x="180" y="78" width="115" height="22" fill="#fb7185"/>
+    <text x="305" y="94" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">45-48%</text>
+    <rect x="180" y="136" width="7.5" height="22" fill="#22d3ee"/>
+    <text x="195" y="152" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">3%</text>
+    <rect x="180" y="194" width="190" height="22" fill="#fb7185"/>
+    <text x="380" y="210" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">75.8%</text>
+  </g>
+  <!-- right: AUROC bars, scale 1.0 -> 100px -->
+  <text x="420" y="92" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">LLM 裁判 tau2</text>
+  <rect x="550" y="78" width="65" height="22" fill="#fb7185"/>
+  <text x="621" y="94" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">0.65</text>
+  <text x="420" y="150" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">LLM 裁判 AppWorld</text>
+  <rect x="550" y="136" width="54" height="22" fill="#fb7185"/>
+  <text x="610" y="152" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">0.54</text>
+  <text x="420" y="208" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">TF-IDF tau2</text>
+  <rect x="550" y="194" width="83" height="22" fill="#22d3ee"/>
+  <text x="639" y="210" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">0.83</text>
+  <text x="420" y="266" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">TF-IDF AppWorld</text>
+  <rect x="550" y="252" width="95" height="22" fill="#22d3ee"/>
+  <text x="651" y="268" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">0.95</text>
+  <text x="430" y="320" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">同标记率下 TF-IDF 多找回 4-8x 假完成</text>
+  <text x="430" y="342" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">延迟低 3300x；推理模型无保护</text>
+  <text x="430" y="364" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">Qwen3-Max-Thinking 虚假率最高 79%</text>
+  <text x="430" y="392" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">per-model 跨度 13%-89%</text>
+</svg>

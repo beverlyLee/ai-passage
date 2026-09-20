@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="18">编码 Agent 调用图盲区</text>
+  <text x="24" y="54" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">grep 找字符串而非调用图：Agent 只看到探索过的目录</text>
+  <!-- Agent view -->
+  <rect x="20" y="70" width="300" height="200" rx="10" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="170" y="95" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="14">Agent 视野（grep 命中）</text>
+  <g font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#cbd5e1">
+    <text x="40" y="125">src/api/auth.ts</text>
+    <text x="40" y="150">src/middleware/token.ts</text>
+    <text x="40" y="175">src/services/login.ts</text>
+    <text x="40" y="200">src/api/payment.ts</text>
+    <text x="40" y="225">src/services/order.ts</text>
+    <text x="40" y="250">src/services/session.ts</text>
+  </g>
+  <!-- real call graph -->
+  <rect x="360" y="70" width="300" height="320" rx="10" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="510" y="95" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="14">真实调用图（全量）</text>
+  <g font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#cbd5e1">
+    <text x="380" y="125">src/api/auth.ts</text>
+    <text x="380" y="150">src/middleware/token.ts</text>
+    <text x="380" y="175">src/services/login.ts</text>
+    <text x="380" y="200">src/api/payment.ts</text>
+    <text x="380" y="225">src/services/order.ts</text>
+    <text x="380" y="250">src/services/session.ts</text>
+  </g>
+  <g font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#fbbf24">
+    <text x="380" y="285">src/cron/cleanup.ts  ← 从未 grep</text>
+    <text x="380" y="310">src/cron/refresh.ts  ← 从未 grep</text>
+    <text x="380" y="335">src/jobs/admin.ts     ← 从未 grep</text>
+    <text x="380" y="360">src/jobs/rate_limit.ts ← 从未 grep</text>
+  </g>
+  <g stroke="#fb7185" stroke-width="1.5" stroke-dasharray="5,4" fill="none">
+    <path d="M320,170 C345,170 345,210 360,210"/>
+  </g>
+  <text x="340" y="430" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">4 处缺口藏在 Agent 没打开过的目录里</text>
+</svg>

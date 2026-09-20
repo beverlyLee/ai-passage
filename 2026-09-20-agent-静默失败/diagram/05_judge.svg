@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="18">LLM 裁判失效 对比 轻量检测器</text>
+  <rect x="20" y="55" width="305" height="320" rx="10" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="172" y="84" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16">LLM 裁判（AUROC 0.54-0.65）</text>
+  <g fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">
+    <text x="40" y="120">· 锚定自信收尾语言</text>
+    <text x="40" y="150">· tau2: 带断言词 +0.27~0.36 完成</text>
+    <text x="40" y="180">· AppWorld: 锚定动作序列量</text>
+    <text x="40" y="210">· 数的是姿势不是状态</text>
+    <text x="40" y="240">· 推理模型也中招</text>
+  </g>
+  <text x="40" y="290" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">结局：谎言被判为通过</text>
+  <text x="40" y="320" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">等于没兜，甚至盖章</text>
+  <rect x="355" y="55" width="305" height="320" rx="10" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="507" y="84" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16">轻量 TF-IDF（AUROC 0.83/0.95）</text>
+  <g fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">
+    <text x="375" y="120">· 读真实状态变化</text>
+    <text x="375" y="150">· 领域校准的触发器</text>
+    <text x="375" y="180">· 同标记率多找回 4-8x</text>
+    <text x="375" y="210">· 延迟低 3300x</text>
+    <text x="375" y="240">· 零 LLM 在检索</text>
+  </g>
+  <text x="375" y="290" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">结局：当作 triage 信号</text>
+  <text x="375" y="320" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">不替代主力监控</text>
+  <g stroke="#fbbf24" stroke-width="2" fill="none">
+    <path d="M325,215 C340,215 340,225 355,225"/>
+    <polygon points="355,225 347,220 347,230" fill="#fbbf24" stroke="none"/>
+  </g>
+  <text x="340" y="430" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">监控该用轻量检测器做初筛，而非 LLM 裁判</text>
+</svg>

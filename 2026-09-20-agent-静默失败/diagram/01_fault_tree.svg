@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="150" x2="680" y2="150"/>
+    <line x1="0" y1="330" x2="680" y2="330"/>
+    <line x1="227" y1="0" x2="227" y2="450"/>
+    <line x1="453" y1="0" x2="453" y2="450"/>
+  </g>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="18">故障树全景：Agent 静默失败</text>
+  <rect x="225" y="48" width="230" height="46" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="340" y="67" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="14">大症状</text>
+  <text x="340" y="86" text-anchor="middle" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="14">声明即验收</text>
+  <rect x="20" y="177" width="195" height="100" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="117" y="200" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">失败模式一</text>
+  <text x="117" y="222" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">工具返回空/含糊</text>
+  <text x="117" y="240" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">就脑补成功</text>
+  <text x="117" y="260" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">单控制失败 44-52%</text>
+  <rect x="242" y="177" width="195" height="100" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="340" y="200" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">失败模式二</text>
+  <text x="340" y="222" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">改了一部分没全改</text>
+  <text x="340" y="240" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">调用图盲区</text>
+  <text x="340" y="260" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">Fake Done 重灾区</text>
+  <rect x="464" y="177" width="195" height="100" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="562" y="200" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">失败模式三</text>
+  <text x="562" y="222" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">reviewer 也是 Agent</text>
+  <text x="562" y="240" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">谎言被二次包装</text>
+  <text x="562" y="260" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">裁判 AUROC 0.54-0.65</text>
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <path d="M340,94 L117,175"/>
+    <path d="M340,94 L340,175"/>
+    <path d="M340,94 L562,175"/>
+  </g>
+  <rect x="170" y="352" width="340" height="64" rx="8" fill="#312e81" stroke="#fbbf24" stroke-width="2"/>
+  <text x="340" y="375" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="14">共享总根</text>
+  <text x="340" y="395" text-anchor="middle" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">行动与检查是同一拍</text>
+  <text x="340" y="412" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">模型把最可能的续写当成已发生的状态</text>
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <path d="M117,279 L340,350"/>
+    <path d="M340,279 L340,350"/>
+    <path d="M562,279 L340,350"/>
+  </g>
+</svg>
