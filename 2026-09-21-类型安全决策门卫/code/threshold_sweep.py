@@ -10,6 +10,19 @@
 #   python3 threshold_sweep.py
 import argparse
 import random
+import unicodedata
+
+
+def _w(s):
+    """字符串在终端里的显示宽度（CJK 字符记 2 格）。"""
+    return sum(2 if unicodedata.east_asian_width(c) in "WF" else 1 for c in str(s))
+
+
+def _pad(s, width, align="left"):
+    """按显示宽度补齐，避免中文把表格列挤歪。"""
+    s = str(s)
+    gap = max(0, width - _w(s))
+    return (" " * gap + s) if align == "right" else (s + " " * gap)
 
 
 def safety_probability(req, rng):
@@ -44,7 +57,9 @@ def make_requests(n_safe, n_danger, seed):
 
 
 def sweep(requests, seed, lo=0.50, hi=0.99, step=0.05):
-    print(f"{'阈值':<8}{'误拦截率':<12}{'误放行率':<12}{'误拦截数':<10}{'误放行数'}")
+    cols = [(8, "left"), (12, "right"), (12, "right"), (12, "right"), (12, "right")]
+    heads = ["阈值", "误拦截率", "误放行率", "误拦截数", "误放行数"]
+    print("".join(_pad(h, w, a) for h, (w, a) in zip(heads, cols)))
     n_safe = sum(1 for x in requests if not x["is_dangerous"])
     n_danger = len(requests) - n_safe
     n = int(round((hi - lo) / step)) + 1
@@ -54,7 +69,8 @@ def sweep(requests, seed, lo=0.50, hi=0.99, step=0.05):
         fbr, fpr = rates_at(requests, r, t)
         fb = round(fbr * n_safe)
         fp = round(fpr * n_danger)
-        print(f"{t:<8}{fbr*100:<11.1f}{fpr*100:<11.1f}{fb:<10}{fp}")
+        cells = [f"{t:.2f}", f"{fbr*100:.1f}", f"{fpr*100:.1f}", str(fb), str(fp)]
+        print("".join(_pad(c, w, a) for c, (w, a) in zip(cells, cols)))
 
 
 def _self_test():

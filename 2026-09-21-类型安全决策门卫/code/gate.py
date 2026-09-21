@@ -12,6 +12,19 @@
 # 它把连续概率切成了布尔放行令，切的位置就是阈值。
 import argparse
 import random
+import unicodedata
+
+
+def _w(s):
+    """字符串在终端里的显示宽度（CJK 字符记 2 格）。"""
+    return sum(2 if unicodedata.east_asian_width(c) in "WF" else 1 for c in str(s))
+
+
+def _pad(s, width, align="left"):
+    """按显示宽度补齐，避免中文把表格列挤歪。"""
+    s = str(s)
+    gap = max(0, width - _w(s))
+    return (" " * gap + s) if align == "right" else (s + " " * gap)
 
 
 class FakeJevBackend:
@@ -110,13 +123,20 @@ def _self_test():
 def _demo():
     backend = FakeJevBackend(seed=7)
     requests = _make_requests(60, 40)
-    # 分级阈值：高危工具更严，低危更松（统一 0.9 会高危漏、低危堵）
+    # 分级阈值：高危工具更严（0.95~0.97），低危沿用默认 0.9。
+    # 这批样本里高危阈值把误放行压到 0，代价是低危工具的误拦截（默认阈值偏
+    # 严，安全请求概率多在 0.70~1.0，低于 0.9 的都会被挡）。误拦截与误放行
+    # 的此消彼长看 threshold_sweep.py 的扫描表更清楚。
     policy = {"__default__": 0.9, "run_shell": 0.95, "drop_table": 0.97, "delete_file": 0.95}
     rows, fb, fp = evaluate(requests, backend, policy)
     print(f"样本 {len(requests)} 条 | 误拦截 {fb} | 误放行 {fp}")
-    print(f"{'工具':<12}{'危险':<6}{'安全概率':<10}{'阈值':<8}{'决策':<6}{'判定'}")
+    header = [_pad("工具", 14), _pad("危险", 8), _pad("安全概率", 12),
+              _pad("阈值", 8), _pad("决策", 8), _pad("判定", 8)]
+    print("".join(header))
     for tool, danger, p, thr, status, verdict in rows[:12]:
-        print(f"{tool:<12}{str(danger):<6}{p:<10}{thr:<8}{status:<6}{verdict}")
+        line = [_pad(tool, 14), _pad(danger, 8), _pad(p, 12),
+                _pad(thr, 8), _pad(status, 8), _pad(verdict, 8)]
+        print("".join(line))
     print("... (仅显示前 12 条)")
 
 
