@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="160" x2="680" y2="160"/>
+    <line x1="340" y1="0" x2="340" y2="450"/>
+  </g>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="17">Jev 能力边界：生成文本 vs 只吐类型概率</text>
+
+  <rect x="30" y="80" width="290" height="250" rx="10" fill="#1e293b" stroke="#fb7185" stroke-width="2"/>
+  <text x="175" y="112" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15">传统 LLM</text>
+  <text x="175" y="150" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">逐 token 生成文本</text>
+  <text x="175" y="180" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">需解析 / 校验 / 重试</text>
+  <text x="175" y="210" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">可能幻觉、坏 JSON</text>
+  <text x="175" y="240" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">延迟 3 到 329 秒</text>
+  <text x="175" y="270" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">输出按 token 计费</text>
+  <text x="175" y="305" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">适合：聊天 / 生成 / 开放推理</text>
+
+  <rect x="360" y="80" width="290" height="250" rx="10" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="505" y="112" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15">Jev (System One 模型)</text>
+  <text x="505" y="150" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">state + 类型化问题 进</text>
+  <text x="505" y="180" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">并行采样 一次全出</text>
+  <text x="505" y="210" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">只返 Choice/Score/Noul 概率</text>
+  <text x="505" y="240" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">零类型错误 (schema 保证)</text>
+  <text x="505" y="270" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">70 到 500ms / 输出免费</text>
+  <text x="505" y="305" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">适合：窄决策 / 路由 / 门控</text>
+
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <path d="M320,205 L360,205"/>
+  </g>
+  <text x="340" y="195" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">同一决策任务</text>
+  <text x="170" y="370" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">能力互补：Jev 干窄决策，LLM 干生成与推理</text>
+</svg>

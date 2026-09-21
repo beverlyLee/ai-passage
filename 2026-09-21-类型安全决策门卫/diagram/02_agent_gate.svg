@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="300" x2="680" y2="300"/>
+    <line x1="340" y1="60" x2="340" y2="300"/>
+  </g>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="17">Agent 工具门：慢闸 vs 廉价门卫</text>
+
+  <rect x="40" y="60" width="280" height="44" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+  <text x="180" y="87" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">Agent 准备调用工具</text>
+
+  <rect x="40" y="120" width="280" height="48" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="2"/>
+  <text x="180" y="144" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">① LLM 门卫：先烧一次调用判断</text>
+  <text x="180" y="162" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">秒级 / 贵 / 自由文本要解析</text>
+
+  <rect x="40" y="190" width="280" height="44" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+  <text x="180" y="217" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">② 解析结果决定放行</text>
+
+  <rect x="40" y="250" width="280" height="40" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="180" y="275" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">执行工具（拿到结果）</text>
+
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <path d="M180,104 L180,120"/>
+    <path d="M180,168 L180,190"/>
+    <path d="M180,234 L180,250"/>
+  </g>
+
+  <rect x="360" y="60" width="280" height="44" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+  <text x="500" y="87" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">Agent 准备调用工具</text>
+
+  <rect x="360" y="120" width="280" height="48" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="500" y="144" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">① Jev 门卫：一次查询取概率</text>
+  <text x="500" y="162" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">70 到 500ms / 免费 / 类型安全</text>
+
+  <rect x="360" y="190" width="280" height="44" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+  <text x="500" y="217" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">② 概率 >= 阈值 决定放行</text>
+
+  <rect x="360" y="250" width="280" height="40" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="500" y="275" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">执行工具（拿到结果）</text>
+
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <path d="M500,104 L500,120"/>
+    <path d="M500,168 L500,190"/>
+    <path d="M500,234 L500,250"/>
+  </g>
+
+  <g stroke="#fbbf24" stroke-width="2" fill="none" stroke-dasharray="5 4">
+    <path d="M330,144 Q340,144 350,144"/>
+  </g>
+  <text x="340" y="135" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">替换</text>
+  <text x="340" y="335" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">门卫接上只是开始，阈值怎么切才是生死（见下一张）</text>
+</svg>
