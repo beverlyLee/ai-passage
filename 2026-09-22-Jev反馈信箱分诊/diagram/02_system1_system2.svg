@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC',sans-serif">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;family=Noto+Sans+SC:wght@400;700&amp;display=swap');</style>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="112" x2="680" y2="112"/><line x1="0" y1="225" x2="680" y2="225"/><line x1="0" y1="338" x2="680" y2="338"/>
+    <line x1="340" y1="0" x2="340" y2="450"/>
+  </g>
+  <text x="24" y="34" fill="#e2e8f0" font-size="17" font-weight="700">Jev 是 System1，LLM 是 System2：判断交给快系统，写回交给慢系统</text>
+  <text x="24" y="56" fill="#94a3b8" font-size="12">分诊里 Jev 只做「判断点」，LLM 只做「生成点」，两者解耦</text>
+
+  <!-- 左：System1 Jev -->
+  <rect x="24" y="80" width="300" height="344" rx="10" fill="#0c1f2e" stroke="#155e63"/>
+  <text x="44" y="106" fill="#22d3ee" font-size="14" font-weight="700">System1 — Jev（快判断）</text>
+  <g font-size="12" fill="#e2e8f0">
+    <circle cx="50" cy="134" r="3" fill="#22d3ee"/><text x="62" y="138">一次调用三问：Choice / Score / Noul</text>
+    <circle cx="50" cy="162" r="3" fill="#22d3ee"/><text x="62" y="166">返回类型化概率，结果可解释</text>
+    <circle cx="50" cy="190" r="3" fill="#22d3ee"/><text x="62" y="194">输出免费，只计输入 token</text>
+    <circle cx="50" cy="218" r="3" fill="#22d3ee"/><text x="62" y="222">延迟 70–500ms（实测 ~0.3s/封）</text>
+    <circle cx="50" cy="246" r="3" fill="#22d3ee"/><text x="62" y="250">只答：选哪条路 / 打几分 / 是不是</text>
+  </g>
+  <rect x="44" y="272" width="260" height="56" rx="8" fill="#063a44" stroke="#22d3ee"/>
+  <text x="56" y="294" fill="#22d3ee" font-size="12" font-weight="700">不产生 context rot</text>
+  <text x="56" y="316" fill="#a5f3fc" font-size="11">模型只给判断，不给长篇生成，</text>
+  <text x="56" y="330" fill="#a5f3fc" font-size="11">加问题几乎不拖慢、不占上下文</text>
+
+  <!-- 右：System2 LLM -->
+  <rect x="356" y="80" width="300" height="344" rx="10" fill="#2a2410" stroke="#92660f"/>
+  <text x="376" y="106" fill="#fbbf24" font-size="14" font-weight="700">System2 — LLM（慢生成）</text>
+  <g font-size="12" fill="#e2e8f0">
+    <circle cx="382" cy="134" r="3" fill="#fbbf24"/><text x="394" y="138">生成回信 / 解释 / 代码</text>
+    <circle cx="382" cy="162" r="3" fill="#fbbf24"/><text x="394" y="166">输入 + 输出 token 都计费</text>
+    <circle cx="382" cy="190" r="3" fill="#fbbf24"/><text x="394" y="194">秒级延迟，按 token 按秒</text>
+    <circle cx="382" cy="218" r="3" fill="#fbbf24"/><text x="394" y="222">适合：人先判完后用它写回</text>
+    <circle cx="382" cy="246" r="3" fill="#fbbf24"/><text x="394" y="250">样本少也能跑，但要人盯着</text>
+  </g>
+  <rect x="376" y="272" width="260" height="56" rx="8" fill="#3a2f10" stroke="#fbbf24"/>
+  <text x="388" y="294" fill="#fbbf24" font-size="12" font-weight="700">贵在按 token 按秒</text>
+  <text x="388" y="316" fill="#fde68a" font-size="11">让 LLM 逐封读信+判断+写回，</text>
+  <text x="388" y="330" fill="#fde68a" font-size="11">量大时成本与延迟都被放大</text>
+
+  <!-- 底部解耦条 -->
+  <rect x="24" y="396" width="632" height="34" rx="8" fill="#111c33" stroke="#334155"/>
+  <text x="36" y="418" fill="#e2e8f0" font-size="12">解耦后：Jev 先判断路由，昂贵的人 / LLM 只接模糊或高危的信，每封判断不要钱，贵的生成不做无用功</text>
+</svg>

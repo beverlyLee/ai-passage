@@ -1,0 +1,67 @@
+# 真实运行证据（managed python 3.13，无需 API key，FakeJevBackend 可复现）
+
+## triage_router.py --self-test
+  OK  期望=human_priority 实得=human_priority[sec@x] 疑似越权访问
+       部门=security(置信0.99)  紧急度=0.20  需人=0.96  队列=human_priority  派给=security_oncall  花费=$0.0000072
+  OK  期望=discard       实得=discard      [spam@x] 免费领红包
+       部门=spam(置信0.99)  紧急度=0.20  需人=0.08  队列=discard  派给=none  花费=$0.0000071
+  OK  期望=auto          实得=auto         [u1@x] 导出按钮崩溃
+       部门=bug(置信0.99)  紧急度=0.20  需人=0.08  队列=auto  派给=team:bug  花费=$0.0000072
+  OK  期望=human_review  实得=human_review [u2@x] 你好
+       部门=other(置信0.20)  紧急度=0.20  需人=0.08  队列=human_review  派给=triage_human  花费=$0.0000069
+  OK  期望=auto          实得=auto         [vip@x] 重复扣款
+       部门=billing(置信0.99)  紧急度=3.00  需人=0.40  队列=auto  派给=team:billing  花费=$0.0000071
+
+  self-test: 全部通过（路由策略=5 条断言，假后端形状=4 条断言）
+
+## triage_router.py --demo
+  反馈信箱分诊报告（假后端，无需 API key）：
+  [sec@x] 疑似越权访问
+       部门=security(置信0.99)  紧急度=0.20  需人=0.96  队列=human_priority  派给=security_oncall  花费=$0.0000072
+  [spam@x] 免费领红包
+       部门=spam(置信0.99)  紧急度=0.20  需人=0.08  队列=discard  派给=none  花费=$0.0000071
+  [u1@x] 导出按钮崩溃
+       部门=bug(置信0.99)  紧急度=0.20  需人=0.08  队列=auto  派给=team:bug  花费=$0.0000072
+  [u3@x] 想要暗色模式
+       部门=feature(置信0.99)  紧急度=0.20  需人=0.08  队列=auto  派给=team:feature  花费=$0.0000071
+  [vip@x] 重复扣款
+       部门=billing(置信0.99)  紧急度=3.00  需人=0.40  队列=auto  派给=team:billing  花费=$0.0000071
+  [u2@x] 在吗
+       部门=other(置信0.20)  紧急度=0.20  需人=0.08  队列=human_review  派给=triage_human  花费=$0.0000069
+
+  合计 6 封：Jev 输入 token 成本约 $0.0000425（输出免费）
+  对比：聊天模型要逐封生成路由+回复，单封通常要几秒且另计输出 token；这里 6 封合计远低于 1 美分。
+
+## triage_batch.py --self-test
+  OK  01_security.txt -> human_priority（期望 human_priority）
+  OK  02_spam.txt -> discard（期望 discard）
+  OK  06_vague.txt -> human_review（期望 human_review）
+  OK  成本计算：total_tokens=1209 * 0.04200 / 1e6 = $0.0000508
+  OK  队列计数之和 == 邮件数（7）
+
+  self-test: 全部通过（5 条断言）
+
+## triage_batch.py --demo
+  反馈信箱批量分诊报告
+  ------------------------------------------------------------------------------
+  [01_security.txt] 疑似越权漏洞
+       部门=security(置信0.90)  紧急度=0.20  需人=0.96  队列=human_priority  派给=security_oncall  花费=$0.0000076
+  [02_spam.txt] 免费领红包
+       部门=spam(置信0.99)  紧急度=0.20  需人=0.08  队列=discard  派给=none  花费=$0.0000072
+  [03_bug.txt] 导出按钮崩溃
+       部门=bug(置信0.99)  紧急度=1.10  需人=0.40  队列=auto  派给=team:bug  花费=$0.0000074
+  [04_feature.txt] 想要暗色模式
+       部门=feature(置信0.99)  紧急度=0.20  需人=0.08  队列=auto  派给=team:feature  花费=$0.0000072
+  [05_billing_urgent.txt] 重复扣款
+       部门=billing(置信0.99)  紧急度=3.00  需人=0.40  队列=auto  派给=team:billing  花费=$0.0000072
+  [06_vague.txt] 在吗
+       部门=other(置信0.20)  紧急度=0.20  需人=0.08  队列=human_review  派给=triage_human  花费=$0.0000069
+  [07_complaint.txt] 太失望了
+       部门=complaint(置信0.90)  紧急度=0.20  需人=0.82  队列=human_review  派给=triage_human  花费=$0.0000073
+  ------------------------------------------------------------------------------
+  队列分布： {'auto': 3, 'human_review': 2, 'human_priority': 1, 'discard': 1}
+  合计：7 封 | 输入 token 1209 | Jev 成本 $0.0000508（输出免费）
+  自动派单 3 封（占 43%），人工相关 4 封，贵的真人只接模糊/高危的。
+
+  吞吐对比（定性，非夸大）：Jev 三问一次调用≈一次延迟（官方称 70–500ms，社区实测约 0.3s/封）；
+  若改用聊天模型逐封『读信+判断+写回』，单封通常数秒且另计输出 token。量大时差异被放大。

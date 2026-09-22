@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC',sans-serif">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;family=Noto+Sans+SC:wght@400;700&amp;display=swap');</style>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <!-- grid -->
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="112" x2="680" y2="112"/><line x1="0" y1="225" x2="680" y2="225"/><line x1="0" y1="338" x2="680" y2="338"/>
+    <line x1="170" y1="0" x2="170" y2="450"/><line x1="340" y1="0" x2="340" y2="450"/><line x1="510" y1="0" x2="510" y2="450"/>
+  </g>
+  <text x="24" y="34" fill="#e2e8f0" font-size="17" font-weight="700">一个人做独立开发，反馈信箱被六类信淹没</text>
+  <text x="24" y="56" fill="#94a3b8" font-size="12">Jev 分诊前（人肉） vs 分诊后（类型化概率 + 确定性路由）</text>
+
+  <!-- 中间箭头 -->
+  <text x="312" y="250" fill="#22d3ee" font-size="26" font-weight="700">→</text>
+
+  <!-- 左：分诊前 -->
+  <rect x="24" y="80" width="262" height="344" rx="10" fill="#111c33" stroke="#334155"/>
+  <text x="44" y="106" fill="#fb7185" font-size="14" font-weight="700">分诊前：手动分拣</text>
+  <rect x="44" y="118" width="222" height="30" rx="6" fill="#1e293b"/>
+  <text x="56" y="138" fill="#e2e8f0" font-size="12">反馈信箱（每天 100~200 封）</text>
+  <text x="44" y="172" fill="#94a3b8" font-size="11">六类信混在一起：</text>
+  <g font-size="11">
+    <rect x="44" y="180" width="100" height="22" rx="5" fill="#1e293b"/><text x="52" y="195" fill="#e2e8f0">bug 报错崩溃</text>
+    <rect x="152" y="180" width="114" height="22" rx="5" fill="#1e293b"/><text x="160" y="195" fill="#e2e8f0">feature 建议</text>
+    <rect x="44" y="208" width="100" height="22" rx="5" fill="#1e293b"/><text x="52" y="223" fill="#e2e8f0">billing 扣款</text>
+    <rect x="152" y="208" width="114" height="22" rx="5" fill="#1e293b"/><text x="160" y="223" fill="#e2e8f0">complaint 投诉</text>
+    <rect x="44" y="236" width="100" height="22" rx="5" fill="#7f1d1d"/><text x="52" y="251" fill="#fecaca">security 漏洞</text>
+    <rect x="152" y="236" width="114" height="22" rx="5" fill="#1e293b"/><text x="160" y="251" fill="#e2e8f0">spam 灌水</text>
+  </g>
+  <rect x="44" y="278" width="222" height="56" rx="8" fill="#2a1622" stroke="#fb7185"/>
+  <text x="56" y="300" fill="#fb7185" font-size="12" font-weight="700">人肉看信 1~2 小时 / 天</text>
+  <text x="56" y="320" fill="#fecaca" font-size="11">漏掉安全漏洞 / VIP 急件</text>
+  <text x="56" y="338" fill="#fecaca" font-size="11">灌水也占了人工</text>
+
+  <!-- 右：分诊后 -->
+  <rect x="394" y="80" width="262" height="344" rx="10" fill="#0c1f2e" stroke="#155e63"/>
+  <text x="414" y="106" fill="#22d3ee" font-size="14" font-weight="700">分诊后：Jev + 规则</text>
+  <rect x="414" y="118" width="222" height="30" rx="6" fill="#0e2a33" stroke="#22d3ee"/>
+  <text x="426" y="138" fill="#e2e8f0" font-size="12">同一批信 → 一次调用三问</text>
+  <!-- 三原语 -->
+  <g font-size="11">
+    <rect x="414" y="160" width="68" height="26" rx="5" fill="#063a44"/><text x="420" y="177" fill="#22d3ee">Choice</text>
+    <rect x="488" y="160" width="64" height="26" rx="5" fill="#063a44"/><text x="494" y="177" fill="#22d3ee">Score</text>
+    <rect x="558" y="160" width="66" height="26" rx="5" fill="#063a44"/><text x="564" y="177" fill="#22d3ee">Noul</text>
+    <text x="414" y="200" fill="#94a3b8" font-size="10">派部门 / 紧急度 / 是否升级</text>
+  </g>
+  <text x="414" y="226" fill="#22d3ee" font-size="11" font-weight="700">确定性路由（代码写规则）</text>
+  <g font-size="10">
+    <rect x="414" y="234" width="222" height="20" rx="4" fill="#1e293b"/><text x="420" y="247" fill="#e2e8f0">auto 自动派单（高置信）</text>
+    <rect x="414" y="258" width="222" height="20" rx="4" fill="#1e293b"/><text x="420" y="271" fill="#e2e8f0">human_review 模糊/需人</text>
+    <rect x="414" y="282" width="222" height="20" rx="4" fill="#7f1d1d"/><text x="420" y="295" fill="#fecaca">human_priority 安全置顶</text>
+    <rect x="414" y="306" width="222" height="20" rx="4" fill="#1e293b"/><text x="420" y="319" fill="#e2e8f0">discard 灌水丢弃</text>
+  </g>
+  <rect x="414" y="338" width="222" height="40" rx="8" fill="#063a44" stroke="#22d3ee"/>
+  <text x="426" y="357" fill="#22d3ee" font-size="11" font-weight="700">贵的真人只看模糊 / 高危</text>
+  <text x="426" y="372" fill="#a5f3fc" font-size="10">每封成本 ~$0.000007，输出免费</text>
+</svg>
