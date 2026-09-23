@@ -154,16 +154,16 @@ def _self_test():
                 instructions="派给哪个部门",
                 criteria={"billing": "账单", "tech": "技术", "ops": "运营"},
             ),
-            "urgency": Noul(instructions="是否紧急"),
-            "tone": Score(instructions="情绪强度", criteria=["平静", "着急", "愤怒"]),
+            "urgency": Score(instructions="紧急程度", criteria=["平静", "着急", "非常愤怒"]),
+            "is_vuln": Noul(instructions="这封是不是漏洞报告"),
         },
     )
     ans = resp["answers"]
-    assert "noul" in ans["urgency"] and "confidence" not in ans["urgency"], \
+    assert "noul" in ans["is_vuln"] and "confidence" not in ans["is_vuln"], \
         "Noul 响应必须只有 noul，不能带 confidence"
     assert abs(sum(ans["department"]["probabilities"].values()) - 1.0) < 1e-6, \
         "Choice 的 probabilities 之和必须为 1"
-    assert 0 <= ans["tone"]["score"] <= 2, "Score 的 score 必须在刻度范围内"
+    assert 0 <= ans["urgency"]["score"] <= 2, "Score 的 score 必须在刻度范围内"
     assert resp["usage"]["output_tokens"] == 0, "输出必须免费（output_tokens=0）"
 
     # 2) 非法请求触发 422：Choice 选项超过 255。
@@ -191,22 +191,22 @@ def _demo():
         state=state,
         questions={
             "department": Choice(
-                instructions="哪个团队处理",
+                instructions="派给哪个团队",
                 criteria={"billing": "账单", "tech": "技术", "sales": "销售"},
             ),
-            "frustration": Score(
-                instructions="客户愤怒程度",
+            "urgency": Score(
+                instructions="紧急程度",
                 criteria=["平静陈述", "着急但克制", "非常愤怒"],
             ),
-            "is_urgent": Noul(instructions="是否紧急"),
+            "is_vuln": Noul(instructions="这封是不是漏洞报告"),
         },
     )
     print(f"model={resp['model']}  usage={resp['usage']}")
     a = resp["answers"]
-    print(f"department.choice      = {a['department']['choice']}")
+    print(f"department.choice        = {a['department']['choice']}")
     print(f"department.probabilities = {a['department']['probabilities']}")
-    print(f"frustration.score      = {a['frustration']['score']}  legend={a['frustration']['legend']}")
-    print(f"is_urgent.noul         = {a['is_urgent']['noul']}  (无 confidence)")
+    print(f"urgency.score            = {a['urgency']['score']}  legend={a['urgency']['legend']}")
+    print(f"is_vuln.noul             = {a['is_vuln']['noul']}  (无 confidence)")
 
 
 def main():
