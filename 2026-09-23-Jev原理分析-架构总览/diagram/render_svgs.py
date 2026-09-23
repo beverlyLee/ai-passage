@@ -19,12 +19,14 @@ import tempfile
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 SVG_DIR = pathlib.Path(__file__).resolve().parent
 
-# 本篇 4 张图，顺序即渲染顺序
+# 本篇 6 张图，顺序即渲染顺序
 NAMES = [
     "01_mental_model",
     "02_speed_cost",
     "03_fault_tree",
     "04_naming",
+    "05_architecture",
+    "06_dataflow",
 ]
 
 SCALE = 2
