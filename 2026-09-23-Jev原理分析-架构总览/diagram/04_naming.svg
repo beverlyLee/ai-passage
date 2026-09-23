@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="340" y1="0" x2="340" y2="450"/>
+  </g>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="17">Jev 这名字有两层含义，两层都来自厂商叙事，非独立验证</text>
+
+  <rect x="30" y="70" width="290" height="290" rx="10" fill="#1e293b" stroke="#fb7185" stroke-width="2"/>
+  <text x="175" y="102" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15">第一层：双系统旗号</text>
+  <text x="175" y="104" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15"></text>
+  <text x="175" y="130" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">借 Kahneman 的 System 1 / 2</text>
+  <text x="175" y="162" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">System 1：快直觉判断</text>
+  <text x="175" y="192" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">System 2：慢推理生成</text>
+  <text x="175" y="222" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">Jev 自称 System 1</text>
+  <text x="175" y="252" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">干窄判断，不写文章</text>
+  <text x="175" y="298" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">和 LLM 互补，不是替代</text>
+
+  <rect x="360" y="70" width="290" height="290" rx="10" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="505" y="102" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15">第二层：Jevons 悖论</text>
+  <text x="505" y="130" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">经济学家 William Stanley Jevons</text>
+  <text x="505" y="162" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">蒸汽机更省煤</text>
+  <text x="505" y="192" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">煤耗总量反而上升</text>
+  <text x="505" y="222" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">智能更便宜</text>
+  <text x="505" y="252" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">用得更多更泛滥</text>
+  <text x="505" y="298" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">名字里埋了这层预言</text>
+
+  <text x="340" y="402" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">读懂命名 = 读懂它的自我定位：便宜的判断引擎，不是便宜的生成引擎</text>
+</svg>

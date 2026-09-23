@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="218" x2="680" y2="218"/>
+  </g>
+  <text x="24" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="17">快与免费的根因：LLM 的 decode 循环计费 vs Jev 一次前向全出</text>
+
+  <rect x="30" y="60" width="620" height="140" rx="10" fill="#1e293b" stroke="#fb7185" stroke-width="2"/>
+  <text x="50" y="90" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15">传统 LLM：自回归 decode 循环 (System 2)</text>
+  <text x="50" y="122" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">逐 token 输出：每蹦一个字都要把前面所有字再过一遍前向</text>
+  <text x="50" y="152" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">循环跑 N 次 = 慢的根因；每个生成的 token 都计费 = 贵的根因</text>
+  <text x="50" y="182" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">延迟 3~329 秒，输出按 token 计费，还需解析校验重试</text>
+
+  <rect x="30" y="238" width="620" height="140" rx="10" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="50" y="268" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15">Jev：非自回归 parallel sampler (System 1，外部转述/设计意图)</text>
+  <text x="50" y="300" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">一次前向并行算出所有原语答案，没有逐字生成的循环</text>
+  <text x="50" y="330" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">没有 decode 循环 = 快；没有可计费生成 = 输出免费</text>
+  <text x="50" y="360" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">官方锚点：70~500ms，0.042 美元/百万输入，输出免费，上下文 32K</text>
+
+  <text x="340" y="412" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13">同根因两面：不是它更便宜，而是架构里没有会被计费的生成循环</text>
+</svg>
