@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+
+  <text x="22" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700">三原语的本质：把"判断"拆成三种确定性输出形状</text>
+  <text x="22" y="52" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">不是三个 API 功能，而是三种预先枚举的输出空间：schema-safe，Jev 不可能吐出 schema 外的值</text>
+
+  <!-- Choice card -->
+  <rect x="30" y="74" width="190" height="288" rx="10" fill="#0f172a"/>
+  <rect x="30" y="74" width="190" height="288" rx="10" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="125" y="100" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="700">Choice</text>
+  <text x="125" y="120" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">有限选项里挑一个</text>
+
+  <text x="46" y="150" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">请求要什么</text>
+  <text x="46" y="168" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">criteria：dict，必填</text>
+  <text x="46" y="183" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">最多 255 个选项</text>
+
+  <text x="46" y="214" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">响应形状</text>
+  <text x="46" y="232" fill="#e2e8f0" font-family="JetBrains Mono, monospace" font-size="9">choice</text>
+  <text x="46" y="247" fill="#e2e8f0" font-family="JetBrains Mono, monospace" font-size="9">probabilities  Σ=1</text>
+  <text x="46" y="262" fill="#e2e8f0" font-family="JetBrains Mono, monospace" font-size="9">confidence</text>
+
+  <text x="46" y="296" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">适合</text>
+  <text x="46" y="314" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">分类 / 派单 / 选动作</text>
+  <text x="46" y="329" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">答案空间可枚举</text>
+  <text x="46" y="348" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">例：放行/转人工/拦截</text>
+
+  <!-- Score card -->
+  <rect x="245" y="74" width="190" height="288" rx="10" fill="#0f172a"/>
+  <rect x="245" y="74" width="190" height="288" rx="10" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="100" text-anchor="middle" fill="#34d399" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="700">Score</text>
+  <text x="340" y="120" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">连续刻度上打一个分</text>
+
+  <text x="261" y="150" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">请求要什么</text>
+  <text x="261" y="168" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">criteria：list，必填</text>
+  <text x="261" y="183" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">2~10 档</text>
+
+  <text x="261" y="214" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">响应形状</text>
+  <text x="261" y="232" fill="#e2e8f0" font-family="JetBrains Mono, monospace" font-size="9">score  可落档间</text>
+  <text x="261" y="247" fill="#e2e8f0" font-family="JetBrains Mono, monospace" font-size="9">legend</text>
+  <text x="261" y="262" fill="#e2e8f0" font-family="JetBrains Mono, monospace" font-size="9">probabilities</text>
+  <text x="261" y="277" fill="#e2e8f0" font-family="JetBrains Mono, monospace" font-size="9">confidence</text>
+
+  <text x="261" y="296" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">适合</text>
+  <text x="261" y="314" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">风险分 / 紧急度 / 信任度</text>
+  <text x="261" y="329" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">例：欺诈风险 0~2</text>
+  <text x="261" y="348" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">1.7 分（不在整档上）</text>
+
+  <!-- Noul card -->
+  <rect x="460" y="74" width="190" height="288" rx="10" fill="#0f172a"/>
+  <rect x="460" y="74" width="190" height="288" rx="10" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="555" y="100" text-anchor="middle" fill="#a78bfa" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="700">Noul</text>
+  <text x="555" y="120" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">布尔事件用连续概率</text>
+
+  <text x="476" y="150" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">请求要什么</text>
+  <text x="476" y="168" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">instructions 即可</text>
+  <text x="476" y="183" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">criteria 可选</text>
+
+  <text x="476" y="214" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">响应形状</text>
+  <text x="476" y="232" fill="#fb7185" font-family="JetBrains Mono, monospace" font-size="9">noul  0~1</text>
+  <text x="476" y="247" fill="#fb7185" font-family="JetBrains Mono, monospace" font-size="9">无 confidence</text>
+  <text x="476" y="268" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">（与 Choice/Score 不同）</text>
+
+  <text x="476" y="296" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" font-weight="600">适合</text>
+  <text x="476" y="314" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">是 / 否 用概率表达</text>
+  <text x="476" y="329" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">例：确信欺诈 0.91</text>
+  <text x="476" y="348" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">0.91 不是 yes/no</text>
+
+  <text x="340" y="398" text-anchor="middle" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600">一次调用三问并行 · 加问题几乎不增延迟、不产生 context rot</text>
+  <text x="340" y="420" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">三者是"判断"的三种形状，不是三个独立接口；用哪个取决于答案该长什么样</text>
+</svg>
