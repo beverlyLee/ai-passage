@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# 源码级协议契约模拟器：本地复现 TypeSafe / Jev 的 System One API 契约（风控初筛场景版）。
+# 源码级协议契约模拟器：本地复现 TypeSafe / Jev 的 System One API 契约（设备告警分诊场景版）。
 #
 # 重要边界（与正文一致）：
 #   Jev 模型本身未开源，这里不是 typesafe-sdk 的源码，也不是 Jev 内部实现。
@@ -7,12 +7,12 @@
 #   用来把"协议契约"这一层源码级事实跑起来、可验证，且不需要 API key。
 #
 #   本文件是「Jev 原理分析」系列第二篇（三原语的本质）的复现模块，承接第一篇
-#   「架构总览」已建立的 System1/System2 分工，把三原语落到一笔支付交易上：
-#     - risk_type  : Choice -> 风险归类（盗刷 / 账户盗用 / 营销刷单 / 正常）
-#     - risk_score : Score  -> 欺诈风险分 0~2，可落在档间（如 1.078）
-#     - is_fraud   : Noul   -> 确信欺诈 0~1，响应只有 noul，没有 confidence
+#   「架构总览」已建立的 System1/System2 分工，把三原语落到一条设备告警上：
+#     - alert_category : Choice -> 告警归类（网络抖动 / 硬件故障 / 容量压力 / 正常）
+#     - severity       : Score  -> 严重度 0~2，可落在档间（如 1.326）
+#     - is_incident    : Noul   -> 确信真实故障 0~1，响应只有 noul，没有 confidence
 #
-#   关键设计（与正文一致）：Jev 只输出"判断"，不输出"动作"。最终放行/转人工/拦截
+#   关键设计（与正文一致）：Jev 只输出"判断"，不输出"动作"。最终升级/转人工/自动恢复
 #   是开发者用 if/elif 按"错误成本"写的确定性路由（见 route_action），不是 Jev 给的。
 #   这正体现三原语的本质：输出空间预先枚举、schema-safe，路由逻辑完全在你手里。
 #
@@ -20,7 +20,7 @@
 #   - 请求顶层三字段：state / model / questions（均必填）
 #   - Noul：响应只有 noul(0~1)，没有 confidence
 #   - Choice：criteria 上限 255 选项；响应 probabilities 之和必须为 1，附 confidence
-#   - Score：criteria 必须是 2~10 档的数组；响应 score 可落在档间（如 1.078）
+#   - Score：criteria 必须是 2~10 档的数组；响应 score 可落在档间（如 1.326）
 #   - 错误码：422（非法请求）。真实 SDK 还会返 401/429/529，本脚本只演示 422。
 #
 # 用法：
@@ -115,7 +115,7 @@ def _fake_answer(q, rng):
         s = sum(raw)
         probs = {str(i): round(p / s, 4) for i, p in enumerate(raw)}
         probs[str(0)] = round(1.0 - sum(probs[str(i)] for i in range(1, n)), 4)
-        # score 可落在档间（如 1.078），这正是 Score 与 Choice 的区别之一。
+        # score 可落在档间（如 1.326），这正是 Score 与 Choice 的区别之一。
         score = sum(i * probs[str(i)] for i in range(n))
         confidence = max(probs.values())
         legend = {str(i): d for i, d in enumerate(q.criteria)}
@@ -142,7 +142,10 @@ class FakeTypeSafeClient:
         for key, q in questions.items():
             answers[key] = _fake_answer(q, self._rng)
         # 输出免费：usage 只计 input_tokens，output_tokens 记为 0。
-        n_input = len(str(state)) // 4 + len(str(questions)) // 4 + 1
+        # 注意：这里曾写成 len(str(questions))，但 questions 里是对象，其默认 repr 带
+        # 内存地址，跨进程会变，导致 input_tokens 不固定。改成只依赖 state 长度与问题数，
+        # 保证读者重跑得到完全一致的 usage（演示近似，真实以你的账户返回为准）。
+        n_input = len(str(state)) // 4 + len(questions) + 1
         return {
             "model": "jev-1.13.0",  # 实际模型版本号，对应官方响应顶层 model
             "answers": answers,
@@ -154,24 +157,30 @@ class FakeTypeSafeClient:
 # 这不是 Jev 的输出，是业务代码。正是三原语"输出空间预定、schema-safe"的好处：
 # 你拿到的一定是这三个形状，路由逻辑因此可以写成不会崩的 if/elif。
 
-# 策略 A（保守）：错放一笔欺诈的代价 > 错拦一笔正常交易的代价。
-POLICY_CONSERVATIVE = {"block_if_fraud_ge": 0.9, "block_if_score_ge": 1.5, "review_if_score_ge": 1.0}
+# 策略 A（保守）：错放一次真实故障的代价 > 错拦一次误报告警（如机房宕机、SLA 违约、
+# 半夜被叫醒后发现的却是假预警）。它的阈值是 incident 超过 0.9 升级、severity 超过 1.5 升级、
+# severity 超过 1.0 转人工核验。
+POLICY_CONSERVATIVE = {"escalate_if_incident_ge": 0.9, "escalate_if_severity_ge": 1.5,
+                        "review_if_severity_ge": 1.0}
 
-# 策略 B（宽松）：错拦会赶走高价值客户，宁可多一些人工核验。
-POLICY_LOOSE = {"block_if_fraud_ge": 0.95, "block_if_score_ge": 2.0, "review_if_score_ge": 1.5}
+# 策略 B（宽松）：错拦会制造告警疲劳，真实故障反而被淹没（如值班被假预警叫醒太多次，
+# 真出事时没人信了），宁可多转人工。它的阈值是 incident 超过 0.95 升级、severity 超过 2.0 升级、
+# severity 超过 1.5 转人工核验。
+POLICY_LOOSE = {"escalate_if_incident_ge": 0.95, "escalate_if_severity_ge": 2.0,
+                "review_if_severity_ge": 1.5}
 
 
 def route_action(answers, policy):
     """同一组 Jev 判断，按不同错误成本假设得到不同裁决。"""
-    fraud = answers["is_fraud"]["noul"]
-    score = answers["risk_score"]["score"]
-    if fraud >= policy["block_if_fraud_ge"]:
-        return "block"  # 确信欺诈，直接拦
-    if score >= policy["block_if_score_ge"]:
-        return "block"  # 高风险，直接拦
-    if score >= policy["review_if_score_ge"]:
-        return "review"  # 中风险，转人工核验
-    return "approve"  # 低风险，放行
+    incident = answers["is_incident"]["noul"]
+    severity = answers["severity"]["score"]
+    if incident >= policy["escalate_if_incident_ge"]:
+        return "escalate"  # 确信真实故障，直接升级/派单
+    if severity >= policy["escalate_if_severity_ge"]:
+        return "escalate"  # 高严重度，直接升级
+    if severity >= policy["review_if_severity_ge"]:
+        return "review"  # 中严重度，转人工核验
+    return "auto"  # 低严重度，自动恢复/忽略
 
 
 def _self_test():
@@ -179,34 +188,34 @@ def _self_test():
 
     # 1) 合法请求：Choice + Score + Noul 一次并行，响应形状必须合规。
     resp = client.system_one(
-        state="交易：用户 A 在境外电商消费 ¥8,600，近 30 天无境外记录，设备指纹不符，IP 高风险",
+        state="告警：node-07 在 03:14 CPU 97%、磁盘 IO 等待飙升、三探针同时报红，QPS 未降",
         questions={
-            "risk_type": Choice(
-                instructions="这笔交易最像哪类风险",
-                criteria={"carding": "盗刷冒用", "ato": "账户盗用",
-                          "promo": "营销刷单", "normal": "正常交易"},
+            "alert_category": Choice(
+                instructions="这条告警最像哪类问题",
+                criteria={"net": "网络抖动", "hardware": "硬件故障",
+                          "capacity": "容量压力", "normal": "正常波动"},
             ),
-            "risk_score": Score(
-                instructions="欺诈风险分", criteria=["低风险", "中风险", "高风险"]
+            "severity": Score(
+                instructions="严重度分", criteria=["低", "中", "高"]
             ),
-            "is_fraud": Noul(instructions="这笔交易是否为欺诈"),
+            "is_incident": Noul(instructions="这是否为一次真实故障"),
         },
     )
     ans = resp["answers"]
-    assert "noul" in ans["is_fraud"] and "confidence" not in ans["is_fraud"], \
+    assert "noul" in ans["is_incident"] and "confidence" not in ans["is_incident"], \
         "Noul 响应必须只有 noul，不能带 confidence"
-    assert abs(sum(ans["risk_type"]["probabilities"].values()) - 1.0) < 1e-6, \
+    assert abs(sum(ans["alert_category"]["probabilities"].values()) - 1.0) < 1e-6, \
         "Choice 的 probabilities 之和必须为 1"
-    assert 0 <= ans["risk_score"]["score"] <= 2, "Score 的 score 必须在刻度范围内"
+    assert 0 <= ans["severity"]["score"] <= 2, "Score 的 score 必须在刻度范围内"
     assert resp["usage"]["output_tokens"] == 0, "输出必须免费（output_tokens=0）"
 
     # 2) 路由逻辑：同一组判断，保守策略比宽松策略更激进（错放更贵）。
-    sample = {"is_fraud": {"noul": 0.18}, "risk_score": {"score": 1.08}}
+    sample = {"is_incident": {"noul": 0.18}, "severity": {"score": 1.08}}
     assert route_action(sample, POLICY_CONSERVATIVE) == "review", "1.08 在保守策略下转人工"
-    assert route_action(sample, POLICY_LOOSE) == "approve", "1.08 在宽松策略下放行"
-    high = {"is_fraud": {"noul": 0.97}, "risk_score": {"score": 1.9}}
-    assert route_action(high, POLICY_CONSERVATIVE) == "block"
-    assert route_action(high, POLICY_LOOSE) == "block", "确信欺诈在两种策略下都拦"
+    assert route_action(sample, POLICY_LOOSE) == "auto", "1.08 在宽松策略下自动恢复"
+    high = {"is_incident": {"noul": 0.97}, "severity": {"score": 1.9}}
+    assert route_action(high, POLICY_CONSERVATIVE) == "escalate"
+    assert route_action(high, POLICY_LOOSE) == "escalate", "确信真实故障在两种策略下都升级"
 
     # 3) 非法请求触发 422：Choice 选项超过 255。
     too_many = {f"o{i}": f"opt{i}" for i in range(256)}
@@ -227,31 +236,31 @@ def _self_test():
 
 
 def _demo():
-    # 一笔"看着可疑、但说不清是不是欺诈"的交易：这是风控最难受的区间。
+    # 一条"看着吓人、但说不清是不是真故障"的告警：这是告警分诊最难受的区间。
     client = FakeTypeSafeClient(seed=21)
-    state = ("交易：用户 A 在境外电商消费 ¥8,600，近 30 天无境外消费记录，"
-             "本次设备指纹与常用设备不符，IP 归属高风险地区，下单间隔仅 2 秒")
+    state = ("告警：node-07 在 03:14 触发，CPU 持续 97%、磁盘 IO 等待飙升、"
+             "同一时刻三个探针同时报红，但业务 QPS 未见明显下滑、错误率平稳")
     resp = client.system_one(
         state=state,
         questions={
-            "risk_type": Choice(
-                instructions="这笔交易最像哪类风险",
-                criteria={"carding": "盗刷冒用", "ato": "账户盗用",
-                          "promo": "营销刷单", "normal": "正常交易"},
+            "alert_category": Choice(
+                instructions="这条告警最像哪类问题",
+                criteria={"net": "网络抖动", "hardware": "硬件故障",
+                          "capacity": "容量压力", "normal": "正常波动"},
             ),
-            "risk_score": Score(
-                instructions="欺诈风险分（0=低风险，2=高风险，可落档间）",
-                criteria=["低风险", "中风险", "高风险"],
+            "severity": Score(
+                instructions="严重度（0=低，2=高，可落档间）",
+                criteria=["低", "中", "高"],
             ),
-            "is_fraud": Noul(instructions="这笔交易是否为欺诈"),
+            "is_incident": Noul(instructions="这是否为一次真实故障"),
         },
     )
     print(f"model={resp['model']}  usage={resp['usage']}")
     a = resp["answers"]
-    print(f"risk_type.choice     = {a['risk_type']['choice']}")
-    print(f"risk_type.probs      = {a['risk_type']['probabilities']}")
-    print(f"risk_score.score     = {a['risk_score']['score']}  legend={a['risk_score']['legend']}")
-    print(f"is_fraud.noul        = {a['is_fraud']['noul']}  (无 confidence)")
+    print(f"alert_category.choice = {a['alert_category']['choice']}")
+    print(f"alert_category.probs  = {a['alert_category']['probabilities']}")
+    print(f"severity.score        = {a['severity']['score']}  legend={a['severity']['legend']}")
+    print(f"is_incident.noul      = {a['is_incident']['noul']}  (无 confidence)")
     print("-" * 48)
     print("同一组判断，两种错误成本假设下的裁决：")
     print(f"  保守策略(错放更贵) -> {route_action(a, POLICY_CONSERVATIVE)}")

@@ -6,7 +6,7 @@
   </defs>
   <rect width="680" height="450" fill="#0f172a"/>
 
-  <text x="22" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700">风控初筛：一笔交易，一次调用，三个判断，你的阈值决定动作</text>
+  <text x="22" y="30" fill="#e2e8f0" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700">告警分诊：一条告警，一次调用，三个判断，你的阈值决定动作</text>
 
   <rect x="196" y="62" width="288" height="326" rx="12" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
   <text x="208" y="81" fill="#fbbf24" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600">Jev 判断引擎（System 1）</text>
@@ -19,11 +19,11 @@
   <rect x="22" y="70" width="150" height="310" rx="10" fill="#0f172a"/>
   <rect x="22" y="70" width="150" height="310" rx="10" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
   <text x="97" y="102" text-anchor="middle" fill="#22d3ee" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600">你的应用</text>
-  <text x="97" y="124" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">支付风控系统</text>
+  <text x="97" y="124" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">监控与告警系统</text>
   <text x="97" y="164" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">输入</text>
-  <text x="97" y="184" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">state（一笔交易）</text>
+  <text x="97" y="184" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">state（一条告警）</text>
   <text x="97" y="204" text-anchor="middle" fill="#cbd5e1" font-family="JetBrains Mono, monospace" font-size="9">questions{ }</text>
-  <text x="97" y="222" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">risk_type / score / fraud</text>
+  <text x="97" y="222" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="8.5">category / severity / incident</text>
   <text x="97" y="344" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">答案空间已知</text>
 
   <rect x="214" y="94" width="252" height="62" rx="6" fill="#0f172a"/>
@@ -47,14 +47,14 @@
   <rect x="510" y="70" width="150" height="310" rx="10" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
   <text x="585" y="102" text-anchor="middle" fill="#34d399" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600">路由代码</text>
   <text x="585" y="124" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">你写的 if/elif</text>
-  <text x="585" y="158" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">score ≥ 1.5 → 拦截</text>
-  <text x="585" y="178" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">score ≥ 1.0 → 转人工</text>
-  <text x="585" y="198" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">fraud ≥ 0.9 → 拦截</text>
+  <text x="585" y="158" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">severity ≥ 1.5 → 升级</text>
+  <text x="585" y="178" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">severity ≥ 1.0 → 转人工</text>
+  <text x="585" y="198" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">incident ≥ 0.9 → 升级</text>
   <text x="585" y="222" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9">阈值按错误成本定</text>
   <text x="585" y="252" text-anchor="middle" fill="#cbd5e1" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">动作</text>
-  <text x="585" y="272" text-anchor="middle" fill="#34d399" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">放行 / 转人工 / 拦截</text>
+  <text x="585" y="272" text-anchor="middle" fill="#34d399" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="9.5">升级 / 转人工 / 自动恢复</text>
   <text x="585" y="344" text-anchor="middle" fill="#94a3b8" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="10">窄决策闭环</text>
 
   <text x="340" y="410" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">路由是你写的，不是 Jev 给的</text>
-  <text x="340" y="430" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12">同一组判断，错放(损失钱) vs 错拦(流失客户)成本不同 → 阈值不同 → 裁决不同</text>
+  <text x="340" y="430" text-anchor="middle" fill="#fb7185" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="11">同一组判断，错放(宕机/SLA) vs 错拦(告警疲劳)成本不同 → 阈值不同 → 裁决不同</text>
 </svg>
