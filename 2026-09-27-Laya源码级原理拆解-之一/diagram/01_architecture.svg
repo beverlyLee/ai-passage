@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="20" y="26" fill="#ffffff" font-size="16" font-weight="700">Laya 包：纯 Python 入口 + 延迟到用的 torch 后端</text>
+  <text x="20" y="44" fill="#94a3b8" font-size="10">import laya 不拉 torch：纯 Python 层顶层直 import，torch 后端经 _LAZY_ATTRS 延迟解析</text>
+
+  <!-- Left region: pure Python layer -->
+  <rect x="40" y="62" width="290" height="178" rx="8" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="185" y="82" fill="#22d3ee" font-size="11" font-weight="600" text-anchor="middle">纯 Python 层（torch-free，顶层直 import）</text>
+
+  <text x="58" y="112" fill="#ffffff" font-size="10">email · 邮件正文清洗</text>
+  <text x="58" y="150" fill="#ffffff" font-size="10">lang · 语言 / 文字检测</text>
+  <text x="58" y="188" fill="#ffffff" font-size="10">router · 路由到 checkpoint</text>
+
+  <text x="210" y="112" fill="#ffffff" font-size="10">hooks · 钩子框架</text>
+  <text x="210" y="150" fill="#ffffff" font-size="10">presets · 问题预设</text>
+  <text x="210" y="188" fill="#ffffff" font-size="10">structured · decide 决策</text>
+
+  <text x="185" y="224" fill="#94a3b8" font-size="9" text-anchor="middle">torch-free：import laya 即可用，无需 torch</text>
+
+  <!-- Right region: torch backend layer -->
+  <rect x="350" y="62" width="290" height="178" rx="8" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="495" y="82" fill="#a78bfa" font-size="11" font-weight="600" text-anchor="middle">torch 后端层（_LAZY_ATTRS 延迟解析）</text>
+
+  <text x="368" y="112" fill="#ffffff" font-size="10">Agent / RLAgent</text>
+  <text x="368" y="150" fill="#ffffff" font-size="10">common · 校准 / 温度</text>
+  <text x="368" y="188" fill="#ffffff" font-size="10">shortlist · 粗到细</text>
+
+  <text x="520" y="112" fill="#ffffff" font-size="10">integrations · Laya*</text>
+  <text x="520" y="150" fill="#ffffff" font-size="10">onnx_agent</text>
+  <text x="520" y="188" fill="#ffffff" font-size="10">fast · TileLang 前向</text>
+
+  <text x="495" y="224" fill="#94a3b8" font-size="9" text-anchor="middle">首次访问才 import_module，__getattr__ 缓存一次</text>
+
+  <!-- lazy boundary arrow -->
+  <line x1="332" y1="150" x2="346" y2="150" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="339" y="142" fill="#22d3ee" font-size="8" text-anchor="middle">访问触发</text>
+
+  <!-- Cross-cutting hooks bar -->
+  <rect x="40" y="256" width="600" height="48" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="278" fill="#fbbf24" font-size="11" font-weight="600" text-anchor="middle">横切：HookRegistry mixin —— Agent 与 Router 都继承，六事件钩子</text>
+  <text x="340" y="296" fill="#94a3b8" font-size="9" text-anchor="middle">on_predict_start / on_predict_end / on_route / on_load / on_evict / on_error（默认钩子 + per-call 钩子组合）</text>
+
+  <!-- Three checkpoints -->
+  <text x="40" y="322" fill="#94a3b8" font-size="11">三 checkpoint（BUNDLE_REPO = convaiinnovations/laya，同仓不同子目录，max_loaded=2）</text>
+
+  <rect x="40" y="334" width="190" height="86" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="135" y="358" fill="#22d3ee" font-size="12" font-weight="700" text-anchor="middle">english</text>
+  <text x="135" y="378" fill="#ffffff" font-size="9" text-anchor="middle">421M ModernBERT-large</text>
+  <text x="135" y="396" fill="#94a3b8" font-size="9" text-anchor="middle">512 tokens · 默认路由目标</text>
+  <text x="135" y="412" fill="#94a3b8" font-size="8" text-anchor="middle">非拉丁文会崩（ECE 0.855）</text>
+
+  <rect x="245" y="334" width="190" height="86" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="358" fill="#34d399" font-size="12" font-weight="700" text-anchor="middle">multilingual</text>
+  <text x="340" y="378" fill="#ffffff" font-size="9" text-anchor="middle">322M mmBERT-base</text>
+  <text x="340" y="396" fill="#94a3b8" font-size="9" text-anchor="middle">1024 tokens · 100+ 语言</text>
+  <text x="340" y="412" fill="#94a3b8" font-size="8" text-anchor="middle">非英文 / 非拉丁走这里</text>
+
+  <rect x="450" y="334" width="190" height="86" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="545" y="358" fill="#a78bfa" font-size="11" font-weight="700" text-anchor="middle">typed-decisions</text>
+  <text x="545" y="378" fill="#ffffff" font-size="9" text-anchor="middle">421M ModernBERT-large</text>
+  <text x="545" y="396" fill="#94a3b8" font-size="9" text-anchor="middle">1024 tokens · 四工作流微调</text>
+  <text x="545" y="412" fill="#94a3b8" font-size="8" text-anchor="middle">opt-in（auto_task_detection）</text>
+
+  <text x="40" y="438" fill="#94a3b8" font-size="9">Router.load() 按 name 下载对应子目录；max_loaded=2 触发 LRU 淘汰 + gc + torch.cuda.empty_cache</text>
+</svg>
