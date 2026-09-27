@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="20" y="28" fill="#ffffff" font-size="16" font-weight="700">Laya 决策头：一个 [MASK] 打完全部选项</text>
+
+  <!-- ===== Left flow column ===== -->
+
+  <!-- Box1: input -->
+  <rect x="40" y="50" width="360" height="50" rx="6" fill="#0f172a"/>
+  <rect x="40" y="50" width="360" height="50" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="220" y="72" fill="#ffffff" font-size="11" font-weight="600" text-anchor="middle">输入：state（反馈消息）+ questions（选项空间）</text>
+  <text x="220" y="90" fill="#94a3b8" font-size="9" text-anchor="middle">选项空间在请求时定义，加选项不重训</text>
+
+  <!-- arrow -->
+  <line x1="220" y1="100" x2="220" y2="118" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Box2: build sequence -->
+  <rect x="40" y="118" width="360" height="66" rx="6" fill="#0f172a"/>
+  <rect x="40" y="118" width="360" height="66" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="220" y="138" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">构造序列（指令在前，状态在后）</text>
+  <text x="220" y="158" fill="#ffffff" font-size="10" text-anchor="middle">[INST] 指令</text>
+  <text x="220" y="176" fill="#ffffff" font-size="9" text-anchor="middle">[MASK] 选项1 [MASK] 选项2 ... [MASK] 选项N</text>
+
+  <!-- arrow -->
+  <line x1="220" y1="184" x2="220" y2="202" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Box3: encoder -->
+  <rect x="40" y="202" width="360" height="56" rx="6" fill="#0f172a"/>
+  <rect x="40" y="202" width="360" height="56" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="220" y="224" fill="#22d3ee" font-size="12" font-weight="600" text-anchor="middle">ModernBERT-large encoder</text>
+  <text x="220" y="244" fill="#94a3b8" font-size="9" text-anchor="middle">一次前向 · 非自回归 · 约 33ms 决策</text>
+
+  <!-- arrow -->
+  <line x1="220" y1="258" x2="220" y2="276" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Box4: score + softmax -->
+  <rect x="40" y="276" width="360" height="58" rx="6" fill="#0f172a"/>
+  <rect x="40" y="276" width="360" height="58" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="220" y="298" fill="#a78bfa" font-size="10" font-weight="600" text-anchor="middle">每个 [MASK] 位置取隐向量 → 线性头打分</text>
+  <text x="220" y="318" fill="#94a3b8" font-size="9" text-anchor="middle">同一问题的选项之间做 softmax → 概率分布</text>
+
+  <!-- ===== Right column: three shapes ===== -->
+
+  <!-- choice -->
+  <rect x="420" y="90" width="240" height="70" rx="6" fill="#0f172a"/>
+  <rect x="420" y="90" width="240" height="70" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="540" y="112" fill="#22d3ee" font-size="11" font-weight="600" text-anchor="middle">choice / 选一个</text>
+  <text x="540" y="132" fill="#ffffff" font-size="9" text-anchor="middle">{ choice, confidence, probabilities }</text>
+  <text x="540" y="150" fill="#94a3b8" font-size="9" text-anchor="middle">argmax 即答案，max 即信心</text>
+
+  <!-- score -->
+  <rect x="420" y="190" width="240" height="70" rx="6" fill="#0f172a"/>
+  <rect x="420" y="190" width="240" height="70" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="540" y="212" fill="#34d399" font-size="11" font-weight="600" text-anchor="middle">score / 打分</text>
+  <text x="540" y="232" fill="#ffffff" font-size="9" text-anchor="middle">{ score, legend, probabilities, confidence }</text>
+  <text x="540" y="250" fill="#94a3b8" font-size="9" text-anchor="middle">刻度锚点概率加权得连续分</text>
+
+  <!-- noul -->
+  <rect x="420" y="290" width="240" height="70" rx="6" fill="#0f172a"/>
+  <rect x="420" y="290" width="240" height="70" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="540" y="312" fill="#fb7185" font-size="11" font-weight="600" text-anchor="middle">noul / 是或否</text>
+  <text x="540" y="332" fill="#ffffff" font-size="9" text-anchor="middle">{ noul: 0~1 }</text>
+  <text x="540" y="350" fill="#94a3b8" font-size="9" text-anchor="middle">只有概率，没有独立 confidence</text>
+
+  <!-- arrows from softmax box to three shapes -->
+  <path d="M 400 305 C 410 250, 410 150, 418 125" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 400 305 C 410 270, 410 245, 418 225" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 400 305 C 410 320, 410 325, 418 325" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- note bottom -->
+  <text x="40" y="362" fill="#64748b" font-size="8">核心：判断不是逐 token 生成，而是对预先给的选项打分；输出 token 免费。</text>
+</svg>
