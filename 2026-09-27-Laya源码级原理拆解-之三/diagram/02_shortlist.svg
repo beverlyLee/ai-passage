@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="20" y="28" fill="#e2e8f0" font-size="16" font-weight="700">shortlist 粗到细 · shortlist.py</text>
+
+  <!-- arrows layer -->
+  <line x1="170" y1="86" x2="210" y2="86" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="360" y1="86" x2="400" y2="86" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="285" y1="116" x2="285" y2="160" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="485" y1="116" x2="295" y2="160" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+  <line x1="485" y1="116" x2="485" y2="160" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="485" y1="212" x2="485" y2="255" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="485" y1="305" x2="410" y2="305" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="305" x2="210" y2="305" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- box1 state + options -->
+  <rect x="20" y="58" width="150" height="56" rx="6" fill="#0f172a"/>
+  <rect x="20" y="58" width="150" height="56" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="95" y="82" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">state + 选项 n=25</text>
+  <text x="95" y="100" fill="#94a3b8" font-size="9" text-anchor="middle">客服反馈邮件</text>
+
+  <!-- box2 _rank -->
+  <rect x="210" y="58" width="150" height="56" rx="6" fill="#0f172a"/>
+  <rect x="210" y="58" width="150" height="56" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="285" y="82" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">_rank(k=10)</text>
+  <text x="285" y="100" fill="#94a3b8" font-size="9" text-anchor="middle">DEFAULT_SHORTLIST_K=20</text>
+
+  <!-- box3 embed_fn -->
+  <rect x="400" y="58" width="170" height="56" rx="6" fill="#0f172a"/>
+  <rect x="400" y="58" width="170" height="56" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="485" y="82" fill="#ffffff" font-size="11" font-weight="600" text-anchor="middle">embed_fn 一次嵌入</text>
+  <text x="485" y="100" fill="#94a3b8" font-size="9" text-anchor="middle">query + 每选项 (render_options)</text>
+
+  <!-- box4 cosine -->
+  <rect x="400" y="160" width="170" height="52" rx="6" fill="#0f172a"/>
+  <rect x="400" y="160" width="170" height="52" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="485" y="184" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">_cosine 相似度</text>
+  <text x="485" y="202" fill="#94a3b8" font-size="9" text-anchor="middle">clip -1..1, 零向量→0</text>
+
+  <!-- box5 top-k -->
+  <rect x="400" y="255" width="170" height="50" rx="6" fill="#0f172a"/>
+  <rect x="400" y="255" width="170" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="485" y="280" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">top-k = 10 保留</text>
+  <text x="485" y="297" fill="#94a3b8" font-size="9" text-anchor="middle">mergesort 稳定排序</text>
+
+  <!-- box6 reduced criteria -->
+  <rect x="210" y="280" width="170" height="50" rx="6" fill="#0f172a"/>
+  <rect x="210" y="280" width="170" height="50" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="295" y="305" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">reduced criteria</text>
+  <text x="295" y="322" fill="#94a3b8" font-size="9" text-anchor="middle">只含保留的标签</text>
+
+  <!-- box7 predict once -->
+  <rect x="20" y="280" width="170" height="50" rx="6" fill="#0f172a"/>
+  <rect x="20" y="280" width="170" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="105" y="305" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">runner.predict 一次</text>
+  <text x="105" y="322" fill="#94a3b8" font-size="9" text-anchor="middle">概率仅覆盖保留集</text>
+
+  <!-- box8 passthrough -->
+  <rect x="210" y="160" width="170" height="52" rx="6" fill="#0f172a"/>
+  <rect x="210" y="160" width="170" height="52" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="295" y="184" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">k≥n → 原序透传</text>
+  <text x="295" y="202" fill="#fde68a" font-size="9" text-anchor="middle">不调用 embed_fn</text>
+
+  <!-- legend -->
+  <rect x="20" y="375" width="12" height="12" rx="3" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="38" y="385" fill="#94a3b8" font-size="9">输入 / 保留</text>
+  <rect x="140" y="375" width="12" height="12" rx="3" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="158" y="385" fill="#94a3b8" font-size="9">嵌入与排序</text>
+  <rect x="280" y="375" width="12" height="12" rx="3" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="298" y="385" fill="#94a3b8" font-size="9">透传短路</text>
+  <rect x="420" y="375" width="12" height="12" rx="3" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="438" y="385" fill="#94a3b8" font-size="9">缩减后 criteria</text>
+</svg>
