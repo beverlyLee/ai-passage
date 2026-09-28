@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="20" y="28" fill="#e2e8f0" font-size="16" font-weight="700">路由优先级与三套 checkpoint · router.py</text>
+
+  <!-- arrows layer -->
+  <line x1="340" y1="148" x2="118" y2="248" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="148" x2="340" y2="248" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="148" x2="562" y2="248" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- band: request signals -->
+  <rect x="10" y="52" width="660" height="62" rx="6" fill="#0f172a"/>
+  <rect x="10" y="52" width="660" height="62" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="22" y="74" fill="#e2e8f0" font-size="10" font-weight="600">请求信号（优先级左高右低，首个命中生效）</text>
+  <text x="22" y="94" fill="#94a3b8" font-size="9">model ▸ task ▸ auto workflow ▸ lang ▸ lang_guess ▸ detected script/lang ▸ default(english)</text>
+  <text x="22" y="108" fill="#64748b" font-size="8">显式 model 覆盖一切；typed-decisions 靠 questions id 精确集合匹配（4 个工作流）；非英文落到 multilingual</text>
+
+  <!-- resolver box -->
+  <rect x="200" y="126" width="280" height="22" rx="6" fill="#0f172a"/>
+  <rect x="200" y="126" width="280" height="22" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="141" fill="#ffffff" font-size="11" font-weight="600" text-anchor="middle">Router._route 优先级解析（不加载模型）</text>
+
+  <!-- checkpoint english -->
+  <rect x="18" y="248" width="200" height="92" rx="6" fill="#0f172a"/>
+  <rect x="18" y="248" width="200" height="92" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="118" y="272" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">english</text>
+  <text x="118" y="292" fill="#bfdbfe" font-size="9" text-anchor="middle">convaiinnovations/laya</text>
+  <text x="118" y="308" fill="#94a3b8" font-size="9" text-anchor="middle">421M ModernBERT-large</text>
+  <text x="118" y="324" fill="#94a3b8" font-size="9" text-anchor="middle">512 tokens · 仅英文拉丁</text>
+
+  <!-- checkpoint multilingual -->
+  <rect x="240" y="248" width="200" height="92" rx="6" fill="#0f172a"/>
+  <rect x="240" y="248" width="200" height="92" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="272" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">multilingual</text>
+  <text x="340" y="292" fill="#bfdbfe" font-size="9" text-anchor="middle">convaiinnovations/laya-multilingual</text>
+  <text x="340" y="308" fill="#94a3b8" font-size="9" text-anchor="middle">322M mmBERT-base</text>
+  <text x="340" y="324" fill="#94a3b8" font-size="9" text-anchor="middle">1024 tokens · 100+ 语言</text>
+
+  <!-- checkpoint typed-decisions -->
+  <rect x="462" y="248" width="200" height="92" rx="6" fill="#0f172a"/>
+  <rect x="462" y="248" width="200" height="92" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="562" y="272" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">typed-decisions</text>
+  <text x="562" y="292" fill="#fecdd3" font-size="9" text-anchor="middle">convaiinnovations/laya-typed-decisions</text>
+  <text x="562" y="308" fill="#94a3b8" font-size="9" text-anchor="middle">421M ModernBERT-large</text>
+  <text x="562" y="324" fill="#94a3b8" font-size="9" text-anchor="middle">1024 tokens · 4 工作流</text>
+
+  <!-- legend -->
+  <rect x="20" y="370" width="12" height="12" rx="3" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="38" y="380" fill="#94a3b8" font-size="9">请求信号 / 输入</text>
+  <rect x="170" y="370" width="12" height="12" rx="3" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="188" y="380" fill="#94a3b8" font-size="9">路由解析</text>
+  <rect x="300" y="370" width="12" height="12" rx="3" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="318" y="380" fill="#94a3b8" font-size="9">目标 checkpoint</text>
+  <rect x="450" y="370" width="12" height="12" rx="3" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="468" y="380" fill="#94a3b8" font-size="9">类型化决策（精确 id 匹配）</text>
+</svg>
