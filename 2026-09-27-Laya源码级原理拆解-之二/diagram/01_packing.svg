@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', monospace; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="20" y="26" fill="#ffffff" font-size="16" font-weight="700">Laya 序列打包：固定模板把 type、选项、state 压成一条序列</text>
+  <text x="20" y="44" fill="#94a3b8" font-size="10">build_sequence (common.py 94-146)：所有选项摆在 [MASK] 上，marker 指回每个 [MASK] 的下标</text>
+
+  <!-- Sequence container -->
+  <rect x="24" y="68" width="632" height="58" rx="8" fill="rgba(15,23,42,0.55)" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- token chips -->
+  <rect x="36" y="86" width="42" height="24" rx="4" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="57" y="102" fill="#22d3ee" font-size="9" text-anchor="middle">CLS</text>
+  <rect x="84" y="86" width="42" height="24" rx="4" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="105" y="102" fill="#22d3ee" font-size="9" text-anchor="middle">type</text>
+  <rect x="132" y="86" width="42" height="24" rx="4" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="153" y="102" fill="#22d3ee" font-size="9" text-anchor="middle">instr</text>
+  <rect x="180" y="86" width="42" height="24" rx="4" fill="rgba(120,53,15,0.4)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="201" y="102" fill="#fbbf24" font-size="9" text-anchor="middle">SEP</text>
+  <rect x="228" y="86" width="42" height="24" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="249" y="102" fill="#a78bfa" font-size="9" text-anchor="middle">MASK</text>
+  <rect x="276" y="86" width="42" height="24" rx="4" fill="rgba(30,41,59,0.6)" stroke="#64748b" stroke-width="1"/>
+  <text x="297" y="102" fill="#e2e8f0" font-size="9" text-anchor="middle">opt0</text>
+  <rect x="324" y="86" width="42" height="24" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="345" y="102" fill="#a78bfa" font-size="9" text-anchor="middle">MASK</text>
+  <rect x="372" y="86" width="42" height="24" rx="4" fill="rgba(30,41,59,0.6)" stroke="#64748b" stroke-width="1"/>
+  <text x="393" y="102" fill="#e2e8f0" font-size="9" text-anchor="middle">opt1</text>
+  <rect x="420" y="86" width="42" height="24" rx="4" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="441" y="102" fill="#a78bfa" font-size="9" text-anchor="middle">MASK</text>
+  <rect x="468" y="86" width="42" height="24" rx="4" fill="rgba(120,53,15,0.4)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="489" y="102" fill="#fbbf24" font-size="9" text-anchor="middle">SEP</text>
+  <rect x="516" y="86" width="42" height="24" rx="4" fill="rgba(6,78,59,0.5)" stroke="#34d399" stroke-width="1"/>
+  <text x="537" y="102" fill="#34d399" font-size="9" text-anchor="middle">state</text>
+  <rect x="564" y="86" width="42" height="24" rx="4" fill="rgba(120,53,15,0.4)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="585" y="102" fill="#fbbf24" font-size="9" text-anchor="middle">SEP</text>
+
+  <!-- marker arrows -->
+  <line x1="249" y1="110" x2="249" y2="127" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <line x1="345" y1="110" x2="345" y2="127" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <line x1="441" y1="110" x2="441" y2="127" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <text x="249" y="138" fill="#a78bfa" font-size="8" text-anchor="middle">m0</text>
+  <text x="345" y="138" fill="#a78bfa" font-size="8" text-anchor="middle">m1</text>
+  <text x="441" y="138" fill="#a78bfa" font-size="8" text-anchor="middle">m2</text>
+
+  <!-- markers output -->
+  <rect x="180" y="146" width="320" height="26" rx="6" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="340" y="163" fill="#a78bfa" font-size="10" text-anchor="middle">markers = [每个 [MASK] 的下标]（forward 用它 gather 隐状态）</text>
+
+  <!-- budget truncation box -->
+  <rect x="24" y="184" width="300" height="108" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="174" y="204" fill="#22d3ee" font-size="11" font-weight="600" text-anchor="middle">预算裁剪（head_max_len = 192）</text>
+  <text x="40" y="224" fill="#e2e8f0" font-size="9">opt_budget = 192 - Σlen(opt)</text>
+  <text x="40" y="242" fill="#e2e8f0" font-size="9">opt_budget &lt; 16 → per = max(4, (192-16)//n)</text>
+  <text x="40" y="260" fill="#e2e8f0" font-size="9">head_ids[:max(8, opt_budget)]  至少留 8</text>
+  <text x="40" y="278" fill="#94a3b8" font-size="9">例：5 × 200 词 → per=35（实测恰 35）</text>
+
+  <!-- state truncation box -->
+  <rect x="356" y="184" width="300" height="108" rx="8" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="506" y="204" fill="#34d399" font-size="11" font-weight="600" text-anchor="middle">state 截断</text>
+  <text x="372" y="224" fill="#e2e8f0" font-size="9">room = max(0, max_len - len(ids) - 1)</text>
+  <text x="372" y="242" fill="#e2e8f0" font-size="9">truncate_left=False: state_ids[:room]</text>
+  <text x="372" y="260" fill="#e2e8f0" font-size="9">truncate_left=True:  state_ids[max(0, len-room):]</text>
+  <text x="372" y="278" fill="#94a3b8" font-size="9">禁 state_ids[-room:]（room=0 切全量）</text>
+  <text x="372" y="292" fill="#94a3b8" font-size="9">例：max_len=80，state 200 → 67</text>
+
+  <text x="20" y="438" fill="#94a3b8" font-size="9">state_ids 参数：调用方一次 tokenize 后复用，避免每问重序列化 / 重分词（批量提速）</text>
+</svg>
