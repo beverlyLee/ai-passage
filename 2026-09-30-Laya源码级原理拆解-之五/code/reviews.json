@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "title": "脱敏真实评价数据集（出海 App / 跨境电商场景）",
+    "note": "本数据集为基于公开应用商店与跨境电商公开评论中反复出现的语言模式合成的、去标识化的代表性样本。姓名、订单号、具体日期、店铺与品牌名均已脱敏或泛化，不指向任何真实个人。仅用于演示 Laya 三原语建模流程，非真实业务数据。",
+    "source_patterns": [
+      "App Store / 应用商店公开评论区高频句式",
+      "跨境电商物流与客服公开评价区高频句式",
+      "多语种（中/英/葡/西）混合栈用户反馈"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "R01",
+      "lang": "en",
+      "country": "US",
+      "text": "Finally an app that actually helps me learn Portuguese. Voice recognition is spot on and the daily streaks keep me motivated. Worth every penny of the subscription.",
+      "expected_aspects": ["learning", "price"]
+    },
+    {
+      "id": "R02",
+      "lang": "zh",
+      "country": "CN",
+      "text": "物流真的快，从下单到收货只用了四天，包装也很扎实，客服回复也及时，总之很满意，会回购。",
+      "expected_aspects": ["logistics", "service", "packaging"]
+    },
+    {
+      "id": "R03",
+      "lang": "zh",
+      "country": "CN",
+      "text": "买了会员之后体验反而更差了。客服态度超差，反馈的问题基本得不到解决，笔记导出还是乱序。希望你们尽快修复导出功能，否则我只能退订了。",
+      "expected_aspects": ["price", "service", "stability"]
+    },
+    {
+      "id": "R04",
+      "lang": "zh",
+      "country": "CN",
+      "text": "界面挺好看的，用着也顺手，就是偶尔会卡顿，希望后续优化一下性能。",
+      "expected_aspects": ["ui", "stability"]
+    },
+    {
+      "id": "R05",
+      "lang": "pt",
+      "country": "BR",
+      "text": "A entrega demorou vinte e um dias, mas a qualidade do produto é boa. O atendimento ao cliente respondeu rápido quando perguntei sobre o rastreio.",
+      "expected_aspects": ["logistics", "service"]
+    },
+    {
+      "id": "R06",
+      "lang": "es",
+      "country": "MX",
+      "text": "El espejo llegó con una luz muerta. Escribí al servicio al cliente y me dijeron que podía desechar el viejo. No sé qué hacer con un espejo roto en mi garage.",
+      "expected_aspects": ["quality", "service"]
+    },
+    {
+      "id": "R07",
+      "lang": "en",
+      "country": "US",
+      "text": "The free version is fine but after buying VIP the app crashed more often. Support was slow to reply. Not sure it is worth the upgrade.",
+      "expected_aspects": ["price", "stability", "service"]
+    },
+    {
+      "id": "R08",
+      "lang": "zh",
+      "country": "CN",
+      "text": "整体还行，但每个笔记只能插图二十张，对我这种图片为主的用户限制太大，建议提高上限。",
+      "expected_aspects": ["feature_limit"]
+    },
+    {
+      "id": "R09",
+      "lang": "pt",
+      "country": "BR",
+      "text": "Produto chegou bem embalado mas o frete foi caro. Ainda assim, recomendo.",
+      "expected_aspects": ["packaging", "logistics"]
+    },
+    {
+      "id": "R10",
+      "lang": "zh",
+      "country": "CN",
+      "text": "用了三个月，帮我省了不少钱，物流也比想象中快。就是希望增加本地仓发货的选项，这样退换货更方便。",
+      "expected_aspects": ["price", "logistics", "feature_suggestion"]
+    }
+  ]
+}
