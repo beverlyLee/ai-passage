@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <text x="340" y="34" fill="#e2e8f0" font-size="18" text-anchor="middle">Runnable 协议全景：一个 invoke 自动派生三套能力</text>
+  <text x="340" y="54" fill="#64748b" font-size="11" text-anchor="middle">langchain-core 1.6.6 · base.py:133</text>
+
+  <text x="120" y="92" fill="#94a3b8" font-size="12" text-anchor="middle">你只需实现</text>
+  <rect x="58" y="100" width="124" height="48" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee"/>
+  <text x="120" y="126" fill="#e2e8f0" font-size="14" text-anchor="middle">invoke</text>
+  <text x="120" y="142" fill="#64748b" font-size="9" text-anchor="middle">抽象方法 base.py:885</text>
+
+  <text x="470" y="92" fill="#94a3b8" font-size="12" text-anchor="middle">父类白送</text>
+  <rect x="372" y="100" width="84" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+  <text x="414" y="123" fill="#e2e8f0" font-size="12" text-anchor="middle">ainvoke</text>
+  <rect x="466" y="100" width="84" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+  <text x="508" y="123" fill="#e2e8f0" font-size="12" text-anchor="middle">batch</text>
+  <rect x="560" y="100" width="84" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+  <text x="602" y="123" fill="#e2e8f0" font-size="12" text-anchor="middle">stream</text>
+
+  <rect x="220" y="188" width="240" height="66" rx="10" fill="rgba(8,51,68,0.55)" stroke="#22d3ee" stroke-width="2"/>
+  <text x="340" y="218" fill="#e2e8f0" font-size="18" text-anchor="middle">Runnable</text>
+  <text x="340" y="238" fill="#94a3b8" font-size="11" text-anchor="middle">抽象基类 ABC · Generic[Input, Output]</text>
+
+  <line x1="120" y1="148" x2="272" y2="188" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="414" y1="136" x2="368" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="508" y1="136" x2="430" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="602" y1="136" x2="468" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="340" y="288" fill="#94a3b8" font-size="12" text-anchor="middle">LCEL 组合原语（全部继承自 Runnable）</text>
+  <g font-size="12" text-anchor="middle">
+    <rect x="36" y="304" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="85" y="329" fill="#e2e8f0">Sequence</text>
+    <rect x="142" y="304" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="191" y="329" fill="#e2e8f0">Parallel</text>
+    <rect x="248" y="304" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="297" y="329" fill="#e2e8f0">Branch</text>
+    <rect x="354" y="304" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="403" y="329" fill="#e2e8f0">Passthrough</text>
+    <rect x="460" y="304" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="509" y="329" fill="#e2e8f0">Lambda</text>
+    <rect x="566" y="304" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="615" y="329" fill="#e2e8f0">Retry</text>
+  </g>
+  <line x1="340" y1="254" x2="340" y2="300" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="340" y="430" fill="#64748b" font-size="10" text-anchor="middle">任何 Runnable 自动拥有 sync / async / batch / streaming，无需各自实现</text>
+</svg>
