@@ -27,7 +27,7 @@ sys.path.insert(0, HERE)
 from demo_clean_review import clean_review  # 复用清洗管线
 
 # —— 三原语的 aspect 枚举（与 REVIEW_SCHEMA.aspect 一致）——
-ASPECTS = ["续航", "拍照", "客服", "价格", "物流", "稳定性", "其他"]
+ASPECTS = ["物流", "客服", "价格", "稳定性", "界面", "质量", "包装", "学习", "功能", "其他"]
 
 # 关键词 -> aspect 映射（覆盖中/英/葡/西）。一个从句可命中多个 aspect。
 ASPECT_KEYWORDS = {
@@ -39,8 +39,6 @@ ASPECT_KEYWORDS = {
             "caro", "preço", "barato", "frete"],
     "稳定性": ["卡顿", "崩溃", "闪退", "crash", "crashed", "稳定", "estável", "lento", "slow"],
     "界面": ["界面", "好看", "漂亮", "顺手", "ui", "design"],
-    "拍照": ["拍照", "camera"],
-    "续航": ["续航", "battery"],
     "质量": ["质量", "品质", "坏", "破", "roto", "broken", "灯珠", "死", "qualidade"],
     "包装": ["包装", "扎实", "embalado", "embalada", "packed"],
     "学习": ["学习", "葡萄牙语", "portuguese", "português", "learn", "voice recognition",

@@ -14,70 +14,70 @@
       "lang": "en",
       "country": "US",
       "text": "Finally an app that actually helps me learn Portuguese. Voice recognition is spot on and the daily streaks keep me motivated. Worth every penny of the subscription.",
-      "expected_aspects": ["learning", "price"]
+      "expected_aspects": ["学习", "价格"]
     },
     {
       "id": "R02",
       "lang": "zh",
       "country": "CN",
       "text": "物流真的快，从下单到收货只用了四天，包装也很扎实，客服回复也及时，总之很满意，会回购。",
-      "expected_aspects": ["logistics", "service", "packaging"]
+      "expected_aspects": ["物流", "客服", "包装"]
     },
     {
       "id": "R03",
       "lang": "zh",
       "country": "CN",
       "text": "买了会员之后体验反而更差了。客服态度超差，反馈的问题基本得不到解决，笔记导出还是乱序。希望你们尽快修复导出功能，否则我只能退订了。",
-      "expected_aspects": ["price", "service", "stability"]
+      "expected_aspects": ["价格", "客服", "稳定性"]
     },
     {
       "id": "R04",
       "lang": "zh",
       "country": "CN",
       "text": "界面挺好看的，用着也顺手，就是偶尔会卡顿，希望后续优化一下性能。",
-      "expected_aspects": ["ui", "stability"]
+      "expected_aspects": ["界面", "稳定性"]
     },
     {
       "id": "R05",
       "lang": "pt",
       "country": "BR",
       "text": "A entrega demorou vinte e um dias, mas a qualidade do produto é boa. O atendimento ao cliente respondeu rápido quando perguntei sobre o rastreio.",
-      "expected_aspects": ["logistics", "service"]
+      "expected_aspects": ["物流", "客服"]
     },
     {
       "id": "R06",
       "lang": "es",
       "country": "MX",
       "text": "El espejo llegó con una luz muerta. Escribí al servicio al cliente y me dijeron que podía desechar el viejo. No sé qué hacer con un espejo roto en mi garage.",
-      "expected_aspects": ["quality", "service"]
+      "expected_aspects": ["质量", "客服"]
     },
     {
       "id": "R07",
       "lang": "en",
       "country": "US",
       "text": "The free version is fine but after buying VIP the app crashed more often. Support was slow to reply. Not sure it is worth the upgrade.",
-      "expected_aspects": ["price", "stability", "service"]
+      "expected_aspects": ["价格", "稳定性", "客服"]
     },
     {
       "id": "R08",
       "lang": "zh",
       "country": "CN",
       "text": "整体还行，但每个笔记只能插图二十张，对我这种图片为主的用户限制太大，建议提高上限。",
-      "expected_aspects": ["feature_limit"]
+      "expected_aspects": ["功能"]
     },
     {
       "id": "R09",
       "lang": "pt",
       "country": "BR",
       "text": "Produto chegou bem embalado mas o frete foi caro. Ainda assim, recomendo.",
-      "expected_aspects": ["packaging", "logistics"]
+      "expected_aspects": ["包装", "物流"]
     },
     {
       "id": "R10",
       "lang": "zh",
       "country": "CN",
       "text": "用了三个月，帮我省了不少钱，物流也比想象中快。就是希望增加本地仓发货的选项，这样退换货更方便。",
-      "expected_aspects": ["price", "logistics", "feature_suggestion"]
+      "expected_aspects": ["价格", "物流", "功能"]
     }
   ]
 }

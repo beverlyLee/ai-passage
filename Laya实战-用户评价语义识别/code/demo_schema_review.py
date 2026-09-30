@@ -123,7 +123,7 @@ REVIEW_SCHEMA = {
     "properties": {
         "aspect": {
             "type": "string",
-            "enum": ["续航", "拍照", "客服", "价格", "物流", "稳定性", "其他"],
+            "enum": ["物流", "客服", "价格", "稳定性", "界面", "质量", "包装", "学习", "功能", "其他"],
         },
         "polarity": {
             "type": "integer",
@@ -157,7 +157,7 @@ def _self_test():
     # 1) 正常编译：aspect->choice, polarity->score, appeal->noul
     plan = plan_from_json_schema(REVIEW_SCHEMA)
     assert plan["aspect"]["primitive"] == "choice", plan["aspect"]
-    assert plan["aspect"]["options"] == ["续航", "拍照", "客服", "价格", "物流", "稳定性", "其他"]
+    assert plan["aspect"]["options"] == ["物流", "客服", "价格", "稳定性", "界面", "质量", "包装", "学习", "功能", "其他"]
     assert plan["polarity"]["primitive"] == "score"
     assert plan["polarity"]["span"] == 3 and plan["polarity"]["legend"][2] == "positive"
     assert plan["appeal"]["primitive"] == "noul"

@@ -45,7 +45,7 @@
   <rect x="30" y="250" width="180" height="120" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
   <text x="120" y="276" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">aspect</text>
   <text x="120" y="298" fill="#22d3ee" font-size="10" text-anchor="middle">↓ Choice 原语</text>
-  <text x="120" y="320" fill="#94a3b8" font-size="9" text-anchor="middle">枚举维度 7 项</text>
+  <text x="120" y="320" fill="#94a3b8" font-size="9" text-anchor="middle">枚举维度 10 项</text>
   <text x="120" y="338" fill="#94a3b8" font-size="9" text-anchor="middle">project 反向映射</text>
   <text x="120" y="356" fill="#94a3b8" font-size="9" text-anchor="middle">输出空间预先枚举</text>
 
