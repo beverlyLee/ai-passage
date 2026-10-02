@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="seq" markerWidth="11" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 11 4, 0 8" fill="#fbbf24"/>
+    </marker>
+    <marker id="plain" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="340" y="32" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">端到端数据流：一个问题字符串如何穿过 coerce 与 Sequence 变成干净答案</text>
+  <text x="340" y="52" fill="#64748b" font-size="11" text-anchor="middle">管道 prompt | model | parser · langchain-core runnables/base.py</text>
+
+  <!-- coerce band -->
+  <rect x="24" y="70" width="632" height="40" rx="8" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="40" y="95" fill="#fbbf24" font-size="12" text-anchor="start">① 进入竖线前：coerce_to_runnable(:6257) 把每个组件归一为 Runnable（已是 Runnable 原样返回）</text>
+
+  <!-- pipeline nodes -->
+  <g text-anchor="middle">
+    <!-- input -->
+    <rect x="24" y="150" width="104" height="78" rx="8" fill="#0f172a"/>
+    <rect x="24" y="150" width="104" height="78" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8"/>
+    <text x="76" y="184" fill="#e2e8f0" font-size="12" font-weight="600">问题字符串</text>
+    <text x="76" y="204" fill="#94a3b8" font-size="9">"北京今天几度？"</text>
+
+    <!-- PromptTemplate -->
+    <rect x="150" y="150" width="116" height="78" rx="8" fill="#0f172a"/>
+    <rect x="150" y="150" width="116" height="78" rx="8" fill="rgba(8,51,68,0.45)" stroke="#22d3ee" stroke-width="1.6"/>
+    <text x="208" y="180" fill="#e2e8f0" font-size="12" font-weight="600">PromptTemplate</text>
+    <text x="208" y="198" fill="#22d3ee" font-size="9">core · invoke</text>
+    <text x="208" y="216" fill="#94a3b8" font-size="8">str → messages</text>
+
+    <!-- ChatModel -->
+    <rect x="288" y="150" width="116" height="78" rx="8" fill="#0f172a"/>
+    <rect x="288" y="150" width="116" height="78" rx="8" fill="rgba(8,51,68,0.45)" stroke="#22d3ee" stroke-width="1.6"/>
+    <text x="346" y="180" fill="#e2e8f0" font-size="12" font-weight="600">ChatModel</text>
+    <text x="346" y="198" fill="#22d3ee" font-size="9">partners · invoke</text>
+    <text x="346" y="216" fill="#94a3b8" font-size="8">messages → 原始回答</text>
+
+    <!-- OutputParser -->
+    <rect x="426" y="150" width="116" height="78" rx="8" fill="#0f172a"/>
+    <rect x="426" y="150" width="116" height="78" rx="8" fill="rgba(8,51,68,0.45)" stroke="#22d3ee" stroke-width="1.6"/>
+    <text x="484" y="180" fill="#e2e8f0" font-size="12" font-weight="600">OutputParser</text>
+    <text x="484" y="198" fill="#22d3ee" font-size="9">core · invoke</text>
+    <text x="484" y="216" fill="#94a3b8" font-size="8">原始回答 → 干净答案</text>
+
+    <!-- output -->
+    <rect x="562" y="150" width="94" height="78" rx="8" fill="#0f172a"/>
+    <rect x="562" y="150" width="94" height="78" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+    <text x="609" y="184" fill="#e2e8f0" font-size="12" font-weight="600">干净答案</text>
+    <text x="609" y="204" fill="#34d399" font-size="9">可落库的 struct</text>
+  </g>
+
+  <!-- sequence arrows -->
+  <line x1="128" y1="189" x2="148" y2="189" stroke="#fbbf24" stroke-width="2" marker-end="url(#seq)"/>
+  <line x1="266" y1="189" x2="286" y2="189" stroke="#fbbf24" stroke-width="2" marker-end="url(#seq)"/>
+  <line x1="404" y1="189" x2="424" y2="189" stroke="#fbbf24" stroke-width="2" marker-end="url(#seq)"/>
+  <line x1="542" y1="189" x2="560" y2="189" stroke="#94a3b8" stroke-width="2" marker-end="url(#plain)"/>
+  <text x="208" y="142" fill="#fbbf24" font-size="10" text-anchor="middle">__or__ → Sequence(:2861)</text>
+  <text x="346" y="142" fill="#fbbf24" font-size="10" text-anchor="middle">__or__ → Sequence(:2861)</text>
+  <text x="484" y="142" fill="#fbbf24" font-size="10" text-anchor="middle">__or__ → Sequence(:2861)</text>
+
+  <!-- inheritance banner -->
+  <rect x="24" y="262" width="632" height="64" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="40" y="286" fill="#22d3ee" font-size="12" text-anchor="start">② 整条链继承 Runnable（见上一张）：一个 invoke 长出能力</text>
+  <text x="40" y="308" fill="#e2e8f0" font-size="11" text-anchor="start">.invoke → 同步串跑一遍</text>
+  <text x="240" y="308" fill="#e2e8f0" font-size="11" text-anchor="start">.ainvoke → 线程池跑同步(:848)</text>
+  <text x="470" y="308" fill="#e2e8f0" font-size="11" text-anchor="start">.stream / .batch(:871/1134)</text>
+  <text x="40" y="324" fill="#94a3b8" font-size="9" text-anchor="start">同一个 prompt | model | parser，接口不变，四种调用方式免费切换</text>
+
+  <text x="340" y="366" fill="#64748b" font-size="11" text-anchor="middle">第三节讲「运算符怎么变图」，本图讲「图里数据怎么流」：两节合起来才完整</text>
+
+  <!-- legend -->
+  <rect x="24" y="392" width="14" height="14" rx="3" fill="#22d3ee"/>
+  <text x="44" y="403" fill="#94a3b8" font-size="10" text-anchor="start">管道中的 Runnable 组件</text>
+  <rect x="220" y="392" width="14" height="14" rx="3" fill="#fbbf24"/>
+  <text x="240" y="403" fill="#94a3b8" font-size="10" text-anchor="start">Sequence 组合箭头（__or__）</text>
+  <rect x="470" y="392" width="14" height="14" rx="3" fill="#34d399"/>
+  <text x="490" y="403" fill="#94a3b8" font-size="10" text-anchor="start">最终落库的结构化答案</text>
+</svg>

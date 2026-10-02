@@ -3,60 +3,78 @@
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
     </pattern>
+    <marker id="inherit" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <polygon points="0 0, 11 6, 0 12" fill="#0f172a" stroke="#94a3b8" stroke-width="1"/>
+    </marker>
     <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
-    </marker>
-    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
   </defs>
   <rect width="680" height="450" fill="#0f172a"/>
   <rect width="680" height="450" fill="url(#grid)"/>
 
-  <text x="340" y="34" fill="#e2e8f0" font-size="18" text-anchor="middle">Runnable 协议：只强约束 invoke，其余父类兜底</text>
-  <text x="340" y="54" fill="#64748b" font-size="11" text-anchor="middle">langchain-core 1.3.2 · runnables/base.py:128</text>
+  <text x="340" y="32" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">Runnable 协议：一个抽象方法 invoke 长出 ainvoke / batch / stream 三件套</text>
+  <text x="340" y="52" fill="#64748b" font-size="11" text-anchor="middle">langchain-core · runnables/base.py:128</text>
 
-  <text x="120" y="92" fill="#94a3b8" font-size="12" text-anchor="middle">你只需实现</text>
-  <rect x="58" y="100" width="124" height="48" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee"/>
-  <text x="120" y="126" fill="#e2e8f0" font-size="14" text-anchor="middle">invoke</text>
-  <text x="120" y="142" fill="#64748b" font-size="9" text-anchor="middle">抽象方法 base.py:826</text>
+  <!-- abstract class Runnable -->
+  <rect x="200" y="80" width="280" height="150" rx="8" fill="#0f172a"/>
+  <rect x="200" y="80" width="280" height="150" rx="8" fill="rgba(8,51,68,0.45)" stroke="#22d3ee" stroke-width="2"/>
+  <rect x="200" y="80" width="280" height="30" rx="8" fill="rgba(8,51,68,0.9)"/>
+  <text x="340" y="101" fill="#e2e8f0" font-size="12" text-anchor="middle" font-weight="600">Runnable(ABC, Generic[Input, Output])</text>
 
-  <text x="470" y="92" fill="#94a3b8" font-size="12" text-anchor="middle">父类白送</text>
-  <rect x="372" y="100" width="84" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
-  <text x="414" y="123" fill="#e2e8f0" font-size="12" text-anchor="middle">ainvoke</text>
-  <rect x="466" y="100" width="84" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
-  <text x="508" y="123" fill="#e2e8f0" font-size="12" text-anchor="middle">batch</text>
-  <rect x="560" y="100" width="84" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
-  <text x="602" y="123" fill="#e2e8f0" font-size="12" text-anchor="middle">stream</text>
+  <!-- method rows -->
+  <rect x="212" y="120" width="14" height="14" rx="3" fill="#fb7185"/>
+  <text x="234" y="132" fill="#e2e8f0" font-size="12" text-anchor="start">invoke(input)</text>
+  <text x="464" y="132" fill="#fb7185" font-size="9" text-anchor="end">抽象方法 · base.py:826</text>
 
-  <rect x="220" y="188" width="240" height="66" rx="10" fill="rgba(8,51,68,0.55)" stroke="#22d3ee" stroke-width="2"/>
-  <text x="340" y="218" fill="#e2e8f0" font-size="18" text-anchor="middle">Runnable</text>
-  <text x="340" y="238" fill="#94a3b8" font-size="11" text-anchor="middle">抽象基类 ABC · Generic[Input, Output]</text>
+  <rect x="212" y="150" width="14" height="14" rx="3" fill="#34d399"/>
+  <text x="234" y="162" fill="#e2e8f0" font-size="12" text-anchor="start">ainvoke → run_in_executor</text>
+  <text x="464" y="162" fill="#34d399" font-size="9" text-anchor="end">父类默认 · 848</text>
 
-  <line x1="120" y1="148" x2="272" y2="188" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="414" y1="136" x2="368" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
-  <line x1="508" y1="136" x2="430" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
-  <line x1="602" y1="136" x2="468" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <rect x="212" y="180" width="14" height="14" rx="3" fill="#34d399"/>
+  <text x="234" y="192" fill="#e2e8f0" font-size="12" text-anchor="start">batch(...)</text>
+  <text x="464" y="192" fill="#34d399" font-size="9" text-anchor="end">父类默认 · 871</text>
 
-  <text x="414" y="150" fill="#64748b" font-size="8" text-anchor="middle">ainvoke 把同步 invoke</text>
-  <text x="414" y="161" fill="#64748b" font-size="8" text-anchor="middle">丢进线程池 base.py:848</text>
+  <rect x="212" y="210" width="14" height="14" rx="3" fill="#34d399"/>
+  <text x="234" y="222" fill="#e2e8f0" font-size="12" text-anchor="start">stream(...)</text>
+  <text x="464" y="222" fill="#34d399" font-size="9" text-anchor="end">父类默认 · 1134</text>
 
-  <text x="340" y="288" fill="#94a3b8" font-size="12" text-anchor="middle">任何 Runnable 自动拥有 sync / async / batch / streaming</text>
-  <line x1="340" y1="254" x2="340" y2="280" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="340" y="262" fill="#22d3ee" font-size="12" text-anchor="middle">你只写 invoke，却免费拿到 ainvoke / batch / stream</text>
 
-  <g font-size="12" text-anchor="middle">
-    <rect x="36" y="312" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-    <text x="85" y="337" fill="#e2e8f0">Sequence</text>
-    <rect x="142" y="312" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-    <text x="191" y="337" fill="#e2e8f0">Parallel</text>
-    <rect x="248" y="312" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-    <text x="297" y="337" fill="#e2e8f0">Branch</text>
-    <rect x="354" y="312" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-    <text x="403" y="337" fill="#e2e8f0">Passthrough</text>
-    <rect x="460" y="312" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-    <text x="509" y="337" fill="#e2e8f0">Binding</text>
-    <rect x="566" y="312" width="98" height="40" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-    <text x="615" y="337" fill="#e2e8f0">Retry</text>
+  <!-- inheritance arrows to subclasses -->
+  <line x1="300" y1="230" x2="114" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inherit)"/>
+  <line x1="330" y1="230" x2="270" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inherit)"/>
+  <line x1="350" y1="230" x2="426" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inherit)"/>
+  <line x1="380" y1="230" x2="582" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inherit)"/>
+
+  <!-- subclass row -->
+  <g font-size="13" text-anchor="middle" font-weight="600">
+    <rect x="44" y="300" width="140" height="64" rx="8" fill="#0f172a"/>
+    <rect x="44" y="300" width="140" height="64" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee"/>
+    <text x="114" y="328" fill="#e2e8f0">PromptTemplate</text>
+    <text x="114" y="346" fill="#94a3b8" font-size="9">core · 只实现 invoke</text>
+
+    <rect x="200" y="300" width="140" height="64" rx="8" fill="#0f172a"/>
+    <rect x="200" y="300" width="140" height="64" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="270" y="328" fill="#e2e8f0">BaseChatModel</text>
+    <text x="270" y="346" fill="#94a3b8" font-size="9">partners · 只实现 invoke</text>
+
+    <rect x="356" y="300" width="140" height="64" rx="8" fill="#0f172a"/>
+    <rect x="356" y="300" width="140" height="64" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+    <text x="426" y="328" fill="#e2e8f0">VectorStoreRetriever</text>
+    <text x="426" y="346" fill="#94a3b8" font-size="9">community · 只实现 invoke</text>
+
+    <rect x="512" y="300" width="140" height="64" rx="8" fill="#0f172a"/>
+    <rect x="512" y="300" width="140" height="64" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
+    <text x="582" y="328" fill="#e2e8f0">RunnableSequence</text>
+    <text x="582" y="346" fill="#94a3b8" font-size="9">core · 组合原语</text>
   </g>
-  <text x="340" y="430" fill="#64748b" font-size="10" text-anchor="middle">组合原语也全是 Runnable，所以同样免费拥有四件套，这是后续每篇要拆的主题</text>
+
+  <text x="340" y="402" fill="#64748b" font-size="11" text-anchor="middle">它们都继承 Runnable，所以都能互相竖线拼：竖线不是调用，是包成图（见下一张）</text>
+
+  <!-- legend -->
+  <rect x="44" y="418" width="14" height="14" rx="3" fill="#fb7185"/>
+  <text x="64" y="429" fill="#94a3b8" font-size="10" text-anchor="start">抽象方法（子类必须实现）</text>
+  <rect x="300" y="418" width="14" height="14" rx="3" fill="#34d399"/>
+  <text x="320" y="429" fill="#94a3b8" font-size="10" text-anchor="start">父类白送的默认实现</text>
 </svg>

@@ -6,52 +6,67 @@
     <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
     </marker>
-    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
-    </marker>
   </defs>
   <rect width="680" height="450" fill="#0f172a"/>
   <rect width="680" height="450" fill="url(#grid)"/>
 
-  <text x="340" y="34" fill="#e2e8f0" font-size="18" text-anchor="middle">LangChain monorepo 模块地图：core 定接口，其他是实现与集成</text>
-  <text x="340" y="54" fill="#64748b" font-size="11" text-anchor="middle">langchain-ai/langchain · libs 目录（官方仓库结构核实）</text>
+  <text x="340" y="32" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">LangChain monorepo 模块地图：core 定接口，五个包是实现与集成</text>
+  <text x="340" y="52" fill="#64748b" font-size="11" text-anchor="middle">langchain-ai/langchain · libs 目录（官方仓库结构核实）</text>
 
-  <rect x="28" y="76" width="624" height="316" rx="10" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
-  <text x="44" y="96" fill="#fbbf24" font-size="12" text-anchor="start">langchain monorepo（一个仓库，多包）</text>
+  <rect x="24" y="68" width="632" height="362" rx="10" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="40" y="88" fill="#fbbf24" font-size="12" text-anchor="start">langchain monorepo（一个仓库，多包）</text>
+  <text x="340" y="108" fill="#94a3b8" font-size="11" text-anchor="middle">实现与集成层：基于 core 接口编写，全部指向最底层</text>
 
-  <text x="340" y="118" fill="#94a3b8" font-size="11" text-anchor="middle">实现与集成层：基于 core 的接口编写</text>
+  <!-- arrows from each package down to core -->
+  <line x1="104" y1="172" x2="262" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="220" y1="172" x2="262" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="336" y1="172" x2="340" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="452" y1="172" x2="418" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="568" y1="172" x2="418" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
 
+  <!-- top package row -->
   <g font-size="13" text-anchor="middle" font-weight="600">
-    <rect x="36" y="130" width="110" height="64" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
-    <text x="91" y="158" fill="#e2e8f0">langchain</text>
-    <text x="91" y="176" fill="#94a3b8" font-size="9">主包：旧链 / 智能体编排</text>
+    <rect x="50" y="112" width="108" height="60" rx="8" fill="#0f172a"/>
+    <rect x="50" y="112" width="108" height="60" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+    <text x="104" y="140" fill="#e2e8f0">langchain</text>
+    <text x="104" y="158" fill="#94a3b8" font-size="9">主包：旧链 / 智能体编排</text>
 
-    <rect x="162" y="130" width="110" height="64" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-    <text x="217" y="158" fill="#e2e8f0">community</text>
-    <text x="217" y="176" fill="#94a3b8" font-size="9">第三方集成：向量库 / 工具</text>
+    <rect x="166" y="112" width="108" height="60" rx="8" fill="#0f172a"/>
+    <rect x="166" y="112" width="108" height="60" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="220" y="140" fill="#e2e8f0">community</text>
+    <text x="220" y="158" fill="#94a3b8" font-size="9">第三方集成：向量库 / 工具</text>
 
-    <rect x="288" y="130" width="110" height="64" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
-    <text x="343" y="158" fill="#e2e8f0">text-splitters</text>
-    <text x="343" y="176" fill="#94a3b8" font-size="9">独立文本切分包</text>
+    <rect x="282" y="112" width="108" height="60" rx="8" fill="#0f172a"/>
+    <rect x="282" y="112" width="108" height="60" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
+    <text x="336" y="140" fill="#e2e8f0">text-splitters</text>
+    <text x="336" y="158" fill="#94a3b8" font-size="9">独立文本切分包</text>
 
-    <rect x="414" y="130" width="110" height="64" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8"/>
-    <text x="469" y="158" fill="#e2e8f0">partners</text>
-    <text x="469" y="176" fill="#94a3b8" font-size="9">厂商官方集成</text>
+    <rect x="398" y="112" width="108" height="60" rx="8" fill="#0f172a"/>
+    <rect x="398" y="112" width="108" height="60" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8"/>
+    <text x="452" y="140" fill="#e2e8f0">partners</text>
+    <text x="452" y="158" fill="#94a3b8" font-size="9">厂商官方集成</text>
 
-    <rect x="540" y="130" width="110" height="64" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8"/>
-    <text x="595" y="158" fill="#e2e8f0">langchain-cli</text>
-    <text x="595" y="176" fill="#94a3b8" font-size="9">命令行工具</text>
+    <rect x="514" y="112" width="108" height="60" rx="8" fill="#0f172a"/>
+    <rect x="514" y="112" width="108" height="60" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8"/>
+    <text x="568" y="140" fill="#e2e8f0">langchain-cli</text>
+    <text x="568" y="158" fill="#94a3b8" font-size="9">命令行工具</text>
   </g>
 
-  <line x1="91" y1="194" x2="175" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="217" y1="194" x2="217" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="343" y1="194" x2="343" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="469" y1="194" x2="469" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="595" y1="194" x2="505" y2="298" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- core box with internal abstraction compartment -->
+  <rect x="170" y="296" width="340" height="104" rx="10" fill="#0f172a"/>
+  <rect x="170" y="296" width="340" height="104" rx="10" fill="rgba(8,51,68,0.55)" stroke="#22d3ee" stroke-width="2"/>
+  <text x="340" y="322" fill="#e2e8f0" font-size="16" text-anchor="middle" font-weight="600">langchain-core</text>
+  <text x="340" y="338" fill="#94a3b8" font-size="10" text-anchor="middle">抽象接口层，几乎零依赖：以下四个类型定义在这里</text>
+  <g font-size="10" text-anchor="middle" font-weight="600">
+    <rect x="182" y="346" width="70" height="28" rx="6" fill="rgba(8,51,68,0.7)" stroke="#22d3ee"/>
+    <text x="217" y="364" fill="#e2e8f0">Runnable</text>
+    <rect x="262" y="346" width="70" height="28" rx="6" fill="rgba(8,51,68,0.7)" stroke="#22d3ee"/>
+    <text x="297" y="364" fill="#e2e8f0">BaseMessage</text>
+    <rect x="342" y="346" width="70" height="28" rx="6" fill="rgba(8,51,68,0.7)" stroke="#22d3ee"/>
+    <text x="377" y="364" fill="#e2e8f0">Document</text>
+    <rect x="422" y="346" width="70" height="28" rx="6" fill="rgba(8,51,68,0.7)" stroke="#22d3ee"/>
+    <text x="457" y="364" fill="#e2e8f0">Callback</text>
+  </g>
 
-  <rect x="170" y="300" width="340" height="62" rx="10" fill="rgba(8,51,68,0.55)" stroke="#22d3ee" stroke-width="2"/>
-  <text x="340" y="328" fill="#e2e8f0" font-size="16" text-anchor="middle" font-weight="600">langchain-core</text>
-  <text x="340" y="348" fill="#94a3b8" font-size="10" text-anchor="middle">抽象接口层，几乎零依赖：Runnable / BaseMessage / Document / CallbackManager</text>
-
-  <text x="340" y="392" fill="#64748b" font-size="11" text-anchor="middle">一句话：core 定接口，其他包是实现与集成；Runnable 就定义在这一层</text>
+  <text x="340" y="424" fill="#64748b" font-size="11" text-anchor="middle">组件归谁：PromptTemplate → core · ChatModel → partners · Retriever → community</text>
 </svg>

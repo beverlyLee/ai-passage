@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="inh" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <polygon points="0 0, 11 6, 0 12" fill="#0f172a" stroke="#94a3b8" stroke-width="1"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="340" y="30" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">组合原语谱系：八种 Runnable 按四类挂在 Runnable 树下一处</text>
+  <text x="340" y="50" fill="#64748b" font-size="11" text-anchor="middle">langchain-core · runnables/</text>
+
+  <!-- root -->
+  <rect x="240" y="62" width="200" height="48" rx="8" fill="#0f172a"/>
+  <rect x="240" y="62" width="200" height="48" rx="8" fill="rgba(8,51,68,0.6)" stroke="#22d3ee" stroke-width="2"/>
+  <text x="340" y="82" fill="#e2e8f0" font-size="13" text-anchor="middle" font-weight="600">Runnable(ABC, Generic)</text>
+  <text x="340" y="100" fill="#22d3ee" font-size="9" text-anchor="middle">只强制 invoke，其余父类兜底</text>
+
+  <!-- inheritance arrows to 4 categories -->
+  <line x1="300" y1="110" x2="96" y2="138" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inh)"/>
+  <line x1="320" y1="110" x2="260" y2="138" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inh)"/>
+  <line x1="360" y1="110" x2="424" y2="138" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inh)"/>
+  <line x1="380" y1="110" x2="585" y2="138" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#inh)"/>
+
+  <!-- region 控制流 -->
+  <rect x="20" y="140" width="152" height="232" rx="10" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="96" y="162" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="600">控制流</text>
+  <g text-anchor="middle">
+    <rect x="32" y="200" width="128" height="56" rx="6" fill="#0f172a"/>
+    <rect x="32" y="200" width="128" height="56" rx="6" fill="rgba(159,18,57,0.35)" stroke="#fb7185"/>
+    <text x="96" y="224" fill="#e2e8f0" font-size="12" font-weight="600">RunnableBranch</text>
+    <text x="96" y="240" fill="#94a3b8" font-size="9">branch.py:42 · 条件路由</text>
+  </g>
+
+  <!-- region 数据流 -->
+  <rect x="182" y="140" width="156" height="232" rx="10" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="260" y="162" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="600">数据流</text>
+  <g text-anchor="middle">
+    <rect x="194" y="184" width="132" height="44" rx="6" fill="#0f172a"/>
+    <rect x="194" y="184" width="132" height="44" rx="6" fill="rgba(8,51,68,0.45)" stroke="#22d3ee"/>
+    <text x="260" y="202" fill="#e2e8f0" font-size="11" font-weight="600">RunnableSequence</text>
+    <text x="260" y="218" fill="#94a3b8" font-size="8">base.py:2861 · 串联</text>
+
+    <rect x="194" y="234" width="132" height="44" rx="6" fill="#0f172a"/>
+    <rect x="194" y="234" width="132" height="44" rx="6" fill="rgba(8,51,68,0.45)" stroke="#22d3ee"/>
+    <text x="260" y="252" fill="#e2e8f0" font-size="11" font-weight="600">RunnableParallel</text>
+    <text x="260" y="268" fill="#94a3b8" font-size="8">base.py:3609 · 扇出</text>
+
+    <rect x="194" y="284" width="132" height="44" rx="6" fill="#0f172a"/>
+    <rect x="194" y="284" width="132" height="44" rx="6" fill="rgba(8,51,68,0.45)" stroke="#22d3ee"/>
+    <text x="260" y="302" fill="#e2e8f0" font-size="11" font-weight="600">RunnablePassthrough</text>
+    <text x="260" y="318" fill="#94a3b8" font-size="8">passthrough.py:74 · 透传</text>
+  </g>
+
+  <!-- region 容错 -->
+  <rect x="348" y="140" width="152" height="232" rx="10" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="424" y="162" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="600">容错</text>
+  <g text-anchor="middle">
+    <rect x="360" y="200" width="128" height="56" rx="6" fill="#0f172a"/>
+    <rect x="360" y="200" width="128" height="56" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
+    <text x="424" y="224" fill="#e2e8f0" font-size="11" font-weight="600">RunnableWithFallbacks</text>
+    <text x="424" y="240" fill="#94a3b8" font-size="8">fallbacks.py:36 · 兜底</text>
+
+    <rect x="360" y="276" width="128" height="56" rx="6" fill="#0f172a"/>
+    <rect x="360" y="276" width="128" height="56" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
+    <text x="424" y="300" fill="#e2e8f0" font-size="12" font-weight="600">RunnableRetry</text>
+    <text x="424" y="316" fill="#94a3b8" font-size="8">retry.py:48 · 重试</text>
+  </g>
+
+  <!-- region 记忆绑定 -->
+  <rect x="510" y="140" width="150" height="232" rx="10" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="585" y="162" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="600">记忆与绑定</text>
+  <g text-anchor="middle">
+    <rect x="522" y="200" width="126" height="56" rx="6" fill="#0f172a"/>
+    <rect x="522" y="200" width="126" height="56" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="585" y="224" fill="#e2e8f0" font-size="12" font-weight="600">RunnableBinding</text>
+    <text x="585" y="240" fill="#94a3b8" font-size="8">base.py:6013 · 绑参数</text>
+
+    <rect x="522" y="276" width="126" height="56" rx="6" fill="#0f172a"/>
+    <rect x="522" y="276" width="126" height="56" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+    <text x="585" y="300" fill="#e2e8f0" font-size="10" font-weight="600">RunnableWithMessageHistory</text>
+    <text x="585" y="316" fill="#94a3b8" font-size="8">history.py:38 · 挂历史</text>
+  </g>
+
+  <text x="340" y="408" fill="#64748b" font-size="11" text-anchor="middle">八个都是 Runnable 子类，后面每篇拆一个；本系列后续篇目即按这四组排布</text>
+
+  <!-- legend -->
+  <rect x="20" y="424" width="14" height="14" rx="3" fill="#fb7185"/>
+  <text x="40" y="435" fill="#94a3b8" font-size="10" text-anchor="start">控制流</text>
+  <rect x="118" y="424" width="14" height="14" rx="3" fill="#22d3ee"/>
+  <text x="138" y="435" fill="#94a3b8" font-size="10" text-anchor="start">数据流</text>
+  <rect x="206" y="424" width="14" height="14" rx="3" fill="#fbbf24"/>
+  <text x="226" y="435" fill="#94a3b8" font-size="10" text-anchor="start">容错</text>
+  <rect x="284" y="424" width="14" height="14" rx="3" fill="#a78bfa"/>
+  <text x="304" y="435" fill="#94a3b8" font-size="10" text-anchor="start">记忆与绑定</text>
+</svg>
