@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="340" y="30" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">消息族：六个公共字段，四个派生类</text>
+  <text x="340" y="49" fill="#64748b" font-size="11" text-anchor="middle">messages/base.py:93 BaseMessage · langchain-core 1.3.2</text>
+
+  <!-- BaseMessage box -->
+  <rect x="24" y="64" width="632" height="126" rx="10" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="40" y="84" fill="#22d3ee" font-size="12" text-anchor="start" font-weight="600">BaseMessage（Serializable）base.py:93</text>
+
+  <!-- six fields -->
+  <g font-size="10">
+    <rect x="40" y="94" width="196" height="38" rx="6" fill="#0f172a"/>
+    <rect x="40" y="94" width="196" height="38" rx="6" fill="rgba(8,51,68,0.7)" stroke="#22d3ee"/>
+    <text x="52" y="110" fill="#e2e8f0" font-size="10">content</text>
+    <text x="52" y="125" fill="#94a3b8" font-size="9">str | list[str | dict]</text>
+
+    <rect x="246" y="94" width="196" height="38" rx="6" fill="#0f172a"/>
+    <rect x="246" y="94" width="196" height="38" rx="6" fill="rgba(8,51,68,0.7)" stroke="#22d3ee"/>
+    <text x="258" y="110" fill="#e2e8f0" font-size="10">additional_kwargs</text>
+    <text x="258" y="125" fill="#94a3b8" font-size="9">供应商私有负载</text>
+
+    <rect x="452" y="94" width="188" height="38" rx="6" fill="#0f172a"/>
+    <rect x="452" y="94" width="188" height="38" rx="6" fill="rgba(8,51,68,0.7)" stroke="#22d3ee"/>
+    <text x="464" y="110" fill="#e2e8f0" font-size="10">response_metadata</text>
+    <text x="464" y="125" fill="#94a3b8" font-size="9">响应头 / logprobs</text>
+
+    <rect x="40" y="140" width="196" height="38" rx="6" fill="#0f172a"/>
+    <rect x="40" y="140" width="196" height="38" rx="6" fill="rgba(8,51,68,0.55)" stroke="#22d3ee"/>
+    <text x="52" y="156" fill="#e2e8f0" font-size="10">type</text>
+    <text x="52" y="171" fill="#94a3b8" font-size="9">反序列化判别字段</text>
+
+    <rect x="246" y="140" width="196" height="38" rx="6" fill="#0f172a"/>
+    <rect x="246" y="140" width="196" height="38" rx="6" fill="rgba(8,51,68,0.55)" stroke="#22d3ee"/>
+    <text x="258" y="156" fill="#e2e8f0" font-size="10">name</text>
+    <text x="258" y="171" fill="#94a3b8" font-size="9">可选说话人名字</text>
+
+    <rect x="452" y="140" width="188" height="38" rx="6" fill="#0f172a"/>
+    <rect x="452" y="140" width="188" height="38" rx="6" fill="rgba(8,51,68,0.55)" stroke="#22d3ee"/>
+    <text x="464" y="156" fill="#e2e8f0" font-size="10">id</text>
+    <text x="464" y="171" fill="#94a3b8" font-size="9">消息唯一标识</text>
+  </g>
+
+  <!-- derived classes -->
+  <text x="24" y="212" fill="#94a3b8" font-size="11" text-anchor="start">派生类：字段按「消息方向」生长</text>
+
+  <line x1="130" y1="190" x2="130" y2="234" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="286" y1="190" x2="286" y2="234" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="442" y1="190" x2="442" y2="234" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="598" y1="190" x2="598" y2="234" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- SystemMessage -->
+  <rect x="40" y="236" width="180" height="76" rx="8" fill="#0f172a"/>
+  <rect x="40" y="236" width="180" height="76" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8"/>
+  <text x="130" y="258" fill="#e2e8f0" font-size="12" text-anchor="middle" font-weight="600">SystemMessage</text>
+  <text x="130" y="276" fill="#94a3b8" font-size="9" text-anchor="middle">messages/system.py</text>
+  <text x="130" y="294" fill="#34d399" font-size="9" text-anchor="middle">无独有字段</text>
+
+  <!-- HumanMessage -->
+  <rect x="230" y="236" width="180" height="76" rx="8" fill="#0f172a"/>
+  <rect x="230" y="236" width="180" height="76" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8"/>
+  <text x="320" y="258" fill="#e2e8f0" font-size="12" text-anchor="middle" font-weight="600">HumanMessage</text>
+  <text x="320" y="276" fill="#94a3b8" font-size="9" text-anchor="middle">messages/human.py</text>
+  <text x="320" y="294" fill="#34d399" font-size="9" text-anchor="middle">无独有字段</text>
+
+  <!-- AIMessage -->
+  <rect x="420" y="236" width="220" height="76" rx="8" fill="#0f172a"/>
+  <rect x="420" y="236" width="220" height="76" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+  <text x="530" y="256" fill="#e2e8f0" font-size="12" text-anchor="middle" font-weight="600">AIMessage　ai.py:160</text>
+  <text x="530" y="274" fill="#34d399" font-size="9" text-anchor="middle">tool_calls / invalid_tool_calls</text>
+  <text x="530" y="290" fill="#34d399" font-size="9" text-anchor="middle">usage_metadata</text>
+  <text x="530" y="305" fill="#64748b" font-size="8" text-anchor="middle">方向决定信息量</text>
+
+  <!-- ToolMessage -->
+  <rect x="24" y="324" width="300" height="80" rx="8" fill="#0f172a"/>
+  <rect x="24" y="324" width="300" height="80" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
+  <text x="174" y="344" fill="#e2e8f0" font-size="12" text-anchor="middle" font-weight="600">ToolMessage　tool.py:26</text>
+  <text x="174" y="362" fill="#fbbf24" font-size="9" text-anchor="middle">tool_call_id（必填 tool.py:67）</text>
+  <text x="174" y="378" fill="#fb7185" font-size="9" text-anchor="middle">status 默认 success（tool.py:82）</text>
+  <text x="174" y="395" fill="#64748b" font-size="8" text-anchor="middle">没有回执号 = 历史里的孤儿消息</text>
+
+  <!-- content_blocks note -->
+  <rect x="336" y="324" width="320" height="80" rx="8" fill="#0f172a"/>
+  <rect x="336" y="324" width="320" height="80" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+  <text x="496" y="344" fill="#e2e8f0" font-size="12" text-anchor="middle" font-weight="600">content_blocks 双入口　base.py:161</text>
+  <text x="496" y="364" fill="#a78bfa" font-size="9" text-anchor="middle">content 与 content_blocks 最终都落到 content</text>
+  <text x="496" y="382" fill="#a78bfa" font-size="9" text-anchor="middle">tool_call 块自动抬升 ai.py:215</text>
+  <text x="496" y="397" fill="#64748b" font-size="8" text-anchor="middle">.text 属性只取 type=text 的块 base.py:263</text>
+
+  <text x="340" y="428" fill="#64748b" font-size="9" text-anchor="middle">行号逐一核对 langchain-core 1.3.2</text>
+</svg>
