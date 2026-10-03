@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="340" y="32" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">竖线 = RunnableSequence.__or__：嵌套压平，逐 step 串喂</text>
+  <text x="340" y="52" fill="#64748b" font-size="11" text-anchor="middle">base.py:622 / 2861 / 2979 / 3175 / 6257 · langchain-core 1.3.2（行号一手核实）</text>
+
+  <text x="40" y="80" fill="#fbbf24" font-size="12" text-anchor="start">构造期：竖线 → 扁平 RunnableSequence</text>
+
+  <rect x="40" y="92" width="330" height="44" rx="8" fill="#0f172a"/>
+  <rect x="40" y="92" width="330" height="44" rx="8" fill="rgba(8,51,68,0.55)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="55" y="112" fill="#e2e8f0" font-size="13" text-anchor="start">chain = (a | b) | c</text>
+  <text x="55" y="129" fill="#94a3b8" font-size="10" text-anchor="start">竖线 = Runnable.__or__（base.py:622）</text>
+
+  <rect x="40" y="152" width="330" height="66" rx="8" fill="#0f172a"/>
+  <rect x="40" y="152" width="330" height="66" rx="8" fill="rgba(8,51,68,0.55)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="55" y="172" fill="#e2e8f0" font-size="13" text-anchor="start">RunnableSequence（base.py:2861）</text>
+  <text x="55" y="190" fill="#94a3b8" font-size="10" text-anchor="start">构造期展平嵌套：if isinstance(step, RunnableSequence):</text>
+  <text x="55" y="206" fill="#94a3b8" font-size="10" text-anchor="start">    steps_flat.extend(step.steps)（base.py:2979）</text>
+
+  <rect x="400" y="152" width="240" height="66" rx="8" fill="#0f172a"/>
+  <rect x="400" y="152" width="240" height="66" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="415" y="172" fill="#e2e8f0" font-size="12" text-anchor="start">coerce_to_runnable（base.py:6257）</text>
+  <text x="415" y="190" fill="#94a3b8" font-size="10" text-anchor="start">Runnable 原样 / callable→Lambda</text>
+  <text x="415" y="206" fill="#94a3b8" font-size="10" text-anchor="start">dict → RunnableParallel</text>
+
+  <path d="M 205 136 L 205 150" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="234" width="600" height="36" rx="8" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="55" y="257" fill="#fbbf24" font-size="11" text-anchor="start">结果：(a|b)|c 与 a|b|c 同构 → 扁平 steps=[a, b, c]，多层竖线不增加嵌套；至少 2 步否则 ValueError</text>
+
+  <text x="40" y="300" fill="#fbbf24" font-size="12" text-anchor="start">运行期：invoke 逐 step 串喂（base.py:3175）</text>
+
+  <rect x="30" y="320" width="70" height="48" rx="8" fill="#0f172a"/>
+  <rect x="30" y="320" width="70" height="48" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="65" y="349" fill="#e2e8f0" font-size="13" text-anchor="middle">输入</text>
+
+  <rect x="130" y="320" width="130" height="48" rx="8" fill="#0f172a"/>
+  <rect x="130" y="320" width="130" height="48" rx="8" fill="rgba(8,51,68,0.7)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="195" y="341" fill="#e2e8f0" font-size="12" text-anchor="middle">step0: a</text>
+  <text x="195" y="357" fill="#94a3b8" font-size="9" text-anchor="middle">（拿到 kwargs）</text>
+
+  <rect x="300" y="320" width="120" height="48" rx="8" fill="#0f172a"/>
+  <rect x="300" y="320" width="120" height="48" rx="8" fill="rgba(8,51,68,0.7)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="360" y="349" fill="#e2e8f0" font-size="12" text-anchor="middle">step1: b</text>
+
+  <rect x="460" y="320" width="120" height="48" rx="8" fill="#0f172a"/>
+  <rect x="460" y="320" width="120" height="48" rx="8" fill="rgba(8,51,68,0.7)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="520" y="349" fill="#e2e8f0" font-size="12" text-anchor="middle">step2: c</text>
+
+  <rect x="604" y="320" width="52" height="48" rx="8" fill="#0f172a"/>
+  <rect x="604" y="320" width="52" height="48" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="630" y="349" fill="#e2e8f0" font-size="12" text-anchor="middle">输出</text>
+
+  <path d="M 100 344 L 128 344" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 260 344 L 298 344" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 420 344 L 458 344" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 580 344 L 602 344" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="404" fill="#64748b" font-size="11" text-anchor="start">kwargs 只传给第一步（base.py:3198）；前一步的输出是后一步的输入，类型需自行对齐</text>
+</svg>
