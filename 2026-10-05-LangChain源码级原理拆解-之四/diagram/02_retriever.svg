@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="340" y="30" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">Retriever：把检索包成 Runnable，统一 invoke 入口</text>
+  <text x="340" y="49" fill="#64748b" font-size="11" text-anchor="middle">BaseRetriever 是 RunnableSerializable · retrievers.py:55</text>
+
+  <!-- VectorStore -->
+  <rect x="24" y="78" width="180" height="56" rx="10" fill="#0f172a" stroke="#34d399"/>
+  <text x="114" y="102" fill="#e2e8f0" font-size="12" text-anchor="middle" font-weight="600">VectorStore</text>
+  <text x="114" y="120" fill="#34d399" font-size="9.5" text-anchor="middle">base.py:43 (ABC)</text>
+
+  <!-- as_retriever -->
+  <rect x="244" y="78" width="170" height="56" rx="10" fill="#0f172a" stroke="#22d3ee"/>
+  <text x="329" y="102" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">as_retriever()</text>
+  <text x="329" y="120" fill="#22d3ee" font-size="9.5" text-anchor="middle">base.py:905</text>
+
+  <!-- VectorStoreRetriever -->
+  <rect x="464" y="78" width="192" height="56" rx="10" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="560" y="100" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">VectorStoreRetriever</text>
+  <text x="560" y="118" fill="#22d3ee" font-size="9.5" text-anchor="middle">base.py:964 · search_type 默认 similarity</text>
+
+  <line x1="204" y1="106" x2="242" y2="106" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="414" y1="106" x2="462" y2="106" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- BaseRetriever -->
+  <rect x="244" y="170" width="200" height="70" rx="10" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="344" y="194" fill="#a78bfa" font-size="12" text-anchor="middle" font-weight="600">BaseRetriever</text>
+  <text x="344" y="212" fill="#94a3b8" font-size="9.5" text-anchor="middle">RunnableSerializable（retrievers.py:55）</text>
+  <text x="344" y="228" fill="#cbd5e1" font-size="9.5" text-anchor="middle">对外只认 invoke 与 _get_relevant_documents</text>
+
+  <line x1="560" y1="134" x2="560" y2="168" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="560" y1="168" x2="444" y2="168" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- invoke -->
+  <rect x="64" y="280" width="160" height="48" rx="8" fill="#0f172a" stroke="#fbbf24"/>
+  <text x="144" y="302" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">invoke(query)</text>
+  <text x="144" y="318" fill="#64748b" font-size="9" text-anchor="middle">retrievers.py:179 公开入口</text>
+
+  <!-- _get_relevant_documents -->
+  <rect x="256" y="280" width="180" height="48" rx="8" fill="#0f172a" stroke="#fbbf24"/>
+  <text x="346" y="302" fill="#e2e8f0" font-size="10.5" text-anchor="middle">_get_relevant_documents</text>
+  <text x="346" y="318" fill="#64748b" font-size="9" text-anchor="middle">retrievers.py:298 业务实现</text>
+
+  <!-- subclass -->
+  <rect x="478" y="280" width="180" height="48" rx="8" fill="#0f172a" stroke="#34d399"/>
+  <text x="568" y="302" fill="#e2e8f0" font-size="10.5" text-anchor="middle">自定义子类</text>
+  <text x="568" y="318" fill="#34d399" font-size="9" text-anchor="middle">只复写 _get_relevant_documents</text>
+
+  <line x1="124" y1="218" x2="124" y2="278" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="144" y1="328" x2="254" y2="304" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="436" y1="304" x2="476" y2="304" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- three search types -->
+  <text x="24" y="372" fill="#22d3ee" font-size="12" font-weight="600">search_type 三路（VectorStoreRetriever 内部）</text>
+  <rect x="24" y="382" width="200" height="50" rx="8" fill="#0f172a" stroke="#94a3b8"/>
+  <text x="124" y="402" fill="#e2e8f0" font-size="10.5" text-anchor="middle" font-weight="600">similarity</text>
+  <text x="124" y="418" fill="#94a3b8" font-size="9" text-anchor="middle">默认，纯余弦 top-k</text>
+
+  <rect x="240" y="382" width="200" height="50" rx="8" fill="#0f172a" stroke="#94a3b8"/>
+  <text x="340" y="402" fill="#e2e8f0" font-size="10.5" text-anchor="middle" font-weight="600">similarity_score_threshold</text>
+  <text x="340" y="418" fill="#94a3b8" font-size="9" text-anchor="middle">score_threshold 塞进 search_kwargs</text>
+
+  <rect x="456" y="382" width="200" height="50" rx="8" fill="#0f172a" stroke="#94a3b8"/>
+  <text x="556" y="402" fill="#e2e8f0" font-size="10.5" text-anchor="middle" font-weight="600">mmr</text>
+  <text x="556" y="418" fill="#94a3b8" font-size="9" text-anchor="middle">最大边际相关，兼顾多样性</text>
+
+  <line x1="344" y1="240" x2="344" y2="380" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="344" y1="380" x2="340" y2="382" stroke="#94a3b8" stroke-width="1.5"/>
+</svg>
