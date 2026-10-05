@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="340" y="30" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">MessagesPlaceholder：提示词里的可变插槽</text>
+  <text x="340" y="49" fill="#64748b" font-size="11" text-anchor="middle">langchain-core 1.3.2</text>
+
+  <!-- template -->
+  <rect x="24" y="90" width="210" height="170" rx="10" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="44" y="114" fill="#e2e8f0" font-size="12" font-weight="600">ChatPromptTemplate</text>
+  <text x="44" y="131" fill="#a78bfa" font-size="9.5">prompts/chat.py:53</text>
+  <text x="44" y="156" fill="#e2e8f0" font-size="10">("system", "你是客服助手")</text>
+  <text x="44" y="178" fill="#fbbf24" font-size="10">MessagesPlaceholder("history")</text>
+  <text x="44" y="200" fill="#e2e8f0" font-size="10">("human", "{input}")</text>
+  <text x="44" y="236" fill="#94a3b8" font-size="9">三段固定结构</text>
+
+  <!-- placeholder -->
+  <rect x="270" y="100" width="140" height="130" rx="10" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="126" fill="#e2e8f0" font-size="12" font-weight="600" text-anchor="middle">MessagesPlaceholder</text>
+  <text x="340" y="143" fill="#fbbf24" font-size="9.5" text-anchor="middle">"history"</text>
+  <text x="340" y="166" fill="#94a3b8" font-size="9" text-anchor="middle">占位：不写死条数</text>
+  <text x="340" y="186" fill="#cbd5e1" font-size="9" text-anchor="middle">运行时把 list[Message]</text>
+  <text x="340" y="202" fill="#cbd5e1" font-size="9" text-anchor="middle">原样展开</text>
+  <text x="340" y="220" fill="#64748b" font-size="8.5" text-anchor="middle">prompts/chat.py:53</text>
+
+  <!-- rendered -->
+  <rect x="440" y="84" width="216" height="200" rx="10" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="460" y="108" fill="#e2e8f0" font-size="12" font-weight="600">渲染结果（5 条）</text>
+  <text x="460" y="128" fill="#94a3b8" font-size="9">1  system  你是客服助手</text>
+  <text x="460" y="148" fill="#e2e8f0" font-size="10">2  Human  上一条问题</text>
+  <text x="460" y="168" fill="#e2e8f0" font-size="10">3  AI     上一条回答</text>
+  <text x="460" y="188" fill="#e2e8f0" font-size="10">4  Human  又一条问题</text>
+  <text x="460" y="208" fill="#e2e8f0" font-size="10">5  Human  现在的问题</text>
+  <text x="460" y="248" fill="#94a3b8" font-size="9">system + 3 history + human = 5</text>
+
+  <!-- arrows -->
+  <line x1="234" y1="165" x2="268" y2="165" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="410" y1="165" x2="438" y2="165" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="324" y="158" fill="#94a3b8" font-size="9" text-anchor="middle">历史展开</text>
+
+  <!-- footer -->
+  <text x="24" y="372" fill="#94a3b8" font-size="10">关键事实：</text>
+  <text x="24" y="392" fill="#cbd5e1" font-size="10">1) MessagesPlaceholder 是可变长度插槽，运行时把 list[BaseMessage] 原样展开（chat.py:53）。</text>
+  <text x="24" y="412" fill="#cbd5e1" font-size="10">2) 没有它历史只能写死条数；有了它，3 条历史进模板就变 5 条，顺序严格保持。</text>
+  <text x="24" y="432" fill="#cbd5e1" font-size="10">3) system / history / human 三段拼起来，模型看到的就是完整多轮上下文。</text>
+</svg>

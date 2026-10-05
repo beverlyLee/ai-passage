@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="340" y="30" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">历史存储：抽象基类与内存实现</text>
+  <text x="340" y="49" fill="#64748b" font-size="11" text-anchor="middle">langchain-core 1.3.2</text>
+
+  <!-- abstract base -->
+  <rect x="24" y="86" width="300" height="176" rx="10" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="44" y="112" fill="#e2e8f0" font-size="13" font-weight="600">BaseChatMessageHistory</text>
+  <text x="44" y="129" fill="#22d3ee" font-size="9.5">chat_history.py:22  抽象基类</text>
+  <text x="44" y="154" fill="#e2e8f0" font-size="10">messages : property</text>
+  <text x="270" y="154" fill="#94a3b8" font-size="9">返回 list</text>
+  <text x="44" y="174" fill="#e2e8f0" font-size="10">add_message(m)</text>
+  <text x="270" y="174" fill="#94a3b8" font-size="9">追加一条</text>
+  <text x="44" y="194" fill="#e2e8f0" font-size="10">clear()</text>
+  <text x="270" y="194" fill="#94a3b8" font-size="9">清空</text>
+  <text x="44" y="214" fill="#e2e8f0" font-size="10">aadd_messages(msgs)</text>
+  <text x="270" y="214" fill="#94a3b8" font-size="9">异步批量追加</text>
+  <text x="44" y="240" fill="#94a3b8" font-size="9">只认 BaseMessage 子类</text>
+
+  <!-- concrete impl -->
+  <rect x="356" y="86" width="300" height="176" rx="10" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="376" y="112" fill="#e2e8f0" font-size="13" font-weight="600">InMemoryChatMessageHistory</text>
+  <text x="376" y="129" fill="#34d399" font-size="9.5">chat_history.py:202  内存实现</text>
+  <text x="376" y="154" fill="#e2e8f0" font-size="10">self.messages : list</text>
+  <text x="376" y="174" fill="#e2e8f0" font-size="10">add_message :224</text>
+  <text x="586" y="174" fill="#94a3b8" font-size="9">append</text>
+  <text x="376" y="194" fill="#e2e8f0" font-size="10">aadd_messages :232</text>
+  <text x="586" y="194" fill="#94a3b8" font-size="9">async append</text>
+  <text x="376" y="214" fill="#e2e8f0" font-size="10">clear :240</text>
+  <text x="586" y="214" fill="#94a3b8" font-size="9">置空</text>
+  <text x="376" y="240" fill="#94a3b8" font-size="9">add_user / add_ai_message 便捷方法</text>
+
+  <!-- inheritance arrow -->
+  <line x1="324" y1="174" x2="352" y2="174" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="338" y="166" fill="#94a3b8" font-size="9" text-anchor="middle">继承/实现</text>
+
+  <!-- footer -->
+  <text x="24" y="372" fill="#94a3b8" font-size="10">关键事实：</text>
+  <text x="24" y="392" fill="#cbd5e1" font-size="10">1) 基类只定义接口不存数据（BaseChatMessageHistory，chat_history.py:22）。</text>
+  <text x="24" y="412" fill="#cbd5e1" font-size="10">2) 内存实现把 messages 存成 list，增/清/异步追加都在这里（:202）。</text>
+  <text x="24" y="432" fill="#cbd5e1" font-size="10">3) 历史存储只认 BaseMessage 子类，HumanMessage / AIMessage 都能塞进去。</text>
+</svg>
