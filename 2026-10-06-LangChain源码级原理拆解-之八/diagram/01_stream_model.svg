@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="url(#grid)"/>
+  <text x="340" y="34" text-anchor="middle" fill="#e2e8f0" font-size="18">模型层流式：stream 是子类覆写出来的</text>
+  <text x="340" y="54" text-anchor="middle" fill="#64748b" font-size="11">langchain-core 1.3.2  ·  base.py:1134  ·  chat_models.py:710 / 2129 / 808</text>
+
+  <rect x="46" y="86" width="262" height="186" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="177" y="112" text-anchor="middle" fill="#94a3b8" font-size="14">基类 Runnable.stream</text>
+  <text x="177" y="138" text-anchor="middle" fill="#cbd5e1" font-size="12">base.py:1134</text>
+  <text x="177" y="166" text-anchor="middle" fill="#cbd5e1" font-size="12">默认实现只有一行：</text>
+  <text x="177" y="188" text-anchor="middle" fill="#e2e8f0" font-size="12" font-family="monospace">yield self.invoke(input)</text>
+  <text x="177" y="216" text-anchor="middle" fill="#cbd5e1" font-size="12">→ 等算完一次性给</text>
+  <text x="177" y="238" text-anchor="middle" fill="#cbd5e1" font-size="12">整体一个 chunk，不懂流式</text>
+
+  <rect x="372" y="86" width="262" height="186" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="503" y="112" text-anchor="middle" fill="#22d3ee" font-size="14">BaseChatModel.stream</text>
+  <text x="503" y="138" text-anchor="middle" fill="#cbd5e1" font-size="12">chat_models.py:710</text>
+  <text x="503" y="166" text-anchor="middle" fill="#cbd5e1" font-size="12">遍历 self._stream() :2129</text>
+  <text x="503" y="188" text-anchor="middle" fill="#cbd5e1" font-size="12">逐 token 产出 chunk</text>
+  <text x="503" y="216" text-anchor="middle" fill="#cbd5e1" font-size="12">末尾补空 token（:808）</text>
+  <text x="503" y="238" text-anchor="middle" fill="#64748b" font-size="11">与系列前文回调联动</text>
+
+  <rect x="372" y="300" width="60" height="34" rx="6" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="402" y="322" text-anchor="middle" fill="#22d3ee" font-size="13">你</text>
+  <line x1="432" y1="317" x2="452" y2="317" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="452" y="300" width="60" height="34" rx="6" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="482" y="322" text-anchor="middle" fill="#22d3ee" font-size="13">好</text>
+  <line x1="512" y1="317" x2="532" y2="317" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="532" y="300" width="60" height="34" rx="6" fill="#0f172a" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="562" y="322" text-anchor="middle" fill="#94a3b8" font-size="12">空</text>
+
+  <text x="340" y="396" text-anchor="middle" fill="#fbbf24" font-size="12">坑：调 .stream() 不一定逐字，没覆写 stream 的 Runnable 只整体输出</text>
+  <text x="20" y="438" fill="#94a3b8" font-size="10">source: runnables/base.py:1134  ·  language_models/chat_models.py:710,2129,808</text>
+  <text x="660" y="438" text-anchor="end" fill="#cbd5e1" font-size="10">01 / 03</text>
+</svg>
