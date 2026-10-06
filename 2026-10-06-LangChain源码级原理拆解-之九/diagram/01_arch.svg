@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowc" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="url(#grid)"/>
+  <text x="340" y="34" text-anchor="middle" fill="#e2e8f0" font-size="18">整体架构：六类能力被一根竖线串成一条 Runnable</text>
+  <text x="340" y="54" text-anchor="middle" fill="#64748b" font-size="11">langchain-core 1.3.2  ·  之一 / 之二 / 之四 / 之六 / 之八</text>
+
+  <!-- pipeline boxes -->
+  <rect x="18" y="190" width="74" height="58" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="55" y="214" text-anchor="middle" fill="#94a3b8" font-size="12">用户输入</text>
+  <text x="55" y="234" text-anchor="middle" fill="#64748b" font-size="10">question</text>
+
+  <rect x="106" y="190" width="92" height="58" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="152" y="212" text-anchor="middle" fill="#fbbf24" font-size="12">记忆注入</text>
+  <text x="152" y="232" text-anchor="middle" fill="#64748b" font-size="10">之六 RwMH</text>
+
+  <rect x="214" y="190" width="96" height="58" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="262" y="212" text-anchor="middle" fill="#a78bfa" font-size="12">assign+检索</text>
+  <text x="262" y="232" text-anchor="middle" fill="#64748b" font-size="10">之四 Document</text>
+
+  <rect x="326" y="190" width="86" height="58" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="369" y="212" text-anchor="middle" fill="#cbd5e1" font-size="12">提示词</text>
+  <text x="369" y="232" text-anchor="middle" fill="#64748b" font-size="10">Prompt</text>
+
+  <rect x="428" y="190" width="86" height="58" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="471" y="212" text-anchor="middle" fill="#22d3ee" font-size="12">模型</text>
+  <text x="471" y="232" text-anchor="middle" fill="#64748b" font-size="10">之三 FakeModel</text>
+
+  <rect x="530" y="190" width="86" height="58" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="573" y="212" text-anchor="middle" fill="#34d399" font-size="12">解析</text>
+  <text x="573" y="232" text-anchor="middle" fill="#64748b" font-size="10">之八 StrOut</text>
+
+  <rect x="632" y="190" width="40" height="58" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="652" y="224" text-anchor="middle" fill="#22d3ee" font-size="11">输出</text>
+
+  <!-- arrows between -->
+  <line x1="92" y1="219" x2="104" y2="219" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="198" y1="219" x2="212" y2="219" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="310" y1="219" x2="324" y2="219" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="412" y1="219" x2="426" y2="219" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrowc)"/>
+  <line x1="514" y1="219" x2="528" y2="219" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="616" y1="219" x2="630" y2="219" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrowc)"/>
+
+  <!-- tool loop off the model -->
+  <rect x="428" y="320" width="150" height="50" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="503" y="344" text-anchor="middle" fill="#34d399" font-size="12">工具路由 + ToolMessage</text>
+  <text x="503" y="360" text-anchor="middle" fill="#64748b" font-size="10">之五 离线模拟</text>
+  <line x1="471" y1="248" x2="471" y2="318" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+  <line x1="535" y1="345" x2="480" y2="248" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+  <text x="503" y="300" text-anchor="middle" fill="#34d399" font-size="10">tool_call 下 / 结果回灌</text>
+
+  <!-- callback bracket over model -->
+  <path d="M414,176 H428 V150 H514 V176 H528" fill="none" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="471" y="142" text-anchor="middle" fill="#fb7185" font-size="11">回调 TokenTracer（之七）</text>
+
+  <text x="340" y="404" text-anchor="middle" fill="#fbbf24" font-size="12">坑：记忆靠 config[configurable][session_id] 定位；扇出里放慢调用会拖慢流式起步</text>
+  <text x="20" y="438" fill="#94a3b8" font-size="10">source: runnables/history.py:38  ·  runnables/passthrough.py:207  ·  chat_models.py:710</text>
+  <text x="660" y="438" text-anchor="end" fill="#cbd5e1" font-size="10">01 / 03</text>
+</svg>
