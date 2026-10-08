@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 560">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+      .title { font-size:16px; font-weight:700; fill:#e2e8f0; }
+      .box-title { font-size:11px; font-weight:600; fill:#ffffff; text-anchor:middle; }
+      .box-sub { font-size:9px; fill:#94a3b8; text-anchor:middle; }
+      .label { font-size:8px; fill:#94a3b8; }
+      .note { font-size:8px; fill:#fb7185; }
+      .end { font-size:11px; font-weight:600; fill:#e2e8f0; text-anchor:middle; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" class="title">图执行与状态归约流水线</text>
+  <text x="30" y="50" class="note">状态归约发生在边的推进里，不在节点里</text>
+
+  <!-- S1 -->
+  <rect x="230" y="70" width="200" height="46" rx="6" fill="#0f172a"/>
+  <rect x="230" y="70" width="200" height="46" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="330" y="91" class="box-title">GraphRunner.run</text>
+  <text x="330" y="106" class="box-sub">mainGraphExecutor.execute :30/:53</text>
+
+  <!-- S2 -->
+  <rect x="230" y="138" width="200" height="46" rx="6" fill="#0f172a"/>
+  <rect x="230" y="138" width="200" height="46" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="330" y="159" class="box-title">streamFromInitialNode :578</text>
+  <text x="330" y="174" class="box-sub">产出 Flux&lt;NodeOutput&gt;</text>
+
+  <!-- S3 -->
+  <rect x="230" y="206" width="200" height="46" rx="6" fill="#0f172a"/>
+  <rect x="230" y="206" width="200" height="46" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="330" y="227" class="box-title">取当前节点动作算结果</text>
+  <text x="330" y="242" class="box-sub">节点只算自己的 partial</text>
+
+  <!-- D1 diamond -->
+  <polygon points="330,278 440,323 330,368 220,323" fill="#0f172a"/>
+  <polygon points="330,278 440,323 330,368 220,323" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="330" y="319" class="box-title" style="font-size:10px;">nextNodeId :366/:410</text>
+  <text x="330" y="334" class="box-title" style="font-size:9px;fill:#94a3b8;">决定下一跳</text>
+
+  <!-- S4 left -->
+  <rect x="50" y="410" width="210" height="46" rx="6" fill="#0f172a"/>
+  <rect x="50" y="410" width="210" height="46" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="155" y="431" class="box-title">command.update() 取状态增量</text>
+  <text x="155" y="446" class="box-sub">Command.gotoNode() :410</text>
+
+  <!-- S5 left -->
+  <rect x="50" y="478" width="210" height="46" rx="6" fill="#0f172a"/>
+  <rect x="50" y="478" width="210" height="46" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="155" y="499" class="box-title">OverAllState.updateState 归约</text>
+  <text x="155" y="514" class="box-sub">并入总状态 :366/:263</text>
+
+  <!-- S6 right -->
+  <rect x="400" y="410" width="210" height="46" rx="6" fill="#0f172a"/>
+  <rect x="400" y="410" width="210" height="46" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="505" y="431" class="box-title">edges.get(START) 推进</text>
+  <text x="505" y="446" class="box-sub">entryPoint :416 普通边</text>
+
+  <!-- END box -->
+  <rect x="270" y="506" width="120" height="40" rx="20" fill="#0f172a"/>
+  <rect x="270" y="506" width="120" height="40" rx="20" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="330" y="531" class="end">结束</text>
+
+  <!-- arrows -->
+  <line x1="330" y1="116" x2="330" y2="136" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <line x1="330" y1="184" x2="330" y2="204" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <line x1="330" y1="252" x2="330" y2="276" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- D1 left exit -> S4 -->
+  <path d="M 220 323 L 155 323 L 155 408" fill="none" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="118" y="366" class="label">命令 gotoNode</text>
+
+  <!-- D1 right exit -> S6 -->
+  <path d="M 440 323 L 505 323 L 505 408" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="468" y="366" class="label">普通边</text>
+
+  <line x1="155" y1="456" x2="155" y2="476" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <!-- S5 loop back to S3 -->
+  <path d="M 50 501 C 20 501 20 229 228 229" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <text x="30" y="370" class="label">带新状态继续</text>
+
+  <!-- S6 loop back to S3 -->
+  <path d="M 610 433 C 640 433 640 229 432 229" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="624" y="360" class="label">继续</text>
+
+  <!-- D1 bottom -> END when no next -->
+  <path d="M 330 368 L 330 430 L 390 430 L 390 506" fill="none" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="350" y="452" class="label">无下一跳 → 结束</text>
+</svg>

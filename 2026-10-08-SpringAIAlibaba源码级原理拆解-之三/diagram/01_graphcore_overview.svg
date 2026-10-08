@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 490">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+      .title { font-size:16px; font-weight:700; fill:#e2e8f0; }
+      .region { font-size:9px; font-weight:600; fill:#fbbf24; }
+      .box-title { font-size:12px; font-weight:600; fill:#ffffff; text-anchor:middle; }
+      .box-sub { font-size:9px; fill:#94a3b8; text-anchor:middle; }
+      .label { font-size:8px; fill:#94a3b8; }
+      .note { font-size:8px; fill:#fb7185; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" class="title">graph-core 三件套与关键类</text>
+  <text x="30" y="50" class="note">基准 tag v1.1.2.2 / 提交 7405a7d</text>
+
+  <!-- StateGraph -->
+  <rect x="240" y="62" width="200" height="62" rx="6" fill="#0f172a"/>
+  <rect x="240" y="62" width="200" height="62" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="340" y="90" class="box-title">StateGraph</text>
+  <text x="340" y="106" class="box-sub">声明式建图：收集节点与边</text>
+
+  <!-- CompiledGraph -->
+  <rect x="240" y="184" width="200" height="62" rx="6" fill="#0f172a"/>
+  <rect x="240" y="184" width="200" height="62" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="212" class="box-title">CompiledGraph</text>
+  <text x="340" y="228" class="box-sub">执行引擎：固化节点 / 边 / 归约</text>
+
+  <!-- OverAllState region -->
+  <rect x="40" y="304" width="250" height="140" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="52" y="322" class="region">OverAllState 共享黑板 :77</text>
+  <rect x="58" y="334" width="214" height="94" rx="6" fill="#0f172a"/>
+  <rect x="58" y="334" width="214" height="94" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="165" y="372" class="box-title" style="font-size:11px;">各节点共享同一份状态引用</text>
+  <text x="165" y="390" class="box-sub">partial update + KeyStrategy 映射</text>
+  <text x="165" y="410" class="note">updateState :263 / 删键 MARK_FOR_REMOVAL :271</text>
+
+  <!-- KeyStrategy region -->
+  <rect x="400" y="304" width="240" height="140" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="412" y="322" class="region">KeyStrategy 三策略</text>
+  <rect x="418" y="334" width="204" height="42" rx="6" fill="#0f172a"/>
+  <rect x="418" y="334" width="204" height="42" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="520" y="358" class="box-title" style="font-size:11px;">ReplaceStrategy</text>
+  <text x="520" y="372" class="box-sub">apply → return newValue :20/:23</text>
+  <rect x="418" y="384" width="204" height="42" rx="6" fill="#0f172a"/>
+  <rect x="418" y="384" width="204" height="42" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="520" y="408" class="box-title" style="font-size:11px;">AppendStrategy</text>
+  <text x="520" y="422" class="box-sub">列表追加 / 剔除 :43/:58</text>
+
+  <!-- arrows -->
+  <line x1="340" y1="124" x2="340" y2="182" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="350" y="157" class="label">compile :517/:531</text>
+
+  <path d="M 300 246 C 240 274 200 280 165 304" fill="none" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="196" y="282" class="label">updateState :366</text>
+
+  <path d="M 380 246 C 440 274 480 280 520 304" fill="none" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="470" y="282" class="label">KeyStrategyMap</text>
+
+  <line x1="290" y1="381" x2="398" y2="381" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <text x="320" y="374" class="label">逐键交策略 :263</text>
+</svg>

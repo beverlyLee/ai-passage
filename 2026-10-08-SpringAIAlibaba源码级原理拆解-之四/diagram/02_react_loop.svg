@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 440">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+      .title { font-size:16px; font-weight:700; fill:#e2e8f0; }
+      .box-title { font-size:11px; font-weight:600; fill:#ffffff; text-anchor:middle; }
+      .box-sub { font-size:9px; fill:#94a3b8; text-anchor:middle; }
+      .label { font-size:8px; fill:#94a3b8; }
+      .note { font-size:8px; fill:#fb7185; }
+      .end { font-size:11px; font-weight:600; fill:#e2e8f0; text-anchor:middle; }
+      .region { font-size:9px; font-weight:600; fill:#fbbf24; }
+      .hk { font-size:9px; fill:#94a3b8; text-anchor:middle; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" class="title">ReAct 循环与 Hook 插桩</text>
+
+  <!-- S1 -->
+  <rect x="220" y="40" width="240" height="50" rx="6" fill="#0f172a"/>
+  <rect x="220" y="40" width="240" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="340" y="62" class="box-title">AgentLlmNode 生成消息</text>
+  <text x="340" y="78" class="box-sub">模型决定要不要调工具</text>
+
+  <!-- D1 diamond -->
+  <polygon points="340,128 450,170 340,212 230,170" fill="#0f172a"/>
+  <polygon points="340,128 450,170 340,212 230,170" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="166" class="box-title" style="font-size:10px;">hasToolCalls? :789</text>
+  <text x="340" y="181" class="box-title" style="font-size:9px;fill:#94a3b8;">makeModelToTools :755</text>
+
+  <!-- S2 tool -->
+  <rect x="120" y="252" width="200" height="46" rx="6" fill="#0f172a"/>
+  <rect x="120" y="252" width="200" height="46" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="220" y="273" class="box-title">AgentToolNode 执行工具</text>
+  <text x="220" y="288" class="box-sub">回写 ToolResponseMessage :98</text>
+
+  <!-- S3 回写 -->
+  <rect x="120" y="322" width="200" height="46" rx="6" fill="#0f172a"/>
+  <rect x="120" y="322" width="200" height="46" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="220" y="343" class="box-title">模型消化工具结果</text>
+  <text x="220" y="358" class="box-sub">makeToolsToModelEdge :828/:846</text>
+
+  <!-- END -->
+  <rect x="440" y="252" width="130" height="46" rx="23" fill="#0f172a"/>
+  <rect x="440" y="252" width="130" height="46" rx="23" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="505" y="279" class="end">END</text>
+
+  <!-- Hook region -->
+  <rect x="440" y="40" width="170" height="92" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="452" y="58" class="region">Hook 插桩 (jump_to)</text>
+  <rect x="456" y="66" width="138" height="24" rx="5" fill="#0f172a"/>
+  <rect x="456" y="66" width="138" height="24" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="525" y="82" class="hk">beforeModel :550/:666</text>
+  <rect x="456" y="96" width="138" height="24" rx="5" fill="#0f172a"/>
+  <rect x="456" y="96" width="138" height="24" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="525" y="112" class="hk">afterModel 钩子</text>
+
+  <!-- arrows -->
+  <line x1="340" y1="90" x2="340" y2="126" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <path d="M 230 170 L 220 170 L 220 250" fill="none" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="150" y="214" class="label">是，奔工具 :790</text>
+
+  <line x1="220" y1="298" x2="220" y2="320" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <path d="M 220 368 L 90 368 L 90 65 L 218 65" fill="none" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="70" y="222" class="label">回模型再决策 :846</text>
+
+  <path d="M 450 170 L 505 170 L 505 250" fill="none" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="468" y="214" class="label">否 → endDestination :792</text>
+
+  <!-- hook dashed to S1 -->
+  <path d="M 440 160 C 300 160 250 78 240 70" fill="none" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <text x="300" y="120" class="note">jump_to 在模型前改道 :759/:676</text>
+</svg>
