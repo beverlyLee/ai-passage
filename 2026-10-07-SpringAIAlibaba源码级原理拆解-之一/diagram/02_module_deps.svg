@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520">
+  <style>
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/></marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/></marker>
+  </defs>
+
+  <rect width="680" height="520" fill="#0f172a"/>
+  <rect width="680" height="520" fill="url(#grid)"/>
+
+  <text x="30" y="30" fill="#e2e8f0" font-size="16" font-weight="700">SAA 模块依赖与产物</text>
+  <text x="30" y="46" fill="#94a3b8" font-size="9">依赖方向 ↓：上层模块依赖下层；最底三层是真正的发货核心（bom / graph-core / agent-framework）</text>
+
+  <!-- Row 1: platform modules (amber) -->
+  <text x="30" y="70" fill="#fbbf24" font-size="9" font-weight="600">平台型模块（最上层产品）</text>
+  <g>
+    <rect x="30" y="78" width="145" height="50" rx="6" fill="#0f172a"/>
+    <rect x="30" y="78" width="145" height="50" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="102" y="100" fill="white" font-size="11" font-weight="600" text-anchor="middle">studio</text>
+    <text x="102" y="116" fill="#fcd34d" font-size="9" text-anchor="middle">可视化调试</text>
+  </g>
+  <g>
+    <rect x="190" y="78" width="145" height="50" rx="6" fill="#0f172a"/>
+    <rect x="190" y="78" width="145" height="50" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="262" y="100" fill="white" font-size="11" font-weight="600" text-anchor="middle">admin</text>
+    <text x="262" y="116" fill="#fcd34d" font-size="9" text-anchor="middle">一站式平台</text>
+  </g>
+  <g>
+    <rect x="350" y="78" width="145" height="50" rx="6" fill="#0f172a"/>
+    <rect x="350" y="78" width="145" height="50" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="422" y="100" fill="white" font-size="11" font-weight="600" text-anchor="middle">sandbox</text>
+    <text x="422" y="116" fill="#fcd34d" font-size="9" text-anchor="middle">工具沙箱</text>
+  </g>
+  <g>
+    <rect x="510" y="78" width="145" height="50" rx="6" fill="#0f172a"/>
+    <rect x="510" y="78" width="145" height="50" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="582" y="100" fill="white" font-size="11" font-weight="600" text-anchor="middle">tools</text>
+    <text x="582" y="116" fill="#fcd34d" font-size="9" text-anchor="middle">工具集</text>
+  </g>
+
+  <!-- Row 2: spring-boot-starters (cyan) -->
+  <text x="30" y="156" fill="#22d3ee" font-size="9" font-weight="600">spring-boot-starters（起步依赖）</text>
+  <g>
+    <rect x="30" y="162" width="190" height="46" rx="6" fill="#0f172a"/>
+    <rect x="30" y="162" width="190" height="46" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="125" y="183" fill="white" font-size="11" font-weight="600" text-anchor="middle">a2a-nacos</text>
+    <text x="125" y="199" fill="#67e8f9" font-size="9" text-anchor="middle">AgentCard 发现</text>
+  </g>
+  <g>
+    <rect x="245" y="162" width="190" height="46" rx="6" fill="#0f172a"/>
+    <rect x="245" y="162" width="190" height="46" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="340" y="183" fill="white" font-size="11" font-weight="600" text-anchor="middle">graph-observation</text>
+    <text x="340" y="199" fill="#67e8f9" font-size="9" text-anchor="middle">图可观测</text>
+  </g>
+  <g>
+    <rect x="460" y="162" width="190" height="46" rx="6" fill="#0f172a"/>
+    <rect x="460" y="162" width="190" height="46" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="555" y="183" fill="white" font-size="11" font-weight="600" text-anchor="middle">memory-saver</text>
+    <text x="555" y="199" fill="#67e8f9" font-size="9" text-anchor="middle">检查点起步</text>
+  </g>
+
+  <!-- Row 3: agent-framework (violet) -->
+  <text x="30" y="240" fill="#a78bfa" font-size="9" font-weight="600">spring-ai-alibaba-agent-framework（SAA 增量）</text>
+  <rect x="30" y="246" width="620" height="46" rx="6" fill="#0f172a"/>
+  <rect x="30" y="246" width="620" height="46" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="340" y="267" fill="white" font-size="11" font-weight="600" text-anchor="middle">agent-framework</text>
+  <text x="340" y="283" fill="#c4b5fd" font-size="9" text-anchor="middle">com.alibaba.cloud.ai.graph.agent：ReactAgent / Sequential / Parallel / Loop / LlmRouting / Flow</text>
+
+  <!-- Row 4: graph-core (violet) -->
+  <text x="30" y="330" fill="#a78bfa" font-size="9" font-weight="600">spring-ai-alibaba-graph-core（SAA 增量）</text>
+  <rect x="30" y="336" width="620" height="46" rx="6" fill="#0f172a"/>
+  <rect x="30" y="336" width="620" height="46" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="340" y="357" fill="white" font-size="11" font-weight="600" text-anchor="middle">graph-core</text>
+  <text x="340" y="373" fill="#c4b5fd" font-size="9" text-anchor="middle">com.alibaba.cloud.ai.graph：StateGraph / CompiledGraph / OverAllState / NodeAction / Saver</text>
+
+  <!-- Row 5: upstream (slate) -->
+  <text x="30" y="420" fill="#94a3b8" font-size="9" font-weight="600">底层与上游（非 SAA 仓库）</text>
+  <g>
+    <rect x="30" y="426" width="190" height="46" rx="6" fill="#0f172a"/>
+    <rect x="30" y="426" width="190" height="46" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="125" y="447" fill="white" font-size="11" font-weight="600" text-anchor="middle">ai-alibaba-bom</text>
+    <text x="125" y="463" fill="#cbd5e1" font-size="9" text-anchor="middle">版本管理（无依赖）</text>
+  </g>
+  <g>
+    <rect x="245" y="426" width="190" height="46" rx="6" fill="#0f172a"/>
+    <rect x="245" y="426" width="190" height="46" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="340" y="447" fill="white" font-size="11" font-weight="600" text-anchor="middle">spring-projects/spring-ai</text>
+    <text x="340" y="463" fill="#cbd5e1" font-size="9" text-anchor="middle">原子抽象层</text>
+  </g>
+  <g>
+    <rect x="460" y="426" width="190" height="46" rx="6" fill="#0f172a"/>
+    <rect x="460" y="426" width="190" height="46" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="555" y="447" fill="white" font-size="11" font-weight="600" text-anchor="middle">spring-ai-extensions</text>
+    <text x="555" y="463" fill="#cbd5e1" font-size="9" text-anchor="middle">DashScope / MCP 实现</text>
+  </g>
+
+  <!-- Dependency arrows (downward) -->
+  <line x1="102" y1="128" x2="102" y2="158" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="262" y1="128" x2="262" y2="158" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="422" y1="128" x2="422" y2="158" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="582" y1="128" x2="582" y2="158" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="125" y1="208" x2="125" y2="242" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="340" y1="208" x2="340" y2="242" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="555" y1="208" x2="555" y2="242" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="340" y1="292" x2="340" y2="332" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="340" y1="382" x2="340" y2="420" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <text x="30" y="500" fill="#64748b" font-size="8">图：小桃（桃西西呀）· 按 v1.1.2.2 / 7405a7d 核对 · SAA 仓库只发货 bom / graph-core / agent-framework / starters / 平台模块</text>
+</svg>

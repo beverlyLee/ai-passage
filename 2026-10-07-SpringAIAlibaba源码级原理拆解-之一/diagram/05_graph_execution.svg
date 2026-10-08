@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580">
+  <style>
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/></marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/></marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+  </defs>
+
+  <rect width="680" height="580" fill="#0f172a"/>
+  <rect width="680" height="580" fill="url(#grid)"/>
+
+  <text x="30" y="28" fill="#e2e8f0" font-size="16" font-weight="700">Graph 执行模型</text>
+  <text x="30" y="44" fill="#94a3b8" font-size="9">构建期定义一次图（StateGraph），运行期编译成 CompiledGraph 重复执行；一切皆图，状态显式建模为 OverAllState</text>
+
+  <text x="30" y="62" fill="#a78bfa" font-size="9" font-weight="600">— 构建期（StateGraph.java）—</text>
+
+  <!-- StateGraph start (blue) -->
+  <rect x="230" y="60" width="220" height="40" rx="20" fill="#0f172a"/>
+  <rect x="230" y="60" width="220" height="40" rx="20" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="85" fill="white" font-size="11" font-weight="600" text-anchor="middle">StateGraph（new）</text>
+
+  <!-- addNode (cyan) -->
+  <rect x="220" y="118" width="240" height="36" rx="6" fill="#0f172a"/>
+  <rect x="220" y="118" width="240" height="36" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="340" y="140" fill="white" font-size="11" font-weight="600" text-anchor="middle">addNode 挂节点（NodeAction）</text>
+
+  <!-- addEdge (cyan) -->
+  <rect x="220" y="172" width="240" height="36" rx="6" fill="#0f172a"/>
+  <rect x="220" y="172" width="240" height="36" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="340" y="194" fill="white" font-size="11" font-weight="600" text-anchor="middle">addEdge 连边</text>
+
+  <!-- addConditionalEdges diamond (amber) -->
+  <g transform="translate(340, 262)">
+    <polygon points="0,-35 50,0 0,35 -50,0" fill="#0f172a"/>
+    <polygon points="0,-35 50,0 0,35 -50,0" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text y="2" fill="white" font-size="9" font-weight="600" text-anchor="middle">addConditionalEdges</text>
+    <text y="15" fill="#fcd34d" font-size="8" text-anchor="middle">条件路由</text>
+  </g>
+
+  <!-- compile → CompiledGraph (blue highlight) -->
+  <rect x="210" y="315" width="260" height="40" rx="6" fill="#0f172a"/>
+  <rect x="210" y="315" width="260" height="40" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="340" fill="white" font-size="11" font-weight="600" text-anchor="middle">compile → CompiledGraph</text>
+
+  <text x="30" y="372" fill="#60a5fa" font-size="9" font-weight="600">— 运行期（CompiledGraph.java）—</text>
+
+  <!-- invoke / stream (blue) -->
+  <rect x="200" y="373" width="280" height="40" rx="6" fill="#0f172a"/>
+  <rect x="200" y="373" width="280" height="40" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="398" fill="white" font-size="11" font-weight="600" text-anchor="middle">invoke / stream 执行</text>
+
+  <!-- NodeAction.apply (cyan) -->
+  <rect x="180" y="431" width="320" height="40" rx="6" fill="#0f172a"/>
+  <rect x="180" y="431" width="320" height="40" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="340" y="456" fill="white" font-size="11" font-weight="600" text-anchor="middle">NodeAction.apply(OverAllState) → Map</text>
+
+  <!-- OverAllState + KeyStrategy (emerald) -->
+  <rect x="160" y="489" width="360" height="36" rx="6" fill="#0f172a"/>
+  <rect x="160" y="489" width="360" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="512" fill="white" font-size="11" font-weight="600" text-anchor="middle">OverAllState 中央状态 + KeyStrategy 合并</text>
+
+  <!-- Vertical center arrows -->
+  <line x1="340" y1="100" x2="340" y2="116" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="154" x2="340" y2="170" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="208" x2="340" y2="225" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="297" x2="340" y2="313" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="355" x2="340" y2="371" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="413" x2="340" y2="429" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="471" x2="340" y2="487" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- HITL diamond (rose) on right of invoke/stream -->
+  <g transform="translate(585, 388)">
+    <polygon points="0,-32 45,0 0,32 -45,0" fill="#0f172a"/>
+    <polygon points="0,-32 45,0 0,32 -45,0" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+    <text y="0" fill="white" font-size="8" font-weight="600" text-anchor="middle">interruptAfter</text>
+    <text y="13" fill="#fda4af" font-size="8" text-anchor="middle">HITL 钩子</text>
+  </g>
+  <line x1="480" y1="393" x2="538" y2="388" stroke="#fb7185" stroke-width="1.4" marker-end="url(#arrow-rose)"/>
+  <text x="500" y="372" fill="#fda4af" font-size="8">interrupt 等人确认</text>
+
+  <!-- Saver (violet) on right of OverAllState -->
+  <rect x="525" y="489" width="145" height="36" rx="6" fill="#0f172a"/>
+  <rect x="525" y="489" width="145" height="36" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="597" y="512" fill="white" font-size="10" font-weight="600" text-anchor="middle">Saver 落 Checkpoint</text>
+  <line x1="520" y1="507" x2="523" y2="507" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-violet)"/>
+  <text x="525" y="482" fill="#c4b5fd" font-size="8">每步后落盘 · 可 resume</text>
+
+  <!-- ReAct loop-back -->
+  <path d="M 180,451 C 110,451 110,393 198,393" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-cyan)"/>
+  <text x="60" y="424" fill="#67e8f9" font-size="8">ReAct 循环</text>
+  <text x="60" y="436" fill="#67e8f9" font-size="8">推理→工具→再推理</text>
+
+  <text x="30" y="552" fill="#64748b" font-size="9">构建期定义一次，运行期可重复执行；每步后 Saver 落 Checkpoint，因此能从任意断点 resume；interruptAfter 是人工确认（HITL）的实现点</text>
+  <text x="30" y="570" fill="#64748b" font-size="8">图：小桃（桃西西呀）· 按 v1.1.2.2 / 7405a7d 核对 · 行号见正文复现模块</text>
+</svg>

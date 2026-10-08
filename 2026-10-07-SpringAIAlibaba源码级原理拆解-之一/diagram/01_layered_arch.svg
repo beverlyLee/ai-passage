@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600">
+  <style>
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/></marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/></marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/></marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/></marker>
+  </defs>
+
+  <rect width="680" height="600" fill="#0f172a"/>
+  <rect width="680" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="30" fill="#e2e8f0" font-size="16" font-weight="700">Spring AI Alibaba 分层架构</text>
+  <text x="30" y="46" fill="#94a3b8" font-size="9">五层里只有两层是 SAA 的增量：智能体框架层 + 图编排引擎层，↓ 上层调用/复用下层</text>
+
+  <!-- Inter-band arrows (left, x=42) -->
+  <line x1="42" y1="136" x2="42" y2="154" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="42" y1="234" x2="42" y2="252" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="42" y1="332" x2="42" y2="350" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="42" y1="430" x2="42" y2="448" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="42" y1="518" x2="42" y2="536" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Band 1: 业务接入层 (cyan) ============ -->
+  <rect x="30" y="60" width="620" height="76" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="38" y="78" fill="#22d3ee" font-size="9" font-weight="600">业务接入层</text>
+  <rect x="165" y="73" width="220" height="50" rx="6" fill="#0f172a"/>
+  <rect x="165" y="73" width="220" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="275" y="95" fill="white" font-size="11" font-weight="600" text-anchor="middle">Web Controller</text>
+  <text x="275" y="111" fill="#94a3b8" font-size="9" text-anchor="middle">HTTP 入口</text>
+  <rect x="400" y="73" width="220" height="50" rx="6" fill="#0f172a"/>
+  <rect x="400" y="73" width="220" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="510" y="95" fill="white" font-size="11" font-weight="600" text-anchor="middle">AutoConfiguration</text>
+  <text x="510" y="111" fill="#94a3b8" font-size="9" text-anchor="middle">起步依赖自动装配</text>
+
+  <!-- ============ Band 2: 智能体框架层 (violet, SAA 增量) ============ -->
+  <rect x="30" y="158" width="620" height="76" rx="12" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="38" y="176" fill="#a78bfa" font-size="9" font-weight="600">智能体框架层（SAA 增量）</text>
+  <g>
+    <rect x="165" y="171" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="165" y="171" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="219" y="193" fill="white" font-size="11" font-weight="600" text-anchor="middle">ReactAgent</text>
+    <text x="219" y="209" fill="#c4b5fd" font-size="9" text-anchor="middle">单智能体</text>
+  </g>
+  <g>
+    <rect x="283" y="171" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="283" y="171" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="337" y="193" fill="white" font-size="11" font-weight="600" text-anchor="middle">内置编排</text>
+    <text x="337" y="209" fill="#c4b5fd" font-size="9" text-anchor="middle">Seq/Par/Loop</text>
+  </g>
+  <g>
+    <rect x="401" y="171" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="401" y="171" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="455" y="193" fill="white" font-size="10" font-weight="600" text-anchor="middle">LlmRouting/Flow</text>
+    <text x="455" y="209" fill="#c4b5fd" font-size="9" text-anchor="middle">路由与组合</text>
+  </g>
+  <g>
+    <rect x="519" y="171" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="519" y="171" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="573" y="193" fill="white" font-size="11" font-weight="600" text-anchor="middle">A2A(Nacos)</text>
+    <text x="573" y="209" fill="#c4b5fd" font-size="9" text-anchor="middle">跨服务发现</text>
+  </g>
+
+  <!-- ============ Band 3: 图编排引擎层 (violet, SAA 增量) ============ -->
+  <rect x="30" y="256" width="620" height="76" rx="12" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="38" y="274" fill="#a78bfa" font-size="9" font-weight="600">图编排引擎层（SAA 增量）com.alibaba.cloud.ai.graph</text>
+  <g>
+    <rect x="165" y="269" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="165" y="269" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="219" y="291" fill="white" font-size="11" font-weight="600" text-anchor="middle">StateGraph</text>
+    <text x="219" y="307" fill="#c4b5fd" font-size="9" text-anchor="middle">图定义</text>
+  </g>
+  <g>
+    <rect x="283" y="269" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="283" y="269" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="337" y="291" fill="white" font-size="10" font-weight="600" text-anchor="middle">CompiledGraph</text>
+    <text x="337" y="307" fill="#c4b5fd" font-size="9" text-anchor="middle">编译后图</text>
+  </g>
+  <g>
+    <rect x="401" y="269" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="401" y="269" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="455" y="291" fill="white" font-size="10" font-weight="600" text-anchor="middle">OverAllState</text>
+    <text x="455" y="307" fill="#c4b5fd" font-size="9" text-anchor="middle">中央状态</text>
+  </g>
+  <g>
+    <rect x="519" y="269" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="519" y="269" width="108" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="573" y="291" fill="white" font-size="10" font-weight="600" text-anchor="middle">NodeAction/Saver</text>
+    <text x="573" y="307" fill="#c4b5fd" font-size="9" text-anchor="middle">动作与检查点</text>
+  </g>
+
+  <!-- ============ Band 4: Spring AI 原子抽象层 (emerald, upstream) ============ -->
+  <rect x="30" y="354" width="620" height="76" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="38" y="372" fill="#34d399" font-size="9" font-weight="600">Spring AI 原子抽象层（上游 spring-projects/spring-ai）</text>
+  <g>
+    <rect x="165" y="367" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="165" y="367" width="108" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="219" y="389" fill="white" font-size="11" font-weight="600" text-anchor="middle">ChatClient</text>
+    <text x="219" y="405" fill="#a7f3d0" font-size="9" text-anchor="middle">对话</text>
+  </g>
+  <g>
+    <rect x="283" y="367" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="283" y="367" width="108" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="337" y="389" fill="white" font-size="11" font-weight="600" text-anchor="middle">ChatMemory</text>
+    <text x="337" y="405" fill="#a7f3d0" font-size="9" text-anchor="middle">记忆</text>
+  </g>
+  <g>
+    <rect x="401" y="367" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="401" y="367" width="108" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="455" y="389" fill="white" font-size="10" font-weight="600" text-anchor="middle">ToolCallback/McpTool</text>
+    <text x="455" y="405" fill="#a7f3d0" font-size="9" text-anchor="middle">工具与 MCP</text>
+  </g>
+  <g>
+    <rect x="519" y="367" width="108" height="50" rx="6" fill="#0f172a"/>
+    <rect x="519" y="367" width="108" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="573" y="389" fill="white" font-size="10" font-weight="600" text-anchor="middle">RAG/Observation</text>
+    <text x="573" y="405" fill="#a7f3d0" font-size="9" text-anchor="middle">检索与观测</text>
+  </g>
+
+  <!-- ============ Band 5: 模型后端层 (slate, external) ============ -->
+  <rect x="30" y="452" width="620" height="66" rx="12" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="38" y="470" fill="#94a3b8" font-size="9" font-weight="600">模型后端层（外部系统）</text>
+  <rect x="165" y="465" width="475" height="46" rx="6" fill="#0f172a"/>
+  <rect x="165" y="465" width="475" height="46" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="402" y="485" fill="white" font-size="11" font-weight="600" text-anchor="middle">DashScopeChatModel（通义千问）</text>
+  <text x="402" y="501" fill="#94a3b8" font-size="9" text-anchor="middle">来自 spring-ai-extensions，真正发 HTTP 请求的模型实现</text>
+
+  <!-- ============ Infra: 基础设施 (amber) ============ -->
+  <rect x="30" y="540" width="620" height="48" rx="12" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="38" y="558" fill="#fbbf24" font-size="9" font-weight="600">基础设施</text>
+  <g>
+    <rect x="165" y="547" width="150" height="34" rx="6" fill="#0f172a"/>
+    <rect x="165" y="547" width="150" height="34" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="240" y="568" fill="white" font-size="10" font-weight="600" text-anchor="middle">Nacos 注册中心</text>
+  </g>
+  <g>
+    <rect x="330" y="547" width="150" height="34" rx="6" fill="#0f172a"/>
+    <rect x="330" y="547" width="150" height="34" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="405" y="568" fill="white" font-size="10" font-weight="600" text-anchor="middle">Saver 持久化</text>
+  </g>
+  <g>
+    <rect x="495" y="547" width="150" height="34" rx="6" fill="#0f172a"/>
+    <rect x="495" y="547" width="150" height="34" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="570" y="568" fill="white" font-size="10" font-weight="600" text-anchor="middle">sandbox 沙箱</text>
+  </g>
+
+  <!-- Legend -->
+  <text x="30" y="592" fill="#64748b" font-size="8">图：小桃（桃西西呀）· 按 v1.1.2.2 / 7405a7d 核对 · 配色按角色而非技术</text>
+</svg>
