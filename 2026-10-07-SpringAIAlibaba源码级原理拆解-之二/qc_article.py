@@ -5,9 +5,9 @@
 检查项：
 1. 禁用符号：em dash（—）、en dash（–）、双连（——）。中文标点只允许 。，；：！？、（）《》"" 与空格。
 2. 禁用粗体：整篇（含代码块）不得出现 ** 或 __ 包裹。
-3. 中文字数 >= 4000。
+3. 中文字数 >= 1200（图表为主，文字精炼；行号等硬事实交由配图承载）。
 4. 配图引用：正文里的 ![..](diagram/xxx@2x.png) 必须含 @ 且指向已存在的 @2x.png 文件。
-5. 必备小节：版本基准、对话门面、多轮记忆、工具与 MCP、检索与观测、复现模块、结尾钩子。
+5. 必备小节：版本基准、总览、对话门面、多轮记忆、工具与 MCP、检索与观测、复现模块、结尾钩子。
 用法：python qc_article.py（在文章目录下运行）
 """
 import os
@@ -22,7 +22,7 @@ BANNED_CHARS = ["\u2014", "\u2013"]  # —  –
 BOLD_PATTERN = re.compile(r"\*\*|__")
 CHINESE = re.compile(r"[\u4e00-\u9fff]")
 
-REQUIRED_SECTIONS = ["版本基准", "对话门面", "多轮记忆", "工具与 MCP", "检索与观测", "复现模块", "结尾钩子"]
+REQUIRED_SECTIONS = ["版本基准", "总览", "对话门面", "多轮记忆", "工具与 MCP", "检索与观测", "复现模块", "结尾钩子"]
 
 
 def strip_code_blocks(text):
@@ -82,8 +82,8 @@ def main():
     if bcount:
         issues.append(f"粗体标记 **/__ 出现 {bcount} 次")
     cc = check_chinese_count(body)
-    if cc < 4000:
-        issues.append(f"中文字数 {cc} < 4000")
+    if cc < 1200:
+        issues.append(f"中文字数 {cc} < 1200")
     issues += check_required_sections(raw)
     issues += check_diagram_refs(raw)
 
