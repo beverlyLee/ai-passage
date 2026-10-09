@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">Loop 策略状态机：init → dispatch → subAgent 反复跑</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9">loopDispatch 按 loopFlagKey 返回 continue 或 break；钩子在循环体内每轮内联</text>
+
+  <!-- Arrows first -->
+  <line x1="260" y1="92" x2="280" y2="110" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="138" x2="380" y2="220" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="284" x2="380" y2="350" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="414" x2="380" y2="350" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="252" x2="546" y2="252" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <!-- Start circle -->
+  <circle cx="250" cy="80" r="10" fill="#0f172a" stroke="#60a5fa" stroke-width="2"/>
+
+  <!-- State: loopInit -->
+  <rect x="180" y="110" width="200" height="56" rx="28" fill="#0f172a"/>
+  <rect x="180" y="110" width="200" height="56" rx="28" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="280" y="134" fill="white" font-size="11" font-weight="600" text-anchor="middle">loopInit 初始化 (:59)</text>
+  <text x="280" y="152" fill="#94a3b8" font-size="8" text-anchor="middle">loopInitNode 初始化迭代变量</text>
+
+  <!-- State: loopDispatch -->
+  <rect x="180" y="220" width="200" height="64" rx="10" fill="#0f172a"/>
+  <rect x="180" y="220" width="200" height="64" rx="10" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="280" y="246" fill="white" font-size="11" font-weight="600" text-anchor="middle">loopDispatch 派发 (:62)</text>
+  <text x="280" y="264" fill="#94a3b8" font-size="8" text-anchor="middle">读 loopFlagKey = state.value(key,false)</text>
+  <text x="280" y="278" fill="#94a3b8" font-size="8" text-anchor="middle">:90-93 决定 continue / break</text>
+
+  <!-- State: subAgent -->
+  <rect x="180" y="350" width="200" height="64" rx="10" fill="#0f172a"/>
+  <rect x="180" y="350" width="200" height="64" rx="10" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="280" y="376" fill="white" font-size="11" font-weight="600" text-anchor="middle">subAgent 循环体 (:66)</text>
+  <text x="280" y="394" fill="#94a3b8" font-size="8" text-anchor="middle">嵌入 subAgent.getGraph()</text>
+  <text x="280" y="408" fill="#94a3b8" font-size="8" text-anchor="middle">钩子内联每轮 (:70-84)</text>
+
+  <!-- Final bullseye -->
+  <circle cx="560" cy="252" r="14" fill="#0f172a" stroke="#60a5fa" stroke-width="2"/>
+  <circle cx="560" cy="252" r="5" fill="#60a5fa"/>
+
+  <!-- Transition labels -->
+  <text x="300" y="206" fill="#94a3b8" font-size="8">初始化迭代变量</text>
+  <text x="400" y="285" fill="#34d399" font-size="8">continue: 未到边界 (:90)</text>
+  <text x="400" y="392" fill="#34d399" font-size="8">afterSubAgent→loopDispatch (:87)</text>
+  <text x="470" y="240" fill="#fbbf24" font-size="8">break: loopFlagKey=break (:93)</text>
+
+  <!-- Note box -->
+  <rect x="180" y="430" width="420" height="34" rx="6" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="195" y="446" fill="#94a3b8" font-size="8">注意：connectBeforeAgentHooks 循环前只跑一次 (:102)；connectBeforeModel / AfterModel</text>
+  <text x="195" y="459" fill="#94a3b8" font-size="8">被 override 成空 (:113 / :122)，钩子靠 buildCoreGraph 内联进循环体，否则只跑一轮</text>
+</svg>

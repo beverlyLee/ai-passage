@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">HITL 把工具调用挂起等人审：AFTER_MODEL 钩子的三分支</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9">HumanInTheLoopHook.java：interrupt(:148) 挂起 → afterModel(:67) 三分支 + 默认放行(:113)</text>
+
+  <!-- Arrows first -->
+  <line x1="340" y1="108" x2="340" y2="128" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="172" x2="340" y2="192" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="248" x2="340" y2="270" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="314" x2="340" y2="334" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="378" x2="340" y2="396" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- right branch: 否 自动放行 -->
+  <line x1="400" y1="160" x2="470" y2="160" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- afterModel to three branches -->
+  <line x1="120" y1="410" x2="120" y2="432" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="410" x2="340" y2="432" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="560" y1="410" x2="560" y2="432" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- branches to final -->
+  <line x1="120" y1="482" x2="200" y2="512" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="482" x2="300" y2="512" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="560" y1="482" x2="440" y2="512" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Start node -->
+  <rect x="240" y="64" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="64" width="200" height="44" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="86" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">模型产出助手消息（含工具调用）</text>
+  <text x="340" y="100" fill="#94a3b8" font-size="8" text-anchor="middle">AFTER_MODEL 钩子触发</text>
+
+  <!-- interrupt node -->
+  <rect x="240" y="128" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="128" width="200" height="44" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="150" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">interrupt(:148) 取最后助手消息</text>
+  <text x="340" y="164" fill="#94a3b8" font-size="8" text-anchor="middle">无 toolcall → Optional.empty 不中断(:151)</text>
+
+  <!-- Decision diamond -->
+  <polygon points="340,192 400,230 340,268 280,230" fill="#0f172a"/>
+  <polygon points="340,192 400,230 340,268 280,230" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="234" fill="white" font-size="10" font-weight="600" text-anchor="middle">名在 approvalOn?</text>
+  <text x="408" y="224" fill="#fb7185" font-size="8">否</text>
+  <text x="272" y="284" fill="#34d399" font-size="8" text-anchor="end">是</text>
+
+  <!-- auto approve box -->
+  <rect x="470" y="140" width="180" height="40" rx="6" fill="#0f172a"/>
+  <rect x="470" y="140" width="180" height="40" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="560" y="158" fill="white" font-size="9.5" font-weight="600" text-anchor="middle">addToolsAutomaticallyApproved(:207)</text>
+  <text x="560" y="171" fill="#94a3b8" font-size="8" text-anchor="middle">自动放行，继续</text>
+
+  <!-- suspend node -->
+  <rect x="240" y="270" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="270" width="200" height="44" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="292" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">buildInterruptionMetadata(:190)</text>
+  <text x="340" y="306" fill="#94a3b8" font-size="8" text-anchor="middle">标记需中断(:194) → 图挂起等人审</text>
+
+  <!-- afterModel node -->
+  <rect x="240" y="334" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="334" width="200" height="44" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="356" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">afterModel(:67) 读反馈(:68)</text>
+  <text x="340" y="370" fill="#94a3b8" font-size="8" text-anchor="middle">HUMAN_FEEDBACK_METADATA_KEY</text>
+
+  <!-- three branch boxes -->
+  <rect x="30" y="410" width="180" height="72" rx="6" fill="#0f172a"/>
+  <rect x="30" y="410" width="180" height="72" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="120" y="434" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">APPROVED(:99)</text>
+  <text x="120" y="452" fill="#94a3b8" font-size="8" text-anchor="middle">原样保留工具调用</text>
+  <text x="120" y="468" fill="#94a3b8" font-size="8" text-anchor="middle">照常加入执行队列</text>
+
+  <rect x="250" y="410" width="180" height="72" rx="6" fill="#0f172a"/>
+  <rect x="250" y="410" width="180" height="72" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="434" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">EDITED(:102)</text>
+  <text x="340" y="452" fill="#94a3b8" font-size="8" text-anchor="middle">用反馈参数新建调用</text>
+  <text x="340" y="468" fill="#94a3b8" font-size="8" text-anchor="middle">toolFeedback.getArguments(:103)</text>
+
+  <rect x="470" y="410" width="180" height="72" rx="6" fill="#0f172a"/>
+  <rect x="470" y="410" width="180" height="72" rx="6" fill="rgba(159,18,57,0.3)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="560" y="434" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">REJECTED(:106)</text>
+  <text x="560" y="452" fill="#94a3b8" font-size="8" text-anchor="middle">保留原调用 + 塞 ToolResponse</text>
+  <text x="560" y="468" fill="#94a3b8" font-size="8" text-anchor="middle">"has been rejected by human"(:108)</text>
+
+  <!-- default approve note -->
+  <text x="340" y="404" fill="#22d3ee" font-size="8" text-anchor="middle">无反馈 → 默认放行(:113)（注释 treat it as approved）</text>
+
+  <!-- final node -->
+  <rect x="200" y="512" width="280" height="44" rx="22" fill="#0f172a"/>
+  <rect x="200" y="512" width="280" height="44" rx="22" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="534" fill="white" font-size="10" font-weight="600" text-anchor="middle">RemoveByHash(:129) 换消息 + put messages(:137)</text>
+  <text x="340" y="548" fill="#94a3b8" font-size="8" text-anchor="middle">把新消息列表写回，图恢复运行</text>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">SubAgentInterceptor 注入 task 工具：把重活 spawn 给用 MemorySaver 隔离的子智能体</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9">SubAgentInterceptor.java：extends ModelInterceptor(:64) → task 工具(:235) → interceptModel(:303) → MemorySaver(:252/:399)</text>
+
+  <!-- Arrows first -->
+  <line x1="340" y1="108" x2="340" y2="128" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="172" x2="340" y2="192" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="236" x2="340" y2="256" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="300" x2="340" y2="320" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- right 否 -->
+  <line x1="400" y1="350" x2="470" y2="350" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- 是 down -->
+  <line x1="340" y1="400" x2="340" y2="420" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="480" x2="340" y2="500" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- interceptor node -->
+  <rect x="240" y="64" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="64" width="200" height="44" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="86" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">SubAgentInterceptor(:64)</text>
+  <text x="340" y="100" fill="#94a3b8" font-size="8" text-anchor="middle">extends ModelInterceptor（非 Hook）</text>
+
+  <!-- build child + task node -->
+  <rect x="240" y="128" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="128" width="200" height="44" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="150" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">建子 Agent(:243) + task 工具(:235)</text>
+  <text x="340" y="164" fill="#94a3b8" font-size="8" text-anchor="middle">includeGeneralPurpose=true(:329)</text>
+
+  <!-- MemorySaver note -->
+  <rect x="470" y="108" width="180" height="40" rx="6" fill="#0f172a"/>
+  <rect x="470" y="108" width="180" height="40" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="560" y="126" fill="white" font-size="9.5" font-weight="600" text-anchor="middle">saver(new MemorySaver())(:252)</text>
+  <text x="560" y="139" fill="#94a3b8" font-size="8" text-anchor="middle">子 Agent 独立上下文</text>
+
+  <!-- interceptModel node -->
+  <rect x="240" y="192" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="192" width="200" height="44" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="214" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">interceptModel(:303)</text>
+  <text x="340" y="228" fill="#94a3b8" font-size="8" text-anchor="middle">拼 task 指引到系统提示(:310)</text>
+
+  <!-- call handler node -->
+  <rect x="240" y="256" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="256" width="200" height="44" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="340" y="278" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">handler.call(:319) 主 Agent 跑</text>
+  <text x="340" y="292" fill="#94a3b8" font-size="8" text-anchor="middle">getName()=SubAgent(:299)</text>
+
+  <!-- Decision diamond -->
+  <polygon points="340,320 402,360 340,400 278,360" fill="#0f172a"/>
+  <polygon points="340,320 402,360 340,400 278,360" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="364" fill="white" font-size="10" font-weight="600" text-anchor="middle">调 task 工具?</text>
+  <text x="410" y="354" fill="#fb7185" font-size="8">否</text>
+  <text x="270" y="414" fill="#34d399" font-size="8" text-anchor="end">是</text>
+
+  <!-- 否 box -->
+  <rect x="470" y="330" width="180" height="40" rx="6" fill="#0f172a"/>
+  <rect x="470" y="330" width="180" height="40" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="560" y="348" fill="white" font-size="9.5" font-weight="600" text-anchor="middle">常规续答</text>
+  <text x="560" y="361" fill="#94a3b8" font-size="8" text-anchor="middle">不 spawn 子 Agent</text>
+
+  <!-- spawn child node -->
+  <rect x="240" y="420" width="200" height="44" rx="6" fill="#0f172a"/>
+  <rect x="240" y="420" width="200" height="44" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="442" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">spawn 子 Agent(:399)</text>
+  <text x="340" y="456" fill="#94a3b8" font-size="8" text-anchor="middle">独立上下文 MemorySaver(:399)</text>
+
+  <!-- return clean node -->
+  <rect x="240" y="500" width="200" height="48" rx="22" fill="#0f172a"/>
+  <rect x="240" y="500" width="200" height="48" rx="22" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="522" fill="white" font-size="10" font-weight="600" text-anchor="middle">跑完返回干净结果</text>
+  <text x="340" y="538" fill="#94a3b8" font-size="8" text-anchor="middle">只交回主线程，上下文不污染</text>
+
+  <!-- flow vs interceptor annotation -->
+  <text x="20" y="560" fill="#22d3ee" font-size="8">注：与 flow 编排（SEQUENTIAL/LOOP 拼图）是两套机制，task 工具靠拦截器临时 spawn，不共享主线程状态</text>
+</svg>
