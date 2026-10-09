@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+      .title { font-size:16px; font-weight:700; fill:#e2e8f0; }
+      .box-title { font-size:10.5px; font-weight:600; fill:#ffffff; text-anchor:middle; }
+      .box-sub { font-size:8.5px; fill:#94a3b8; text-anchor:middle; }
+      .label { font-size:8.5px; fill:#94a3b8; text-anchor:middle; }
+      .note { font-size:8.5px; fill:#fb7185; text-anchor:middle; }
+      .region { font-size:9px; font-weight:600; fill:#fbbf24; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" class="title">AgentToolNode 的并行与顺序工具执行</text>
+
+  <!-- entry -->
+  <rect x="240" y="48" width="200" height="36" rx="6" fill="#0f172a"/>
+  <rect x="240" y="48" width="200" height="36" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="66" class="box-title">AgentToolNode.apply 入口 :154</text>
+  <text x="340" y="80" class="box-sub">收到一轮的工具调用</text>
+
+  <!-- decision -->
+  <polygon points="340,118 425,155 340,192 255,155" fill="#0f172a"/>
+  <polygon points="340,118 425,155 340,192 255,155" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="340" y="151" class="label">并行? 多于1调用</text>
+  <text x="340" y="167" class="label">parallelToolExecution :167</text>
+
+  <!-- LEFT: sequential -->
+  <rect x="60" y="210" width="180" height="36" rx="6" fill="#0f172a"/>
+  <rect x="60" y="210" width="180" height="36" rx="6" fill="rgba(30,41,59,0.5)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="150" y="228" class="box-title">executeToolCallsSequential :218</text>
+  <text x="150" y="242" class="box-sub">顺序执行 :171</text>
+
+  <rect x="60" y="262" width="180" height="34" rx="6" fill="#0f172a"/>
+  <rect x="60" y="262" width="180" height="34" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="150" y="280" class="box-title">last-write-wins</text>
+  <text x="150" y="294" class="box-sub">mergedUpdates.putAll :235</text>
+
+  <!-- RIGHT: parallel region -->
+  <rect x="430" y="210" width="220" height="190" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="442" y="228" class="region">并行内部机制</text>
+  <rect x="440" y="236" width="200" height="30" rx="5" fill="#0f172a"/>
+  <rect x="440" y="236" width="200" height="30" rx="5" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="540" y="254" class="box-sub">线程池 ParallelNode.getExecutor :301/:828</text>
+  <rect x="440" y="272" width="200" height="26" rx="5" fill="#0f172a"/>
+  <rect x="440" y="272" width="200" height="26" rx="5" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="540" y="289" class="box-sub">状态快照 snapshot :306</text>
+  <rect x="440" y="304" width="200" height="26" rx="5" fill="#0f172a"/>
+  <rect x="440" y="304" width="200" height="26" rx="5" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="540" y="321" class="box-sub">ToolStateCollector 收集回写 :308</text>
+  <rect x="440" y="336" width="200" height="26" rx="5" fill="#0f172a"/>
+  <rect x="440" y="336" width="200" height="26" rx="5" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="540" y="353" class="box-sub">Semaphore 限并发 maxParallelTools :320</text>
+  <rect x="440" y="368" width="200" height="26" rx="5" fill="#0f172a"/>
+  <rect x="440" y="368" width="200" height="26" rx="5" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="540" y="385" class="box-sub">每调用套超时 toolExecutionTimeout :348</text>
+
+  <!-- converge -->
+  <rect x="240" y="430" width="200" height="36" rx="6" fill="#0f172a"/>
+  <rect x="240" y="430" width="200" height="36" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="448" class="box-title">shouldReturnDirect :484</text>
+  <text x="340" y="462" class="box-sub">returnDirect 判定 :490/:493</text>
+
+  <rect x="240" y="482" width="200" height="34" rx="6" fill="#0f172a"/>
+  <rect x="240" y="482" width="200" height="34" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="340" y="500" class="box-title">RemoveByHash 去重 :473</text>
+  <text x="340" y="514" class="box-sub">摘掉重复工具回包</text>
+
+  <!-- arrows -->
+  <line x1="340" y1="84" x2="340" y2="118" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <line x1="255" y1="155" x2="150" y2="155" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="200" y="148" class="label">否</text>
+  <line x1="425" y1="155" x2="530" y2="155" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="480" y="148" class="label">是</text>
+
+  <line x1="150" y1="246" x2="150" y2="262" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <line x1="540" y1="394" x2="540" y2="420" stroke="#fbbf24" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- funnel to shouldReturnDirect -->
+  <path d="M 150 296 L 150 448 L 240 448" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-violet)"/>
+  <path d="M 540 420 L 540 448 L 440 448" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-violet)"/>
+
+  <line x1="340" y1="466" x2="340" y2="482" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="516" x2="340" y2="532" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="352" y="530" class="note">回写 messages</text>
+</svg>

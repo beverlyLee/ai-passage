@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 600">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+      .title { font-size:16px; font-weight:700; fill:#e2e8f0; }
+      .note { font-size:8px; fill:#fb7185; }
+      .region { font-size:9px; font-weight:600; fill:#a78bfa; }
+      .box-t { font-size:10px; fill:#ffffff; text-anchor:middle; }
+      .box-s { font-size:8px; fill:#94a3b8; text-anchor:middle; }
+      .dia-t { font-size:9px; fill:#e2e8f0; text-anchor:middle; }
+      .label { font-size:8px; fill:#94a3b8; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" class="title">updateState 的归约决策树</text>
+  <text x="30" y="50" class="note">基准 tag v1.1.2.2 / 提交 7405a7d</text>
+
+  <!-- Region A -->
+  <rect x="40" y="62" width="680" height="342" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="52" y="80" class="region">总归约：OverAllState.updateState 逐键处理</text>
+
+  <!-- entry box -->
+  <rect x="300" y="90" width="170" height="42" rx="6" fill="#0f172a"/>
+  <rect x="300" y="90" width="170" height="42" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="385" y="110" class="box-t">updateState 逐键 :263</text>
+  <text x="385" y="124" class="box-s">Map&lt;String,Object&gt; partialState</text>
+
+  <!-- diamond 1: 有注册策略 -->
+  <rect x="320" y="158" width="140" height="74" rx="8" fill="#0f172a"/>
+  <rect x="320" y="158" width="140" height="74" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.4"/>
+  <text x="390" y="186" class="dia-t">该键已注册</text>
+  <text x="390" y="202" class="dia-t">KeyStrategy?</text>
+
+  <!-- No branch -> REPLACE -->
+  <rect x="60" y="166" width="200" height="50" rx="6" fill="#0f172a"/>
+  <rect x="60" y="166" width="200" height="50" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="160" y="188" class="box-t">REPLACE 兜底 :268/:269</text>
+  <text x="160" y="204" class="box-s">策略为 null 退化为覆盖写</text>
+  <line x1="320" y1="195" x2="262" y2="195" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="262" y="188" class="label">否</text>
+
+  <!-- Yes branch down -> diamond 2 -->
+  <line x1="390" y1="232" x2="390" y2="248" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="398" y="246" class="label">是</text>
+  <rect x="312" y="250" width="156" height="70" rx="8" fill="#0f172a"/>
+  <rect x="312" y="250" width="156" height="70" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.4"/>
+  <text x="390" y="278" class="dia-t">值 ==</text>
+  <text x="390" y="294" class="dia-t">MARK_FOR_REMOVAL? :271</text>
+
+  <!-- Yes -> remove -->
+  <rect x="60" y="262" width="200" height="50" rx="6" fill="#0f172a"/>
+  <rect x="60" y="262" width="200" height="50" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="160" y="284" class="box-t">data.remove(key) :272</text>
+  <text x="160" y="300" class="box-s">graph-core 删键唯一正规手段</text>
+  <line x1="312" y1="285" x2="262" y2="285" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="262" y="278" class="label">是</text>
+
+  <!-- No -> apply -->
+  <line x1="390" y1="320" x2="390" y2="340" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="398" y="338" class="label">否</text>
+  <rect x="290" y="342" width="200" height="46" rx="6" fill="#0f172a"/>
+  <rect x="290" y="342" width="200" height="46" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="390" y="362" class="box-t">strategy.apply(旧,新) :274</text>
+  <text x="390" y="378" class="box-s">结果写回总状态</text>
+
+  <!-- Region B -->
+  <rect x="40" y="420" width="680" height="160" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="52" y="438" class="region">AppendStrategy.apply 内部 :43（messages 走这条：列表追加 / 剔除）</text>
+
+  <rect x="280" y="448" width="200" height="28" rx="6" fill="#0f172a"/>
+  <rect x="280" y="448" width="200" height="28" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="380" y="467" class="box-t" style="font-size:9px;">apply(旧,新) 入口 :43</text>
+
+  <!-- 4 outcome boxes -->
+  <rect x="62" y="492" width="150" height="78" rx="6" fill="#0f172a"/>
+  <rect x="62" y="492" width="150" height="78" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="137" y="514" class="box-t" style="font-size:9px;">newValue==null</text>
+  <text x="137" y="540" class="box-s">:44</text>
+  <text x="137" y="558" class="box-s">保留旧值</text>
+
+  <rect x="224" y="492" width="150" height="78" rx="6" fill="#0f172a"/>
+  <rect x="224" y="492" width="150" height="78" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="299" y="514" class="box-t" style="font-size:9px;">ReplaceAllWith</text>
+  <text x="299" y="540" class="box-s">:48/:49</text>
+  <text x="299" y="558" class="box-s">整体替换成新列表</text>
+
+  <rect x="386" y="492" width="150" height="78" rx="6" fill="#0f172a"/>
+  <rect x="386" y="492" width="150" height="78" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="461" y="514" class="box-t" style="font-size:9px;">RemoveIdentifier</text>
+  <text x="461" y="540" class="box-s">:58/:60</text>
+  <text x="461" y="558" class="box-s">从旧列表移除项</text>
+
+  <rect x="548" y="492" width="150" height="78" rx="6" fill="#0f172a"/>
+  <rect x="548" y="492" width="150" height="78" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="623" y="514" class="box-t" style="font-size:9px;">其余情况</text>
+  <text x="623" y="540" class="box-s">:43 之后</text>
+  <text x="623" y="558" class="box-s">新元素追加到尾部</text>
+
+  <!-- connectors from entry box to row -->
+  <line x1="380" y1="476" x2="380" y2="476" stroke="#fbbf24" stroke-width="1.2"/>
+</svg>

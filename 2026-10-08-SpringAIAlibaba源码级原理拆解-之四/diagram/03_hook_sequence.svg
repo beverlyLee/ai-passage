@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+      .title { font-size:16px; font-weight:700; fill:#e2e8f0; }
+      .box-title { font-size:11px; font-weight:600; fill:#ffffff; text-anchor:middle; }
+      .box-sub { font-size:8.5px; fill:#94a3b8; text-anchor:middle; }
+      .label { font-size:8.5px; fill:#94a3b8; text-anchor:middle; }
+      .note { font-size:8.5px; fill:#fb7185; text-anchor:middle; }
+      .end { font-size:11px; font-weight:600; fill:#e2e8f0; text-anchor:middle; }
+      .region { font-size:9px; font-weight:600; fill:#fbbf24; }
+      .hk { font-size:9px; fill:#fde68a; text-anchor:middle; }
+      .st { font-size:9px; fill:#cbd5e1; text-anchor:middle; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" class="title">Hook 插桩时序：钩子如何借 jump_to 改道</text>
+
+  <!-- main spine -->
+  <!-- START -->
+  <rect x="210" y="50" width="80" height="32" rx="16" fill="#0f172a"/>
+  <rect x="210" y="50" width="80" height="32" rx="16" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="250" y="71" class="end">START</text>
+
+  <!-- BEFORE_AGENT region -->
+  <rect x="120" y="98" width="300" height="56" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="132" y="114" class="region">BEFORE_AGENT</text>
+  <text x="270" y="130" class="box-title" fill="#fde68a">InstructionAgentHook 注入指令</text>
+  <text x="270" y="145" class="box-sub">AgentInstructionMessage :42/:56</text>
+
+  <!-- BEFORE_MODEL hook -->
+  <rect x="120" y="166" width="170" height="26" rx="5" fill="#0f172a"/>
+  <rect x="120" y="166" width="170" height="26" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="205" y="183" class="hk">BEFORE_MODEL 钩子 :759</text>
+
+  <!-- AgentLlmNode -->
+  <rect x="130" y="204" width="220" height="46" rx="6" fill="#0f172a"/>
+  <rect x="130" y="204" width="220" height="46" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="240" y="224" class="box-title">AgentLlmNode 模型调用</text>
+  <text x="240" y="239" class="box-sub">AGENT_MODEL_NAME :330  internalToolExecutionEnabled(false)</text>
+
+  <!-- AFTER_MODEL hook -->
+  <rect x="120" y="262" width="170" height="26" rx="5" fill="#0f172a"/>
+  <rect x="120" y="262" width="170" height="26" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="205" y="279" class="hk">AFTER_MODEL 钩子</text>
+
+  <!-- decision -->
+  <polygon points="240,312 320,346 240,380 160,346" fill="#0f172a"/>
+  <polygon points="240,312 320,346 240,380 160,346" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="240" y="342" class="label">hasToolCalls?</text>
+  <text x="240" y="356" class="label">makeModelToTools :755</text>
+
+  <!-- AgentToolNode -->
+  <rect x="130" y="398" width="220" height="46" rx="6" fill="#0f172a"/>
+  <rect x="130" y="398" width="220" height="46" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="240" y="418" class="box-title">AgentToolNode 工具执行</text>
+  <text x="240" y="433" class="box-sub">AGENT_TOOL_NAME :332</text>
+
+  <!-- END -->
+  <rect x="210" y="466" width="80" height="30" rx="15" fill="#0f172a"/>
+  <rect x="210" y="466" width="80" height="30" rx="15" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="250" y="486" class="end">END</text>
+
+  <!-- state panel right -->
+  <rect x="470" y="98" width="180" height="200" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="482" y="116" class="region">state 黑板</text>
+  <text x="560" y="116" class="st">jump_to 键</text>
+  <rect x="486" y="134" width="148" height="40" rx="5" fill="#0f172a"/>
+  <rect x="486" y="134" width="148" height="40" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="560" y="152" class="hk">钩子写下一跳</text>
+  <text x="560" y="166" class="box-sub">addHookEdge :666/:676</text>
+  <rect x="486" y="232" width="148" height="40" rx="5" fill="#0f172a"/>
+  <rect x="486" y="232" width="148" height="40" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="560" y="250" class="hk">路由先读 jump_to</text>
+  <text x="560" y="264" class="box-sub">第一优先 :759/:721</text>
+
+  <!-- spine arrows -->
+  <line x1="250" y1="82" x2="250" y2="98" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="270" y1="154" x2="270" y2="166" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#arrow-amber)"/>
+  <line x1="205" y1="192" x2="205" y2="204" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#arrow-amber)"/>
+  <line x1="240" y1="250" x2="240" y2="262" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#arrow-amber)"/>
+  <line x1="240" y1="288" x2="240" y2="312" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="240" y1="380" x2="240" y2="398" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="252" y="394" class="label">是</text>
+
+  <!-- no-tool branch to END -->
+  <path d="M 160 346 L 120 346 L 120 481 L 210 481" fill="none" stroke="#fb7185" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="92" y="410" class="note">否 → end :792</text>
+
+  <!-- loop back tool -> model -->
+  <path d="M 350 421 L 390 421 L 390 227 L 350 227" fill="none" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="398" y="326" class="label">回模型消化结果 :846</text>
+
+  <!-- jump_to write/read connectors -->
+  <path d="M 420 126 L 486 150" fill="none" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#arrow-amber)"/>
+  <text x="430" y="140" class="hk">写</text>
+  <path d="M 320 346 L 486 252" fill="none" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#arrow-amber)"/>
+  <text x="360" y="296" class="hk">读</text>
+  <path d="M 486 272 L 420 200" fill="none" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow-amber)"/>
+  <text x="430" y="248" class="note">有改道→跳到指定节点</text>
+</svg>

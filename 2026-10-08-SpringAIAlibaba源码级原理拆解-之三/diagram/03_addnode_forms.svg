@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+      .title { font-size:16px; font-weight:700; fill:#e2e8f0; }
+      .note { font-size:8px; fill:#fb7185; }
+      .badge { font-size:11px; font-weight:700; fill:#fbbf24; }
+      .sig { font-size:10px; fill:#ffffff; text-anchor:middle; }
+      .cat { font-size:9px; fill:#94a3b8; text-anchor:middle; }
+      .legend { font-size:9px; fill:#94a3b8; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" class="title">StateGraph 的七种 addNode 形态</text>
+  <text x="30" y="50" class="note">基准 tag v1.1.2.2 / 提交 7405a7d （StateGraph.java）</text>
+
+  <!-- row1 -->
+  <!-- 230 -->
+  <rect x="30" y="78" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="30" y="78" width="200" height="120" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="42" y="100" class="badge">L230</text>
+  <text x="130" y="128" class="sig">addNode(id,</text>
+  <text x="130" y="144" class="sig">AsyncNodeAction)</text>
+  <text x="130" y="178" class="cat">最基础：一段异步函数</text>
+
+  <!-- 242 -->
+  <rect x="244" y="78" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="244" y="78" width="200" height="120" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="256" y="100" class="badge">L242</text>
+  <text x="344" y="128" class="sig">addNode(id,</text>
+  <text x="344" y="144" class="sig">ActionWithConfig)</text>
+  <text x="344" y="178" class="cat">动作内能拿 RunnableConfig</text>
+
+  <!-- 255 -->
+  <rect x="458" y="78" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="458" y="78" width="200" height="120" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="470" y="100" class="badge">L255</text>
+  <text x="558" y="138" class="sig">addNode(id, Node)</text>
+  <text x="558" y="178" class="cat">复用已实现的节点对象</text>
+
+  <!-- 279 -->
+  <rect x="672" y="78" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="672" y="78" width="200" height="120" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="684" y="100" class="badge">L279</text>
+  <text x="772" y="128" class="sig">addNode(id,</text>
+  <text x="772" y="144" class="sig">CommandAction, maps)</text>
+  <text x="772" y="178" class="cat">节点返回 Command 自定下一步</text>
+
+  <!-- row2 -->
+  <!-- 295 -->
+  <rect x="30" y="214" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="30" y="214" width="200" height="120" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="42" y="236" class="badge">L295</text>
+  <text x="130" y="264" class="sig">addNode(id,</text>
+  <text x="130" y="280" class="sig">MultiCommand, maps)</text>
+  <text x="130" y="314" class="cat">多命令 + 状态键重映射</text>
+
+  <!-- 311 -->
+  <rect x="244" y="214" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="244" y="214" width="200" height="120" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="256" y="236" class="badge">L311</text>
+  <text x="344" y="264" class="sig">addNode(id,</text>
+  <text x="344" y="280" class="sig">CompiledGraph)</text>
+  <text x="344" y="314" class="cat">嵌入已编译好的子图</text>
+
+  <!-- 337 -->
+  <rect x="458" y="214" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="458" y="214" width="200" height="120" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="470" y="236" class="badge">L337</text>
+  <text x="558" y="264" class="sig">addNode(id,</text>
+  <text x="558" y="280" class="sig">StateGraph)</text>
+  <text x="558" y="314" class="cat">嵌入未编译的子图</text>
+
+  <!-- note box row2 col4 -->
+  <rect x="672" y="214" width="200" height="120" rx="6" fill="#0f172a"/>
+  <rect x="672" y="214" width="200" height="120" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="6,4"/>
+  <text x="772" y="252" class="cat">边的写法见正文</text>
+  <text x="772" y="272" class="cat">addEdge 3 种</text>
+  <text x="772" y="292" class="cat">addConditionalEdges 3 种</text>
+  <text x="772" y="312" class="cat">:362/:382/:392</text>
+  <text x="772" y="328" class="cat">:411/:441/:456</text>
+</svg>
