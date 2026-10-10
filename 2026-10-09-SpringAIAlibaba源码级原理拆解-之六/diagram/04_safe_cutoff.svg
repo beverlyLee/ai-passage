@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="28" fill="#e2e8f0" font-size="15" font-weight="700">Summarization 的安全切点：不能拆散 AI 消息与它的工具返回对</text>
+  <text x="20" y="46" fill="#94a3b8" font-size="9">findSafeCutoff(:175) → isSafeCutoffPoint(:183/:195) → cutoffSeparatesToolPair(:240)，搜索窗口 5 条(:77)</text>
+
+  <!-- message strip label -->
+  <text x="50" y="64" fill="#94a3b8" font-size="9" font-weight="600">消息序列（压缩前）</text>
+
+  <!-- message cards -->
+  <!-- m1 first user (emerald, kept) -->
+  <rect x="50" y="72" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="72" width="270" height="26" rx="5" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.3"/>
+  <text x="62" y="89" fill="white" font-size="9.5" font-weight="600">U 首条用户消息（恒留 :124）</text>
+
+  <!-- m2 AI call A (amber) -->
+  <rect x="50" y="112" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="112" width="270" height="26" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="62" y="129" fill="white" font-size="9.5" font-weight="600">AI 调用工具 A</text>
+
+  <!-- m3 Tool A return (amber) -->
+  <rect x="50" y="152" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="152" width="270" height="26" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="62" y="169" fill="white" font-size="9.5" font-weight="600">Tool A 返回</text>
+
+  <!-- m4 AI call B (amber) -->
+  <rect x="50" y="192" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="192" width="270" height="26" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="62" y="209" fill="white" font-size="9.5" font-weight="600">AI 调用工具 B</text>
+
+  <!-- m5 Tool B return (amber) -->
+  <rect x="50" y="232" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="232" width="270" height="26" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="62" y="249" fill="white" font-size="9.5" font-weight="600">Tool B 返回</text>
+
+  <!-- m6 AI call C (blue, recent) -->
+  <rect x="50" y="272" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="272" width="270" height="26" rx="5" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="62" y="289" fill="white" font-size="9.5" font-weight="600">AI 调用工具 C（近期）</text>
+
+  <!-- m7 Tool C return (blue, recent) -->
+  <rect x="50" y="312" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="312" width="270" height="26" rx="5" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="62" y="329" fill="white" font-size="9.5" font-weight="600">Tool C 返回（近期）</text>
+
+  <!-- m8 AI free text (blue, recent) -->
+  <rect x="50" y="352" width="270" height="26" rx="5" fill="#0f172a"/>
+  <rect x="50" y="352" width="270" height="26" rx="5" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="62" y="369" fill="white" font-size="9.5" font-weight="600">AI 自由文本（近期）</text>
+
+  <!-- bad cutoff line (red dashed) between m2 and m3 -->
+  <line x1="40" y1="145" x2="330" y2="145" stroke="#fb7185" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="332" y="149" fill="#fb7185" font-size="9" font-weight="700">坏切点</text>
+
+  <!-- safe cutoff line (green dashed) between m5 and m6 -->
+  <line x1="40" y1="265" x2="330" y2="265" stroke="#34d399" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="332" y="269" fill="#34d399" font-size="9" font-weight="700">安全切点</text>
+
+  <!-- right column: logic box -->
+  <rect x="370" y="64" width="290" height="78" rx="6" fill="#0f172a"/>
+  <rect x="370" y="64" width="290" height="78" rx="6" fill="rgba(34,211,238,0.12)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="384" y="84" fill="white" font-size="10" font-weight="600">决策链</text>
+  <text x="384" y="102" fill="#cbd5e1" font-size="9">findSafeCutoff(:175) 从目标切点往前找</text>
+  <text x="384" y="118" fill="#cbd5e1" font-size="9">isSafeCutoffPoint(:195) → cutoffSeparatesToolPair(:240)</text>
+  <text x="384" y="134" fill="#94a3b8" font-size="8.5">搜索窗口仅切点前后 5 条(:77)，保安全不拖慢</text>
+
+  <!-- bad cutoff note (red) -->
+  <rect x="370" y="156" width="290" height="74" rx="6" fill="#0f172a"/>
+  <rect x="370" y="156" width="290" height="74" rx="6" fill="rgba(159,18,57,0.25)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="384" y="176" fill="#fb7185" font-size="9.5" font-weight="700">坏切点 y=145 的代价</text>
+  <text x="384" y="194" fill="#fecdd3" font-size="9">落在 A 的调用与返回之间，拆散这一对</text>
+  <text x="384" y="210" fill="#fecdd3" font-size="9">AI 发了调用、结果被压进摘要 → 调用悬空</text>
+  <text x="384" y="224" fill="#fecdd3" font-size="9">模型下轮行为错乱</text>
+
+  <!-- safe cutoff note (green) -->
+  <rect x="370" y="244" width="290" height="86" rx="6" fill="#0f172a"/>
+  <rect x="370" y="244" width="290" height="86" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.3"/>
+  <text x="384" y="264" fill="#34d399" font-size="9.5" font-weight="700">安全切点 y=265 的效果</text>
+  <text x="384" y="282" fill="#a7f3d0" font-size="9">落在完整 AI↔Tool 对之间，配对不被拆</text>
+  <text x="384" y="298" fill="#a7f3d0" font-size="9">切点前的消息 → createSummary 压成摘要(:144)</text>
+  <text x="384" y="314" fill="#a7f3d0" font-size="9">切点后的近期消息 + 首条用户消息原样留(:146)</text>
+
+  <!-- bottom note -->
+  <rect x="50" y="396" width="610" height="40" rx="6" fill="#0f172a"/>
+  <rect x="50" y="396" width="610" height="40" rx="6" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="64" y="414" fill="white" font-size="9.5" font-weight="600">新消息 = 首条用户消息 + 摘要系统消息("## Previous...":75) + 近期消息 → UpdatePolicy.REPLACE(:166) 整段替换</text>
+  <text x="64" y="428" fill="#94a3b8" font-size="8.5">messagesToKeep 默认 20(:318)；若窗口内找不到安全切点，findSafeCutoff 返回 0(:119) 放弃本次压缩</text>
+</svg>

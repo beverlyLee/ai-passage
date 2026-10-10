@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 470">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">模板方法：钩子被统一种进图的生命周期</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9">AbstractFlowGraphBuildingStrategy.buildGraph 是 final(:104)，骨架固定；五种策略只 override buildCoreGraph(:129) 填核心</text>
+
+  <!-- step boxes -->
+  <rect x="20" y="88" width="470" height="44" rx="6" fill="#0f172a"/>
+  <rect x="20" y="88" width="470" height="44" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="35" y="108" fill="white" font-size="10.5" font-weight="600">① 建 StateGraph(:106)</text>
+  <text x="35" y="124" fill="#94a3b8" font-size="8">把图骨架搭起来</text>
+
+  <line x1="255" y1="132" x2="255" y2="144" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="20" y="144" width="470" height="44" rx="6" fill="#0f172a"/>
+  <rect x="20" y="144" width="470" height="44" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="35" y="164" fill="white" font-size="10.5" font-weight="600">② filterHooksByPosition(:255)</text>
+  <text x="35" y="180" fill="#94a3b8" font-size="8">按 @HookPositions 筛 + 优先级排</text>
+
+  <line x1="255" y1="188" x2="255" y2="200" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="20" y="200" width="470" height="44" rx="6" fill="#0f172a"/>
+  <rect x="20" y="200" width="470" height="44" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="35" y="220" fill="white" font-size="10.5" font-weight="600">③ 加钩子节点(:118) + ④ entry/exit 接 START(:124)</text>
+  <text x="35" y="236" fill="#94a3b8" font-size="8">先把钩子挂进图，再定入口出口</text>
+
+  <line x1="255" y1="244" x2="255" y2="256" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="20" y="256" width="470" height="44" rx="6" fill="#0f172a"/>
+  <rect x="20" y="256" width="470" height="44" rx="6" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="35" y="276" fill="white" font-size="10.5" font-weight="600">⑤ buildCoreGraph(:129) ← 各策略 override</text>
+  <text x="35" y="292" fill="#c4b5fd" font-size="8">SEQUENTIAL/ROUTING/PARALLEL/CONDITIONAL/LOOP 各自填核心结构</text>
+
+  <line x1="255" y1="300" x2="255" y2="312" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="20" y="312" width="470" height="44" rx="6" fill="#0f172a"/>
+  <rect x="20" y="312" width="470" height="44" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="35" y="332" fill="white" font-size="10.5" font-weight="600">⑥ 四类钩子边按位置接上</text>
+  <text x="35" y="348" fill="#94a3b8" font-size="8">BeforeModel(:134) / AfterModel(:137) / BeforeAgent(:140) / AfterAgent(:143)</text>
+
+  <!-- right branch column -->
+  <rect x="520" y="144" width="240" height="212" rx="8" fill="#0f172a"/>
+  <rect x="520" y="144" width="240" height="212" rx="8" fill="rgba(76,29,149,0.18)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="640" y="166" fill="white" font-size="10.5" font-weight="600" text-anchor="middle">钩子节点的两类出身</text>
+  <text x="535" y="190" fill="#cbd5e1" font-size="8.5">· @HookPositions(AFTER_MODEL)</text>
+  <text x="535" y="208" fill="#cbd5e1" font-size="8.5">  → 模型产出后（如 HITL）</text>
+  <text x="535" y="232" fill="#cbd5e1" font-size="8.5">· @HookPositions(BEFORE_MODEL)</text>
+  <text x="535" y="250" fill="#cbd5e1" font-size="8.5">  → 模型调用前（如 Summarization）</text>
+  <text x="535" y="276" fill="#cbd5e1" font-size="8.5">基类只保证一个透明节点</text>
+  <text x="535" y="294" fill="#cbd5e1" font-size="8.5">TransparentNode(:169)</text>
+  <text x="535" y="320" fill="#fb7185" font-size="8.5">Loop 把 Before/AfterModel 钩子</text>
+  <text x="535" y="338" fill="#fb7185" font-size="8.5">override 成空(:113/:122)，内联进循环体</text>
+
+  <text x="20" y="392" fill="#22d3ee" font-size="9">关键：模板方法把"建图 + 织钩子"做成固定骨架，策略只填核心；所以同一套钩子机制能套到五种编排上</text>
+  <text x="20" y="414" fill="#94a3b8" font-size="8.5">Loop 若在循环外连钩子，每个 subAgent 轮次都不过钩子（见之六 HITL/Summarization 的拦截与压缩会失效）</text>
+</svg>

@@ -30,17 +30,19 @@ A2A 不是硬编码 URL 调接口，而是靠 AgentCard 这个"名片"。你可�
 
 ## flow 内置编排：五种模式加一个没实现的枚举
 
-讲完远程，讲本地怎么把多个智能体拼起来。框架在 `flow` 包给了一组开箱即用的编排，入口是 `FlowGraphBuilder`（`flow/builder/FlowGraphBuilder.java:37`）。你调 `buildGraph` 时，它先按类型从注册表拿策略（`flow/builder/FlowGraphBuilder.java:47` 的 `createStrategy`），再 `validateConfig`，再 `buildGraph`（:46 到 :49）。配置对象 `FlowGraphConfig`（:55）里收着 rootAgent、subAgents、conditionalAgents 和 hooks（:73 到 :144）。
+讲完远程，讲本地怎么把多个智能体拼起来。入口是 `FlowGraphBuilder`（`flow/builder/FlowGraphBuilder.java:37`），它按类型从注册表拿策略（`createStrategy`:47）、校验、`buildGraph`（:46-:49）；配置 `FlowGraphConfig`（:55）收着 rootAgent、subAgents、conditionalAgents、hooks（:73-:144）。
 
-策略注册表 `FlowGraphBuildingStrategyRegistry`（`flow/strategy/FlowGraphBuildingStrategyRegistry.java:34`）是单例，`getInstance` 在 :49。它真正注册内置策略的地方是 `registerDefaultStrategies`（:163），我数过，一共只注册了五个：`SEQUENTIAL`、`ROUTING`、`PARALLEL`、`CONDITIONAL`、`LOOP`（:164 到 :168）。而枚举 `FlowAgentEnum` 里明明有第六个 `SUPERVISOR`（:20），却没有任何策略类去实现它，注册表里也查不到。`createStrategy` 遇到没注册的 type 会直接抛 `IllegalArgumentException`（:110），`getRegisteredTypes`（:139）也只会列出那五个。所以你写 `SUPERVISOR` 想用监督式编排，运行期必炸。
+策略注册表 `FlowGraphBuildingStrategyRegistry` 是单例（`:34` / `getInstance`:49），真注册内置策略的 `registerDefaultStrategies`（:163）只认五个：`SEQUENTIAL`、`ROUTING`、`PARALLEL`、`CONDITIONAL`、`LOOP`（:164-:168）。但枚举 `FlowAgentEnum` 里明明有第六个 `SUPERVISOR`（:20），却没任何策略类实现、注册表也查不到；`createStrategy` 遇没注册的 type 直接抛 `IllegalArgumentException`（:110）。所以写 `SUPERVISOR` 想用监督式编排，运行期必炸。五种策略长什么样，看下图。
 
 ![FlowGraphBuilder 建图与注册表只认五种策略](diagram/03_flow_buildgraph@2x.png)
 
+![flow 五种策略的形态差异：骨架相同，核心结构不同](diagram/05_flow_strategies@2x.png)
+
 ## 模板方法：钩子是怎么被统一种进图的
 
-五种策略长得不一样，但建图骨架是同一套。抽象基类 `AbstractFlowGraphBuildingStrategy`（`flow/strategy/AbstractFlowGraphBuildingStrategy.java:53`）把 `buildGraph` 写成 final 模板方法（:104）。它先建 StateGraph（:106），再按 `HookPosition` 过滤钩子（:112），把钩子节点加进图（:118），定 entry 和 exit 接 START 边（:124），然后交给各策略实现的 `buildCoreGraph` 填核心结构（:129），最后按位置把四类钩子边接上：`connectBeforeModelHooks`（:134）、`connectAfterModelHooks`（:137）、`connectBeforeAgentHooks`（:140）、`connectAfterAgentHooks`（:143）。钩子过滤和排序在 `filterHooksByPosition`（:255），按 `@HookPositions` 注解筛并按优先级排。
+五种策略核心结构不同，但建图骨架同一套：`AbstractFlowGraphBuildingStrategy.buildGraph` 是 final 模板方法（`:53` / `:104`），各策略只 override `buildCoreGraph`（:129）填核心，钩子按 `@HookPositions` 由基类统一织进图。六步骨架与钩子出身，看下图。
 
-默认情况下这些 connect 方法会按位置把钩子串到 `rootAgent` 上（:184、:202、:219、:239），基类只保证核心智能体先有一个透明节点 `TransparentNode`（:169）。各具体策略要挂钩子，就自己 override 对应的 connect 方法。
+![模板方法：钩子被统一种进图的生命周期](diagram/06_hook_template@2x.png)
 
 ## Loop 策略：钩子为什么要内联进循环体
 

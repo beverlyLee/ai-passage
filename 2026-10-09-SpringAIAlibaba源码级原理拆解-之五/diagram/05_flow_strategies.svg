@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="30" fill="#e2e8f0" font-size="15" font-weight="700">flow 五种策略的形态差异：骨架相同，核心结构不同</text>
+  <text x="20" y="48" fill="#94a3b8" font-size="9">FlowGraphBuildingStrategyRegistry 只注册 SEQUENTIAL/ROUTING/PARALLEL/CONDITIONAL/LOOP(:164-:168)；SUPERVISOR 枚举在但无实现(:20)</text>
+
+  <!-- SEQUENTIAL -->
+  <rect x="20" y="70" width="280" height="210" rx="8" fill="#0f172a"/>
+  <rect x="20" y="70" width="280" height="210" rx="8" fill="rgba(6,78,59,0.18)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="160" y="92" fill="white" font-size="11" font-weight="600" text-anchor="middle">SEQUENTIAL 顺序 :164</text>
+  <rect x="35" y="150" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="52" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">STA</text>
+  <rect x="80" y="150" width="34" height="22" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="97" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">A1</text>
+  <rect x="125" y="150" width="34" height="22" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="142" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">A2</text>
+  <rect x="170" y="150" width="34" height="22" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="187" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">A3</text>
+  <rect x="225" y="150" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="242" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">END</text>
+  <line x1="69" y1="161" x2="80" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="114" y1="161" x2="125" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="159" y1="161" x2="170" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="204" y1="161" x2="225" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="160" y="235" fill="#94a3b8" font-size="8" text-anchor="middle">一个接一个，前者的输出喂后者</text>
+
+  <!-- ROUTING -->
+  <rect x="340" y="70" width="280" height="210" rx="8" fill="#0f172a"/>
+  <rect x="340" y="70" width="280" height="210" rx="8" fill="rgba(6,78,59,0.18)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="480" y="92" fill="white" font-size="11" font-weight="600" text-anchor="middle">ROUTING 路由 :165</text>
+  <rect x="360" y="150" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="377" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">STA</text>
+  <polygon points="440,140 470,161 440,182 410,161" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/><text x="440" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">R</text>
+  <rect x="500" y="140" width="40" height="20" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="520" y="154" fill="#cbd5e1" font-size="8" text-anchor="middle">路 A</text>
+  <rect x="500" y="180" width="40" height="20" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="520" y="194" fill="#cbd5e1" font-size="8" text-anchor="middle">路 B</text>
+  <line x1="394" y1="161" x2="410" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="470" y1="161" x2="500" y2="150" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="470" y1="161" x2="500" y2="190" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="480" y="235" fill="#94a3b8" font-size="8" text-anchor="middle">按条件挑一个子 Agent 执行</text>
+
+  <!-- PARALLEL -->
+  <rect x="660" y="70" width="280" height="210" rx="8" fill="#0f172a"/>
+  <rect x="660" y="70" width="280" height="210" rx="8" fill="rgba(6,78,59,0.18)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="800" y="92" fill="white" font-size="11" font-weight="600" text-anchor="middle">PARALLEL 并行 :166</text>
+  <rect x="680" y="150" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="697" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">STA</text>
+  <circle cx="745" cy="161" r="15" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="745" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">F</text>
+  <rect x="775" y="132" width="50" height="18" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="800" y="145" fill="#cbd5e1" font-size="8" text-anchor="middle">A</text>
+  <rect x="775" y="155" width="50" height="18" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="800" y="168" fill="#cbd5e1" font-size="8" text-anchor="middle">B</text>
+  <rect x="775" y="178" width="50" height="18" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="800" y="191" fill="#cbd5e1" font-size="8" text-anchor="middle">C</text>
+  <circle cx="855" cy="161" r="15" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="855" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">F</text>
+  <rect x="890" y="150" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="907" y="165" fill="#cbd5e1" font-size="8" text-anchor="middle">END</text>
+  <line x1="714" y1="161" x2="730" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="760" y1="161" x2="775" y2="141" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="760" y1="161" x2="775" y2="164" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="760" y1="161" x2="775" y2="187" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="825" y1="141" x2="840" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="825" y1="164" x2="840" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="825" y1="187" x2="840" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="870" y1="161" x2="890" y2="161" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="800" y="235" fill="#94a3b8" font-size="8" text-anchor="middle">同时跑多个，结果汇总</text>
+
+  <!-- CONDITIONAL -->
+  <rect x="20" y="340" width="280" height="210" rx="8" fill="#0f172a"/>
+  <rect x="20" y="340" width="280" height="210" rx="8" fill="rgba(6,78,59,0.18)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="160" y="362" fill="white" font-size="11" font-weight="600" text-anchor="middle">CONDITIONAL 条件 :167</text>
+  <rect x="35" y="420" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="52" y="435" fill="#cbd5e1" font-size="8" text-anchor="middle">STA</text>
+  <polygon points="120,410 150,431 120,452 90,431" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/><text x="120" y="435" fill="#cbd5e1" font-size="8" text-anchor="middle">C</text>
+  <rect x="190" y="410" width="44" height="20" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="212" y="424" fill="#cbd5e1" font-size="8" text-anchor="middle">满足 A</text>
+  <rect x="190" y="445" width="44" height="20" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="212" y="459" fill="#cbd5e1" font-size="8" text-anchor="middle">否则 B</text>
+  <line x1="69" y1="431" x2="90" y2="431" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="150" y1="431" x2="190" y2="420" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="150" y1="431" x2="190" y2="455" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="160" y="505" fill="#94a3b8" font-size="8" text-anchor="middle">判断后走不同分支，各自到 END</text>
+
+  <!-- LOOP -->
+  <rect x="340" y="340" width="280" height="210" rx="8" fill="#0f172a"/>
+  <rect x="340" y="340" width="280" height="210" rx="8" fill="rgba(6,78,59,0.18)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="480" y="362" fill="white" font-size="11" font-weight="600" text-anchor="middle">LOOP 循环 :168</text>
+  <rect x="360" y="425" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="377" y="440" fill="#cbd5e1" font-size="8" text-anchor="middle">STA</text>
+  <rect x="415" y="425" width="34" height="22" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/><text x="432" y="440" fill="#cbd5e1" font-size="8" text-anchor="middle">A</text>
+  <polygon points="500,415 530,436 500,457 470,436" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/><text x="500" y="440" fill="#cbd5e1" font-size="8" text-anchor="middle">C</text>
+  <rect x="560" y="425" width="34" height="22" rx="5" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/><text x="577" y="440" fill="#cbd5e1" font-size="8" text-anchor="middle">END</text>
+  <line x1="394" y1="436" x2="415" y2="436" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="449" y1="436" x2="470" y2="436" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="530" y1="436" x2="560" y2="436" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <path d="M 470 450 Q 432 480 449 448" fill="none" stroke="#fb7185" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arrow-rose)"/>
+  <text x="480" y="468" fill="#fb7185" font-size="8" text-anchor="middle">continue(回 Agent，按 LOOP_FLAG :90)</text>
+  <text x="480" y="505" fill="#94a3b8" font-size="8" text-anchor="middle">break 则到 END；反复跑 subAgent</text>
+
+  <!-- Template note -->
+  <rect x="660" y="340" width="280" height="210" rx="8" fill="#0f172a"/>
+  <rect x="660" y="340" width="280" height="210" rx="8" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="800" y="362" fill="white" font-size="11" font-weight="600" text-anchor="middle">统一骨架：模板方法</text>
+  <text x="675" y="388" fill="#cbd5e1" font-size="8.5">AbstractFlowGraphBuildingStrategy</text>
+  <text x="675" y="406" fill="#cbd5e1" font-size="8.5">buildGraph 是 final(:104)</text>
+  <text x="675" y="424" fill="#cbd5e1" font-size="8.5">① 建 StateGraph(:106)</text>
+  <text x="675" y="442" fill="#cbd5e1" font-size="8.5">② 过滤钩子(:255)</text>
+  <text x="675" y="460" fill="#cbd5e1" font-size="8.5">③ 加钩子节点(:118)</text>
+  <text x="675" y="478" fill="#cbd5e1" font-size="8.5">④ entry/exit(:124)</text>
+  <text x="675" y="496" fill="#cbd5e1" font-size="8.5">⑤ buildCoreGraph(:129) ← 策略填</text>
+  <text x="675" y="514" fill="#cbd5e1" font-size="8.5">⑥ 四类钩子边(:134/:137/:140/:143)</text>
+  <text x="800" y="540" fill="#a78bfa" font-size="8" text-anchor="middle">各策略只 override ⑤</text>
+</svg>

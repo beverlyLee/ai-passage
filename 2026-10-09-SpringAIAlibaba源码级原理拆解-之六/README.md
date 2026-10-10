@@ -26,9 +26,11 @@ Spring AI Alibaba 源码级原理拆解之六（系列共九篇），按 tag v1.
 
 ![Summarization 在 BEFORE_MODEL 压缩上下文与保留首条消息](diagram/02_summarization@2x.png)
 
-这里最讲究的是"安全切点"。`findSafeCutoff`（`hook/summarization/SummarizationHook.java:175`）先保证消息数大于 `messagesToKeep`（默认 20，`hook/summarization/SummarizationHook.java:318`），然后从目标切点往前找，直到 `isSafeCutoffPoint` 判为安全（`hook/summarization/SummarizationHook.java:183`）。所谓安全，是 `cutoffSeparatesToolPair` 判定切点不会把一条 AI 消息和它的工具返回消息拆到两边（`hook/summarization/SummarizationHook.java:240`）。否则 AI 说"我要调工具"，工具结果被压进了摘要、留在近期一侧，这条调用就悬空了，模型下一轮会行为错乱。搜索范围限制在切点前后 5 条（`SEARCH_RANGE_FOR_TOOL_PAIRS`，`hook/summarization/SummarizationHook.java:77`），既保安全又不拖慢。
+这里最讲究的是"安全切点"，看下图。`findSafeCutoff`（:175）先保证消息数大于 `messagesToKeep`（默认 20，:318），再从目标切点往前找，直到 `isSafeCutoffPoint`（:183）判为安全。安全的定义是 `cutoffSeparatesToolPair`（:240）：切点不能把一条 AI 消息和它的工具返回拆到两边，否则这条调用悬空、模型下轮会错乱。搜索窗口限制在切点前后 5 条（:77），既保安全又不拖慢。
 
-摘要本身由 `createSummary` 调 `model.call` 现生成（`hook/summarization/SummarizationHook.java:263`），提示词是一段"只抽取最关键上下文、不要加料"的指令（`DEFAULT_SUMMARY_PROMPT`，`hook/summarization/SummarizationHook.java:63`），前缀固定是 "## Previous conversation summary:"（`hook/summarization/SummarizationHook.java:75`）。
+![Summarization 的安全切点：不能拆散 AI 消息与工具返回对](diagram/04_safe_cutoff@2x.png)
+
+摘要本身由 `createSummary` 调 `model.call` 现生成（:263），提示词是一段"只抽取最关键上下文、不要加料"的指令（`DEFAULT_SUMMARY_PROMPT`，:63），前缀固定是 "## Previous conversation summary:"（:75）。
 
 ## SubAgent：给主智能体加个 task 工具，把重活扔给隔离出去的子智能体
 
@@ -44,7 +46,7 @@ Spring AI Alibaba 源码级原理拆解之六（系列共九篇），按 tag v1.
 
 ## 我踩过的三个坑
 
-第一，HITL 的默认方向是"不回就放行"（`hook/hip/HumanInTheLoopHook.java:112`）。我一开始以为没反馈就是挂起，结果危险工具悄悄执行了。需要严格把关的工具，务必在 `approvalOn` 里列全，并且前端审批界面要强制收齐反馈。
+第一，HITL 的默认方向是"不回就放行"（`hook/hip/HumanInTheLoopHook.java:113`）。我一开始以为没反馈就是挂起，结果危险工具悄悄执行了。需要严格把关的工具，务必在 `approvalOn` 里列全，并且前端审批界面要强制收齐反馈。
 
 第二，Summarization 的切点保护是针对"AI 消息加工具返回"这对的（`hook/summarization/SummarizationHook.java:240`）。如果你的业务里 AI 发工具调用、工具结果跨了很多轮，搜索窗口只有 5（`hook/summarization/SummarizationHook.java:77`），可能找不到安全切点而放弃压缩（`hook/summarization/SummarizationHook.java:119` 返回 0），这时得把 `messagesToKeep` 调大，而不是指望它硬压。
 
