@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <!-- 标题 -->
+  <text x="24" y="36" fill="#e2e8f0" font-size="16">Observability 透传全景：SAA 借 Spring AI 的 Observation，自己不造 tracing</text>
+
+  <!-- SAA 透传层 -->
+  <rect x="20" y="60" width="300" height="250" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="36" y="82" fill="#94a3b8" font-size="13">SAA 透传层（无自建 tracing）</text>
+
+  <!-- N1 Builder -->
+  <rect x="45" y="100" width="250" height="95" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="60" y="124" fill="#e2e8f0" font-size="14">Builder：持有三个字段</text>
+  <text x="60" y="148" fill="#94a3b8" font-size="12">ObservationRegistry</text>
+  <text x="60" y="167" fill="#94a3b8" font-size="12">ChatClientObservationConvention</text>
+  <text x="60" y="186" fill="#94a3b8" font-size="12">AdvisorObservationConvention</text>
+
+  <!-- N2 DefaultBuilder -->
+  <rect x="45" y="215" width="250" height="70" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="60" y="240" fill="#e2e8f0" font-size="13">DefaultBuilder.build()</text>
+  <text x="60" y="263" fill="#94a3b8" font-size="12">接线进图；null 则退化为 NOOP</text>
+
+  <!-- 箭头：层间 -->
+  <line x1="320" y1="185" x2="356" y2="185" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Spring AI 观测层 -->
+  <rect x="360" y="60" width="300" height="250" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="376" y="82" fill="#94a3b8" font-size="13">Spring AI 观测层（真正产出 span）</text>
+
+  <!-- N3 ChatClient.Builder -->
+  <rect x="385" y="100" width="250" height="60" rx="8" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="124" fill="#e2e8f0" font-size="13">ChatClient.Builder 收下配置</text>
+  <text x="400" y="145" fill="#94a3b8" font-size="11">交给 Spring AI 模型调用门面</text>
+
+  <!-- N4 ObservationRegistry -->
+  <rect x="385" y="205" width="250" height="60" rx="8" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="229" fill="#e2e8f0" font-size="13">ObservationRegistry</text>
+  <text x="400" y="250" fill="#94a3b8" font-size="11">Span 落点（Micrometer）</text>
+
+  <!-- N5 sink -->
+  <rect x="385" y="280" width="250" height="22" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="400" y="296" fill="#fbbf24" font-size="12">Micrometer → Zipkin / Jaeger</text>
+
+  <!-- graph-core 被划掉 -->
+  <rect x="20" y="335" width="640" height="95" rx="10" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="36" y="362" fill="#fb7185" font-size="14">graph-core 模块：grep Observation = 0 条</text>
+  <text x="36" y="386" fill="#94a3b8" font-size="12">spring-ai-alibaba-graph-core 不持有 Observation 一根指头</text>
+  <text x="36" y="410" fill="#94a3b8" font-size="12">只管状态图声明 / 编译 / 执行，观测不在其职责内</text>
+  <line x1="20" y1="335" x2="660" y2="430" stroke="#fb7185" stroke-width="1.5" opacity="0.5"/>
+  <line x1="660" y1="335" x2="20" y2="430" stroke="#fb7185" stroke-width="1.5" opacity="0.5"/>
+</svg>

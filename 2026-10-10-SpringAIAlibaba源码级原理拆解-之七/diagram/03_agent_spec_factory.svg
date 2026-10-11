@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="24" y="34" fill="#e2e8f0" font-size="16">AgentSpecReactAgentFactory 支线：子任务 Agent 同样透传并 NOOP 兜底</text>
+
+  <!-- Node1 主 Agent -->
+  <rect x="30" y="90" width="180" height="80" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="45" y="118" fill="#e2e8f0" font-size="13">主 Agent</text>
+  <text x="45" y="140" fill="#94a3b8" font-size="11">Builder.observationRegistry 已接入</text>
+  <text x="45" y="159" fill="#94a3b8" font-size="11">派出子任务</text>
+
+  <line x1="210" y1="130" x2="256" y2="130" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Node2 factory -->
+  <rect x="258" y="85" width="210" height="135" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="273" y="110" fill="#e2e8f0" font-size="13">AgentSpecReactAgentFactory</text>
+  <text x="273" y="134" fill="#94a3b8" font-size="11">private final ObservationRegistry</text>
+  <text x="273" y="153" fill="#94a3b8" font-size="11">builder 暴露 observationRegistry()</text>
+  <text x="273" y="176" fill="#34d399" font-size="11">null 判定（:71-73）</text>
+  <text x="273" y="195" fill="#94a3b8" font-size="11">!= null ? reg</text>
+  <text x="273" y="213" fill="#94a3b8" font-size="11">: ObservationRegistry.NOOP</text>
+
+  <line x1="468" y1="152" x2="514" y2="152" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Node3 子任务 -->
+  <rect x="516" y="115" width="130" height="75" rx="8" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="531" y="142" fill="#e2e8f0" font-size="13">子任务 ReactAgent</text>
+  <text x="531" y="163" fill="#94a3b8" font-size="11">同样透传进</text>
+  <text x="531" y="181" fill="#94a3b8" font-size="11">ChatClient.Builder</text>
+
+  <!-- 底部注释 -->
+  <rect x="30" y="300" width="616" height="100" rx="10" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="48" y="328" fill="#fbbf24" font-size="13">主图与子图共享同一 registry，不会出现主图有 span、子图没 span 的割裂</text>
+  <text x="48" y="354" fill="#94a3b8" font-size="12">SAA 在观测上的真实价值是集成与一致性：收口配置入口 + 保证主/子 Agent 同一份</text>
+  <text x="48" y="378" fill="#94a3b8" font-size="12">真正的 instrumentation 是 Spring AI 的功劳，SAA 没在 graph-core 埋任何点</text>
+</svg>
