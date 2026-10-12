@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif">
+  <defs>
+    <pattern id="grid4" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0 L0 0 0 28" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="arr4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr4c" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid4)"/>
+
+  <text x="40" y="28" fill="#e2e8f0" font-size="15">多轮状态快照：getCurrentState 交还的 OverAllState，就是 messages 这张整表</text>
+
+  <!-- caller -->
+  <rect x="40" y="50" width="190" height="54" rx="8" fill="rgba(148,163,184,0.10)" stroke="#94a3b8"/>
+  <text x="58" y="74" fill="#e2e8f0" font-size="12">调用方 第2轮</text>
+  <text x="58" y="92" fill="#94a3b8" font-size="11">invoke / call（同 threadId）</text>
+
+  <!-- threadId -->
+  <rect x="40" y="140" width="190" height="48" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="58" y="162" fill="#e2e8f0" font-size="12">RunnableConfig.threadId</text>
+  <text x="58" y="180" fill="#94a3b8" font-size="11">= ABC-123（会话标识）</text>
+
+  <!-- OverAllState table -->
+  <rect x="270" y="100" width="320" height="216" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa"/>
+  <text x="288" y="124" fill="#e2e8f0" font-size="12">OverAllState（按 threadId 存的会话状态）</text>
+  <line x1="288" y1="134" x2="572" y2="134" stroke="#a78bfa" stroke-width="1"/>
+  <text x="288" y="156" fill="#c4b5fd" font-size="11">messages[0]  UserMessage      "查订单 A001"</text>
+  <text x="288" y="178" fill="#c4b5fd" font-size="11">messages[1]  AssistantMessage "需订单号，调用工具"</text>
+  <text x="288" y="200" fill="#c4b5fd" font-size="11">messages[2]  ToolResponseMsg "状态：已发货"</text>
+  <text x="288" y="222" fill="#c4b5fd" font-size="11">messages[3]  AssistantMessage "A001 已发货"</text>
+  <text x="288" y="244" fill="#c4b5fd" font-size="11">messages[4]  UserMessage      "那 A002 呢？"</text>
+  <text x="288" y="266" fill="#94a3b8" font-size="11">… 只追加不裁剪，表会越来越长</text>
+  <text x="288" y="300" fill="#fb7185" font-size="11">多轮记忆 = 这张整表，不是摘要</text>
+
+  <!-- getCurrentState -->
+  <rect x="610" y="150" width="62" height="60" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="618" y="174" fill="#e2e8f0" font-size="11">getCurrentState</text>
+  <text x="618" y="192" fill="#94a3b8" font-size="10">第157行</text>
+
+  <!-- turn boxes -->
+  <rect x="270" y="346" width="150" height="62" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399"/>
+  <text x="286" y="370" fill="#e2e8f0" font-size="12">第1轮</text>
+  <text x="286" y="390" fill="#94a3b8" font-size="11">AgentLlmNode 写 messages（第285行）</text>
+
+  <rect x="440" y="346" width="150" height="62" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399"/>
+  <text x="456" y="370" fill="#e2e8f0" font-size="12">第2轮</text>
+  <text x="456" y="390" fill="#94a3b8" font-size="11">取回 messages 续跑，接得上话</text>
+
+  <!-- arrows -->
+  <line x1="135" y1="104" x2="135" y2="139" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr4)"/>
+  <line x1="230" y1="164" x2="269" y2="164" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr4)"/>
+  <text x="232" y="158" fill="#94a3b8" font-size="10">会话标识</text>
+  <line x1="590" y1="210" x2="609" y2="190" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr4c)"/>
+  <text x="560" y="230" fill="#22d3ee" font-size="10">交还整表</text>
+  <path d="M641 150 L641 77 L231 77" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr4c)"/>
+  <text x="540" y="66" fill="#22d3ee" font-size="10">拿回 messages 续用</text>
+  <line x1="345" y1="346" x2="345" y2="320" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr4)"/>
+  <text x="300" y="340" fill="#94a3b8" font-size="10">写入</text>
+  <line x1="515" y1="346" x2="515" y2="320" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr4)"/>
+  <text x="470" y="340" fill="#94a3b8" font-size="10">读取</text>
+</svg>

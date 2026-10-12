@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif">
+  <defs>
+    <pattern id="grid3" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0 L0 0 0 28" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="arr3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr3r" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#fb7185"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid3)"/>
+
+  <text x="40" y="28" fill="#e2e8f0" font-size="15">钩子链与工具路由：ReAct 循环本质是一张 StateGraph，钩子就是加进去的节点</text>
+
+  <!-- nodes -->
+  <rect x="25" y="195" width="50" height="44" rx="8" fill="rgba(148,163,184,0.10)" stroke="#94a3b8"/>
+  <text x="33" y="222" fill="#94a3b8" font-size="12">START</text>
+
+  <rect x="90" y="195" width="100" height="44" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="100" y="218" fill="#e2e8f0" font-size="12">BEFORE_AGENT</text>
+  <text x="100" y="233" fill="#94a3b8" font-size="10">第345行</text>
+
+  <rect x="205" y="195" width="110" height="44" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="215" y="218" fill="#e2e8f0" font-size="12">loopEntry</text>
+  <text x="215" y="233" fill="#94a3b8" font-size="10">beforeModel 第363行</text>
+
+  <rect x="330" y="195" width="110" height="44" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399"/>
+  <text x="340" y="218" fill="#e2e8f0" font-size="12">AGENT_MODEL</text>
+  <text x="340" y="233" fill="#94a3b8" font-size="10">llmNode</text>
+
+  <rect x="455" y="195" width="110" height="44" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="465" y="218" fill="#e2e8f0" font-size="12">loopExit</text>
+  <text x="465" y="233" fill="#94a3b8" font-size="10">afterModel 第376行</text>
+
+  <rect x="575" y="195" width="80" height="44" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="585" y="218" fill="#e2e8f0" font-size="12">AFTER_AGENT</text>
+  <text x="585" y="233" fill="#94a3b8" font-size="10">第354行</text>
+
+  <rect x="330" y="300" width="110" height="44" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399"/>
+  <text x="340" y="323" fill="#e2e8f0" font-size="12">AGENT_TOOL</text>
+  <text x="340" y="338" fill="#94a3b8" font-size="10">toolNode 第580行</text>
+
+  <rect x="575" y="300" width="80" height="44" rx="8" fill="rgba(148,163,184,0.10)" stroke="#94a3b8"/>
+  <text x="600" y="327" fill="#94a3b8" font-size="12">END</text>
+
+  <!-- arrows -->
+  <line x1="75" y1="217" x2="89" y2="217" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="190" y1="217" x2="204" y2="217" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="315" y1="217" x2="329" y2="217" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="440" y1="217" x2="454" y2="217" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="565" y1="217" x2="574" y2="217" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <text x="540" y="210" fill="#94a3b8" font-size="10">无工具/结束</text>
+
+  <!-- loopExit -> tool (has tools) -->
+  <path d="M510 239 L510 322 L442 322" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <text x="516" y="285" fill="#94a3b8" font-size="10">有工具</text>
+
+  <!-- tool -> model (ReAct loop) -->
+  <line x1="385" y1="300" x2="385" y2="241" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arr3r)"/>
+  <text x="392" y="275" fill="#fb7185" font-size="10">ReAct 循环</text>
+
+  <!-- after_agent -> end -->
+  <line x1="615" y1="239" x2="615" y2="299" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+  <text x="40" y="392" fill="#94a3b8" font-size="12">钩子不是拦截器，是挂在 StateGraph 边上的普通节点；BEFORE_MODEL / AFTER_MODEL 决定循环进出门。</text>
+  <text x="40" y="414" fill="#94a3b8" font-size="12">有工具才加 AGENT_TOOL 节点（第580行 setupToolRouting），否则循环里没有工具这一环。</text>
+</svg>

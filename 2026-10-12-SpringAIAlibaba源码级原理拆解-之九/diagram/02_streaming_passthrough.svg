@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif">
+  <defs>
+    <pattern id="grid2" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0 L0 0 0 28" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid2)"/>
+
+  <text x="40" y="28" fill="#e2e8f0" font-size="15">流式透传：token 在模型节点已经是 Flux，Agent 层只做了一次过滤</text>
+
+  <!-- A stream(String) -->
+  <rect x="40" y="56" width="210" height="72" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="58" y="82" fill="#e2e8f0" font-size="13">Agent.stream(String)</text>
+  <text x="58" y="104" fill="#94a3b8" font-size="12">第430行：入口，接收一条消息</text>
+
+  <!-- B doStream -->
+  <rect x="40" y="168" width="210" height="72" rx="8" fill="rgba(251,191,36,0.12)" stroke="#fbbf24"/>
+  <text x="58" y="194" fill="#e2e8f0" font-size="13">doStream 第507行</text>
+  <text x="58" y="216" fill="#94a3b8" font-size="12">buildMessageInput 包装成 inputs</text>
+
+  <!-- C CompiledGraph.stream -->
+  <rect x="40" y="280" width="210" height="72" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa"/>
+  <text x="58" y="306" fill="#e2e8f0" font-size="13">CompiledGraph.stream()</text>
+  <text x="58" y="328" fill="#94a3b8" font-size="12">产出 Flux&lt;NodeOutput&gt;</text>
+
+  <!-- D llmNode token source -->
+  <rect x="300" y="280" width="210" height="72" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399"/>
+  <text x="318" y="306" fill="#e2e8f0" font-size="13">AgentLlmNode.apply 第213行</text>
+  <text x="318" y="328" fill="#94a3b8" font-size="12">Flux&lt;ChatResponse&gt; chatResponseFlux</text>
+
+  <!-- E extractMessages -->
+  <rect x="300" y="168" width="210" height="72" rx="8" fill="rgba(148,163,184,0.10)" stroke="#94a3b8"/>
+  <text x="318" y="194" fill="#e2e8f0" font-size="13">extractMessages 第587行</text>
+  <text x="318" y="216" fill="#94a3b8" font-size="12">filter StreamingOutput → Message</text>
+
+  <!-- F streamMessages -->
+  <rect x="300" y="56" width="210" height="72" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee"/>
+  <text x="318" y="82" fill="#e2e8f0" font-size="13">streamMessages(Map) 第404行</text>
+  <text x="318" y="104" fill="#94a3b8" font-size="12">返回 Flux&lt;Message&gt; 给调用方</text>
+
+  <!-- arrows -->
+  <line x1="145" y1="128" x2="145" y2="166" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <line x1="145" y1="240" x2="145" y2="278" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <line x1="250" y1="316" x2="298" y2="316" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <text x="252" y="308" fill="#94a3b8" font-size="10">图内节点流式产出</text>
+  <line x1="405" y1="280" x2="405" y2="242" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <text x="412" y="262" fill="#94a3b8" font-size="10">包成 StreamingOutput 透传</text>
+  <line x1="405" y1="168" x2="405" y2="130" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <line x1="510" y1="92" x2="560" y2="92" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <text x="566" y="96" fill="#22d3ee" font-size="11">逐字</text>
+
+  <text x="40" y="392" fill="#94a3b8" font-size="12">关键：streamMessages 只是 stream(...).transform(this::extractMessages)，没有重新生成 token。</text>
+  <text x="40" y="414" fill="#94a3b8" font-size="12">拿错方法（直接消费 Flux&lt;NodeOutput&gt;）会收到一堆内部节点输出类型，而不是干净的对话消息。</text>
+</svg>
