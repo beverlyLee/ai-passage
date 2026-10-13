@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450" font-family="'Noto Sans SC',sans-serif">
+  <defs>
+    <marker id="ag2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <path d="M0 70 H680 M0 380 H680"/>
+    <path d="M40 0 V450 M120 0 V450 M200 0 V450 M280 0 V450 M360 0 V450 M440 0 V450 M520 0 V450 M600 0 V450"/>
+  </g>
+
+  <text x="40" y="42" font-size="16" fill="#e2e8f0" font-weight="600">三种通道 = 三种合并策略</text>
+  <text x="40" y="60" font-size="11" fill="#94a3b8">同一个键的新值与旧值怎么合，由声明通道时选定，节点只管返回新值</text>
+
+  <!-- 行1：appender 累积 -->
+  <g>
+    <rect x="40" y="96" width="120" height="66" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="52" y="124" font-size="12" fill="#fbbf24" font-family="'JetBrains Mono','Noto Sans SC',monospace">appender</text>
+    <text x="52" y="144" font-size="11" fill="#94a3b8">累积</text>
+
+    <rect x="180" y="96" width="118" height="66" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="192" y="122" font-size="10" fill="#64748b">旧值</text>
+    <text x="192" y="144" font-size="11" fill="#7dd3fc" font-family="'JetBrains Mono','Noto Sans SC',monospace">[user]</text>
+
+    <text x="308" y="136" font-size="14" fill="#34d399">追加</text>
+
+    <rect x="360" y="96" width="118" height="66" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="372" y="122" font-size="10" fill="#64748b">新值</text>
+    <text x="372" y="144" font-size="11" fill="#7dd3fc" font-family="'JetBrains Mono','Noto Sans SC',monospace">[bot]</text>
+
+    <text x="490" y="136" font-size="14" fill="#94a3b8">=</text>
+
+    <rect x="516" y="96" width="124" height="66" rx="8" fill="#0b1220" stroke="#34d399" stroke-width="1.5"/>
+    <text x="528" y="122" font-size="10" fill="#64748b">结果</text>
+    <text x="528" y="144" font-size="11" fill="#6ee7b7" font-family="'JetBrains Mono','Noto Sans SC',monospace">[user, bot]</text>
+  </g>
+
+  <!-- 行2：base 覆盖 -->
+  <g>
+    <rect x="40" y="192" width="120" height="66" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="52" y="220" font-size="12" fill="#fbbf24" font-family="'JetBrains Mono','Noto Sans SC',monospace">base</text>
+    <text x="52" y="240" font-size="11" fill="#94a3b8">覆盖</text>
+
+    <rect x="180" y="192" width="118" height="66" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="192" y="218" font-size="10" fill="#64748b">旧值</text>
+    <text x="192" y="240" font-size="11" fill="#7dd3fc" font-family="'JetBrains Mono','Noto Sans SC',monospace">received</text>
+
+    <text x="308" y="232" font-size="14" fill="#34d399">覆盖</text>
+
+    <rect x="360" y="192" width="118" height="66" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="372" y="218" font-size="10" fill="#64748b">新值</text>
+    <text x="372" y="240" font-size="11" fill="#7dd3fc" font-family="'JetBrains Mono','Noto Sans SC',monospace">triaged</text>
+
+    <text x="490" y="232" font-size="14" fill="#94a3b8">=</text>
+
+    <rect x="516" y="192" width="124" height="66" rx="8" fill="#0b1220" stroke="#34d399" stroke-width="1.5"/>
+    <text x="528" y="218" font-size="10" fill="#64748b">结果</text>
+    <text x="528" y="240" font-size="11" fill="#6ee7b7" font-family="'JetBrains Mono','Noto Sans SC',monospace">triaged</text>
+  </g>
+
+  <!-- 行3：RemoveByHash 删除 -->
+  <g>
+    <rect x="40" y="288" width="120" height="66" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="52" y="314" font-size="11" fill="#fbbf24" font-family="'JetBrains Mono','Noto Sans SC',monospace">RemoveByHash</text>
+    <text x="52" y="334" font-size="11" fill="#94a3b8">删除</text>
+
+    <rect x="180" y="288" width="118" height="66" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="192" y="314" font-size="10" fill="#64748b">旧值</text>
+    <text x="192" y="336" font-size="11" fill="#7dd3fc" font-family="'JetBrains Mono','Noto Sans SC',monospace">[user, bot]</text>
+
+    <text x="300" y="328" font-size="14" fill="#fb7185">删user</text>
+
+    <rect x="360" y="288" width="118" height="66" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="372" y="314" font-size="10" fill="#64748b">删除标识</text>
+    <text x="372" y="336" font-size="11" fill="#fb7185" font-family="'JetBrains Mono','Noto Sans SC',monospace">RemoveByHash</text>
+
+    <text x="490" y="328" font-size="14" fill="#94a3b8">=</text>
+
+    <rect x="516" y="288" width="124" height="66" rx="8" fill="#0b1220" stroke="#fb7185" stroke-width="1.5"/>
+    <text x="528" y="314" font-size="10" fill="#64748b">结果</text>
+    <text x="528" y="336" font-size="11" fill="#6ee7b7" font-family="'JetBrains Mono','Noto Sans SC',monospace">[bot]</text>
+  </g>
+
+  <text x="40" y="400" font-size="11" fill="#94a3b8">appender 默认去重：相同元素不会进两次（appenderWithDuplicate 才允许重复）</text>
+  <text x="40" y="420" font-size="11" fill="#64748b" font-family="'JetBrains Mono','Noto Sans SC',monospace">Reducer&lt;T&gt; extends BiFunction&lt;T,T,T&gt;</text>
+</svg>

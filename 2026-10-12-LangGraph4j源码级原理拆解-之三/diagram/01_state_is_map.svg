@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450" font-family="'Noto Sans SC',sans-serif">
+  <defs>
+    <marker id="ag" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <path d="M0 70 H680 M0 380 H680"/>
+    <path d="M40 0 V450 M120 0 V450 M200 0 V450 M280 0 V450 M360 0 V450 M440 0 V450 M520 0 V450 M600 0 V450"/>
+  </g>
+
+  <text x="40" y="42" font-size="16" fill="#e2e8f0" font-weight="600">状态 = 一个被所有节点共享的 Map</text>
+  <text x="40" y="60" font-size="11" fill="#94a3b8">每个节点只返回自己的局部增量，框架负责把它合并回同一份 data</text>
+
+  <!-- 左侧三个节点 -->
+  <g>
+    <rect x="40" y="96" width="180" height="62" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="54" y="118" font-size="13" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',monospace">ingest</text>
+    <text x="54" y="138" font-size="10" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC',monospace">{messages:[user…]}</text>
+    <text x="54" y="150" font-size="10" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC',monospace">stage:received}</text>
+  </g>
+  <g>
+    <rect x="40" y="188" width="180" height="62" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="54" y="210" font-size="13" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',monospace">tag</text>
+    <text x="54" y="230" font-size="10" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC',monospace">{messages:[bot…]}</text>
+    <text x="54" y="242" font-size="10" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC',monospace">stage:triaged}</text>
+  </g>
+  <g>
+    <rect x="40" y="280" width="180" height="62" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="54" y="302" font-size="13" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',monospace">forget</text>
+    <text x="54" y="322" font-size="10" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC',monospace">{messages:</text>
+    <text x="54" y="334" font-size="10" fill="#fb7185" font-family="'JetBrains Mono','Noto Sans SC',monospace">RemoveByHash(user)}</text>
+  </g>
+
+  <!-- 三条箭头：节点局部增量 -> 共享 Map -->
+  <path d="M220 127 L336 150" stroke="#34d399" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <path d="M220 219 L336 206" stroke="#34d399" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <path d="M220 311 L336 262" stroke="#34d399" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <text x="228" y="196" font-size="10" fill="#64748b" font-family="'JetBrains Mono','Noto Sans SC',monospace">局部增量</text>
+
+  <!-- 中央共享 Map -->
+  <rect x="340" y="96" width="300" height="246" rx="10" fill="#0b1220" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="356" y="122" font-size="13" fill="#c4b5fd" font-family="'JetBrains Mono','Noto Sans SC',monospace">ChatState.data</text>
+  <text x="356" y="140" font-size="10" fill="#64748b" font-family="'JetBrains Mono','Noto Sans SC',monospace">Map&lt;String,Object&gt; 共享</text>
+  <path d="M356 150 H624" stroke="#334155" stroke-width="1"/>
+
+  <!-- 键1 messages -->
+  <rect x="356" y="162" width="268" height="62" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="370" y="182" font-size="12" fill="#7dd3fc" font-family="'JetBrains Mono','Noto Sans SC',monospace">messages</text>
+  <text x="370" y="202" font-size="11" fill="#6ee7b7" font-family="'JetBrains Mono','Noto Sans SC',monospace">[bot: 已记录]</text>
+  <rect x="546" y="170" width="64" height="18" rx="9" fill="#1e293b"/>
+  <text x="556" y="183" font-size="10" fill="#fbbf24" font-family="'JetBrains Mono','Noto Sans SC',monospace">appender</text>
+
+  <!-- 键2 stage -->
+  <rect x="356" y="238" width="268" height="62" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="370" y="258" font-size="12" fill="#7dd3fc" font-family="'JetBrains Mono','Noto Sans SC',monospace">stage</text>
+  <text x="370" y="278" font-size="11" fill="#6ee7b7" font-family="'JetBrains Mono','Noto Sans SC',monospace">triaged</text>
+  <rect x="562" y="246" width="48" height="18" rx="9" fill="#1e293b"/>
+  <text x="572" y="259" font-size="10" fill="#fbbf24" font-family="'JetBrains Mono','Noto Sans SC',monospace">base</text>
+
+  <text x="356" y="322" font-size="10" fill="#64748b" font-family="'JetBrains Mono','Noto Sans SC',monospace">节点读写同一份 data</text>
+
+  <text x="40" y="400" font-size="11" fill="#94a3b8">节点互不感知彼此，只通过这份共享 Map 交换信息</text>
+  <text x="40" y="420" font-size="11" fill="#64748b" font-family="'JetBrains Mono','Noto Sans SC',monospace">AgentState.data : Map&lt;String,Object&gt;</text>
+</svg>

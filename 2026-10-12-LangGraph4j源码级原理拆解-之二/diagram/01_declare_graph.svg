@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect x="0" y="0" width="680" height="450" fill="#0f172a"/>
+  <line x1="0" y1="60" x2="680" y2="60" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="28" y="38" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC',monospace" font-size="18">图模型：StateGraph 内部到底存了什么</text>
+
+  <!-- StateGraph 对象卡片 -->
+  <g>
+    <rect x="28" y="80" width="330" height="320" rx="10" fill="#0b1f33" stroke="#22d3ee" stroke-width="1.5"/>
+    <rect x="28" y="80" width="330" height="40" rx="10" fill="#0e2a44"/>
+    <text x="44" y="106" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',monospace" font-size="15">StateGraph&lt;MyState&gt;</text>
+    <line x1="28" y1="120" x2="358" y2="120" stroke="#1e293b" stroke-width="1"/>
+
+    <!-- 四行字段 -->
+    <text x="44" y="150" fill="#7dd3fc" font-family="'JetBrains Mono',monospace" font-size="13">nodes</text>
+    <text x="150" y="150" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">Nodes&lt;State&gt; · LinkedHashSet</text>
+    <text x="44" y="172" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="11">有序、不可重复；addNode 重复抛 duplicateNode</text>
+
+    <text x="44" y="208" fill="#7dd3fc" font-family="'JetBrains Mono',monospace" font-size="13">edges</text>
+    <text x="150" y="208" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">Edges&lt;State&gt; · LinkedList</text>
+    <text x="44" y="230" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="11">同 source 的多个 target 累积进同一条边</text>
+
+    <text x="44" y="266" fill="#7dd3fc" font-family="'JetBrains Mono',monospace" font-size="13">channels</text>
+    <text x="150" y="266" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">Map&lt;String,Channel&gt;</text>
+    <text x="44" y="288" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="11">状态 schema：每个 key 对应一种合并语义</text>
+
+    <text x="44" y="324" fill="#7dd3fc" font-family="'JetBrains Mono',monospace" font-size="13">stateSerializer</text>
+    <text x="150" y="324" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">序列化器</text>
+    <text x="44" y="346" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="11">按工厂方法重建 AgentState 对象</text>
+
+    <text x="44" y="384" fill="#fbbf24" font-family="'Noto Sans SC',sans-serif" font-size="11">END="__END__" / START="__START__" 是保留字</text>
+  </g>
+
+  <!-- 右侧 builder 调用链 -->
+  <text x="392" y="92" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13">声明是 builder：每个方法都返回 this，可链式</text>
+
+  <g>
+    <rect x="392" y="108" width="260" height="46" rx="8" fill="#13251c" stroke="#34d399" stroke-width="1.5"/>
+    <text x="408" y="135" fill="#6ee7b7" font-family="'JetBrains Mono',monospace" font-size="12">addNode(id, action)</text>
+    <text x="408" y="150" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="10">END 不能做节点 id</text>
+  </g>
+  <line x1="522" y1="154" x2="522" y2="170" stroke="#34d399" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <g>
+    <rect x="392" y="170" width="260" height="46" rx="8" fill="#13251c" stroke="#34d399" stroke-width="1.5"/>
+    <text x="408" y="197" fill="#6ee7b7" font-family="'JetBrains Mono',monospace" font-size="12">addEdge(src, tgt)</text>
+    <text x="408" y="212" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="10">END 不能做 source</text>
+  </g>
+  <line x1="522" y1="216" x2="522" y2="232" stroke="#34d399" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <g>
+    <rect x="392" y="232" width="260" height="46" rx="8" fill="#13251c" stroke="#34d399" stroke-width="1.5"/>
+    <text x="408" y="259" fill="#6ee7b7" font-family="'JetBrains Mono',monospace" font-size="12">addConditionalEdges(...)</text>
+    <text x="408" y="274" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="10">router 返回值 → 目标节点</text>
+  </g>
+  <line x1="522" y1="278" x2="522" y2="294" stroke="#34d399" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <g>
+    <rect x="392" y="294" width="260" height="46" rx="8" fill="#241c33" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="408" y="321" fill="#c4b5fd" font-family="'JetBrains Mono',monospace" font-size="12">compile()</text>
+    <text x="408" y="336" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="10">先 validateGraph：START 必须有出边</text>
+  </g>
+
+  <text x="392" y="392" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="11">一张图 = 一组节点 + 一组边 + 一份通道 schema；它们都在你 compile 之前以纯数据形式存在。</text>
+
+  <defs>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#34d399"/>
+    </marker>
+  </defs>
+</svg>

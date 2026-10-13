@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect x="0" y="0" width="680" height="450" fill="#0f172a"/>
+  <line x1="0" y1="60" x2="680" y2="60" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="28" y="38" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC',monospace" font-size="18">子图：编译只是把子节点展平进父图，状态共享</text>
+
+  <!-- 父图声明卡片 -->
+  <rect x="28" y="90" width="300" height="250" rx="10" fill="#0b1f33" stroke="#22d3ee" stroke-width="1.5"/>
+  <rect x="28" y="90" width="300" height="40" rx="10" fill="#0e2a44"/>
+  <text x="44" y="116" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',monospace" font-size="15">父图 StateGraph&lt;MyState&gt;</text>
+  <line x1="28" y1="130" x2="328" y2="130" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="44" y="162" fill="#7dd3fc" font-family="'JetBrains Mono',monospace" font-size="13">classify</text>
+  <text x="170" y="162" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">普通节点</text>
+  <text x="44" y="200" fill="#7dd3fc" font-family="'JetBrains Mono',monospace" font-size="13">billingHandler</text>
+  <text x="170" y="200" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">普通节点</text>
+  <text x="44" y="238" fill="#7dd3fc" font-family="'JetBrains Mono',monospace" font-size="13">techSubgraph</text>
+  <text x="170" y="238" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">子图节点（含 research / draft）</text>
+  <text x="44" y="276" fill="#a78bfa" font-family="'Noto Sans SC',sans-serif" font-size="11">addNode("techSubgraph", techSubgraph())</text>
+  <text x="44" y="300" fill="#a78bfa" font-family="'Noto Sans SC',sans-serif" font-size="11">→ 编译时创建 SubStateGraphNode</text>
+  <text x="44" y="326" fill="#fbbf24" font-family="'Noto Sans SC',sans-serif" font-size="11">子图与父图共享同一个 MyState</text>
+
+  <!-- compile 箭头 -->
+  <line x1="340" y1="215" x2="368" y2="215" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <text x="338" y="200" fill="#a78bfa" font-family="'Noto Sans SC',sans-serif" font-size="11">compile()</text>
+  <text x="338" y="240" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="10">展平</text>
+
+  <!-- 编译后卡片 -->
+  <rect x="372" y="90" width="280" height="250" rx="10" fill="#241c33" stroke="#a78bfa" stroke-width="1.5"/>
+  <rect x="372" y="90" width="280" height="40" rx="10" fill="#2a1f44"/>
+  <text x="388" y="116" fill="#c4b5fd" font-family="'JetBrains Mono','Noto Sans SC',monospace" font-size="15">编译后 CompiledGraph</text>
+  <line x1="372" y1="130" x2="652" y2="130" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="388" y="162" fill="#6ee7b7" font-family="'JetBrains Mono',monospace" font-size="13">classify</text>
+  <text x="388" y="200" fill="#6ee7b7" font-family="'JetBrains Mono',monospace" font-size="13">billingHandler</text>
+  <text x="388" y="238" fill="#6ee7b7" font-family="'JetBrains Mono',monospace" font-size="13">techSubgraph-research</text>
+  <text x="388" y="276" fill="#6ee7b7" font-family="'JetBrains Mono',monospace" font-size="13">techSubgraph-draft</text>
+  <text x="388" y="308" fill="#fbbf24" font-family="'JetBrains Mono',monospace" font-size="11">SubGraphNode.formatId = "%s-%s"</text>
+  <text x="388" y="328" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="11">即 techSubgraph-research / -draft</text>
+
+  <text x="28" y="372" fill="#fbbf24" font-family="'Noto Sans SC',sans-serif" font-size="11">子图被展平后不再是独立节点，而是两个内联节点；它们与父图读写的是同一份 channels 与同一份 Map。</text>
+  <text x="28" y="430" fill="#64748b" font-family="'Noto Sans SC',sans-serif" font-size="11">证据：场景 B 生命周期 = [__START__, classify, techSubgraph-research, techSubgraph-draft, __END__]，且 final.messages 含 2 条（两条子图消息都落进父图 messages）。</text>
+
+  <defs>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+</svg>
