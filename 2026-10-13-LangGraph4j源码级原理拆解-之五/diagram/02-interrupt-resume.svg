@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;fill:#e2e8f0;}
+      .mono{font-family:"JetBrains Mono","SF Mono",Menlo,monospace;}
+      .dim{fill:#94a3b8;}
+      .amber{fill:#fbbf24;}
+      .cyan{fill:#22d3ee;}
+      .emerald{fill:#34d399;}
+      .rose{fill:#fb7185;}
+      .small{font-size:12px;}
+      .mid{font-size:14px;}
+      .big{font-size:18px;}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/></marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 H0 V40" fill="none" stroke="#162236" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="34" y="40" class="big">断点续跑：先停在 nodeB 前，再换图从检查点接着跑</text>
+  <text x="34" y="62" class="small dim">interruptBefore 是常驻闸门；续跑要配同一个 saver、同一个 threadId，且去掉该中断</text>
+
+  <!-- 第一次 invoke -->
+  <text x="34" y="96" class="mid cyan">第一次 invoke（带 interruptBefore）</text>
+  <g>
+    <rect x="34" y="108" width="96" height="34" rx="6" fill="#1e293b"/>
+    <text x="52" y="130" class="mono small">__START__</text>
+    <path d="M130 125 L 168 125" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="172" y="108" width="96" height="34" rx="6" fill="#1e293b"/>
+    <text x="196" y="130" class="mono small">nodeA</text>
+    <path d="M268 125 L 306 125" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="310" y="108" width="96" height="34" rx="6" fill="#2a1620" stroke="#fb7185"/>
+    <text x="334" y="130" class="mono small rose">nodeB</text>
+    <text x="416" y="130" class="small rose">← 停在 nodeB 前</text>
+  </g>
+  <rect x="34" y="152" width="470" height="30" rx="6" fill="#0e2a38"/>
+  <text x="46" y="172" class="mono small cyan">检查点：steps=[A]  count=1  next=nodeB</text>
+
+  <!-- getState -->
+  <rect x="520" y="108" width="126" height="74" rx="8" fill="#111c2e" stroke="#fbbf24"/>
+  <text x="534" y="130" class="small amber">getState(cfg)</text>
+  <text x="534" y="150" class="mono small dim">next = nodeB</text>
+  <text x="534" y="170" class="mono small dim">steps = [A]</text>
+  <path d="M504 145 L 520 145" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 常驻闸门提示 -->
+  <rect x="34" y="200" width="470" height="34" rx="6" fill="#2a1620" stroke="#fb7185"/>
+  <text x="46" y="222" class="small rose">同一编译图再 invoke：interruptBefore 常驻，还在 nodeB 前停一次（steps 仍 [A]）</text>
+
+  <!-- 换图续跑 -->
+  <text x="34" y="268" class="mid emerald">换图续跑（不带该中断，同 saver + 同 threadId）</text>
+  <g>
+    <rect x="34" y="280" width="96" height="34" rx="6" fill="#1e293b"/>
+    <text x="52" y="302" class="mono small dim">读检查点</text>
+    <path d="M130 297 L 168 297" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="172" y="280" width="96" height="34" rx="6" fill="#1a2b22" stroke="#34d399"/>
+    <text x="196" y="302" class="mono small emerald">nodeB</text>
+    <path d="M268 297 L 306 297" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="310" y="280" width="96" height="34" rx="6" fill="#1e293b"/>
+    <text x="334" y="302" class="mono small">__END__</text>
+  </g>
+  <rect x="34" y="324" width="470" height="30" rx="6" fill="#0e3326"/>
+  <text x="46" y="344" class="mono small emerald">终态：steps=[A, B]  count=2（没有重跑 nodeA）</text>
+
+  <!-- 关键点 -->
+  <rect x="520" y="280" width="126" height="74" rx="8" fill="#111c2e" stroke="#34d399"/>
+  <text x="534" y="302" class="small emerald">为什么能续</text>
+  <text x="534" y="322" class="small dim">状态在 saver 里，</text>
+  <text x="534" y="340" class="small dim">不在编译图对象上</text>
+
+  <text x="34" y="392" class="small dim">要点：threadId 一致 + saver 里确有该检查点，续跑就从 next 接着走；换 threadId 等于开新会话</text>
+  <text x="34" y="414" class="small dim">interruptBefore 用于人工把关；把关完要去掉中断再续跑，否则每次都卡在同一处</text>
+</svg>

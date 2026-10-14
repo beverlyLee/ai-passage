@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;fill:#e2e8f0;}
+      .mono{font-family:"JetBrains Mono","SF Mono",Menlo,monospace;}
+      .dim{fill:#94a3b8;}
+      .amber{fill:#fbbf24;}
+      .cyan{fill:#22d3ee;}
+      .emerald{fill:#34d399;}
+      .rose{fill:#fb7185;}
+      .small{font-size:12px;}
+      .mid{font-size:14px;}
+      .big{font-size:18px;}
+    </style>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#64748b"/></marker>
+    <marker id="arrowC" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#22d3ee"/></marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 H0 V40" fill="none" stroke="#162236" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="34" y="40" class="big">运行引擎：逐节点吐事件，不是一把梭跑完</text>
+  <text x="34" y="62" class="small dim">CompiledGraph 按边遍历图，每走一步就往外吐一个 NodeOutput 事件，caller 边收边看</text>
+
+  <text x="34" y="100" class="mid amber">① 图怎么走（按边一步一步）</text>
+  <g>
+    <rect x="34" y="116" width="100" height="52" rx="8" fill="#1e293b" stroke="#475569"/>
+    <text x="84" y="147" text-anchor="middle" class="mono small">__START__</text>
+    <rect x="186" y="116" width="100" height="52" rx="8" fill="#1e293b" stroke="#22d3ee"/>
+    <text x="236" y="147" text-anchor="middle" class="mono small">nodeA</text>
+    <rect x="338" y="116" width="100" height="52" rx="8" fill="#1e293b" stroke="#22d3ee"/>
+    <text x="388" y="147" text-anchor="middle" class="mono small">nodeB</text>
+    <rect x="490" y="116" width="100" height="52" rx="8" fill="#1e293b" stroke="#fb7185"/>
+    <text x="540" y="147" text-anchor="middle" class="mono small">__END__</text>
+    <g stroke="#64748b" stroke-width="2" marker-end="url(#arrow)">
+      <line x1="134" y1="142" x2="184" y2="142"/>
+      <line x1="286" y1="142" x2="336" y2="142"/>
+      <line x1="438" y1="142" x2="488" y2="142"/>
+    </g>
+  </g>
+
+  <text x="34" y="218" class="mid cyan">② caller 拿到什么（两种取结果方式）</text>
+
+  <!-- stream lane -->
+  <rect x="34" y="232" width="316" height="170" rx="10" fill="#111c2e" stroke="#22d3ee"/>
+  <text x="50" y="258" class="mid cyan">graph.stream(input) 逐节点吐 NodeOutput</text>
+  <g>
+    <rect x="50" y="270" width="284" height="28" rx="6" fill="#1e293b"/>
+    <text x="60" y="288" class="mono small dim">NodeOutput(__START__, state=初始)</text>
+    <rect x="50" y="304" width="284" height="28" rx="6" fill="#1e293b"/>
+    <text x="60" y="322" class="mono small">NodeOutput(nodeA, state=steps=[A])</text>
+    <rect x="50" y="338" width="284" height="28" rx="6" fill="#1e293b"/>
+    <text x="60" y="356" class="mono small">NodeOutput(nodeB, state=steps=[A,B])</text>
+    <rect x="50" y="372" width="284" height="22" rx="6" fill="#2a1620"/>
+    <text x="60" y="388" class="mono small rose">END 标记（isEND=true）</text>
+  </g>
+
+  <!-- invoke lane -->
+  <rect x="366" y="232" width="280" height="170" rx="10" fill="#111c2e" stroke="#34d399"/>
+  <text x="382" y="258" class="mid emerald">graph.invoke(input) 只还终态</text>
+  <rect x="382" y="278" width="248" height="100" rx="8" fill="#1e293b" stroke="#34d399"/>
+  <text x="506" y="312" text-anchor="middle" class="mid emerald">最终 Optional&lt;State&gt;</text>
+  <text x="506" y="338" text-anchor="middle" class="mono small dim">steps=[A, B]</text>
+  <text x="506" y="360" text-anchor="middle" class="mono small dim">count=2</text>
+  <text x="382" y="394" class="small dim">阻塞跑完整条链路，只把最后状态还你</text>
+</svg>

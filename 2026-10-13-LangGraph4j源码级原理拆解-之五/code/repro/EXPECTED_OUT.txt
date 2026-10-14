@@ -1,0 +1,9 @@
+=== 场景一：MemorySaver 断点续跑 ===
+[第一次 invoke] steps=[A]
+[getState] next=nodeB steps=[A] count=1
+[同一图再 invoke] steps=[A]（中断闸门常驻，仍在 nodeB 前停下）
+[换图续跑] steps=[A, B] count=2
+=== 场景二：FileSystemSaver 落盘续跑 ===
+[第一次 invoke] 落盘检查点文件数=1
+[换 saver 续跑] steps=[A, B] count=2 落盘文件数=1
+self-test PASS

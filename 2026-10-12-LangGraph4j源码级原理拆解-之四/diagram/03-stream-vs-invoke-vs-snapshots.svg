@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;fill:#e2e8f0;}
+      .mono{font-family:"JetBrains Mono","SF Mono",Menlo,monospace;}
+      .dim{fill:#94a3b8;}
+      .amber{fill:#fbbf24;}
+      .cyan{fill:#22d3ee;}
+      .emerald{fill:#34d399;}
+      .rose{fill:#fb7185;}
+      .small{font-size:12px;}
+      .mid{font-size:14px;}
+      .big{font-size:18px;}
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 H0 V40" fill="none" stroke="#162236" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="34" y="38" class="big">三种取结果方式：真实发射序列对比</text>
+  <text x="34" y="60" class="small dim">同一张图 __START__ → nodeA → nodeB → __END__，三种 API 实际吐出的东西不一样</text>
+
+  <!-- ============ A: stream ============ -->
+  <rect x="20" y="76" width="205" height="356" rx="10" fill="#111c2e" stroke="#22d3ee"/>
+  <rect x="20" y="76" width="205" height="28" rx="10" fill="#0e2a38"/>
+  <text x="34" y="95" class="mid cyan mono">graph.stream(input)</text>
+
+  <!-- 事件卡片 -->
+  <rect x="34" y="112" width="177" height="52" rx="6" fill="#1e293b"/>
+  <text x="44" y="132" class="mono small dim">__START__（入口）</text>
+  <text x="44" y="152" class="mono small dim">steps=[]  count=0</text>
+
+  <rect x="34" y="170" width="177" height="52" rx="6" fill="#15303a"/>
+  <text x="44" y="190" class="mono small cyan">node=nodeA</text>
+  <text x="44" y="210" class="mono small">steps=[A]  count=1</text>
+
+  <rect x="34" y="228" width="177" height="52" rx="6" fill="#15303a"/>
+  <text x="44" y="248" class="mono small cyan">node=nodeB</text>
+  <text x="44" y="268" class="mono small">steps=[A,B]  count=2</text>
+
+  <rect x="34" y="286" width="177" height="52" rx="6" fill="#2a1620"/>
+  <text x="44" y="306" class="mono small rose">END 标记</text>
+  <text x="44" y="326" class="mono small">isEND=true（伪节点）</text>
+
+  <rect x="34" y="344" width="177" height="78" rx="6" fill="#0e2a38"/>
+  <text x="44" y="364" class="small">返回 4 个 NodeOutput</text>
+  <text x="44" y="382" class="mono small cyan">AsyncGenerator&lt;NodeOutput&gt;</text>
+  <text x="44" y="404" class="small dim">边跑边吐，适合 UI 刷新</text>
+  <text x="44" y="420" class="small dim">无 config 重载也有</text>
+
+  <!-- ============ B: invoke ============ -->
+  <rect x="237" y="76" width="205" height="356" rx="10" fill="#111c2e" stroke="#34d399"/>
+  <rect x="237" y="76" width="205" height="28" rx="10" fill="#0e3326"/>
+  <text x="251" y="95" class="mid emerald mono">graph.invoke(input)</text>
+
+  <rect x="251" y="112" width="177" height="120" rx="6" fill="#15302a"/>
+  <text x="261" y="134" class="mid emerald">终态 State（唯一）</text>
+  <text x="261" y="162" class="mono small">steps=[A,B]</text>
+  <text x="261" y="184" class="mono small">count=2</text>
+  <text x="261" y="212" class="small dim">__START__ / nodeA / nodeB</text>
+  <text x="261" y="228" class="small dim">都已算完，只还这 1 份</text>
+
+  <rect x="251" y="238" width="177" height="98" rx="6" fill="#1e293b"/>
+  <text x="261" y="258" class="small">阻塞跑完整链路</text>
+  <text x="261" y="276" class="small">执行期间不向调用方</text>
+  <text x="261" y="294" class="small">吐任何中间事件</text>
+  <text x="261" y="318" class="small dim">只还最终的 1 个 Optional</text>
+
+  <rect x="251" y="344" width="177" height="78" rx="6" fill="#0e3326"/>
+  <text x="261" y="364" class="small">返回 Optional&lt;State&gt;</text>
+  <text x="261" y="382" class="mono small emerald">invoke(m) / invoke(m,cfg)</text>
+  <text x="261" y="404" class="small dim">只想要结果时用</text>
+  <text x="261" y="420" class="small dim">（不关心过程）</text>
+
+  <!-- ============ C: streamSnapshots ============ -->
+  <rect x="454" y="76" width="206" height="356" rx="10" fill="#111c2e" stroke="#fbbf24"/>
+  <rect x="454" y="76" width="206" height="28" rx="10" fill="#3a2e0e"/>
+  <text x="468" y="95" class="mid amber mono">streamSnapshots(in,cfg)</text>
+
+  <rect x="468" y="112" width="178" height="52" rx="6" fill="#1e293b"/>
+  <text x="478" y="132" class="mono small dim">__START__（入口快照）</text>
+  <text x="478" y="152" class="mono small dim">steps=[]</text>
+
+  <rect x="468" y="170" width="178" height="52" rx="6" fill="#2e2710"/>
+  <text x="478" y="190" class="mono small amber">nodeA 后快照</text>
+  <text x="478" y="210" class="mono small">steps=[A]</text>
+
+  <rect x="468" y="228" width="178" height="52" rx="6" fill="#2e2710"/>
+  <text x="478" y="248" class="mono small amber">nodeB 后快照</text>
+  <text x="478" y="268" class="mono small">steps=[A,B]</text>
+
+  <rect x="468" y="286" width="178" height="52" rx="6" fill="#2a1620"/>
+  <text x="478" y="306" class="mono small rose">__END__ 终态快照</text>
+  <text x="478" y="326" class="mono small">isEND=true</text>
+
+  <rect x="468" y="344" width="178" height="78" rx="6" fill="#3a2e0e"/>
+  <text x="478" y="364" class="small">返回 4 个 NodeOutput</text>
+  <text x="478" y="382" class="mono small amber">AsyncGenerator&lt;NodeOutput&gt;</text>
+  <text x="478" y="404" class="small rose">必须带 RunnableConfig（threadId）</text>
+  <text x="478" y="420" class="small dim">名字带 snapshot 但吐 NodeOutput</text>
+</svg>

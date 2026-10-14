@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="450" viewBox="0 0 680 450">
+  <defs>
+    <style>
+      text{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;fill:#e2e8f0;}
+      .mono{font-family:"JetBrains Mono","SF Mono",Menlo,monospace;}
+      .dim{fill:#94a3b8;}
+      .amber{fill:#fbbf24;}
+      .cyan{fill:#22d3ee;}
+      .emerald{fill:#34d399;}
+      .violet{fill:#a78bfa;}
+      .rose{fill:#fb7185;}
+      .small{font-size:12px;}
+      .mid{font-size:14px;}
+      .big{font-size:18px;}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/></marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 H0 V40" fill="none" stroke="#162236" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="34" y="40" class="big">持久化层：saver 按 threadId 存一串检查点</text>
+  <text x="34" y="62" class="small dim">RunnableConfig.threadId 是存检查点的键；同一个 threadId 才能接上同一串状态</text>
+
+  <!-- 运行引擎 -->
+  <rect x="34" y="90" width="180" height="300" rx="10" fill="#111c2e" stroke="#22d3ee"/>
+  <rect x="34" y="90" width="180" height="34" rx="10" fill="#0e2a38"/>
+  <text x="48" y="113" class="mid cyan mono">CompiledGraph</text>
+  <g>
+    <rect x="48" y="140" width="152" height="30" rx="6" fill="#1e293b"/>
+    <text x="58" y="160" class="mono small">nodeA 跑完</text>
+    <rect x="48" y="180" width="152" height="30" rx="6" fill="#1e293b"/>
+    <text x="58" y="200" class="mono small">nodeB 跑完</text>
+    <text x="48" y="230" class="small dim">每跑完一个节点，</text>
+    <text x="48" y="248" class="small dim">就把当前状态打一个</text>
+    <text x="48" y="266" class="small dim">Checkpoint 交给 saver</text>
+    <text x="48" y="290" class="small dim">键 = threadId</text>
+    <rect x="48" y="305" width="152" height="26" rx="5" fill="#2a1620"/>
+    <text x="58" y="322" class="mono small rose">threadId 变了就接不上</text>
+  </g>
+
+  <!-- put 箭头 -->
+  <path d="M214 240 L 268 240" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="222" y="230" class="small dim">put</text>
+
+  <!-- MemorySaver -->
+  <rect x="276" y="90" width="176" height="130" rx="10" fill="#111c2e" stroke="#fbbf24"/>
+  <rect x="276" y="90" width="176" height="34" rx="10" fill="#3a2f0a"/>
+  <text x="290" y="113" class="mid amber mono">MemorySaver</text>
+  <text x="290" y="140" class="small dim mono">_checkpointsByThread</text>
+  <text x="290" y="158" class="small dim mono">Map&lt;threadId,</text>
+  <text x="290" y="176" class="small dim mono">   LinkedList&lt;Checkpoint&gt;&gt;</text>
+  <rect x="290" y="188" width="148" height="24" rx="5" fill="#3a2f0a"/>
+  <text x="298" y="204" class="small amber">在内存，进程退出即失</text>
+
+  <!-- FileSystemSaver -->
+  <rect x="470" y="90" width="176" height="130" rx="10" fill="#111c2e" stroke="#34d399"/>
+  <rect x="470" y="90" width="176" height="34" rx="10" fill="#0e3326"/>
+  <text x="484" y="113" class="mid emerald mono">FileSystemSaver</text>
+  <text x="484" y="140" class="small dim mono">targetFolder + 内部</text>
+  <text x="484" y="158" class="small dim mono">仍持 MemorySaver 双写</text>
+  <rect x="484" y="170" width="148" height="24" rx="5" fill="#0e3326"/>
+  <text x="492" y="186" class="small emerald">写文件到磁盘目录</text>
+  <text x="484" y="210" class="small dim">全新实例指同一目录</text>
+
+  <!-- 底部：读回 -->
+  <path d="M360 220 L 360 268" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="368" y="248" class="small dim">get / list</text>
+  <rect x="276" y="276" width="370" height="52" rx="8" fill="#1a2b22" stroke="#34d399"/>
+  <text x="292" y="298" class="small">getState(cfg)：按 threadId 读回当前检查点，next 指向下一个要跑的节点</text>
+  <text x="292" y="318" class="small">新实例 / 新进程：用同一个 threadId 就能从落盘检查点续跑</text>
+
+  <text x="34" y="360" class="small dim">节点跑完 → 交一个 Checkpoint 给 saver（键=threadId）</text>
+  <text x="34" y="382" class="small dim">saver 只负责存取，不决定怎么跑；续跑逻辑在 CompiledGraph.invoke 里</text>
+</svg>

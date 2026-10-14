@@ -1,0 +1,12 @@
+[stream] 逐节点往外吐的 NodeOutput 事件：
+  node=__START__（入口，初始状态） steps=[] count=0
+  node=nodeA steps=[A] count=1
+  node=nodeB steps=[A, B] count=2
+  -> 到达 END 标记
+[invoke] 只还最终状态：steps=[A, B] count=2
+[streamSnapshots] 每一步的状态快照（含入口 __START__ 与终态 __END__）：
+  node=__START__ steps=[] isEND=false
+  node=nodeA steps=[A] isEND=false
+  node=nodeB steps=[A, B] isEND=false
+  node=__END__ steps=[A, B] isEND=true
+self-test PASS
