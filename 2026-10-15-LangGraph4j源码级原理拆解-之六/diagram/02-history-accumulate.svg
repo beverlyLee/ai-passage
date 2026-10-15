@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="34" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',sans-serif" font-size="20" text-anchor="middle" font-weight="bold">对话历史怎么一路累积</text>
+  <text x="340" y="58" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">Demo6：节点只产增量消息，appender 通道自动拼到末尾</text>
+
+  <rect x="150" y="80" width="380" height="44" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="340" y="107" fill="#cbd5e1" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">输入  messages = []</text>
+
+  <line x1="340" y1="124" x2="340" y2="146" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="110" y="146" width="460" height="44" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="340" y="173" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">userSay  returns {messages:[用户：今天天气？]}</text>
+
+  <line x1="340" y1="190" x2="340" y2="212" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="362" y="206" fill="#34d399" font-size="12" font-family="'Noto Sans SC',sans-serif">appender 追加</text>
+
+  <rect x="110" y="212" width="460" height="44" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="239" fill="#a7f3d0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">历史  [用户：今天天气？]</text>
+
+  <line x1="340" y1="256" x2="340" y2="278" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="90" y="278" width="500" height="44" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="340" y="305" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">assistantReply  returns {messages:[助手：帮你查预报]}</text>
+
+  <line x1="340" y1="322" x2="340" y2="344" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="362" y="338" fill="#34d399" font-size="12" font-family="'Noto Sans SC',sans-serif">appender 追加</text>
+
+  <rect x="90" y="344" width="500" height="44" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="340" y="371" fill="#a7f3d0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">历史  [用户：今天天气？, 助手：帮你查预报]</text>
+
+  <text x="340" y="416" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">取值：lastMessage = 助手消息，lastMinus(1) = 用户消息</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

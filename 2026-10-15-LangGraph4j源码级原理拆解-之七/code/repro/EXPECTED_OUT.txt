@@ -1,0 +1,4 @@
+[steps 执行轨迹] [A, SUB, B]
+[count] 1
+[子图内部节点前缀格式] %s-%s
+self-test PASS

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="34" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',sans-serif" font-size="20" text-anchor="middle" font-weight="bold">相关的几个接口</text>
+  <text x="340" y="58" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">SubGraphNode 接口与 StateGraph.addSubgraph 两种重载</text>
+
+  <!-- 左：SubGraphNode 接口 -->
+  <rect x="40" y="88" width="300" height="262" rx="10" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="190" y="118" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="middle" font-weight="bold">SubGraphNode&lt;State&gt;</text>
+  <text x="190" y="138" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="11" text-anchor="middle">接口（子图节点契约）</text>
+  <line x1="60" y1="150" x2="320" y2="150" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="178" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12">id() : String</text>
+  <text x="80" y="196" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="11">父图里这个子图节点的名字</text>
+  <text x="60" y="228" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12">subGraph() : StateGraph&lt;State&gt;</text>
+  <text x="80" y="246" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="11">返回被嵌入的那张子图</text>
+  <text x="60" y="278" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12">formatId(...) : String</text>
+  <text x="80" y="296" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="11">给内部节点名加前缀</text>
+  <text x="60" y="328" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12">PREFIX_FORMAT = "%s-%s"</text>
+
+  <!-- 右：addSubgraph 重载 -->
+  <rect x="360" y="88" width="280" height="262" rx="10" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="500" y="118" fill="#22d3ee" font-family="'JetBrains Mono',monospace" font-size="14" text-anchor="middle" font-weight="bold">StateGraph.addSubgraph</text>
+  <line x1="380" y1="130" x2="620" y2="130" stroke="#334155" stroke-width="1"/>
+  <text x="380" y="158" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="11">addSubgraph(String,</text>
+  <text x="380" y="176" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="11">  StateGraph&lt;State&gt;)</text>
+  <text x="380" y="204" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="11">addSubgraph(String,</text>
+  <text x="380" y="222" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="11">  CompiledGraph&lt;State&gt;)</text>
+  <text x="380" y="252" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="11">（addNode 也有同样两种重载）</text>
+  <text x="380" y="288" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">子图编译后嵌入父图；运行时</text>
+  <text x="380" y="308" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">从父图当前状态开始执行，</text>
+  <text x="380" y="328" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12">返回后合并回父图总状态</text>
+
+  <text x="340" y="400" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">子图不是拷贝，而是同 State 类型的一次组合复用</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

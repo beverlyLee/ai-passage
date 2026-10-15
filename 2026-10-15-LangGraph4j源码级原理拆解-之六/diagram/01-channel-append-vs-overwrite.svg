@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="34" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',sans-serif" font-size="20" text-anchor="middle" font-weight="bold">消息通道：累积，不是覆盖</text>
+  <text x="340" y="58" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">同是写一个 messages 键，两种通道给出完全不同的历史</text>
+
+  <!-- 左：base 覆盖型 -->
+  <rect x="30" y="78" width="290" height="34" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="175" y="100" fill="#fb7185" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">base 通道（覆盖型）</text>
+
+  <rect x="55" y="128" width="240" height="46" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="175" y="156" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">state = {messages:[A]}</text>
+
+  <line x1="175" y1="174" x2="175" y2="198" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="198" y="190" fill="#94a3b8" font-size="12" font-family="'Noto Sans SC',sans-serif">节点写</text>
+
+  <rect x="55" y="198" width="240" height="46" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="175" y="226" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">node returns {messages:[B]}</text>
+
+  <line x1="175" y1="244" x2="175" y2="268" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="55" y="268" width="240" height="46" rx="8" fill="#0f172a" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="175" y="296" fill="#fca5a5" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">state = {messages:[B]}</text>
+  <text x="175" y="338" fill="#fb7185" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">最后写赢，A 被覆盖没了</text>
+
+  <!-- 右：appender 追加型 -->
+  <rect x="360" y="78" width="290" height="34" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="505" y="100" fill="#34d399" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">appender 通道（消息通道）</text>
+
+  <rect x="385" y="128" width="240" height="46" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="505" y="156" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">state = {messages:[A]}</text>
+
+  <line x1="505" y1="174" x2="505" y2="198" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="385" y="198" width="240" height="46" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="505" y="226" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">node returns {messages:[B]}</text>
+
+  <line x1="505" y1="244" x2="505" y2="268" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="385" y="268" width="240" height="46" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="505" y="296" fill="#a7f3d0" font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">state = {messages:[A, B]}</text>
+  <text x="505" y="338" fill="#34d399" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">增量拼接，A 和 B 都在</text>
+
+  <!-- 底部结论 -->
+  <text x="340" y="392" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">MessagesState 的 messages 通道 = Channels.appender（默认去重追加）</text>
+  <text x="340" y="420" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">节点只管产增量，引擎负责把增量拼到历史末尾</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>
