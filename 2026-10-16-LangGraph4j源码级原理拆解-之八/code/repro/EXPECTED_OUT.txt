@@ -1,0 +1,5 @@
+[category] spam
+[reply] 已归档
+[messages] [用户留言：你们的发票怎么开？有没有优惠, 回复：这条营销/发票类留言已归档，不再跟进]
+[lastMessage] 回复：这条营销/发票类留言已归档，不再跟进
+self-test PASS

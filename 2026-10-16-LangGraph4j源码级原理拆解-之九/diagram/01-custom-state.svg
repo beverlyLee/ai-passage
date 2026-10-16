@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="34" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',sans-serif" font-size="20" text-anchor="middle" font-weight="bold">自定义状态：声明通道 + 构造器 + 工厂</text>
+  <text x="340" y="58" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">继承 AgentState(Map)，写一份静态 SCHEMA，再把工厂交给 StateGraph</text>
+
+  <!-- SCHEMA 块 -->
+  <rect x="40" y="90" width="280" height="120" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="60" y="116" fill="#fbbf24" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">static final Map SCHEMA = Map.of(</text>
+  <text x="60" y="138" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">  "events", Channels.appender(...),</text>
+  <text x="60" y="158" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">  "latest", Channels.base(...),</text>
+  <text x="60" y="178" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">  "peak",   Channels.base(...)</text>
+  <text x="60" y="198" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">);</text>
+
+  <!-- 构造器块 -->
+  <rect x="40" y="230" width="280" height="70" rx="8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="60" y="256" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">public MyState(Map data) {</text>
+  <text x="60" y="278" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">  super(data);</text>
+  <text x="60" y="298" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">}</text>
+
+  <!-- 工厂交给图 -->
+  <rect x="40" y="320" width="280" height="70" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="60" y="346" fill="#34d399" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">new StateGraph&lt;&gt;(</text>
+  <text x="60" y="368" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">  MyState.SCHEMA,</text>
+  <text x="60" y="388" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">  MyState::new);  // 工厂</text>
+
+  <!-- 右侧：通道决定写入语义 -->
+  <rect x="370" y="90" width="270" height="300" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="505" y="116" fill="#22d3ee" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">SCHEMA 里的每个键 = 一种通道</text>
+  <text x="505" y="150" fill="#34d399" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">appender  追加，留全部历史</text>
+  <text x="505" y="178" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">节点产增量，引擎拼到末尾</text>
+  <text x="505" y="212" fill="#fb7185" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">base      覆盖，只留最新</text>
+  <text x="505" y="240" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">后写覆盖先写</text>
+  <text x="505" y="274" fill="#fbbf24" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">base(Reducer) 归约</text>
+  <text x="505" y="302" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">用自定义函数合并新旧值</text>
+  <text x="505" y="340" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">通道类型决定了同一个键</text>
+  <text x="505" y="362" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">被多次写入时到底怎么合</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

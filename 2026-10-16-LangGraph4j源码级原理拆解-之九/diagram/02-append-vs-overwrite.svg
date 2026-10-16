@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="34" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',sans-serif" font-size="20" text-anchor="middle" font-weight="bold">追加 与 覆盖：同一个键的两种命运</text>
+  <text x="340" y="58" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">appender 把三次写入都留下，base 只留下最后一次</text>
+
+  <!-- 左：appender 追加 -->
+  <rect x="30" y="78" width="290" height="34" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="175" y="100" fill="#34d399" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">events：appender（追加）</text>
+
+  <rect x="55" y="128" width="240" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="175" y="153" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">写 "登录尝试"</text>
+  <line x1="175" y1="168" x2="175" y2="186" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="55" y="186" width="240" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="175" y="211" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">写 "密码错误"</text>
+  <line x1="175" y1="226" x2="175" y2="244" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="55" y="244" width="240" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="175" y="269" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">写 "锁定账户"</text>
+  <rect x="55" y="296" width="240" height="44" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="175" y="323" fill="#a7f3d0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">[登录尝试, 密码错误, 锁定账户]</text>
+  <text x="175" y="356" fill="#34d399" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">三条都在，size = 3</text>
+
+  <!-- 右：base 覆盖 -->
+  <rect x="360" y="78" width="290" height="34" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="505" y="100" fill="#fb7185" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">latest：base（覆盖）</text>
+
+  <rect x="385" y="128" width="240" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="505" y="153" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">写 "A"</text>
+  <line x1="505" y1="168" x2="505" y2="186" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="385" y="186" width="240" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="505" y="211" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">写 "B"</text>
+  <line x1="505" y1="226" x2="505" y2="244" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="385" y="244" width="240" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="505" y="269" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">写 "C"</text>
+  <rect x="385" y="296" width="240" height="44" rx="8" fill="#0f172a" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="505" y="323" fill="#fca5a5" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">"C"</text>
+  <text x="505" y="356" fill="#fb7185" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">只留最后一次，A、B 没了</text>
+
+  <text x="340" y="404" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">选通道就是在选“多次写入时怎么合”：要历史用 appender，要现状用 base</text>
+  <text x="340" y="428" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">appender 默认去重，相同的增量不会重复累积</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

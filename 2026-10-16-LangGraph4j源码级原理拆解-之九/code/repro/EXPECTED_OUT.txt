@@ -1,0 +1,4 @@
+[events] [登录尝试, 密码错误, 锁定账户]
+[latest] C
+[peak] 7
+self-test PASS

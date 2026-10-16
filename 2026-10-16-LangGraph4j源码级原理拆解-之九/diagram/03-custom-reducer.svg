@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="34" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',sans-serif" font-size="20" text-anchor="middle" font-weight="bold">归约通道：写入规则由你定义</text>
+  <text x="340" y="58" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">base(Reducer, Supplier) 用自定义 BiFunction 决定“当前值”和“新值”怎么合并</text>
+
+  <!-- Reducer 定义 -->
+  <rect x="40" y="90" width="300" height="60" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="60" y="116" fill="#fbbf24" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">Reducer&lt;Integer&gt; MAX =</text>
+  <text x="60" y="138" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="start">  (a, b) -&gt; Math.max(a, b);</text>
+
+  <!-- 逐步合并 -->
+  <rect x="40" y="170" width="300" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="190" y="195" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">初值 0 → 写 3 → max(0,3)=3</text>
+  <line x1="190" y1="210" x2="190" y2="228" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="40" y="228" width="300" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="190" y="253" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">当前 3 → 写 7 → max(3,7)=7</text>
+  <line x1="190" y1="268" x2="190" y2="286" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="40" y="286" width="300" height="40" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="190" y="311" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">当前 7 → 写 5 → max(7,5)=7</text>
+
+  <rect x="40" y="338" width="300" height="44" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="190" y="365" fill="#fde68a" font-family="'JetBrains Mono',monospace" font-size="14" text-anchor="middle">peak = 7</text>
+
+  <!-- 右侧说明 -->
+  <rect x="370" y="90" width="270" height="292" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="505" y="118" fill="#22d3ee" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">Reducer 就是 BiFunction</text>
+  <text x="505" y="150" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">apply(当前值, 新值) → 合并值</text>
+  <text x="505" y="190" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">它不是覆盖也不是简单追加</text>
+  <text x="505" y="218" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">而是你写的任意合并规则</text>
+  <text x="505" y="258" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">求和、取最大、拼接 newest-first</text>
+  <text x="505" y="282" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">都可以塞进同一个 Reducer</text>
+  <text x="505" y="322" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">Supplier 是初值，没写过也有底</text>
+
+  <text x="340" y="408" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">归约通道把“多次写入怎么合”这件事，从框架默认变成你的业务规则</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

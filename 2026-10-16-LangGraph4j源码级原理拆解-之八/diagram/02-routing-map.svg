@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="34" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC',sans-serif" font-size="20" text-anchor="middle" font-weight="bold">mapping：把键翻译成目标节点</text>
+  <text x="340" y="58" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">第三个参数的键是 action 的返回值，值是节点名，值也能直接是 END</text>
+
+  <!-- 左：普通映射 -->
+  <rect x="40" y="80" width="280" height="34" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="180" y="102" fill="#34d399" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">键到普通节点</text>
+
+  <rect x="60" y="130" width="240" height="120" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="180" y="156" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">Map.of(</text>
+  <text x="180" y="178" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">  "spam",     "handleSpam",</text>
+  <text x="180" y="198" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">  "question", "handleQuestion",</text>
+  <text x="180" y="218" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">  "other",    "handleOther"</text>
+  <text x="180" y="238" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">)</text>
+
+  <text x="180" y="288" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">返回值命中哪个键，就去哪个节点</text>
+
+  <!-- 右：映射到 END -->
+  <rect x="360" y="80" width="280" height="34" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="500" y="102" fill="#fb7185" font-family="'Noto Sans SC',sans-serif" font-size="14" text-anchor="middle">键直接到 END</text>
+
+  <rect x="380" y="130" width="240" height="120" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="500" y="156" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">Map.of(</text>
+  <text x="500" y="178" fill="#fca5a5" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">  "end",    END,</text>
+  <text x="500" y="198" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">  "loop",   "agent"</text>
+  <text x="500" y="218" fill="#e2e8f0" font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">)</text>
+  <text x="500" y="238" fill="#94a3b8" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle">// END 是 StateGraph.END 常量</text>
+
+  <text x="500" y="288" fill="#94a3b8" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">命中 "end" 直接结束整张图</text>
+
+  <!-- 底部：覆盖所有分支 -->
+  <rect x="40" y="320" width="600" height="60" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="346" fill="#fbbf24" font-family="'Noto Sans SC',sans-serif" font-size="13" text-anchor="middle">经验法则：mapping 要覆盖 action 所有可能返回的键</text>
+  <text x="340" y="368" fill="#e2e8f0" font-family="'Noto Sans SC',sans-serif" font-size="12" text-anchor="middle">漏掉的键在运行期找不到目标节点，图会报错而不是悄悄走到某处</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>
