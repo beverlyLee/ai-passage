@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <text x="24" y="30" fill="#ffffff" font-size="16" font-weight="700">召回、延迟、内存：以及最底下的地基</text>
+
+  <!-- 三角 -->
+  <polygon points="150,110 70,288 262,288" fill="rgba(30,41,59,0.35)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="150" y="102" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">召回率 ↑</text>
+  <text x="58" y="305" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">延迟 ↓</text>
+  <text x="276" y="305" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">内存 ↓</text>
+  <circle cx="120" cy="178" r="4" fill="#fb7185"/><text x="92" y="172" fill="#fb7185" font-size="9">暴力</text>
+  <circle cx="186" cy="150" r="4" fill="#34d399"/><text x="196" y="153" fill="#34d399" font-size="9">HNSW</text>
+  <circle cx="226" cy="242" r="4" fill="#22d3ee"/><text x="196" y="262" fill="#22d3ee" font-size="9">IVF-PQ</text>
+  <circle cx="138" cy="262" r="4" fill="#fbbf24"/><text x="108" y="280" fill="#fbbf24" font-size="9">LSH</text>
+  <text x="150" y="330" fill="#64748b" font-size="9" text-anchor="middle">三者互相牵制，没有免费午餐</text>
+
+  <!-- 嵌入地基 -->
+  <rect x="320" y="84" width="336" height="138" rx="10" fill="rgba(76,29,149,0.14)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="336" y="106" fill="#a78bfa" font-size="12" font-weight="600">嵌入层 = 地基（检索之下还有一层）</text>
+  <text x="336" y="128" fill="#e2e8f0" font-size="9">两段文本是否相似，先由嵌入模型决定向量位置。</text>
+  <text x="336" y="146" fill="#e2e8f0" font-size="9">限流/缓存若被放成邻居，再快的 ANN 也只能忠实</text>
+  <text x="336" y="164" fill="#e2e8f0" font-size="9">返回邻居 —— 跨意图捞取是嵌入的锅，不是检索的锅。</text>
+  <text x="336" y="188" fill="#94a3b8" font-size="9">治本：换更强嵌入模型，或接一层 reranker 二次精排。</text>
+  <text x="336" y="212" fill="#64748b" font-size="8">检索层只加速「找最近邻」，改不了「什么算最近」。</text>
+
+  <!-- 三大坑 -->
+  <rect x="24" y="346" width="205" height="86" rx="8" fill="rgba(136,19,55,0.18)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="36" y="368" fill="#fb7185" font-size="11" font-weight="600">① 答非所问全怪向量库？</text>
+  <text x="36" y="388" fill="#e2e8f0" font-size="9">错。多是嵌入把近义意图放成邻居</text>
+  <text x="36" y="404" fill="#e2e8f0" font-size="9">（本文 demo：限流查询竟捞缓存）。</text>
+  <text x="36" y="420" fill="#94a3b8" font-size="9">先换嵌入 / 加 reranker。</text>
+
+  <rect x="243" y="346" width="205" height="86" rx="8" fill="rgba(120,53,15,0.18)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="255" y="368" fill="#fbbf24" font-size="11" font-weight="600">② 带过滤时召回静默塌缩</text>
+  <text x="255" y="388" fill="#e2e8f0" font-size="9">后过滤先搜全局再删不符的，过滤</text>
+  <text x="255" y="404" fill="#e2e8f0" font-size="9">器严时返回不足 k 甚至空。用预过滤</text>
+  <text x="255" y="420" fill="#94a3b8" font-size="9">（payload index）或归一化候选数。</text>
+
+  <rect x="462" y="346" width="194" height="86" rx="8" fill="rgba(76,29,149,0.18)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="474" y="368" fill="#a78bfa" font-size="11" font-weight="600">③ 维度灾难</text>
+  <text x="474" y="388" fill="#e2e8f0" font-size="9">维度越高，向量距离越趋同、区分</text>
+  <text x="474" y="404" fill="#e2e8f0" font-size="9">度下降，ANN 近似误差更明显。</text>
+  <text x="474" y="420" fill="#94a3b8" font-size="9">降维或选对度量距离。</text>
+</svg>

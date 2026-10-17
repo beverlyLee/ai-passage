@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="680" height="450" fill="#0f172a"/>
+  <rect width="680" height="450" fill="url(#grid)"/>
+
+  <!-- 标题 -->
+  <text x="24" y="30" fill="#ffffff" font-size="16" font-weight="700">暴力扫描 vs 近似检索：一次查询要走多少路</text>
+
+  <!-- 查询向量框 -->
+  <rect x="24" y="58" width="130" height="54" rx="6" fill="#0f172a"/>
+  <rect x="24" y="58" width="130" height="54" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="89" y="82" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">查询向量 q</text>
+  <text x="89" y="100" fill="#94a3b8" font-size="9" text-anchor="middle">要找最相似的 k 条</text>
+
+  <!-- 向量库面板 -->
+  <rect x="176" y="54" width="300" height="282" rx="10" fill="rgba(76,29,149,0.12)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="326" y="74" fill="#a78bfa" font-size="11" font-weight="600" text-anchor="middle">向量库：N 条向量</text>
+
+  <!-- ① 暴力扫描 -->
+  <text x="192" y="98" fill="#fb7185" font-size="10" font-weight="600">① 暴力扫描（精确）</text>
+  <rect x="190" y="106" width="272" height="64" rx="6" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="6,4"/>
+  <g fill="#fb7185">
+    <circle cx="210" cy="124" r="3"/><circle cx="258" cy="124" r="3"/><circle cx="306" cy="124" r="3"/><circle cx="354" cy="124" r="3"/><circle cx="402" cy="124" r="3"/><circle cx="442" cy="124" r="3"/>
+    <circle cx="210" cy="142" r="3"/><circle cx="258" cy="142" r="3"/><circle cx="306" cy="142" r="3"/><circle cx="354" cy="142" r="3"/><circle cx="402" cy="142" r="3"/><circle cx="442" cy="142" r="3"/>
+    <circle cx="210" cy="160" r="3"/><circle cx="258" cy="160" r="3"/><circle cx="306" cy="160" r="3"/><circle cx="354" cy="160" r="3"/><circle cx="402" cy="160" r="3"/><circle cx="442" cy="160" r="3"/>
+  </g>
+
+  <!-- ② 近似检索 ANN -->
+  <text x="192" y="194" fill="#34d399" font-size="10" font-weight="600">② 近似检索 ANN（只走窄路径）</text>
+  <g fill="#475569">
+    <circle cx="210" cy="222" r="3"/><circle cx="258" cy="222" r="3"/><circle cx="306" cy="222" r="3"/><circle cx="354" cy="222" r="3"/><circle cx="402" cy="222" r="3"/><circle cx="442" cy="222" r="3"/>
+    <circle cx="210" cy="240" r="3"/><circle cx="258" cy="240" r="3"/><circle cx="306" cy="240" r="3"/><circle cx="354" cy="240" r="3"/><circle cx="402" cy="240" r="3"/><circle cx="442" cy="240" r="3"/>
+    <circle cx="210" cy="258" r="3"/><circle cx="258" cy="258" r="3"/><circle cx="306" cy="258" r="3"/><circle cx="354" cy="258" r="3"/><circle cx="402" cy="258" r="3"/><circle cx="442" cy="258" r="3"/>
+    <circle cx="210" cy="276" r="3"/><circle cx="258" cy="276" r="3"/><circle cx="306" cy="276" r="3"/><circle cx="354" cy="276" r="3"/><circle cx="402" cy="276" r="3"/><circle cx="442" cy="276" r="3"/>
+  </g>
+  <polyline points="222,228 280,236 330,224 386,246 430,230" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrow-emerald)"/>
+  <g fill="#34d399">
+    <circle cx="222" cy="228" r="4"/><circle cx="280" cy="236" r="4"/><circle cx="330" cy="224" r="4"/><circle cx="386" cy="246" r="4"/><circle cx="430" cy="230" r="4"/>
+  </g>
+
+  <!-- 右：方法对比表 -->
+  <rect x="496" y="54" width="168" height="282" rx="10" fill="rgba(30,41,59,0.4)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="580" y="74" fill="#ffffff" font-size="11" font-weight="600" text-anchor="middle">方法对比</text>
+  <g font-size="9" fill="#94a3b8">
+    <text x="504" y="94">方法</text>
+    <text x="556" y="94" text-anchor="middle">召回@10</text>
+    <text x="612" y="94" text-anchor="middle">延迟</text>
+    <text x="650" y="94" text-anchor="middle">内存</text>
+  </g>
+  <line x1="500" y1="100" x2="660" y2="100" stroke="#334155" stroke-width="0.8"/>
+  <g font-size="9" fill="#e2e8f0">
+    <text x="504" y="122" fill="#fb7185">暴力</text><text x="556" y="122" text-anchor="middle">100%</text><text x="612" y="122" text-anchor="middle">高</text><text x="650" y="122" text-anchor="middle">中</text>
+    <text x="504" y="150" fill="#22d3ee">IVF</text><text x="556" y="150" text-anchor="middle">90-98%</text><text x="612" y="150" text-anchor="middle">中</text><text x="650" y="150" text-anchor="middle">低</text>
+    <text x="504" y="178" fill="#34d399">HNSW</text><text x="556" y="178" text-anchor="middle">95-99%</text><text x="612" y="178" text-anchor="middle">低</text><text x="650" y="178" text-anchor="middle">高</text>
+    <text x="504" y="206" fill="#fbbf24">LSH</text><text x="556" y="206" text-anchor="middle">70-95%</text><text x="612" y="206" text-anchor="middle">低</text><text x="650" y="206" text-anchor="middle">低</text>
+  </g>
+  <text x="504" y="236" fill="#64748b" font-size="8">召回/延迟/内存为典型</text>
+  <text x="504" y="250" fill="#64748b" font-size="8">区间，具体看数据调参</text>
+
+  <!-- 底部说明 -->
+  <rect x="176" y="346" width="488" height="74" rx="8" fill="rgba(30,41,59,0.4)" stroke="#334155" stroke-width="0.8"/>
+  <text x="190" y="368" fill="#e2e8f0" font-size="10" font-weight="600">量级参考（研究基准口径，非承诺）</text>
+  <text x="190" y="388" fill="#94a3b8" font-size="9">10M × 768 维：暴力扫描约 20-50ms/查询（必须向量化才扛得住）；</text>
+  <text x="190" y="406" fill="#94a3b8" font-size="9">HNSW 同样召回下约 &lt;1ms，约 30-100x 加速（ann-benchmarks / unseel 解析）。</text>
+  <text x="190" y="412" fill="#64748b" font-size="8"></text>
+</svg>
