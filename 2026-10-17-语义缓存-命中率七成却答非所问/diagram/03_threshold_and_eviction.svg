@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="'Noto Sans SC','PingFang SC','JetBrains Mono',sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="680" height="450" fill="#0f172a"/>
+  <text x="24" y="38" fill="#e2e8f0" font-size="22">阈值权衡与失效策略</text>
+  <text x="24" y="62" fill="#94a3b8" font-size="13">单靠调阈值救不了时间敏感/同义陷阱，必须配上失效与防污染</text>
+
+  <!-- 左：阈值两难 -->
+  <rect x="24" y="78" width="310" height="170" rx="10" fill="#111c33" stroke="#334155"/>
+  <text x="44" y="106" fill="#e2e8f0" font-size="16">相似度阈值 τ 的两难</text>
+  <rect x="44" y="120" width="270" height="52" rx="8" fill="#fb7185"/>
+  <text x="58" y="142" fill="#0f172a" font-size="14">过低：假阳性飙升</text>
+  <text x="58" y="162" fill="#0f172a" font-size="12">相似≠相同，答错且不报错</text>
+  <rect x="44" y="184" width="270" height="52" rx="8" fill="#fbbf24"/>
+  <text x="58" y="206" fill="#0f172a" font-size="14">过高：退化为精确匹配</text>
+  <text x="58" y="226" fill="#0f172a" font-size="12">命中率骤降，缓存形同虚设</text>
+
+  <!-- 右：失效与防污染 -->
+  <rect x="346" y="78" width="310" height="170" rx="10" fill="#111c33" stroke="#334155"/>
+  <text x="366" y="106" fill="#e2e8f0" font-size="16">失效与防污染策略</text>
+  <g font-size="13" fill="#e2e8f0">
+    <rect x="366" y="118" width="14" height="14" rx="3" fill="#34d399"/><text x="388" y="130">TTL 过期自动失效</text>
+    <rect x="366" y="146" width="14" height="14" rx="3" fill="#a78bfa"/><text x="388" y="158">LRU / LFU 容量驱逐</text>
+    <rect x="366" y="174" width="14" height="14" rx="3" fill="#22d3ee"/><text x="388" y="186">版本感知失效（模型/提示词变更 purge）</text>
+    <rect x="366" y="202" width="14" height="14" rx="3" fill="#fb7185"/><text x="388" y="214">防中毒：绝不缓存错误响应</text>
+  </g>
+
+  <!-- 中缝箭头 -->
+  <line x1="334" y1="163" x2="346" y2="163" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="334" y="158" fill="#94a3b8" font-size="11" text-anchor="end">调阈值</text>
+
+  <!-- 底：生产落地 -->
+  <rect x="24" y="262" width="632" height="170" rx="10" fill="#111c33" stroke="#334155"/>
+  <text x="44" y="290" fill="#e2e8f0" font-size="16">生产落地：什么不该缓存 + 该做什么</text>
+
+  <text x="44" y="318" fill="#fb7185" font-size="14">不该缓存的</text>
+  <g font-size="13" fill="#cbd5e1">
+    <text x="44" y="340">· 个性化查询（同一问法不同人答案不同）</text>
+    <text x="44" y="362">· 实时事实（天气/股价/库存随时间变）</text>
+    <text x="44" y="384">· 实体 ID 与多轮对话（需 query rewriting）</text>
+    <text x="44" y="406">· 无 judge 的安全敏感场景</text>
+  </g>
+
+  <line x1="340" y1="306" x2="340" y2="412" stroke="#334155" stroke-width="1"/>
+
+  <text x="364" y="318" fill="#34d399" font-size="14">该做的</text>
+  <g font-size="13" fill="#cbd5e1">
+    <text x="364" y="340">· 冷启动预填充高频问答</text>
+    <text x="364" y="362">· 多轮对话先做查询改写再查缓存</text>
+    <text x="364" y="384">· 持续监控命中率与假阳性率两条线</text>
+    <text x="364" y="406">· 边界命中加 LLM judge 复核</text>
+  </g>
+</svg>
