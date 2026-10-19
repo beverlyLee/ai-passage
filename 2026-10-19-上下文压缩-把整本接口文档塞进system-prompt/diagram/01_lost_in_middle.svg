@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <rect x="0" y="0" width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="36" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="bold">中间遗忘：关键信息的位置决定模型用不用它</text>
+  <text x="340" y="58" fill="#94a3b8" font-size="12" text-anchor="middle">准确率随位置呈 U 形，两端高、中间低（Liu 2023, arXiv:2307.03172）</text>
+
+  <!-- axes -->
+  <line x1="90" y1="110" x2="90" y2="400" stroke="#475569" stroke-width="2"/>
+  <line x1="70" y1="380" x2="610" y2="380" stroke="#475569" stroke-width="2"/>
+  <text x="60" y="130" fill="#94a3b8" font-size="11" text-anchor="middle" transform="rotate(-90 60 250)">准确率</text>
+  <text x="350" y="420" fill="#94a3b8" font-size="11" text-anchor="middle">位置：开头 → 结尾</text>
+
+  <!-- U curve -->
+  <path d="M90,110 L152.5,177.5 L215,245 L277.5,312.5 L340,380 L402.5,312.5 L465,245 L527.5,177.5 L590,110"
+        fill="none" stroke="#22d3ee" stroke-width="3"/>
+
+  <!-- edge markers -->
+  <circle cx="90" cy="110" r="6" fill="#34d399"/>
+  <circle cx="590" cy="110" r="6" fill="#34d399"/>
+  <text x="90" y="98" fill="#34d399" font-size="12" text-anchor="middle">开头(首因)</text>
+  <text x="590" y="98" fill="#34d399" font-size="12" text-anchor="middle">结尾(近因)</text>
+
+  <!-- center marker -->
+  <circle cx="340" cy="380" r="7" fill="#fb7185"/>
+  <text x="340" y="405" fill="#fb7185" font-size="12" text-anchor="middle">中间 ≈0.4 易忘</text>
+
+  <!-- annotation -->
+  <text x="430" y="200" fill="#e2e8f0" font-size="12">关键约束一旦沉到</text>
+  <text x="430" y="218" fill="#e2e8f0" font-size="12">上下文正中，模型</text>
+  <text x="430" y="236" fill="#e2e8f0" font-size="12">开始答非所问</text>
+</svg>

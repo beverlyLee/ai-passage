@@ -1,0 +1,19 @@
+$ python3 context_compression_core.py --self-test
+  ok:   llama2-7b KV ~0.5MB/token
+  ok:   GQA 缩小 KV (llama3-8b < llama2-7b)
+  ok:   128K 上下文 KV > 14GB 权重
+  ok:   middle < edge (U 形)
+  ok:   none 累计 > compact 累计
+  ok:   window 在第8轮丢失第1轮事实
+
+self-test PASS
+
+$ python3 context_compression_sim.py --self-test
+  ok:   缓存静态前缀省约 4 倍 (ratio>3.5)
+  ok:   none 累计 > compact 累计
+  ok:   window 在第8轮丢失居中事实 (acc=0)
+  ok:   compact 保留居中事实 (acc=0.95)
+  ok:   none 居中事实弱于 compact
+  ok:   U 形 center<edge
+
+self-test PASS

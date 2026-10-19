@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450" font-family="'PingFang SC','Noto Sans SC',sans-serif">
+  <rect x="0" y="0" width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="36" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="bold">KV cache 随上下文线性膨胀，128K 时已超权重数倍</text>
+  <text x="340" y="58" fill="#94a3b8" font-size="12" text-anchor="middle">每 token ≈0.5MB（Llama2 7B）；公式 2×层×KV头×头维度×字节</text>
+
+  <!-- axes -->
+  <line x1="110" y1="100" x2="110" y2="390" stroke="#475569" stroke-width="2"/>
+  <line x1="90" y1="380" x2="620" y2="380" stroke="#475569" stroke-width="2"/>
+  <text x="60" y="240" fill="#94a3b8" font-size="11" text-anchor="middle" transform="rotate(-90 60 240)">KV cache (GB)</text>
+
+  <!-- bars: 4K=2GB 32K=16GB 128K=64GB, scale 4px/GB from baseline 380 -->
+  <rect x="150" y="372" width="70" height="8" fill="#a78bfa"/>
+  <text x="185" y="392" fill="#cbd5e1" font-size="12" text-anchor="middle">4K</text>
+  <text x="185" y="364" fill="#a78bfa" font-size="12" text-anchor="middle">2GB</text>
+
+  <rect x="310" y="316" width="70" height="64" fill="#a78bfa"/>
+  <text x="345" y="392" fill="#cbd5e1" font-size="12" text-anchor="middle">32K</text>
+  <text x="345" y="308" fill="#a78bfa" font-size="12" text-anchor="middle">16GB</text>
+
+  <rect x="470" y="124" width="70" height="256" fill="#fb7185"/>
+  <text x="505" y="392" fill="#cbd5e1" font-size="12" text-anchor="middle">128K</text>
+  <text x="505" y="116" fill="#fb7185" font-size="12" text-anchor="middle">64GB</text>
+
+  <!-- weights reference line 14GB -> y=380-56=324 -->
+  <line x1="110" y1="324" x2="620" y2="324" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="615" y="316" fill="#fbbf24" font-size="11" text-anchor="end">7B 权重 ≈14GB</text>
+
+  <text x="505" y="160" fill="#fbbf24" font-size="12" text-anchor="middle">超权重 4 倍+</text>
+</svg>
