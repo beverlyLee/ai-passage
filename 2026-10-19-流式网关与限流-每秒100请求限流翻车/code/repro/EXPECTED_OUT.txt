@@ -1,0 +1,29 @@
+########## rate_limit_core.py --self-test ##########
+self-test START
+  [PASS] token_bucket_burst
+  [PASS] token_bucket_refill
+  [PASS] fixed_window_boundary_2x
+  [PASS] sliding_window_no_boundary
+  [PASS] leaky_bucket_rejects_burst
+self-test PASS (5/5)
+
+########## rate_limit_core.py (default demo) ##########
+固定窗口 limit=100/60s：窗口末尾接受 100，下一窗口开头接受 100
+两批合计 200 个请求在 0.2s 内到达（理论峰值应为 100/60s）
+
+########## streaming_gateway_sim.py --self-test ##########
+self-test START
+  [PASS] broken_gateway_admits_both
+  [PASS] fixed_gateway_rejects_big_keeps_small
+  [PASS] after_first_token_half_sent
+  [PASS] before_first_token_clean_reject
+  [PASS] concurrency_cap_enforced
+self-test PASS (5/5)
+
+########## streaming_gateway_sim.py (default demo) ##########
+== 坑二演示：只限 RPM 不限 TPM ==
+  大文档请求(50000 tok) 网关放行=True，正常小请求(100 tok) 网关放行=True
+  （网关对 token 失明，两者都放行；真正 429 的是下游供应商，雪崩从这里开始）
+== 坑三演示：先发后掐 vs 先准入 ==
+  先发后掐：拒绝=True，但已发出字节(半截流)=10000
+  先准入后发：拒绝=True，已发出字节=0（干净拒绝，前端可正常处理）

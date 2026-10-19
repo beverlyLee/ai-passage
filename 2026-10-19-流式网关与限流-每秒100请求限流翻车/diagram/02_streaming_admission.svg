@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="PingFang SC, Noto Sans SC, sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="32" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">流式准入控制：第一个 token 之前还是之后</text>
+  <text x="340" y="54" fill="#94a3b8" font-size="12" text-anchor="middle">SSE 边生成边发，一旦开始就不能收回</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+    <marker id="rose" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#fb7185"/>
+    </marker>
+    <marker id="emerald" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <!-- Lane A: 先发后掐 -->
+  <text x="28" y="86" fill="#fb7185" font-size="13" font-weight="600">先发后掐（错误）</text>
+  <rect x="28" y="98" width="96" height="48" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="76" y="127" fill="#e2e8f0" font-size="12" text-anchor="middle">客户端</text>
+  <rect x="170" y="98" width="120" height="48" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="230" y="120" fill="#e2e8f0" font-size="12" text-anchor="middle">网关</text>
+  <text x="230" y="138" fill="#94a3b8" font-size="10" text-anchor="middle">限流判断滞后</text>
+  <rect x="340" y="98" width="120" height="48" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="400" y="127" fill="#e2e8f0" font-size="12" text-anchor="middle">模型供应商</text>
+
+  <line x1="124" y1="122" x2="166" y2="122" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="145" y="116" fill="#94a3b8" font-size="9" text-anchor="middle">请求</text>
+  <line x1="290" y1="122" x2="336" y2="122" stroke="#34d399" stroke-width="1.5" marker-end="url(#emerald)"/>
+  <text x="313" y="116" fill="#34d399" font-size="9" text-anchor="middle">先发第1 chunk</text>
+
+  <!-- cut stream -->
+  <line x1="400" y1="146" x2="400" y2="186" stroke="#fb7185" stroke-width="1.5" marker-end="url(#rose)"/>
+  <text x="410" y="172" fill="#fb7185" font-size="10">中途预算超 -> 掐断</text>
+  <line x1="76" y1="146" x2="76" y2="186" stroke="#fb7185" stroke-width="1.5" marker-end="url(#rose)"/>
+  <text x="86" y="172" fill="#fb7185" font-size="10">收到半截 JSON</text>
+  <text x="28" y="206" fill="#fb7185" font-size="11">结果：前端 JSON.parse 崩溃，用户看到一团乱码</text>
+
+  <!-- Lane B: 先准入后发 -->
+  <text x="28" y="252" fill="#34d399" font-size="13" font-weight="600">先准入后发（正确）</text>
+  <rect x="28" y="264" width="96" height="48" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="76" y="293" fill="#e2e8f0" font-size="12" text-anchor="middle">客户端</text>
+  <rect x="170" y="264" width="120" height="48" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="230" y="286" fill="#e2e8f0" font-size="12" text-anchor="middle">网关</text>
+  <text x="230" y="304" fill="#94a3b8" font-size="10" text-anchor="middle">首个 token 前准入</text>
+  <rect x="340" y="264" width="120" height="48" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="400" y="293" fill="#e2e8f0" font-size="12" text-anchor="middle">模型供应商</text>
+
+  <line x1="124" y1="288" x2="166" y2="288" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="145" y="282" fill="#94a3b8" font-size="9" text-anchor="middle">请求</text>
+  <!-- admission check back to client -->
+  <path d="M230,264 L230,236 L76,236 L76,258" fill="none" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="150" y="228" fill="#fbbf24" font-size="10" text-anchor="middle">预算不足 -> 429 拒绝, 0 字节</text>
+  <!-- only if ok -->
+  <line x1="290" y1="312" x2="336" y2="312" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <text x="313" y="306" fill="#64748b" font-size="9" text-anchor="middle">放行才发</text>
+
+  <text x="28" y="344" fill="#34d399" font-size="11">结果：客户端收到干净的 429 + Retry-After，可正常退避重试</text>
+
+  <!-- bottom note -->
+  <rect x="28" y="364" width="624" height="60" rx="8" fill="#0b1220" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="44" y="388" fill="#fbbf24" font-size="12" font-weight="600">结论</text>
+  <text x="44" y="408" fill="#cbd5e1" font-size="11">流式响应的限流必须在首个 token 发出前完成；先发后掐只会把事故转嫁给前端。</text>
+</svg>

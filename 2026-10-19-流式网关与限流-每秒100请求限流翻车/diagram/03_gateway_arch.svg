@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="PingFang SC, Noto Sans SC, sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="32" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">AI 流式网关该长什么样</text>
+  <text x="340" y="54" fill="#94a3b8" font-size="12" text-anchor="middle">认证 - 路由 - 限流(三维) - 计量 - 降级 - 可观测</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- observability top bar -->
+  <rect x="24" y="74" width="632" height="40" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="40" y="99" fill="#e2e8f0" font-size="12" font-weight="600">可观测层</text>
+  <text x="120" y="99" fill="#cbd5e1" font-size="11">x-ratelimit-* / retry-after 透传 / 限流命中埋点 / p95 延迟</text>
+
+  <!-- pipeline boxes -->
+  <rect x="24" y="150" width="96" height="64" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="72" y="178" fill="#e2e8f0" font-size="12" text-anchor="middle">客户端</text>
+  <text x="72" y="196" fill="#94a3b8" font-size="10" text-anchor="middle">商家 / 用户</text>
+
+  <rect x="150" y="150" width="110" height="64" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="205" y="178" fill="#e2e8f0" font-size="12" text-anchor="middle">认证 / 路由</text>
+  <text x="205" y="196" fill="#94a3b8" font-size="10" text-anchor="middle">API Key + 租户</text>
+
+  <rect x="288" y="138" width="130" height="88" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="2"/>
+  <text x="353" y="160" fill="#fb7185" font-size="12" font-weight="600" text-anchor="middle">限流（三维）</text>
+  <rect x="298" y="170" width="36" height="22" rx="4" fill="#0b1220" stroke="#fb7185" stroke-width="1"/>
+  <text x="316" y="185" fill="#cbd5e1" font-size="10" text-anchor="middle">RPM</text>
+  <rect x="340" y="170" width="36" height="22" rx="4" fill="#0b1220" stroke="#fb7185" stroke-width="1"/>
+  <text x="358" y="185" fill="#cbd5e1" font-size="10" text-anchor="middle">TPM</text>
+  <rect x="382" y="170" width="30" height="22" rx="4" fill="#0b1220" stroke="#fb7185" stroke-width="1"/>
+  <text x="397" y="185" fill="#cbd5e1" font-size="9" text-anchor="middle">并发</text>
+  <text x="353" y="212" fill="#94a3b8" font-size="10" text-anchor="middle">首个 token 前准入</text>
+
+  <rect x="446" y="150" width="96" height="64" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="494" y="178" fill="#e2e8f0" font-size="12" text-anchor="middle">计量</text>
+  <text x="494" y="196" fill="#94a3b8" font-size="10" text-anchor="middle">按租户记账</text>
+
+  <rect x="572" y="150" width="100" height="64" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="622" y="178" fill="#e2e8f0" font-size="12" text-anchor="middle">模型供应商</text>
+  <text x="622" y="196" fill="#34d399" font-size="10" text-anchor="middle">fallback 降级</text>
+
+  <!-- arrows -->
+  <line x1="120" y1="182" x2="146" y2="182" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="260" y1="182" x2="284" y2="182" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="418" y1="182" x2="442" y2="182" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="542" y1="182" x2="568" y2="182" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 429 passthrough note -->
+  <rect x="24" y="256" width="632" height="56" rx="8" fill="#0b1220" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="40" y="280" fill="#fbbf24" font-size="12" font-weight="600">429 + Retry-After 必须透传给客户端</text>
+  <text x="40" y="300" fill="#cbd5e1" font-size="11">不传 -> 客户端立即重试 -> 重试风暴（thundering herd），比限流本身更致命。</text>
+
+  <!-- fallback note -->
+  <rect x="24" y="328" width="632" height="56" rx="8" fill="#0b1220" stroke="#34d399" stroke-width="1.5"/>
+  <text x="40" y="352" fill="#34d399" font-size="12" font-weight="600">降级与 fallback</text>
+  <text x="40" y="372" fill="#cbd5e1" font-size="11">主模型 429/503 时按优先级切备用模型；付费租户优先于免费租户获得配额。</text>
+</svg>

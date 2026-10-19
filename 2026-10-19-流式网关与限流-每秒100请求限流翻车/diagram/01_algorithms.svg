@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" font-family="PingFang SC, Noto Sans SC, sans-serif">
+  <rect width="680" height="450" fill="#0f172a"/>
+  <text x="340" y="32" fill="#e2e8f0" font-size="18" text-anchor="middle" font-weight="600">四种限流算法：突发与边界行为</text>
+  <text x="340" y="54" fill="#94a3b8" font-size="12" text-anchor="middle">选错算法，限流本身就变成事故源头</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Card 1 固定窗口 (trap) -->
+  <rect x="28" y="78" width="150" height="250" rx="8" fill="#1e293b" stroke="#fb7185" stroke-width="2"/>
+  <text x="103" y="104" fill="#fb7185" font-size="14" text-anchor="middle" font-weight="600">固定窗口</text>
+  <text x="103" y="132" fill="#cbd5e1" font-size="11" text-anchor="middle">固定时间窗内计数</text>
+  <text x="103" y="150" fill="#cbd5e1" font-size="11" text-anchor="middle">窗口到期清零重置</text>
+  <text x="103" y="182" fill="#94a3b8" font-size="11" text-anchor="middle">允许突发：边界 2×</text>
+  <text x="103" y="200" fill="#94a3b8" font-size="11" text-anchor="middle">精度：低</text>
+  <text x="103" y="232" fill="#fb7185" font-size="11" text-anchor="middle">不适合防滥用</text>
+  <text x="103" y="250" fill="#fb7185" font-size="11" text-anchor="middle">边界尖峰打爆后端</text>
+  <text x="103" y="312" fill="#64748b" font-size="10" text-anchor="middle">内存 O(1)</text>
+
+  <!-- Card 2 滑动窗口日志 -->
+  <rect x="186" y="78" width="150" height="250" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="261" y="104" fill="#e2e8f0" font-size="14" text-anchor="middle" font-weight="600">滑动窗口日志</text>
+  <text x="261" y="132" fill="#cbd5e1" font-size="11" text-anchor="middle">记录每个请求时间</text>
+  <text x="261" y="150" fill="#cbd5e1" font-size="11" text-anchor="middle">过期即删</text>
+  <text x="261" y="182" fill="#94a3b8" font-size="11" text-anchor="middle">允许突发：无</text>
+  <text x="261" y="200" fill="#94a3b8" font-size="11" text-anchor="middle">精度：高</text>
+  <text x="261" y="232" fill="#94a3b8" font-size="11" text-anchor="middle">内存随请求增长</text>
+  <text x="261" y="250" fill="#94a3b8" font-size="11" text-anchor="middle">不适合高吞吐</text>
+  <text x="261" y="312" fill="#64748b" font-size="10" text-anchor="middle">内存 O(n)</text>
+
+  <!-- Card 3 令牌桶 (recommended) -->
+  <rect x="344" y="78" width="150" height="250" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+  <text x="419" y="104" fill="#34d399" font-size="14" text-anchor="middle" font-weight="600">令牌桶</text>
+  <text x="419" y="132" fill="#cbd5e1" font-size="11" text-anchor="middle">令牌按速率补充</text>
+  <text x="419" y="150" fill="#cbd5e1" font-size="11" text-anchor="middle">至容量上限封顶</text>
+  <text x="419" y="182" fill="#94a3b8" font-size="11" text-anchor="middle">允许突发：桶容量</text>
+  <text x="419" y="200" fill="#94a3b8" font-size="11" text-anchor="middle">精度：中</text>
+  <text x="419" y="232" fill="#34d399" font-size="11" text-anchor="middle">Anthropic 官方用此</text>
+  <text x="419" y="250" fill="#34d399" font-size="11" text-anchor="middle">推荐网关层使用</text>
+  <text x="419" y="312" fill="#64748b" font-size="10" text-anchor="middle">内存 O(1)</text>
+
+  <!-- Card 4 漏桶 -->
+  <rect x="502" y="78" width="150" height="250" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="577" y="104" fill="#fbbf24" font-size="14" text-anchor="middle" font-weight="600">漏桶</text>
+  <text x="577" y="132" fill="#cbd5e1" font-size="11" text-anchor="middle">请求入队恒速漏出</text>
+  <text x="577" y="150" fill="#cbd5e1" font-size="11" text-anchor="middle">超出容量即丢弃</text>
+  <text x="577" y="182" fill="#94a3b8" font-size="11" text-anchor="middle">允许突发：无</text>
+  <text x="577" y="200" fill="#94a3b8" font-size="11" text-anchor="middle">精度：中</text>
+  <text x="577" y="232" fill="#fbbf24" font-size="11" text-anchor="middle">彻底平滑输出</text>
+  <text x="577" y="250" fill="#fbbf24" font-size="11" text-anchor="middle">适合脆弱下游</text>
+  <text x="577" y="312" fill="#64748b" font-size="10" text-anchor="middle">内存 O(n)</text>
+
+  <!-- bottom callout: fixed-window boundary spike -->
+  <rect x="28" y="346" width="624" height="74" rx="8" fill="#0b1220" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="44" y="372" fill="#fb7185" font-size="12" font-weight="600">固定窗口的边界陷阱</text>
+  <text x="44" y="394" fill="#cbd5e1" font-size="11">在第 59.9 秒打满 100 个请求，再在 60.1 秒（新窗口）打满 100 个：</text>
+  <text x="44" y="412" fill="#cbd5e1" font-size="11">200 个请求在 0.2 秒内到达，超过后端承载力 -> 下游 429 雪崩。</text>
+</svg>
