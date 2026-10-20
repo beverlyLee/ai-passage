@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arr-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <style>
+      text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="32" fill="#ffffff" font-size="14" font-weight="700">平均值 192ms 看着健康，p99 1515ms 才是用户真实体感</text>
+
+  <!-- ===== population distribution strip (100 samples) ===== -->
+  <text x="30" y="58" fill="#94a3b8" font-size="10">请求延迟分布（100 次采样，按占比着色）</text>
+  <rect x="30" y="66" width="558" height="40" rx="4" fill="#22d3ee" opacity="0.55"/>
+  <rect x="588" y="66" width="56" height="40" rx="4" fill="#fbbf24" opacity="0.75"/>
+  <rect x="644" y="66" width="6" height="40" rx="2" fill="#fb7185"/>
+  <text x="309" y="91" fill="#0f172a" font-size="11" font-weight="700" text-anchor="middle">90% · 30ms</text>
+  <text x="30" y="124" fill="#94a3b8" font-size="10">90 次 30ms（快）　·　9 次 1500ms（慢）　·　1 次 3000ms（灾难）</text>
+
+  <!-- dashed connector from tail segment to p99 card -->
+  <line x1="647" y1="106" x2="500" y2="152" stroke="#fb7185" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arr-rose)"/>
+  <text x="610" y="135" fill="#fb7185" font-size="9" font-weight="600">长尾</text>
+
+  <!-- ===== two big number cards ===== -->
+  <!-- avg card -->
+  <rect x="30" y="150" width="300" height="120" rx="10" fill="#0f172a"/>
+  <rect x="30" y="150" width="300" height="120" rx="10" fill="rgba(6,78,59,0.25)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="50" y="178" fill="#34d399" font-size="12" font-weight="600">平均值（旧看板唯一指标）</text>
+  <text x="180" y="232" fill="#ffffff" font-size="34" font-weight="700" text-anchor="middle">192 ms</text>
+  <text x="180" y="258" fill="#94a3b8" font-size="10" text-anchor="middle">团队结论：很健康，不用管</text>
+
+  <!-- p99 card -->
+  <rect x="350" y="150" width="300" height="120" rx="10" fill="#0f172a"/>
+  <rect x="350" y="150" width="300" height="120" rx="10" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="370" y="178" fill="#fb7185" font-size="12" font-weight="600">p99（正确埋点应看的分位数）</text>
+  <text x="500" y="232" fill="#ffffff" font-size="34" font-weight="700" text-anchor="middle">1515 ms</text>
+  <text x="500" y="258" fill="#94a3b8" font-size="10" text-anchor="middle">每 100 次有 1 次等 1.5 秒以上</text>
+
+  <!-- ===== p-chips under p99 card ===== -->
+  <g>
+    <rect x="350" y="288" width="95" height="40" rx="6" fill="#0f172a"/>
+    <rect x="350" y="288" width="95" height="40" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+    <text x="397" y="308" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">p50 30ms</text>
+    <text x="397" y="322" fill="#94a3b8" font-size="9" text-anchor="middle">中位</text>
+  </g>
+  <g>
+    <rect x="452" y="288" width="95" height="40" rx="6" fill="#0f172a"/>
+    <rect x="452" y="288" width="95" height="40" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.2"/>
+    <text x="499" y="308" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">p95 1500ms</text>
+    <text x="499" y="322" fill="#94a3b8" font-size="9" text-anchor="middle">长尾起点</text>
+  </g>
+  <g>
+    <rect x="554" y="288" width="96" height="40" rx="6" fill="#0f172a"/>
+    <rect x="554" y="288" width="96" height="40" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.2"/>
+    <text x="602" y="308" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">p99 1515ms</text>
+    <text x="602" y="322" fill="#94a3b8" font-size="9" text-anchor="middle">极端尾</text>
+  </g>
+
+  <!-- bottom note -->
+  <text x="30" y="410" fill="#94a3b8" font-size="10">Duration 必须记成直方图（分布），而不是一个数；只有存了分桶，p95/p99 才能事后算出来、才能设告警。</text>
+</svg>

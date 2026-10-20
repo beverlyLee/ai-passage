@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <style>
+      text { font-family: 'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="20" y="32" fill="#ffffff" font-size="14" font-weight="700">三种观测盲区：只记总量 / 只记成功 / 只看平均</text>
+
+  <!-- ===== card A: 只记总量 ===== -->
+  <rect x="20" y="64" width="200" height="220" rx="10" fill="#0f172a"/>
+  <rect x="20" y="64" width="200" height="220" rx="10" fill="rgba(136,19,55,0.18)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="120" y="90" fill="#fb7185" font-size="12" font-weight="700" text-anchor="middle">盲区① 只记总量</text>
+  <line x1="36" y1="100" x2="204" y2="100" stroke="#fb7185" stroke-width="0.8" opacity="0.5"/>
+  <text x="36" y="124" fill="#94a3b8" font-size="10">你以为：</text>
+  <text x="36" y="142" fill="#ffffff" font-size="11">「总请求数 = 9000/min，</text>
+  <text x="36" y="158" fill="#ffffff" font-size="11">一切正常」</text>
+  <text x="36" y="188" fill="#94a3b8" font-size="10">实际漏掉：</text>
+  <text x="36" y="206" fill="#ffffff" font-size="11">• 哪个租户烧最多 token</text>
+  <text x="36" y="224" fill="#ffffff" font-size="11">• 哪个模型 / 端点最贵</text>
+  <text x="36" y="242" fill="#ffffff" font-size="11">• 限流只限 RPM 没限 TPM</text>
+  <text x="36" y="260" fill="#ffffff" font-size="11">  → 账单翻倍无人知</text>
+
+  <!-- ===== card B: 只记成功 ===== -->
+  <rect x="240" y="64" width="200" height="220" rx="10" fill="#0f172a"/>
+  <rect x="240" y="64" width="200" height="220" rx="10" fill="rgba(120,53,15,0.18)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="340" y="90" fill="#fbbf24" font-size="12" font-weight="700" text-anchor="middle">盲区② 只记成功</text>
+  <line x1="256" y1="100" x2="424" y2="100" stroke="#fbbf24" stroke-width="0.8" opacity="0.5"/>
+  <text x="256" y="124" fill="#94a3b8" font-size="10">你以为：</text>
+  <text x="256" y="142" fill="#ffffff" font-size="11">「成功请求都返回了，</text>
+  <text x="256" y="158" fill="#ffffff" font-size="11">服务没问题」</text>
+  <text x="256" y="188" fill="#94a3b8" font-size="10">实际漏掉：</text>
+  <text x="256" y="206" fill="#ffffff" font-size="11">• 429 限流风暴全盲区</text>
+  <text x="256" y="224" fill="#ffffff" font-size="11">• 重试次数与重试 token</text>
+  <text x="256" y="242" fill="#ffffff" font-size="11">• 5xx 与超时</text>
+  <text x="256" y="260" fill="#ffffff" font-size="11">  → 下游被拖垮看不见</text>
+
+  <!-- ===== card C: 只看平均 ===== -->
+  <rect x="460" y="64" width="200" height="220" rx="10" fill="#0f172a"/>
+  <rect x="460" y="64" width="200" height="220" rx="10" fill="rgba(76,29,149,0.18)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="560" y="90" fill="#a78bfa" font-size="12" font-weight="700" text-anchor="middle">盲区③ 只看平均</text>
+  <line x1="476" y1="100" x2="644" y2="100" stroke="#a78bfa" stroke-width="0.8" opacity="0.5"/>
+  <text x="476" y="124" fill="#94a3b8" font-size="10">你以为：</text>
+  <text x="476" y="142" fill="#ffffff" font-size="11">「平均 192ms，</text>
+  <text x="476" y="158" fill="#ffffff" font-size="11">很健康」</text>
+  <text x="476" y="188" fill="#94a3b8" font-size="10">实际漏掉：</text>
+  <text x="476" y="206" fill="#ffffff" font-size="11">• p95 / p99 长尾被抹平</text>
+  <text x="476" y="224" fill="#ffffff" font-size="11">• 1% 用户等 1.5 秒+</text>
+  <text x="476" y="242" fill="#ffffff" font-size="11">• 直方图没存分布</text>
+  <text x="476" y="260" fill="#ffffff" font-size="11">  → 永远算不出分位数</text>
+
+  <!-- ===== bottom banner: correct approach ===== -->
+  <rect x="20" y="306" width="640" height="104" rx="10" fill="#0f172a"/>
+  <rect x="20" y="306" width="640" height="104" rx="10" fill="rgba(6,78,59,0.25)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="40" y="334" fill="#34d399" font-size="13" font-weight="700">正确埋法 = 多维标签（RED） + 直方图分位数</text>
+  <text x="40" y="360" fill="#ffffff" font-size="11">① 维度拆分：租户 / 模型 / 路由 / 端点 / 状态，让每个指标都能切片</text>
+  <text x="40" y="380" fill="#ffffff" font-size="11">② RED 三件套：Rate（含 429/重试）、Errors（4xx/5xx/超时）、Duration（分布）</text>
+  <text x="40" y="400" fill="#ffffff" font-size="11">③ 看 p95 / p99 而非平均：长尾才是用户真实体感，也是告警该盯的对象</text>
+</svg>
